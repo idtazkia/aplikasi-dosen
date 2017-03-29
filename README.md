@@ -38,7 +38,7 @@ Cara instalasi Java dan Maven bisa dibaca dengan klik [tautan ini](http://softwa
 
 ## Cara Menjalankan Aplikasi ##
 
-Saat ini kami belum menyediakan binary release, karena masih dalam tahap pengembangan. Bila ingin mengetes aplikasinya, Anda harus mengunduh kode program dengan cara mengklik tombol Download Zip atau melakukan `git clone`. Cara instalasi Git dan mengambil kode program dari Github bisa dibaca pada [tautan ini](http://software.endy.muhardin.com/aplikasi/instalasi-git-di-windows/).
+Saat ini kami belum menyediakan binary release, karena masih dalam tahap pengembangan. Bila ingin mengetes aplikasinya, Anda harus [mengunduh kode program dalam format zip](https://github.com/idtazkia/aplikasi-dosen/archive/master.zip) atau melakukan `git clone`. Cara instalasi Git dan mengambil kode program dari Github bisa dibaca pada [tautan ini](http://software.endy.muhardin.com/aplikasi/instalasi-git-di-windows/).
 
 Setelah kode program didapatkan, buka terminal / command prompt, kemudian:
 
@@ -56,7 +56,7 @@ Versi development dari aplikasi ini dideploy secara otomatis ke Heroku dan bisa 
 
 ## Lisensi ##
 
-Aplikasi ini dirilis secara open-source dengan lisensi Apache License versi 2.0, yang secara [garis besar artinya](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)):
+Aplikasi ini dirilis secara open-source dengan lisensi Apache License versi 2.0, yang [secara garis besar artinya sebagai berikut:](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)):
 
 * Anda wajib :
 
