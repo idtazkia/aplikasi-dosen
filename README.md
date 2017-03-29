@@ -1,6 +1,6 @@
 # Aplikasi Dosen #
 
-[[![Build Status](https://travis-ci.org/idtazkia/aplikasi-dosen.svg?branch=master)](https://travis-ci.org/idtazkia/aplikasi-dosen)](https://travis-ci.org/idtazkia/aplikasi-dosen)
+[![Build Status](https://travis-ci.org/idtazkia/aplikasi-dosen.svg?branch=master)](https://travis-ci.org/idtazkia/aplikasi-dosen)
 
 Menjadi dosen di Indonesia tidak mudah. Selain harus membuat materi ajar, menghadapi kelakuan mahasiswa, juga harus membuat laporan untuk Kementerian Pendidikan dan Kebudayaan.
 
