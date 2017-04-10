@@ -25,6 +25,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -36,7 +37,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <!--<span class="icon-bar"></span>-->
             </button>
             <a class="navbar-brand" href="#">Aplikasi Dosen</a>
         </div>
@@ -56,8 +57,9 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a th:href="@{/institusi/list}">Institusi</a></li>
-                <li><a th:href="@{/pangkat/list}">Pangkat</a></li>
-                <li><a th:href="@{/surat/list}">Jenis Surat</a></li>
+                <li><a th:href="@{/jenissurat/list}">Jenis Surat</a></li>
+                <li><a th:href="@{/dosen/list}">Dosen</a></li>
+                <li><a th:href="@{/programstudi/list}">Program Studi</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
