@@ -1,9 +1,8 @@
 package id.ac.tazkia.dosen.controller;
 
 /**
- * Created by yogi on 30/03/2017.
+ * Created by yogi on 03/04/2017.
  */
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Date;
 
 @Controller
-public class DatadosenController {
+public class JenisSuratController {
 
-    @RequestMapping("/datadosen/list")
-    public ModelMap daftarDosen(){
+    @RequestMapping("/jenissurat/list")
+    public ModelMap jenissurat(){
         return new ModelMap();
     }
 
-    @RequestMapping(value = "/datadosen/form", method = RequestMethod.GET)
+    @RequestMapping(value = "/jenissurat/form", method = RequestMethod.GET)
     public void tampilkanForm() {
     }
 }
