@@ -51,7 +51,7 @@ Setelah kode program didapatkan, buka terminal / command prompt, kemudian:
 
         mvn clean spring-boot:run
 
-* browse aplikasi ke [http://localhost:8080/](http://localhost:8080/)
+* browse aplikasi ke [http://localhost:10000/](http://localhost:10000/)
 
 Versi development dari aplikasi ini dideploy secara otomatis ke Heroku dan bisa diakses di [https://aplikasi-dosen.herokuapp.com/](https://aplikasi-dosen.herokuapp.com/)
 
