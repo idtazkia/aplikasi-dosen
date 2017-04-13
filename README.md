@@ -104,6 +104,10 @@ Pergerakan project ini bisa dipantau melalui :
 * [Travis CI](https://travis-ci.org/idtazkia/aplikasi-dosen)
 * [Live Demo di Heroku](https://aplikasi-dosen.herokuapp.com/)
 
+Diskusi dan koordinasi bisa dilakukan melalui:
+
+* [Grup Telegram](https://t.me/AplikasiDosen)
+
 ## Sponsor ##
 
 * [Sekolah Tinggi Ekonomi Islam Tazkia](http://www.tazkia.ac.id)
