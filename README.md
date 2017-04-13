@@ -56,7 +56,7 @@ Versi development dari aplikasi ini dideploy secara otomatis ke Heroku dan bisa 
 
 ## Lisensi ##
 
-Aplikasi ini dirilis secara open-source dengan lisensi Apache License versi 2.0, yang [secara garis besar artinya sebagai berikut:](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)):
+Aplikasi ini dirilis secara open-source dengan lisensi Apache License versi 2.0, yang [secara garis besar artinya sebagai berikut](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)):
 
 * Anda wajib :
 
@@ -87,7 +87,7 @@ Kami mengharapkan kontribusi dari rekan-rekan dalam berbagai bentuk, diantaranya
 
 Bila rekan-rekan ingin berkontribusi, caranya sangat mudah.
 
-* Kontribusi menulis kode program : [fork repo ini](https://github.com/idtazkia/aplikasi-dosen#fork-destination-box), lakukan apa yang ingin Anda lakukan, kemudian submit Pull Request (PR). Kami akan review dan merge PR yang berkualitas bagus. Bila ada kekurangan, kami akan pandu untuk memperbaikinya.
+* Kontribusi menulis kode program : [fork repo ini](https://github.com/idtazkia/aplikasi-dosen#fork-destination-box), lakukan apa yang ingin Anda lakukan, kemudian submit Pull Request (PR). Kami akan review dan merge PR yang berkualitas bagus. Bila ada kekurangan, kami akan [pandu untuk memperbaikinya](https://github.com/idtazkia/aplikasi-dosen/pull/1).
 
 * Melaporkan bug/error/usulan : cukup [buat issue baru](https://github.com/idtazkia/aplikasi-dosen/issues/new).
 
