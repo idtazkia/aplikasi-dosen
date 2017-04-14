@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Edit Surat Tugas</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Edit Surat Tugas</h1>
+
+    <form class="form-horizontal" th:object="${suratTugas}" method="post">
+        <div class="form-group" th:classappend="${#fields.hasErrors('jenisSurat')} ? 'has-error'">
+            <label for="jenisSurat" class="col-sm-2 control-label">Jenis Surat</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="instruktur" th:field="*{jenisSurat}">
+                    <option value="">Pilih instruktur</option>
+                    <option th:each="js : ${daftarJenisSurat}"
+                            th:value="${js.id}"
+                            th:text="${js.nama}">Pilihan Jenis Surat
+                    </option>
+                </select>
+                <label class="control-label" th:errors="*{jenisSurat}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('noSurat')} ? 'has-error'">
+            <label for="noSurat" class="col-sm-2 control-label">No Surat</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       th:field="*{noSurat}"
+                       name="noSurat" class="form-control" id="noSurat" placeholder="No Surat"/>
+                <label class="control-label" th:errors="*{noSurat}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('penerima')} ? 'has-error'">
+            <label for="penerima" class="col-sm-2 control-label">Penerima</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="penerima" th:field="*{penerima}">
+                    <option value="">Penerima</option>
+                    <option th:each="ds : ${daftarDosen}"
+                            th:value="${ds.id}"
+                            th:text="${ds.nama}">Pilihan Penerima
+                    </option>
+                </select>
+                <label class="control-label" th:errors="*{penerima}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('tanggalMulai')} ? 'has-error'">
+            <label for="tanggalMulai" class="col-sm-2 control-label">Tanggal Mulai</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                       th:field="*{tanggalMulai}"
+                       id="nama" name="tanggalMulai" placeholder="Tanggal Mulai"/>
+                <label class="control-label" th:errors="*{tanggalMulai}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('tanggalSelesai')} ? 'has-error'">
+            <label for="tanggalSelesai" class="col-sm-2 control-label">Tanggal Selesai</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                       th:field="*{tanggalSelesai}"
+                       id="nama" name="tanggalSelesai" placeholder="Tanggal Selesai"/>
+                <label class="control-label" th:errors="*{tanggalSelesai}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Simpan</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
