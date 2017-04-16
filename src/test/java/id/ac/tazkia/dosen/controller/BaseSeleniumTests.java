@@ -17,6 +17,7 @@ public abstract class BaseSeleniumTests {
     private int serverPort;
 
     protected String baseUrl;
+    protected WebDriver webDriver = new HtmlUnitDriver();
 
     @PostConstruct
     public void setupWebDriver(){

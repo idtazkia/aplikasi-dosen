@@ -3,8 +3,6 @@ package id.ac.tazkia.dosen.controller;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.text.SimpleDateFormat;
@@ -14,8 +12,6 @@ import java.util.concurrent.TimeUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SuratTugasTests extends BaseSeleniumTests {
-
-    private WebDriver webDriver = new HtmlUnitDriver();
 
     private Faker faker = new Faker(new Locale("in-ID"));
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

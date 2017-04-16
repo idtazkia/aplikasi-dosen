@@ -1,23 +1,10 @@
 package id.ac.tazkia.dosen.controller;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(DosenController.class)
-public class DosenTests {
-    @Autowired
-    private MockMvc mockMvc;
+public class DosenTests extends BaseSeleniumTests {
 
     private String urlListView = "/dosen/list";
     private String titleListView = "Aplikasi Dosen :: Daftar Dosen";
@@ -26,15 +13,13 @@ public class DosenTests {
 
     @Test
     public void testListView() throws Exception {
-        mockMvc.perform(get(urlListView).accept(MediaType.TEXT_HTML))
-                .andExpect(status().isOk())
-                .andExpect(content().string(Matchers.containsString(titleListView)));
+        webDriver.get(baseUrl + urlListView);
+        assertThat(webDriver.getTitle()).isEqualTo(titleListView);
     }
 
     @Test
     public void testFormView() throws Exception {
-        mockMvc.perform(get(urlFormView).accept(MediaType.TEXT_HTML))
-                .andExpect(status().isOk())
-                .andExpect(content().string(Matchers.containsString(titleFormView)));
+        webDriver.get(baseUrl + urlFormView);
+        assertThat(webDriver.getTitle()).isEqualTo(titleFormView);
     }
 }
