@@ -1,9 +1,9 @@
 package id.ac.tazkia.dosen.controller;
 
 import com.github.javafaker.Faker;
+import id.ac.tazkia.dosen.pageobject.SuratTugasFormPage;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.PageFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -27,7 +27,8 @@ public class SuratTugasTests extends BaseSeleniumTests {
         webDriver.get(baseUrl + "/surattugas/form");
         assertThat(webDriver.getTitle()).isEqualTo("Aplikasi Dosen :: Edit Surat Tugas");
 
-        webDriver.findElement(By.name("noSurat")).submit();
+        SuratTugasFormPage page = PageFactory.initElements(webDriver, SuratTugasFormPage.class);
+        page.submitInvalid();
         assertThat(webDriver.getTitle()).isEqualTo("Aplikasi Dosen :: Edit Surat Tugas");
         assertThat(webDriver.getPageSource())
                 .contains("may not be null")
@@ -41,15 +42,14 @@ public class SuratTugasTests extends BaseSeleniumTests {
         webDriver.get(baseUrl + "/surattugas/form");
         assertThat(webDriver.getTitle()).isEqualTo("Aplikasi Dosen :: Edit Surat Tugas");
 
-        webDriver.findElement(By.name("noSurat")).sendKeys(faker.letterify("SK-???"));
-        webDriver.findElement(By.name("tanggalMulai")).sendKeys(dateFormat.format(faker.date().future(1, TimeUnit.DAYS)));
-        webDriver.findElement(By.name("tanggalSelesai")).sendKeys(dateFormat.format(faker.date().future(100, TimeUnit.DAYS)));
-        new Select(webDriver.findElement(By.name("penerima")))
-                .selectByVisibleText("Dosen 2");
-        new Select(webDriver.findElement(By.name("jenisSurat")))
-                .selectByVisibleText("Jenis Surat 1");
+        SuratTugasFormPage page = PageFactory.initElements(webDriver, SuratTugasFormPage.class);
+        page.submitValid(faker.letterify("SK-???"),
+                dateFormat.format(faker.date().future(1, TimeUnit.DAYS)),
+                dateFormat.format(faker.date().future(100, TimeUnit.DAYS)),
+                "Dosen 2",
+                "Jenis Surat 1"
+        );
 
-        webDriver.findElement(By.name("noSurat")).submit();
         assertThat(webDriver.getTitle()).isEqualTo("Aplikasi Dosen :: Surat Tugas");
     }
 }
