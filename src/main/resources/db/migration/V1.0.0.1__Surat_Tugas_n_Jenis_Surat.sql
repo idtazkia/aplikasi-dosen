@@ -5,7 +5,6 @@ CREATE TABLE jenis_surat (
   id   VARCHAR(36),
   nama VARCHAR(255),
   keterangan VARCHAR(255),
-  template VARCHAR(255),
   PRIMARY KEY (id)
 );
 
