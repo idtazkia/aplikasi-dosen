@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Edit Jenis Surat</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Edit Jenis Surat</h1>
+
+    <form class="form-horizontal" th:object="${jenisSurat}" method="post">
+        <div class="form-group" th:classappend="${#fields.hasErrors('nama')} ? 'has-error'">
+            <label for="noSurat" class="col-sm-2 control-label">Nama</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       th:field="*{nama}"
+                       name="nama" class="form-control" id="nama" placeholder="Nama"/>
+                <label class="control-label" th:errors="*{nama}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('keterangan')} ? 'has-error'">
+            <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       th:field="*{keterangan}"
+                       name="keterangan" class="form-control" id="keterangan" placeholder="Keterangan"/>
+                <label class="control-label" th:errors="*{keterangan}">
+                    Pesan error nanti di sini
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Simpan</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

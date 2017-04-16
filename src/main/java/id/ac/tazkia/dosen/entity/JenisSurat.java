@@ -26,6 +26,9 @@ public class JenisSurat implements Serializable {
     @Size(min = 3, max = 255)
     private String nama;
 
+    @Size(max = 255)
+    private String keterangan;
+
     public String getId() {
         return id;
     }
@@ -41,4 +44,13 @@ public class JenisSurat implements Serializable {
     public void setNama(String nama) {
         this.nama = nama;
     }
+    
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
 }
