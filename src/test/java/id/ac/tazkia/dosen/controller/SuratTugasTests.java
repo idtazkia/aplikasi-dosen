@@ -1,4 +1,4 @@
-package id.ac.tazkia.dosen;
+package id.ac.tazkia.dosen.controller;
 
 import com.github.javafaker.Faker;
 import id.ac.tazkia.dosen.controller.SuratTugasController;
