@@ -14,7 +14,7 @@ import java.util.Date;
 @Controller
 public class InstitusiController {
 
-    @RequestMapping("/institusi/list")
+    @RequestMapping("/institusi/view")
     public ModelMap institusi(){
         return new ModelMap();
     }
