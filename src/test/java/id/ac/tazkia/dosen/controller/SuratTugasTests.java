@@ -47,7 +47,7 @@ public class SuratTugasTests extends BaseSeleniumTests {
                 dateFormat.format(faker.date().future(1, TimeUnit.DAYS)),
                 dateFormat.format(faker.date().future(100, TimeUnit.DAYS)),
                 "Dosen 2",
-                "Jenis Surat 1"
+                "SK Mengajar"
         );
 
         assertThat(webDriver.getTitle()).isEqualTo("Aplikasi Dosen :: Surat Tugas");
