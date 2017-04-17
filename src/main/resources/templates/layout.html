@@ -55,13 +55,66 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><a th:href="@{/institusi/list}">Institusi</a></li>
-                <li><a th:href="@{/jenissurat/list}">Jenis Surat</a></li>
-                <li><a th:href="@{/dosen/list}">Dosen</a></li>
-                <li><a th:href="@{/programstudi/list}">Program Studi</a></li>
-                <li><a th:href="@{/surattugas/list}">Surat Tugas</a></li>
-            </ul>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingMasterData">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMasterData" aria-expanded="true" aria-controls="collapseMasterData">
+                                Data Master
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseMasterData" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMasterData">
+                        <div class="panel-body">
+                            <ul class="nav nav-sidebar">
+                                <li><a th:href="@{/institusi/view}">Institusi</a></li>
+                                <li><a th:href="@{/jenissurat/list}">Jenis Surat</a></li>
+                                <li><a th:href="@{/dosen/list}">Dosen</a></li>
+                                <li><a th:href="@{/programstudi/list}">Program Studi</a></li>
+                                <li><a th:href="@{/surattugas/list}">Surat Tugas</a></li>
+                                <li><a th:href="@{/jurnal/list}">Jurnal Penelitian</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingKegiatan">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseKegiatan" aria-expanded="false" aria-controls="collapseKegiatan">
+                                Kegiatan Dosen
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseKegiatan" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingKegiatan">
+                        <div class="panel-body">
+                            <ul class="nav nav-sidebar">
+                                <li><a th:href="@{/kbm/list}">Kegiatan Belajar Mengajar</a></li>
+                                <li><a th:href="@{/tulisan/list}">Tulisan</a></li>
+                                <li><a th:href="@{/penelitian/list}">Penelitian</a></li>
+                                <li><a th:href="@{/bimbingan/list}">Bimbingan Penelitian</a></li>
+                                <li><a th:href="@{/jurnal/list}">Publikasi ke Jurnal</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingLaporan">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseLaporan" aria-expanded="false" aria-controls="collapseLaporan">
+                                Laporan
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseLaporan" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLaporan">
+                        <div class="panel-body">
+                            <ul class="nav nav-sidebar">
+                                <li><a href="#">Laporan Dikti</a></li>
+                                <li><a href="#">Laporan Kopertais</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div layout:fragment="content">Di sini content utama</div>
