@@ -6,6 +6,7 @@ package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.JenisSuratDao;
 import id.ac.tazkia.dosen.entity.JenisSurat;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -55,8 +57,17 @@ public class JenisSuratController {
     }
 
     @PostMapping("/jenissurat/delete")
-    public String delete(@ModelAttribute JenisSurat jenisSurat, SessionStatus status) {
-        jenisSuratDao.delete(jenisSurat);
+    public Object delete(@ModelAttribute JenisSurat jenisSurat, SessionStatus status) {
+        try{
+            jenisSuratDao.delete(jenisSurat);
+        } catch (DataIntegrityViolationException exception) {
+            status.setComplete();
+            return new ModelAndView("error/errorHapus")
+                    .addObject("entityId", jenisSurat.getNama())
+                    .addObject("entityName", "Jenis Surat")
+                    .addObject("errorCause", exception.getRootCause().getMessage())
+                    .addObject("backLink","/jenissurat/list");
+        }
         status.setComplete();
         return "redirect:/jenissurat/list";
     }
