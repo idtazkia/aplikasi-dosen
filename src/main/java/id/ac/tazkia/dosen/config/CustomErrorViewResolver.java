@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.common.base.Throwables;
-
 @Configuration
 public class CustomErrorViewResolver implements ErrorViewResolver {
 
@@ -29,7 +27,7 @@ public class CustomErrorViewResolver implements ErrorViewResolver {
 	 
 	 private String getExceptionMessage(Throwable throwable, Integer statusCode) {
 		 if (throwable != null) {
-			 return Throwables.getRootCause(throwable).getMessage();
+			 return throwable.getMessage();
 		 }
 		 
 		 HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
