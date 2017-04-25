@@ -1,46 +1,73 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
-    <title>Data Jenis Surat</title>
+	<title>Program Studi</title>
+	<script language="JavaScript">
+	    $(document).ready(function(){
+	        $(".remove-data").each(function(){
+	            $(this).click(function(){
+	                if(confirm('Data will be deleted?')) return true;
+	                return false;
+	            });
+	        });
+	    });
+	</script>	
 </head>
 <body>
-<div layout:fragment="content">
-
-    <h1>Jenis Surat</h1>
-    <a class="btn btn-primary pull-right" th:href="@{/jenissurat/form}">Tambah Jenis Surat</a>
-
-    <p/>
-
-    <table class="table table-striped table-hovered">
-        <thead>
-        <tr>
-            <th>No.</th>
-            <th>Nama</th>
-            <th>Keterangan</th>
-            <th>Template</th>
-            <th>
-                &nbsp;
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="st,iter : ${jenisSurat}">
-            <td th:text="${iter.count}">1</td>
-            <td th:text="${st.nama}">jenis surat 1</td>
-            <td th:text="${st.keterangan}">keterangan jenis surat 1</td>
-            <td th:text="${st.template}">template jenis surat 1</td>
-            <td>
-                <a th:href="@{/jenissurat/form(id=${st.id})}" class="btn btn-default" role="button">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>edit
-                </a>
-                <a th:href="@{/jenissurat/delete(id=${st.id})}" class="btn btn-danger" role="button">
-                    <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>hapus
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+	<div layout:fragment="breadcrumb">
+      <h1>Daftar Jenis Surat</h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Daftar jenis surat</li>
+      </ol>	
+	</div>
+	<div layout:fragment="content">	
+		<div class="row">
+		<div class="col-xs-12">
+		<div class="box">
+            <div class="box-header with-border">
+              <a class="box-title btn btn-primary" href="#">Tambah jenis surat</a>
+              <div class="box-tools">
+                <form id="form" action="#" method="get" th:action="@{/jenissurat/search}">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                  <input type="hidden" name="mode" id="mode"/>
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tbody>
+                <tr>
+		            <th>No.</th>
+		            <th>Nama</th>
+		            <th>Keterangan</th>
+		            <th>Template</th>
+					<th>&nbsp;</th>
+                </tr>
+		        <tr th:each="st,iter : ${jenisSurat}">
+		            <td th:text="${iter.count}">1</td>
+		            <td th:text="${st.nama}">jenis surat 1</td>
+		            <td th:text="${st.keterangan}">keterangan jenis surat 1</td>
+		            <td th:text="${st.template}">template jenis surat 1</td>
+					<td>
+						<a href="#" class="btn btn-info" th:href="@{/jenissurat/form(id=${st.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+						<a href="#" class="btn btn-info" th:href="@{/jenissurat/delete/{id}(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+					</td>
+				</tr>
+              </tbody>
+              </table>
+            </div>
+            <!-- /.box-body
+            <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
+             -->
+          </div>		
+        </div>
+		</div>
+	</div>
 </body>
 </html>
