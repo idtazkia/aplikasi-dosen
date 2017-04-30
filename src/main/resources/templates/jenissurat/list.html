@@ -25,7 +25,7 @@
 		<div class="col-xs-12">
 		<div class="box">
             <div class="box-header with-border">
-              <a class="box-title btn btn-primary" href="#">Tambah jenis surat</a>
+              <a class="box-title btn btn-primary" th:href="@{/jenissurat/form}">Tambah jenis surat</a>
               <div class="box-tools">
                 <form id="form" action="#" method="get" th:action="@{/jenissurat/search}">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -56,7 +56,7 @@
 		            <td th:text="${st.template}">template jenis surat 1</td>
 					<td>
 						<a href="#" class="btn btn-info" th:href="@{/jenissurat/form(id=${st.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-						<a href="#" class="btn btn-info" th:href="@{/jenissurat/delete/{id}(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+						<a href="#" class="btn btn-info" th:href="@{/jenissurat/delete(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
 					</td>
 				</tr>
               </tbody>

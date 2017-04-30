@@ -25,7 +25,7 @@
 		<div class="col-xs-12">
 		<div class="box">
             <div class="box-header with-border">
-              <a class="box-title btn btn-primary" href="#">Tambah surat tugas</a>
+              <a class="box-title btn btn-primary" th:href="@{/surattugas/form}">Tambah surat tugas</a>
               <div class="box-tools">
                 <form id="form" action="#" method="get" th:action="@{/surattugas/search}">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -60,7 +60,7 @@
 		            <td th:text="${st.tanggalSelesai}">tanggalSelesai</td>
 					<td>
 						<a href="#" class="btn btn-info" th:href="@{/surattugas/form(id=${st.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-						<a href="#" class="btn btn-info" th:href="@{/surattugas/delete/{id}(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+						<a href="#" class="btn btn-info" th:href="@{/surattugas/delete(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
 					</td>
 				</tr>
               </tbody>
