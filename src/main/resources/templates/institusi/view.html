@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
-    <title>Institusi</title>
+	<title>Data Institusi</title>
 </head>
 <body>
-<div layout:fragment="content">
-
-    <h1>Data Institusi</h1>
-
-    <form class="form-horizontal">
-        <div class="form-group" >
-            <label for="nama" class="col-sm-2 control-label">Nama</label>
-            <div class="col-sm-10">
-                <p class="form-control-static">STEI Tazkia</p>
-            </div>
-        </div>
-        <div class="form-group" >
-            <label for="alamat" class="col-sm-2 control-label">Alamat</label>
-            <div class="col-sm-10">
-                <p class="form-control-static">Sentul City, Kabupaten Bogor</p>
-            </div>
-        </div>
-
-        <div class="form-group" >
-            <label for="nohp" class="col-sm-2 control-label">No Telepon</label>
-            <div class="col-sm-10">
-                <p class="form-control-static">+62 21 1234567890</p>
-            </div>
-        </div>
-
-        <div class="form-group" >
-            <label for="website" class="col-sm-2 control-label">Website</label>
-            <div class="col-sm-10">
-                <p class="form-control-static">http://www.tazkia.ac.id</p>
-            </div>
-        </div>
-
-        <div class="form-group" >
-            <label for="email" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <p class="form-control-static">info@tazkia.ac.id</p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <a th:href="@{/institusi/form}" class="btn btn-default">Edit</a>
-            </div>
-        </div>
-    </form>
-
-</div>
+	<div layout:fragment="breadcrumb">
+      <h1>Data Institusi</h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Data institusi</li>
+      </ol>	
+	</div>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box box-primary">
+		         <div class="box-header with-border">
+		           <h3 class="box-title">&nbsp;</h3>
+		         </div>
+		         <!-- /.box-header -->
+		         <!-- form start -->
+		         <form role="form" method="post">
+		         	<div class="box-body">
+					    <div class="form-group">
+					      <label for="nama">Nama</label>
+					      <p class="form-control-static">STEI Tazkia</p>
+					    </div>
+			              <div class="form-group">
+			                <label for="alamat">Alamat</label>
+			                <div>Sentul City, Kabupaten Bogor</div>
+			              </div>
+			              <div class="form-group">
+			                <label for="nohp">No Telepon</label>
+			                <p class="form-control-static">+62 21 1234567890</p>
+			              </div>
+			              <div class="form-group">
+			                <label for="nohp">Website</label>
+			                <p class="form-control-static">info@tazkia.ac.id</p>
+			              </div>
+			              <div class="form-group">
+			                <label for="email">E-Mail</label>
+			                  <p class="form-control-static">info@tazkia.ac.id</p>
+			              </div>	              
+				  	</div>				  
+				  <!-- /.box-body -->				
+				    <div class="box-footer">
+				      <a th:href="@{/institusi/form}" class="btn btn-default">Edit</a>
+				    </div>
+				  </form>
+				</div>
+			</div>			
+		</div>
+	</div>
 </body>
 </html>

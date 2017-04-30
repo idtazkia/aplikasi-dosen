@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 <head>
-    <meta charset="UTF-8">
     <title>Edit Program Studi</title>
 </head>
 <body>
+<div layout:fragment="content">
+    <h1>Edit Data Dosen</h1>
 <form class="form-horizontal" method="post">
     <div class="form-group" >
         <label for="nama" class="col-sm-2 control-label">Nama</label>
@@ -42,5 +43,6 @@
         </div>
     </div>
 </form>
+</div>
 </body>
 </html>
