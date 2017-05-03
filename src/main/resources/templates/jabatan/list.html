@@ -31,49 +31,20 @@
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-bordered">
-                <thead>
+                  <tbody>
                     <tr>
                         <th>No.</th>
                         <th>Nama</th>
                         <th>Keterangan</th>
                         <th>&nbsp;</th>
                     </tr>
-                </thead>
-                  <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>Asisten Ahli</td>
-                      <td>Asisten Ahli</td>
+                  <tr th:each="st,iter : ${jabatan}">
+                      <td th:text="${iter.count}">1</td>
+                      <td th:text="${st.nama}">Jabatan</td>
+                      <td th:text="${st.keterangan}">Keterangan</td>
                       <td>
-                          <a href="#" class="btn btn-info" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                          <a href="#" class="btn btn-info" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>Lektor</td>
-                      <td>Lektor</td>
-                      <td>
-                          <a href="#" class="btn btn-info" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                          <a href="#" class="btn btn-info" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td>Lektor Kepala</td>
-                      <td>Lektor Kepala</td>
-                      <td>
-                          <a href="#" class="btn btn-info" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                          <a href="#" class="btn btn-info" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>4</td>
-                      <td>Profesor</td>
-                      <td>Profesor</td>
-                      <td>
-                          <a href="#" class="btn btn-info" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                          <a href="#" class="btn btn-info" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                          <a href="#" class="btn btn-info" th:href="@{/jabatan/form(id=${st.id})}" title="edit jabatan"><span class="glyphicon glyphicon-edit"></span></a>
+                          <a href="#" class="btn btn-info" th:href="@{/jabatan/delete(id=${st.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                       </td>
                   </tr>
                   </tbody>

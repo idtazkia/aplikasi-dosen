@@ -23,3 +23,10 @@ CREATE TABLE surat_tugas (
   FOREIGN KEY (id_jenis_surat) REFERENCES jenis_surat (id),
   FOREIGN KEY (id_dosen) REFERENCES dosen (id)
 );
+
+CREATE TABLE jabatan (
+  id              VARCHAR(36),
+  nama            VARCHAR(255),
+  keterangan      VARCHAR(255),
+  PRIMARY KEY (id)
+);
