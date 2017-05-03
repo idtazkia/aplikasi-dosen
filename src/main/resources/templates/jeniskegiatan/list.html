@@ -1,0 +1,93 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head>
+    <title>Jenis Kegiatan</title>
+    <script language="JavaScript">
+        $(document).ready(function(){
+            $(".remove-data").each(function(){
+                $(this).click(function(){
+                    if(confirm('Data will be deleted?')) return true;
+                    return false;
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Daftar Jenis Kegiatan</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Daftar Jenis Kegiatan</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <a class="box-title btn btn-primary" th:href="@{/jeniskegiatan/form}">Tambah Jenis Kegiatan</a>
+                    <div class="box-tools">
+                        <form id="form" action="#" method="get" th:action="@{/jeniskehiatan/search}">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                                <input type="hidden" name="mode" id="mode"/>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <th align="center">No.</th>
+                            <th align="center">Komponen kegiatan</th>
+                            <th align="center">Kode*</th>
+                            <th align="center">Bukti Kegiatan</th>
+                            <th align="center">Batas Maksimal Diakui</th>
+                            <th align="center">Angka Kredit</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Programing</td>
+                            <td>001010</td>
+                            <td>aplikasi</td>
+                            <td>10</td>
+                            <td>313</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>mengikuti diklat prnjabatan golongan III</td>
+                            <td>I.A.2</td>
+                            <td>Bukti Tugas</td>
+                            <td>Periode Penilaian</td>
+                            <td>3</td>
+                        </tr>
+                        <tr th:each="st,iter : ${jenisKegiatan}">
+                            <td th:text="${iter.count}">1</td>
+                            <td th:text="${st.komponen kegiatan}">jenis kegiatan 1</td>
+                            <td th:text="${st.kode*}">keterangan jenis kegiatan 1</td>
+                            <td th:text="${st.bukti kegiatan}">template jenis kegiatan 1</td>
+                            <td th:text="${iter.matas maksimal diakui}">1</td>
+                            <td th:text="${iter.angka kredit}">1</td>
+                            <td>
+                                <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/form(id=${st.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/delete(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body
+                <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
+                 -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>Tambah Kegiatan</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Edit Data Kegiatan</h1>
+    <form class="form-horizontal" method="post">
+        <div class="form-group" >
+            <label for="komponen kegiatan" class="col-sm-2 control-label">Komponen Kegiatan</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       name="Komponen Kegiatan" class="form-control" id="komponen kegiatan" placeholder="Komponen Kegiatan" />
+                <label class="control-label">
+                </label>
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" method="post">
+        <div class="form-group" >
+            <label for="Kode*" class="col-sm-2 control-label">Kode*</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       name="Kode*" class="form-control" id="Kode*" placeholder="Kode*" />
+                <label class="control-label">
+                </label>
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" method="post">
+        <div class="form-group" >
+            <label for="Bukti Kegiatan" class="col-sm-2 control-label">Bukti Kegiatan</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       name="Bukti Kegiatan" class="form-control" id="bukti kegiatan" placeholder="Bukti Kegiatan" />
+                <label class="control-label">
+                </label>
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" method="post">
+        <div class="form-group" >
+            <label for="batas maksimal diakui" class="col-sm-2 control-label">Batas Maksimal Diakui</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       name="batas maksimal diakui" class="form-control" id="batas maksimal diakui" placeholder="Batas maksimal Diakui" />
+                <label class="control-label">
+                </label>
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" method="post">
+        <div class="form-group" >
+            <label for="angka kredit" class="col-sm-2 control-label">Angka Kredit</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       name="Angka Kredit" class="form-control" id="angka kredit" placeholder="Angka Kredit" />
+                <label class="control-label">
+                </label>
+            </div>
+        </div>
+    </form>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a th:href="@{/jeniskegiatan/list}" class="btn btn-default" role="button">
+                    <span aria-hidden="true"></span>Batal
+                </a>
+                <button type="submit" class="btn btn-default">Simpan</button>
+</div>
+        </div>
+</div>
+</body>
+</html>
