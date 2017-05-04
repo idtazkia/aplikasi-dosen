@@ -20,6 +20,14 @@ public class KategoriKegiatan implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, max = 255)
+    private String nama;
+
+    @Size(max = 255)
+    private String keterangan;
+
     public String getId() {
         return id;
     }
@@ -45,13 +53,6 @@ public class KategoriKegiatan implements Serializable {
         this.keterangan = keterangan;
     }
 
-    @NotNull
-    @NotEmpty
-    @Size(min = 3, max = 255)
-    private String nama;
-
-    @Size(max = 255)
-    private String keterangan;
 
 
 }

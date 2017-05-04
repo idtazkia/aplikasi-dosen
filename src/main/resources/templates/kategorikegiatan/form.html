@@ -19,23 +19,23 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" th:object="${kategorikegiatan}" method="post">
+                <form role="form" th:object="${kategoriKegiatan}" method="post">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text"
-                                   th:field="*{Nama}"
+                                   th:field="*{nama}"
                                    name="nama" class="form-control" id="nama" placeholder="Nama" />
-                            <label class="control-label" th:errors="*{Nama}">
+                            <label class="control-label" th:errors="*{nama}">
                                 Pesan error nanti di sini
                             </label>
                         </div>
                         <div class="form-group">
                             <label for="nama">Keterangan</label>
                             <input type="text"
-                                   th:field="*{Keterangan}"
+                                   th:field="*{keterangan}"
                                    name="keterangan" class="form-control" id="keterangan" placeholder="Keterangan" />
-                            <label class="control-label" th:errors="*{Keterangan}">
+                            <label class="control-label" th:errors="*{keterangan}">
                                 Pesan error nanti di sini
                             </label>
                         </div>

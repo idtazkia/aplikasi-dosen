@@ -1,9 +1,7 @@
 package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.KategoriKegiatanDao;
-import id.ac.tazkia.dosen.dao.JenisSuratDao;
 import id.ac.tazkia.dosen.entity.KategoriKegiatan;
-import id.ac.tazkia.dosen.entity.JenisSurat;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,14 +19,14 @@ import javax.validation.Valid;
 public class KategoriKegiatanController {
 
 
-    private KategoriKegiatanDao KategoriKegiatanDao;
+    private KategoriKegiatanDao kategoriKegiatanDao;
 
-    public KategoriKegiatanController(KategoriKegiatanDao KategoriKegiatanDao) {this.KategoriKegiatanDao = KategoriKegiatanDao;
+    public KategoriKegiatanController(KategoriKegiatanDao KategoriKegiatanDao) {this.kategoriKegiatanDao = KategoriKegiatanDao;
     }
 
     @GetMapping("/kategorikegiatan/list")
     public ModelMap jabatan(){
-        return new ModelMap().addAttribute("kategorikegiatan", KategoriKegiatanDao.findAll());
+        return new ModelMap().addAttribute("kategorikegiatan", kategoriKegiatanDao.findAll());
     }
 
 
@@ -37,7 +35,7 @@ public class KategoriKegiatanController {
         if (kategorikegiatan == null) {
             kategorikegiatan = new KategoriKegiatan();
         }
-        return new ModelMap("kategorikegiatan", kategorikegiatan);
+        return new ModelMap("kategoriKegiatan", kategorikegiatan);
     }
 
     @PostMapping("/kategorikegiatan/form")
@@ -45,7 +43,7 @@ public class KategoriKegiatanController {
         if (err.hasErrors()) {
             return "/kategorikegiatan/form";
         }
-        KategoriKegiatanDao.save(kategoriKegiatan);
+        kategoriKegiatanDao.save(kategoriKegiatan);
         status.setComplete();
         return "redirect:/kategorikegiatan/list";
     }
@@ -58,7 +56,7 @@ public class KategoriKegiatanController {
     @PostMapping("/kategorikegiatan/delete")
     public Object delete(@ModelAttribute KategoriKegiatan kategorikegiatan, SessionStatus status) {
         try{
-            KategoriKegiatanDao.delete(kategorikegiatan);
+            kategoriKegiatanDao.delete(kategorikegiatan);
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
             return new ModelAndView("error/errorHapus")
