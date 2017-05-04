@@ -12,6 +12,21 @@ CREATE TABLE jenis_surat (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE jabatan (
+  id              VARCHAR(36),
+  nama            VARCHAR(255),
+  keterangan      VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE jenis_kegiatan (
+  id              VARCHAR(36),
+  kode            VARCHAR(255),
+  nama            VARCHAR(255),
+  bukti           VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE surat_tugas (
   id              VARCHAR(36),
   no_surat        VARCHAR(255),
@@ -24,9 +39,14 @@ CREATE TABLE surat_tugas (
   FOREIGN KEY (id_dosen) REFERENCES dosen (id)
 );
 
-CREATE TABLE jabatan (
-  id              VARCHAR(36),
-  nama            VARCHAR(255),
-  keterangan      VARCHAR(255),
-  PRIMARY KEY (id)
+CREATE TABLE poin_kegiatan (
+  id                  VARCHAR(36),
+  id_jabatan          VARCHAR(36),
+  id_jenis_kegiatan   VARCHAR(36),
+  nilai_maksimum      DECIMAL(4,2),
+  nilai               DECIMAL(4,2),
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_jabatan) REFERENCES jabatan (id),
+  FOREIGN KEY (id_jenis_kegiatan) REFERENCES jenis_kegiatan (id)
 );
+
