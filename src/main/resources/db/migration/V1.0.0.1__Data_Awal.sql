@@ -14,3 +14,5 @@ INSERT INTO `jabatan` VALUES ('2', 'Lektor', 'Lektor');
 INSERT INTO `jabatan` VALUES ('3', 'Lektor Kepala', 'Lektor Kepala');
 INSERT INTO `jabatan` VALUES ('4', 'Profesor', 'Profesor');
 INSERT INTO `jabatan` VALUES ('5', 'Dokter', 'Dokter');
+
+INSERT INTO `jenis_kegiatan` VALUES ('1', '-', '-', '-');
