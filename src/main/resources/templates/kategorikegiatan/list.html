@@ -1,23 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
     <title>Kategori Kegiatan</title>
-    <script language="JavaScript">
-        $(document).ready(function(){
-            $(".remove-data").each(function(){
-                $(this).click(function(){
-                    if(confirm('Data will be deleted?')) return true;
-                    return false;
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 <div layout:fragment="breadcrumb">
     <h1>Daftar Kategori Kegiatan</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Kategori Kegiatan</li>
+        <li class="active">Daftar Kategori Kegiatan</li>
     </ol>
 </div>
 <div layout:fragment="content">
@@ -25,9 +15,9 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="box-title btn btn-primary" th:href="@{/kategorikegiatan/form}">Tambah Kegiatan</a>
+                    <a class="box-title btn btn-primary" th:href="@{/kategorikegiatan/form}">Tambah Kategori</a>
                     <div class="box-tools">
-                        <form id="form" action="#" method="get" th:action="@{/programstudi/search}">
+                        <form id="form" action="#" method="get" th:action="@{/kategorikegiatan/search}">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
                                 <input type="hidden" name="mode" id="mode"/>
@@ -43,18 +33,18 @@
                     <table class="table table-bordered">
                         <tbody>
                         <tr>
-                            <th>No</th>
+                            <th>No.</th>
                             <th>Nama</th>
                             <th>Keterangan</th>
                             <th>&nbsp;</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Pendidikan</td>
-                            <td>-</td>
+                        <tr th:each="st,iter : ${kategorikegiatan}">
+                            <td th:text="${iter.count}">1</td>
+                            <td th:text="${st.nama}">Kategori Kegiatan</td>
+                            <td th:text="${st.keterangan}">Keterangan</td>
                             <td>
-                                <a href="#" class="btn btn-info" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="#" class="btn btn-info" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                <a href="#" class="btn btn-info" th:href="@{/kategorikegiatan/form(id=${st.id})}" title="edit kategori"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="#" class="btn btn-info" th:href="@{/kategorikegiatan/delete(id=${st.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                             </td>
                         </tr>
                         </tbody>

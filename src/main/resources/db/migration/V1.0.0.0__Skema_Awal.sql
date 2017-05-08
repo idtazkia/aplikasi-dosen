@@ -50,3 +50,9 @@ CREATE TABLE poin_kegiatan (
   FOREIGN KEY (id_jenis_kegiatan) REFERENCES jenis_kegiatan (id)
 );
 
+CREATE TABLE kategori_kegiatan (
+  id              VARCHAR(36),
+  nama            VARCHAR(255),
+  keterangan      VARCHAR(255),
+  PRIMARY KEY (id)
+);
