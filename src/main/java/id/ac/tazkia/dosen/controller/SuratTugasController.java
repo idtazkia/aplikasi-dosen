@@ -66,5 +66,13 @@ public class SuratTugasController {
         status.setComplete();
         return "redirect:/surattugas/list";
     }
+
+    @RequestMapping(value = "/surattugas/delete", method = RequestMethod.GET)
+    public String delete(@RequestParam(value = "id", required = true) String id, SessionStatus status) {
+        suratTugasDao.delete(id);
+        status.setComplete();
+        return "redirect:/surattugas/list";
+    }
+
 }
 
