@@ -12,7 +12,7 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('jenisSurat')} ? 'has-error'">
             <label for="jenisSurat" class="col-sm-2 control-label">Jenis Surat</label>
             <div class="col-sm-10">
-                <select class="form-control" name="instruktur" th:field="*{jenisSurat}">
+                <select id="jenisSurat" class="form-control" name="instruktur" th:field="*{jenisSurat}">
                     <option value="">Pilih instruktur</option>
                     <option th:each="js : ${daftarJenisSurat}"
                             th:value="${js.id}"
@@ -38,7 +38,7 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('penerima')} ? 'has-error'">
             <label for="penerima" class="col-sm-2 control-label">Penerima</label>
             <div class="col-sm-10">
-                <select class="form-control" name="penerima" th:field="*{penerima}">
+                <select id="penerima" class="form-control" name="penerima" th:field="*{penerima}">
                     <option value="">Penerima</option>
                     <option th:each="ds : ${daftarDosen}"
                             th:value="${ds.id}"
@@ -55,7 +55,7 @@
             <div class="col-sm-10">
                 <input type="text" class="datepicker"
                        th:field="*{tanggalMulai}"
-                       id="nama" name="tanggalMulai" placeholder="Tanggal Mulai" data-date-format="yyyy-mm-dd"/>
+                       id="tanggalMulai" name="tanggalMulai" placeholder="Tanggal Mulai" data-date-format="yyyy-mm-dd"/>
                 <label class="control-label" th:errors="*{tanggalMulai}">
                     Pesan error nanti di sini
                 </label>
@@ -66,7 +66,7 @@
             <div class="col-sm-10">
                 <input type="text" class="datepicker"
                        th:field="*{tanggalSelesai}"
-                       id="nama" name="tanggalSelesai" placeholder="Tanggal Selesai" data-date-format="yyyy-mm-dd" />
+                       id="tanggalSelesai" name="tanggalSelesai" placeholder="Tanggal Selesai" data-date-format="yyyy-mm-dd" />
                 <label class="control-label" th:errors="*{tanggalSelesai}">
                     Pesan error nanti di sini
                 </label>
