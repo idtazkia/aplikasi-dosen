@@ -7,15 +7,15 @@
 		    </li>
 		    <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
 		      <span th:if='${not page.hasPreviousPage}'>«</span>
-		      <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-1},size=${page.size})}' title='Go to previous page'>«</a>
+		      <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>«</a>
 		    </li>
 		    <li th:each="item : ${page.items}" th:class="${item.current}? 'active' : ''">
-		      <span th:if='${item.current}' th:text='${item.number+1}'>1</span>
-		      <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number},size=${page.size})}'><span th:text='${item.number}+1'>1</span></a>
+		      <span th:if='${item.current}' th:text='${item.number}'>1</span>
+		      <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span th:text='${item.number}'>1</span></a>
 		    </li>
 		    <li th:class="${page.hasNextPage}? '' : 'disabled'">
 		      <span th:if='${not page.hasNextPage}'>»</span>
-		      <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number+1},size=${page.size})}' title='Go to next page'>»</a>
+		      <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>»</a>
 		    </li>
 		    <li th:class="${page.lastPage}? 'disabled' : ''">
 		      <span th:if='${page.lastPage}'>Last</span>
