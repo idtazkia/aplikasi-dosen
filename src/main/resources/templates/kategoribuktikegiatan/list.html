@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head>
+    <title>Kategori Bukti Kegiatan</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Daftar Kategori Bukti Kegiatan</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Daftar Kategori Bukti Kegiatan</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <a class="box-title btn btn-primary" th:href="@{/kategoribuktikegiatan/form}">Tambah kategori bukti kegiatan</a>
+                    <div class="box-tools">
+                        <form id="form" action="#" method="get" th:action="@{/kategoribuktikegiatan/search}">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                                <input type="hidden" name="mode" id="mode"/>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            
+                            <th>Nama</th>
+                            <th>Keterangan</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr th:each="kategori : ${kategoriBuktiKegiatanList}">
+                            
+                            <td th:text="${kategori.nama}">SK Penugasan</td>
+                            <td th:text="${kategori.keterangan}">Keterangan</td>
+                            <td>
+                                <a href="#" th:href="@{/kategoribuktikegiatan/form(id=${kategori.id})}" class="btn btn-info" title="edit kategori bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="#" th:href="@{/kategoribuktikegiatan/delete(id=${kategori.id})}" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                            </td>
+                        </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body
+                <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
+                 -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

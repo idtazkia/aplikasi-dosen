@@ -56,3 +56,10 @@ CREATE TABLE kategori_kegiatan (
   keterangan      VARCHAR(255),
   PRIMARY KEY (id)
 );
+
+CREATE TABLE kategori_bukti_kegiatan (
+  id              VARCHAR(36),
+  nama            VARCHAR(255),
+  keterangan      VARCHAR(255),
+  PRIMARY KEY (id)
+);
