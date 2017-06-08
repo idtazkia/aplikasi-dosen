@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,11 +38,6 @@ public class KategoriBuktiKegiatanController {
         model.addAttribute("kategoriBuktiKegiatanList", kategoriBuktiKegiatanDao.findAll());
         return "/kategoribuktikegiatan/list";
     }
-
-   // @RequestMapping(value = "/kategoribuktikegiatan/form", method = RequestMethod.GET)
-    //public void tampilkanForm(Model model) {
-      //  model.addAttribute("kategoriBuktiKegiatan", new KategoriBuktiKegiatan());
-    //}
     
     @GetMapping("/kategoribuktikegiatan/form")
     public ModelMap tampilkanForms(@RequestParam(value = "id", required = false) KategoriBuktiKegiatan kategoribuktikegiatan) {

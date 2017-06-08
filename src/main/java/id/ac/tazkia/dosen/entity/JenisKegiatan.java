@@ -9,11 +9,15 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 /**
  * Created by yogi on 04/05/2017.
+ * Updated by Razi on 08/06/2017.
  */
 @Entity
+@Table(name="jenis_kegiatan")
 public class JenisKegiatan implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -24,6 +28,22 @@ public class JenisKegiatan implements Serializable {
     @NotEmpty
     @Size(min = 1, max = 255)
     private String kode;
+
+    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 255)
+    private String nama;
+
+    @Size(max = 255)
+    private String bukti;
+    
+    @Size(max = 255)
+    @Column(name="batas_maksimal")        
+    private String batasMaksimal;
+    
+    @Size(max = 255)
+    @Column(name="angka_kredit")
+    private String angkaKredit;
 
     public String getId() {
         return id;
@@ -57,12 +77,19 @@ public class JenisKegiatan implements Serializable {
         this.bukti = bukti;
     }
 
-    @NotNull
-    @NotEmpty
+    public String getBatasMaksimal() {
+        return batasMaksimal;
+    }
 
-    @Size(min = 1, max = 255)
-    private String nama;
+    public void setBatasMaksimal(String batasMaksimal) {
+        this.batasMaksimal = batasMaksimal;
+    }
 
-    @Size(max = 255)
-    private String bukti;
+    public String getAngkaKredit() {
+        return angkaKredit;
+    }
+
+    public void setAngkaKredit(String angkaKredit) {
+        this.angkaKredit = angkaKredit;
+    }   
 }
