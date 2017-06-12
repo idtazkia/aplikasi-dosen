@@ -25,3 +25,5 @@ INSERT INTO `kategori_kegiatan` VALUES ('4', 'Penunjang', 'Penunjang');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('1', 'Bukti Pendidikan', 'Bukti Pendidikan');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('2', 'Bukti Penelitian', 'Bukti Penelitian');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
+
+INSERT INTO `program_studi` VALUES ('1454326a-7c20-452b-bbe1-88dddf786b64', 'Muhammad Fadlan', 'Teknik Informatika', 'S1');;
