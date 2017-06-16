@@ -6,6 +6,7 @@
 package id.ac.tazkia.dosen.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,10 +20,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author razi
  */
-
 @Entity
-@Table(name = "kategori_bukti_kegiatan")
-public class KategoriBuktiKegiatan implements Serializable {
+@Table(name = "mata_kuliah")
+public class MataKuliah implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -31,11 +31,21 @@ public class KategoriBuktiKegiatan implements Serializable {
 
     @NotNull
     @NotEmpty
+    @Size(min = 1, max = 255)
+    private String kode;
+
     @Size(min = 3, max = 255)
     private String nama;
 
     @Size(max = 255)
-    private String keterangan;
+    @Column(name = "program_studi")
+    private String programStudi;
+
+    @Size(max = 255)
+    private String konsentrasi;
+
+    @Size(max = 255)
+    private String sks;
 
     public String getId() {
         return id;
@@ -45,6 +55,13 @@ public class KategoriBuktiKegiatan implements Serializable {
         this.id = id;
     }
 
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
 
     public String getNama() {
         return nama;
@@ -54,11 +71,27 @@ public class KategoriBuktiKegiatan implements Serializable {
         this.nama = nama;
     }
 
-    public String getKeterangan() {
-        return keterangan;
+    public String getProgramStudi() {
+        return programStudi;
     }
 
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
+    public void setProgramStudi(String programStudi) {
+        this.programStudi = programStudi;
+    }
+
+    public String getKonsentrasi() {
+        return konsentrasi;
+    }
+
+    public void setKonsentrasi(String konsentrasi) {
+        this.konsentrasi = konsentrasi;
+    }
+
+    public String getSks() {
+        return sks;
+    }
+
+    public void setSks(String sks) {
+        this.sks = sks;
     }
 }

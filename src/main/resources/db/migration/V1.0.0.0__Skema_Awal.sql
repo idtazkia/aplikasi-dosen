@@ -65,3 +65,13 @@ CREATE TABLE kategori_bukti_kegiatan (
   keterangan      VARCHAR(255),
   PRIMARY KEY (id)
 );
+
+CREATE TABLE mata_kuliah(
+  id              VARCHAR(36),
+  kode            VARCHAR(255),
+  nama            VARCHAR(255),
+  program_studi   VARCHAR(255),
+  konsentrasi     VARCHAR(255),
+  sks             VARCHAR(255),
+  PRIMARY KEY (id) 
+);

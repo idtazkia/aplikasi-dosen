@@ -2,7 +2,6 @@ package id.ac.tazkia.dosen.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,8 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 
 /**
- * Created by yogi on 04/05/2017.
- * Updated by Razi on 08/06/2017.
+ * Created by yogi on 04/05/2017. Updated by Razi on 08/06/2017.
  */
 @Entity
 @Table(name="jenis_kegiatan")
@@ -36,11 +34,11 @@ public class JenisKegiatan implements Serializable {
 
     @Size(max = 255)
     private String bukti;
-    
+
     @Size(max = 255)
     @Column(name="batas_maksimal")        
     private String batasMaksimal;
-    
+
     @Size(max = 255)
     @Column(name="angka_kredit")
     private String angkaKredit;
@@ -91,5 +89,5 @@ public class JenisKegiatan implements Serializable {
 
     public void setAngkaKredit(String angkaKredit) {
         this.angkaKredit = angkaKredit;
-    }   
+    }
 }

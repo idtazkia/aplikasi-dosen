@@ -1,11 +1,8 @@
 package id.ac.tazkia.dosen.controller;
 
 /**
- * Created by yogi on 03/05/2017.
- * Updated by Razi on 08/06/2017.
+ * Created by yogi on 03/05/2017. Updated by Razi on 08/06/2017.
  */
-
-
 import id.ac.tazkia.dosen.dao.JenisKegiatanDao;
 import id.ac.tazkia.dosen.entity.JenisKegiatan;
 import javax.validation.Valid;
@@ -34,7 +31,7 @@ public class JenisKegiatanController {
         model.addAttribute("jenisKegiatanList", jenisKegiatanDao.findAll());
         return "/jeniskegiatan/list";
     }
-    
+
     @GetMapping("/jeniskegiatan/form")
     public ModelMap tampilkanForms(@RequestParam(value = "id", required = false) JenisKegiatan jeniskegiatan) {
         if (jeniskegiatan == null) {
@@ -42,7 +39,7 @@ public class JenisKegiatanController {
         }
         return new ModelMap("jenisKegiatan", jeniskegiatan);
     }
-    
+
     @PostMapping("/jeniskegiatan/form")
     public String simpan(@ModelAttribute @Valid JenisKegiatan jenisKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
@@ -52,7 +49,7 @@ public class JenisKegiatanController {
         status.setComplete();
         return "redirect:/jeniskegiatan/list";
     }
-    
+
     @GetMapping("/jeniskegiatan/delete")
     public ModelMap deleteConfirm(@RequestParam(value = "id", required = true) JenisKegiatan jeniskegiatan) {
         return new ModelMap("jeniskegiatan", jeniskegiatan);
