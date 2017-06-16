@@ -43,32 +43,27 @@
                     <table class="table table-bordered">
                         <tbody>
                         <tr>
-                            <th align="center">No.</th>
-                            <th align="center">Komponen kegiatan</th>
-                            <th align="center">Kode*</th>
+                            <th align="center">Kode</th>
+                            <th align="center">Komponen Kegiatan</th>
                             <th align="center">Bukti Kegiatan</th>
                             <th align="center">Batas Maksimal Diakui</th>
                             <th align="center">Angka Kredit</th>
                             <th>&nbsp;</th>
                         </tr>
-                        <tr th:each="st,iter : ${jenisKegiatan}">
-                            <td th:text="${iter.count}">1</td>
-                            <td th:text="${st.komponen kegiatan}">jenis kegiatan 1</td>
-                            <td th:text="${st.kode*}">keterangan jenis kegiatan 1</td>
-                            <td th:text="${st.bukti kegiatan}">template jenis kegiatan 1</td>
-                            <td th:text="${iter.matas maksimal diakui}">1</td>
-                            <td th:text="${iter.angka kredit}">1</td>
+                        <tr th:each="jenisKegiatan : ${jenisKegiatanList}">
+                            <td th:text="${jenisKegiatan.kode}">jenis kegiatan 1</td>
+                            <td th:text="${jenisKegiatan.nama}">keterangan jenis kegiatan 1</td>
+                            <td th:text="${jenisKegiatan.bukti}">template jenis kegiatan 1</td>
+                            <td th:text="${jenisKegiatan.batasMaksimal}">1</td>
+                            <td th:text="${jenisKegiatan.angkaKredit}">1</td>
                             <td>
-                                <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/form(id=${st.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/delete(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/form(id=${jenisKegiatan.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/delete(id=${jenisKegiatan.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <!-- /.box-body
-                <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
-                 -->
             </div>
         </div>
     </div>

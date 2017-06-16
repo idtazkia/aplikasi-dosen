@@ -24,6 +24,8 @@ CREATE TABLE jenis_kegiatan (
   kode            VARCHAR(255),
   nama            VARCHAR(255),
   bukti           VARCHAR(255),
+  batas_maksimal   VARCHAR(255),
+  angka_kredit     VARCHAR(255),
   PRIMARY KEY (id)
 );
 
@@ -62,4 +64,12 @@ CREATE TABLE kategori_bukti_kegiatan (
   nama            VARCHAR(255),
   keterangan      VARCHAR(255),
   PRIMARY KEY (id)
+);
+
+CREATE TABLE program_studi (
+id          VARCHAR(36),
+nama        VARCHAR(255),
+keterangan  VARCHAR(255),
+jenjang     VARCHAR(36),
+PRIMARY KEY (id)
 );
