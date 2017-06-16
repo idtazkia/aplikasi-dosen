@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,9 +39,10 @@ public class MataKuliah implements Serializable {
     @Size(min = 3, max = 255)
     private String nama;
 
-    @Size(max = 255)
-    @Column(name = "program_studi")
-    private String programStudi;
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "program_studi")
+    private ProgramStudi programStudi;
 
     @Size(max = 255)
     private String konsentrasi;
@@ -71,13 +74,15 @@ public class MataKuliah implements Serializable {
         this.nama = nama;
     }
 
-    public String getProgramStudi() {
+    public ProgramStudi getProgramStudi() {
         return programStudi;
     }
 
-    public void setProgramStudi(String programStudi) {
+    public void setProgramStudi(ProgramStudi programStudi) {
         this.programStudi = programStudi;
     }
+
+    
 
     public String getKonsentrasi() {
         return konsentrasi;

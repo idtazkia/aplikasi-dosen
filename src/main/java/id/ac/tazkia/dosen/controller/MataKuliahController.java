@@ -6,6 +6,7 @@
 package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.MataKuliahDao;
+import id.ac.tazkia.dosen.dao.ProgramStudiDao;
 import id.ac.tazkia.dosen.entity.MataKuliah;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class MataKuliahController {
 
     @Autowired
     private MataKuliahDao mataKuliahDao;
+    
+    @Autowired
+    private ProgramStudiDao programStudiDao;
 
     @RequestMapping("/matakuliah/list")
     public String mataKuliah(Model model) {
@@ -39,11 +43,13 @@ public class MataKuliahController {
     }
 
     @GetMapping("/matakuliah/form")
-    public ModelMap tampilkanForms(@RequestParam(value = "id", required = false) MataKuliah matakuliah) {
+    public String tampilkanForms(@RequestParam(value = "id", required = false) MataKuliah matakuliah, Model m) {
         if (matakuliah == null) {
             matakuliah = new MataKuliah();
         }
-        return new ModelMap("mataKuliah", matakuliah);
+        
+        m.addAttribute("mataKuliah", matakuliah);
+        return "/matakuliah/form";
     }
 
     @PostMapping("/matakuliah/form")
