@@ -24,6 +24,8 @@ INSERT INTO `kategori_bukti_kegiatan` VALUES ('1', 'Bukti Pendidikan', 'Bukti Pe
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('2', 'Bukti Penelitian', 'Bukti Penelitian');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
 
+INSERT INTO `program_studi` VALUES ('1454326a-7c20-452b-bbe1-88dddf786b64', 'Muhammad Fadlan', 'Teknik Informatika', 'S1');;
+
 INSERT INTO `jenis_kegiatan` VALUES ('1', 'I.A.1.a', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Doktor / sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '200');
 INSERT INTO `jenis_kegiatan` VALUES ('2', 'I.A.1.b', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Magister/sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '150');
 INSERT INTO `jenis_kegiatan` VALUES ('3', 'I.A.2 ', 'Mengikuti diklat prajabatan golongan III', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '3');

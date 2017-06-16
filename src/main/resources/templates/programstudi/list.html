@@ -1,16 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
 	<title>Program Studi</title>
-	<script language="JavaScript">
-	    $(document).ready(function(){
-	        $(".remove-data").each(function(){
-	            $(this).click(function(){
-	                if(confirm('Data will be deleted?')) return true;
-	                return false;
-	            });
-	        });
-	    });
-	</script>
+
 </head>
 <body>
 	<div layout:fragment="breadcrumb">
@@ -46,15 +37,15 @@
 		            <th>Nama</th>
 		            <th>Keterangan</th>
 		            <th>Jenjang</th>
-					<th>&nbsp;</th>
+                            <th>&nbsp;</th>
                 </tr>
-		        <tr>
-		            <td>Akuntansi</td>
-		            <td>Jurusan Akuntansi</td>
-		            <td>S1</td>
+		        <tr th:each="ps :${daftarProgramStudi}">
+		            <td th:text="${ps.nama}">Muhammad Fadlan</td>
+		            <td th:text="${ps.keterangan}">Teknik Informatika</td>
+		            <td th:text="${ps.jenjang}">S1</td>
 					<td>
-						<a href="#" class="btn btn-info" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-						<a href="#" class="btn btn-info" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            <a href="form.html" class="btn btn-info" th:href="@{/programstudi/form(id=${ps.id})}" title="edit program studi"><span class="glyphicon glyphicon-edit"></span></a>
+						<a href="delete.html" class="btn btn-info" th:href="@{/programstudi/delete(id=${ps.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
 					</td>
 				</tr>
               </tbody>
