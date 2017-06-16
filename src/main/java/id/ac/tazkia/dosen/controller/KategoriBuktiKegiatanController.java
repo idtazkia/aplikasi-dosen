@@ -28,17 +28,17 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class KategoriBuktiKegiatanController {
-    
+
     @Autowired
     private KategoriBuktiKegiatanDao kategoriBuktiKegiatanDao;
-    
+
     @RequestMapping("/kategoribuktikegiatan/list")
-    
+
     public String kategoriBuktiKegiatan(Model model){
         model.addAttribute("kategoriBuktiKegiatanList", kategoriBuktiKegiatanDao.findAll());
         return "/kategoribuktikegiatan/list";
     }
-    
+
     @GetMapping("/kategoribuktikegiatan/form")
     public ModelMap tampilkanForms(@RequestParam(value = "id", required = false) KategoriBuktiKegiatan kategoribuktikegiatan) {
         if (kategoribuktikegiatan == null) {
@@ -46,7 +46,7 @@ public class KategoriBuktiKegiatanController {
         }
         return new ModelMap("kategoriBuktiKegiatan", kategoribuktikegiatan);
     }
-    
+
     @PostMapping("/kategoribuktikegiatan/form")
     public String simpan(@ModelAttribute @Valid KategoriBuktiKegiatan kategoriBuktiKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
@@ -56,7 +56,7 @@ public class KategoriBuktiKegiatanController {
         status.setComplete();
         return "redirect:/kategoribuktikegiatan/list";
     }
-    
+
     @GetMapping("/kategoribuktikegiatan/delete")
     public ModelMap deleteConfirm(@RequestParam(value = "id", required = true) KategoriBuktiKegiatan kategoribuktikegiatan) {
         return new ModelMap("kategoribuktikegiatan", kategoribuktikegiatan);

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
     <head>
-        <title>Tambah Kegiatan</title>
+        <title>Tambah Mata Kuliah</title>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
-            <h1>Jenis Kegiatan</h1>
+            <h1>Mata Kuliah</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Form Jenis Kegiatan</li>
+                <li class="active">Form Mata Kuliah</li>
             </ol>
         </div>
         <div layout:fragment="content">
@@ -18,7 +18,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">&nbsp;</h3>
                         </div>
-                        <form role="form" th:object="${jenisKegiatan}" method="post">
+                        <form role="form" th:object="${mataKuliah}" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="kode">Kode</label>
@@ -28,30 +28,30 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama">Komponen Kegiatan</label>
-                                    <input type="text" class="form-control" th:field="*{nama}" id="nama" name="nama" placeholder="komponen kegiatan" />
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" th:field="*{nama}" id="nama" name="nama" placeholder="Nama" />
                                     <label class="control-label" th:errors="*{nama}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="bukti">Bukti Kegiatan</label>
-                                    <input type="text" class="form-control" th:field="*{bukti}" id="bukti" name="bukti" placeholder="Bukti Kegiatan" />
-                                    <label class="control-label" th:errors="*{bukti}">
+                                    <label for="bukti">Program Studi</label>
+                                    <input type="text" class="form-control" th:field="*{programStudi}" id="programStudi" name="programStudi" placeholder="Program Studi" />
+                                    <label class="control-label" th:errors="*{programStudi}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="batasMaksimal">Batas Maksimal diakuai</label>
-                                    <input type="text" class="form-control" th:field="*{batasMaksimal}" id="batasMaksimal" name="batasMaksimal" placeholder="Batas Makasimal diakui" />
-                                    <label class="control-label" th:errors="*{batasMaksimal}">
+                                    <label for="batasMaksimal">Konsentrasi</label>
+                                    <input type="text" class="form-control" th:field="*{konsentrasi}" id="konsentrasi" name="konsentrasi" placeholder="Konsentrasi" />
+                                    <label class="control-label" th:errkors="*{konsentrasi}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="angkaKredit">Angka Kredit</label>
-                                    <input type="text" class="form-control" th:field="*{angkaKredit}" id="angkaKredit" name="angkaKredit" placeholder="Angka Kredit" />
-                                    <label class="control-label" th:errors="*{angkaKredit}">
+                                    <label for="angkaKredit">SKS</label>
+                                    <input type="text" class="form-control" th:field="*{sks}" id="angkaKredit" name="sks" placeholder="SKS" />
+                                    <label class="control-label" th:errors="*{sks}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>

@@ -73,3 +73,14 @@ keterangan  VARCHAR(255),
 jenjang     VARCHAR(36),
 PRIMARY KEY (id)
 );
+
+CREATE TABLE mata_kuliah(
+  id              VARCHAR(36),
+  kode            VARCHAR(255),
+  nama            VARCHAR(255),
+  program_studi   VARCHAR(255),
+  konsentrasi     VARCHAR(255),
+  sks             VARCHAR(255),
+  PRIMARY KEY (id),
+  FOREIGN KEY(program_studi) REFERENCES program_studi(id) 
+);

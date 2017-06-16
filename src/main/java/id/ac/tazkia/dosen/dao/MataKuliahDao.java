@@ -5,13 +5,12 @@
  */
 package id.ac.tazkia.dosen.dao;
 
-import id.ac.tazkia.dosen.entity.KategoriBuktiKegiatan;
+import id.ac.tazkia.dosen.entity.MataKuliah;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
  * @author razi
  */
-public interface KategoriBuktiKegiatanDao extends PagingAndSortingRepository<KategoriBuktiKegiatan, String>{
-    
+public interface MataKuliahDao extends PagingAndSortingRepository<MataKuliah, String> {
 }

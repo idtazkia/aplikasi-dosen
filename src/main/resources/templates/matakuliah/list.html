@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
     <head>
-        <title>Jenis Kegiatan</title>
+        <title>Mata Kuliah</title>
         <script language="JavaScript">
             $(document).ready(function () {
                 $(".remove-data").each(function () {
@@ -15,10 +15,10 @@
     </head>
     <body>
         <div layout:fragment="breadcrumb">
-            <h1>Daftar Jenis Kegiatan</h1>
+            <h1>Daftar Mata Kuliah</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Daftar jenis Kegiatan</li>
+                <li class="active">Mata Kuliah</li>
             </ol>
         </div>
         <div layout:fragment="content">
@@ -26,9 +26,9 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <a class="box-title btn btn-primary" th:href="@{/jeniskegiatan/form}">Tambah jenis kegiatan</a>
+                            <a class="box-title btn btn-primary" th:href="@{/matakuliah/form}">Tambah Mata Kuliah</a>
                             <div class="box-tools">
-                                <form id="form" action="#" method="get" th:action="@{/jeniskegiatan/search}">
+                                <form id="form" action="#" method="get" th:action="@{/matakuliah/search}">
                                     <div class="input-group input-group-sm" style="width: 150px;">
                                         <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
                                         <input type="hidden" name="mode" id="mode"/>
@@ -44,21 +44,21 @@
                                 <tbody>
                                     <tr>
                                         <th align="center">Kode</th>
-                                        <th align="center">Komponen Kegiatan</th>
-                                        <th align="center">Bukti Kegiatan</th>
-                                        <th align="center">Batas Maksimal Diakui</th>
-                                        <th align="center">Angka Kredit</th>
+                                        <th align="center">Nama</th>
+                                        <th align="center">Program Studi</th>
+                                        <th align="center">Konsentrasi</th>
+                                        <th align="center">SKS</th>
                                         <th>&nbsp;</th>
                                     </tr>
-                                    <tr th:each="jenisKegiatan : ${jenisKegiatanList}">
-                                        <td th:text="${jenisKegiatan.kode}">jenis kegiatan 1</td>
-                                        <td th:text="${jenisKegiatan.nama}">keterangan jenis kegiatan 1</td>
-                                        <td th:text="${jenisKegiatan.bukti}">template jenis kegiatan 1</td>
-                                        <td th:text="${jenisKegiatan.batasMaksimal}">1</td>
-                                        <td th:text="${jenisKegiatan.angkaKredit}">1</td>
+                                    <tr th:each="mataKuliah : ${mataKuliahList}">
+                                        <td th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
+                                        <td th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
+                                        <td th:text="${mataKuliah.programStudi}">template jenis kegiatan 1</td>
+                                        <td th:text="${mataKuliah.konsentrasi}">1</td>
+                                        <td th:text="${mataKuliah.sks}">1</td>
                                         <td>
-                                            <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/form(id=${jenisKegiatan.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/delete(id=${jenisKegiatan.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            <a href="#" class="btn btn-info" th:href="@{/matakuliah/form(id=${mataKuliah.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="#" class="btn btn-info" th:href="@{/matakuliah/delete(id=${mataKuliah.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                         </td>
                                     </tr>
                                 </tbody>
