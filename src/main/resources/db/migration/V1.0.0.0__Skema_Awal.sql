@@ -75,3 +75,11 @@ CREATE TABLE mata_kuliah(
   sks             VARCHAR(255),
   PRIMARY KEY (id) 
 );
+
+CREATE TABLE program_studi (
+id          VARCHAR(36),
+nama        VARCHAR(255),
+keterangan  VARCHAR(255),
+jenjang     VARCHAR(36),
+PRIMARY KEY (id)
+);

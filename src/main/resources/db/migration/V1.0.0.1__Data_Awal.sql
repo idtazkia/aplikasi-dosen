@@ -24,6 +24,8 @@ INSERT INTO `kategori_bukti_kegiatan` VALUES ('1', 'Bukti Pendidikan', 'Bukti Pe
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('2', 'Bukti Penelitian', 'Bukti Penelitian');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
 
+INSERT INTO `program_studi` VALUES ('1454326a-7c20-452b-bbe1-88dddf786b64', 'Muhammad Fadlan', 'Teknik Informatika', 'S1');;
+
 INSERT INTO `jenis_kegiatan` VALUES ('1', 'I.A.1.a', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Doktor / sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '200');
 INSERT INTO `jenis_kegiatan` VALUES ('2', 'I.A.1.b', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Magister/sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '150');
 INSERT INTO `jenis_kegiatan` VALUES ('3', 'I.A.2 ', 'Mengikuti diklat prajabatan golongan III', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '3');
@@ -72,6 +74,14 @@ INSERT INTO `jenis_kegiatan` VALUES ('45', 'II.M.4', 'Melaksanakan pengembangan 
 INSERT INTO `jenis_kegiatan` VALUES ('46', 'II.M.5', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara   81- 160 jam', 'Pindai sertifikat asli', '', '2');
 INSERT INTO `jenis_kegiatan` VALUES ('47', 'II.M.6', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 30 - 80 jam ', 'Pindai sertifikat asli', '', '1');
 INSERT INTO `jenis_kegiatan` VALUES ('48', 'II.M.7', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 - 30 jam ', 'Pindai sertifikat asli', '', '0,5');
+
+
+
+
+
+
+
+
 
 INSERT INTO `mata_kuliah` VALUES('1', '1','General Arabic','Matrikulasi','0','0');
 INSERT INTO `mata_kuliah` VALUES('2', '2','General English','Matrikulasi','0','0');
