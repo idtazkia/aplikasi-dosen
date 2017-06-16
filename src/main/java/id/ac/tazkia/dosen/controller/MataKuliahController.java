@@ -49,6 +49,7 @@ public class MataKuliahController {
         }
         
         m.addAttribute("mataKuliah", matakuliah);
+        m.addAttribute("listProgramStudi", programStudiDao.findAll());
         return "/matakuliah/form";
     }
 

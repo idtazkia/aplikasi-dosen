@@ -36,7 +36,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="bukti">Program Studi</label>
-                                    <input type="text" class="form-control" th:field="*{programStudi}" id="programStudi" name="programStudi" placeholder="Program Studi" />
+                                    <select class="form-control" th:field="*{programStudi}">
+                                        <option th:each="p : ${listProgramStudi}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilihan Jabatan
+                                        </option>
+                                    </select>
                                     <label class="control-label" th:errors="*{programStudi}">
                                         Pesan error nanti di sini
                                     </label>
