@@ -6,7 +6,6 @@
 package id.ac.tazkia.dosen.dao;
 
 import id.ac.tazkia.dosen.entity.KategoriBuktiKegiatan;
-import java.io.Serializable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

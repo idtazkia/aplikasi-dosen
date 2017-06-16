@@ -7,7 +7,7 @@
             <h1>Kategori Bukti Kegiatan</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Tambah data Kategori Bukti Kegiatan</li>
+                <li class="active">Kategori Bukti Kegiatan</li>
             </ol>
         </div>
         <div layout:fragment="content">
@@ -17,8 +17,6 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">&nbsp;</h3>
                         </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
                         <form role="form" th:object="${kategoriBuktiKegiatan}" method="post">
                             <div class="box-body">
                                 <div class="form-group">
@@ -36,10 +34,8 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                             <div class="box-footer">
-                                <button onclick="return confirm('Yakin ingin menyimpan data ini ?')" type="submit" class="btn btn-primary">Submit </button>
-                                <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                                <button onclick="return confirm('Yakin ingin menyimpan data ini ?')" type="submit" class="btn btn-primary">Submit </button>    
                             </div>
                         </form>
                     </div>

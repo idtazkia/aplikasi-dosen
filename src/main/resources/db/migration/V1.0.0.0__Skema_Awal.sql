@@ -24,6 +24,8 @@ CREATE TABLE jenis_kegiatan (
   kode            VARCHAR(255),
   nama            VARCHAR(255),
   bukti           VARCHAR(255),
+  batas_maksimal   VARCHAR(255),
+  angka_kredit     VARCHAR(255),
   PRIMARY KEY (id)
 );
 
