@@ -27,6 +27,16 @@ CREATE TABLE IF NOT EXISTS c_security_user_password (
     password varchar(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS c_password_reset_token (
+  id varchar(255) not null,
+  token varchar(255) not null,
+  id_user varchar (36) not null,
+  expiry_date timestamp not null,
+    primary key (id),
+    unique (token),
+    foreign key (id_user) references c_security_user (id)
+);
+
 ALTER TABLE dosen
    ADD COLUMN id_user varchar(255);
 
@@ -73,7 +83,9 @@ INSERT INTO c_security_role_permission (id_role, id_permission) VALUES
 ('DOSEN', 'USER_LOGGED_IN');
 
 INSERT INTO c_security_user (id, active, username, id_role) VALUES
-('admin', true,'admin', 'ADMINISTRATOR');
+('admin', true,'admin', 'ADMINISTRATOR'),
+('1', true,'vaansaa@gmail.com', 'ADMINISTRATOR');
 
 INSERT INTO c_security_user_password (id_user, password) VALUES
-('admin', '$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6');
+('admin', '$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6'),
+('1', '$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6');

@@ -22,19 +22,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-    
-    @Autowired private DataSource dataSource;
-    @Autowired private PasswordEncoder passwordEncoder;
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private static final String SQL_ROLE
-        = "select u.username, p.permission_value as authority "
-        + "from c_security_user u "
-        + "inner join c_security_role r on u.id_role = r.id "
-        + "inner join c_security_role_permission rp on rp.id_role = r.id "
-        + "inner join c_security_permission p on rp.id_permission = p.id "
-        + "where u.username = ?";
-    
+            = "select u.username, p.permission_value as authority "
+            + "from c_security_user u "
+            + "inner join c_security_role r on u.id_role = r.id "
+            + "inner join c_security_role_permission rp on rp.id_role = r.id "
+            + "inner join c_security_permission p on rp.id_permission = p.id "
+            + "where u.username = ?";
+
     private static final String SQL_LOGIN
             = "select u.username as username,p.password as password, active "
             + "from c_security_user u "
@@ -47,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Bean
-    public AuthenticationProvider daoAuthenticationProvider(){
+    public AuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder);
         provider.setUserDetailsService(userDetailsService());
@@ -56,36 +58,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     @Override
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl userDetails = new JdbcDaoImpl();
         userDetails.setDataSource(dataSource);
         userDetails.setUsersByUsernameQuery(SQL_LOGIN);
         userDetails.setAuthoritiesByUsernameQuery(SQL_ROLE);
         return userDetails;
     }
-    
-    @Bean 
-    public SessionRegistry sessionRegistry(){
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
     }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        
+
         http.csrf().disable();
-        
+
         http
-             .authorizeRequests()
-                 .antMatchers("/js/**").permitAll()
-                 .antMatchers("/css/**").permitAll()
-                 .antMatchers("/fonts/**").permitAll()
-                 .anyRequest().authenticated()
-                 .and()
-             .formLogin()
-                 .loginPage("/login")
-                 .permitAll()
-                 .and()
-             .logout()
-                 .permitAll();
+                .authorizeRequests()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/fonts/**").permitAll()
+                .antMatchers("/forgot_password/**").permitAll()
+                .antMatchers("/reset_password/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 }
