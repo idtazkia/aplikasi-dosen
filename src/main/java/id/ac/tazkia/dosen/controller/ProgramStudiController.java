@@ -4,12 +4,16 @@ import id.ac.tazkia.dosen.dao.ProgramStudiDao;
 import id.ac.tazkia.dosen.entity.ProgramStudi;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.http.ResponseEntity.status;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 public class ProgramStudiController {
@@ -32,29 +36,28 @@ public class ProgramStudiController {
     public String tampilkanForm(@RequestParam(value = "id", required = false) String id,
             Model m) {
 
-        ProgramStudi programstudi = new ProgramStudi();
-        m.addAttribute("programstudi", programstudi);
+        ProgramStudi programStudi = new ProgramStudi();
+        m.addAttribute("programStudi", programStudi);
 
         if (id != null && !id.isEmpty()) {
-            programstudi = psd.findOne(id);
-            if (programstudi != null) {
-                m.addAttribute("programstudi", programstudi);
+            programStudi = psd.findOne(id);
+            if (programStudi != null) {
+                m.addAttribute("programStudi", programStudi);
                 return "programstudi/form";
             } else {
                 return "programstudi/form";
             }
         }
-
         return "programstudi/form";
     }
 
     @RequestMapping(value = "/programstudi/form", method = RequestMethod.POST)
-    public String prosesForm(@Valid ProgramStudi ps, BindingResult errors) throws Exception {
-        if (errors.hasErrors()) {
-            return "programstudi/form";
-        } else {
-        psd.save(ps);
+    public String prosesForm (@ModelAttribute @Valid ProgramStudi programStudi, BindingResult err, SessionStatus status) {
+        if (err.hasErrors()) {
+            return "/programstudi/form";
+        }
+        psd.save(programStudi);
+        status.setComplete();
         return "redirect:/programstudi/list";
     }
-}
-}
+    }

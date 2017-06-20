@@ -1,7 +1,16 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
 	<title>Program Studi</title>
-
+        <script language="JavaScript">
+	    $(document).ready(function(){
+	        $(".remove-data").each(function(){
+	            $(this).click(function(){
+	                if(confirm('Data will be deleted?')) return true;
+	                return false;
+	            });
+	        });
+	    });
+	</script>
 </head>
 <body>
 	<div layout:fragment="breadcrumb">
