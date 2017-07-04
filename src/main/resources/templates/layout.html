@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="#" th:href="@{/css/AdminLTE.min.css}"/>
         <link rel="stylesheet" href="#" th:href="@{/css/skins/_all-skins.min.css}"/>
+        <link rel="stylesheet" href="#" th:href="@{/css/select2.min.css}"/>
+        <link rel="stylesheet" href="#" th:href="@{/css/select2-bootstrap.min.css}"/>
 
         <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -26,6 +28,8 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="#" th:src="@{/js/app.min.js}"></script>
+        <script src="#" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+        <script src="#" th:src="@{/js/select2.full.min.js}"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -143,11 +147,11 @@
                                 <li><a th:href="@{/jurnal/list}">Publikasi ke Jurnal</a></li>
                             </ul>-->
                             <ul class="treeview-menu">
-                                <li><a th:href="@{/kinerja/kbm/list}">Kegiatan Belajar Mengajar</a></li>
-                                <li><a th:href="@{/kinerja/pendidikan/list}"> Bidang Pendidikan</a></li>
-                                <li><a th:href="@{/kinerja/penelitian/list}"> Bidang Penelitian</a></li>
-                                <li><a th:href="@{/kinerja/pengabdian/list}"> Bidang Pengabdian</a></li>
-                                <li><a th:href="@{/kinerja/lainnya/list}"> Bidang Penunjang Lainnya</a></li>
+                                <li><a th:href="@{/kegiatan/kbm/list}">Kegiatan Belajar Mengajar</a></li>
+                                <li><a th:href="@{/kegiatan/pendidikan/list}"> Bidang Pendidikan</a></li>
+                                <li><a th:href="@{/kegiatan/penelitian/list}"> Bidang Penelitian</a></li>
+                                <li><a th:href="@{/kegiatan/pengabdian/list}"> Bidang Pengabdian</a></li>
+                                <li><a th:href="@{/kegiatan/penunjang/list}"> Bidang Penunjang Lainnya</a></li>
                             </ul>
                         </li>   
 

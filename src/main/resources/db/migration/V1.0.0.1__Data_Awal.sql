@@ -17,8 +17,10 @@ INSERT INTO `jabatan` VALUES ('5', 'Dokter', 'Dokter');
 
 INSERT INTO `kategori_kegiatan` VALUES ('1', 'Pendidikan', 'Pendidikan');
 INSERT INTO `kategori_kegiatan` VALUES ('2', 'Penelitian', 'Penelitian');
-INSERT INTO `kategori_kegiatan` VALUES ('3', 'Pengabdian Masyarakat', 'Pengabdian Masyarakat');
+INSERT INTO `kategori_kegiatan` VALUES ('3', 'Pengabdian', 'Pengabdian Masyarakat');
 INSERT INTO `kategori_kegiatan` VALUES ('4', 'Penunjang', 'Penunjang');
+
+INSERT INTO `jenis_kegiatan` VALUES ('1', '1', 'Test Kegiatan', 'Bukti Kegiatan', '1 tahun', '5');
 
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('1', 'Bukti Pendidikan', 'Bukti Pendidikan');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('2', 'Bukti Penelitian', 'Bukti Penelitian');

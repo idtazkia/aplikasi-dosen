@@ -30,7 +30,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "t_kegiatan_belajar_mengajar")
-public class KegitanBelajarMengajar implements Serializable {
+public class KegiatanBelajarMengajar implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -51,7 +51,12 @@ public class KegitanBelajarMengajar implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_mata_kuliah")
     private MataKuliah mataKuliah;
-    
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_dosen")
+    private Dosen dosen;
+
     @Column(name = "jumlah_mahasiswa")
     private int jumlahMahasiswa;
 
@@ -64,10 +69,18 @@ public class KegitanBelajarMengajar implements Serializable {
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "id_bukti_kinerja")
     private BuktiKinerja buktiKinerja;
-    
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusRekomendasi status;
+
+    public Dosen getDosen() {
+        return dosen;
+    }
+
+    public void setDosen(Dosen dosen) {
+        this.dosen = dosen;
+    }
 
     public String getId() {
         return id;
@@ -141,5 +154,4 @@ public class KegitanBelajarMengajar implements Serializable {
         this.status = status;
     }
 
-    
 }
