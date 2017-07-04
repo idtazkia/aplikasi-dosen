@@ -4,6 +4,7 @@ package id.ac.tazkia.dosen.controller;
  * Created by yogi on 03/05/2017. Updated by Razi on 08/06/2017.
  */
 import id.ac.tazkia.dosen.dao.JenisKegiatanDao;
+import id.ac.tazkia.dosen.dao.KategoriKegiatanDao;
 import id.ac.tazkia.dosen.entity.JenisKegiatan;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class JenisKegiatanController {
 
     @Autowired
     private JenisKegiatanDao jenisKegiatanDao;
+    
+    @Autowired
+    private KategoriKegiatanDao kategoriKegiatanDao;
 
     @RequestMapping("/jeniskegiatan/list")
     public String jenisKegiatan(Model model) {
@@ -33,11 +37,13 @@ public class JenisKegiatanController {
     }
 
     @GetMapping("/jeniskegiatan/form")
-    public ModelMap tampilkanForms(@RequestParam(value = "id", required = false) JenisKegiatan jeniskegiatan) {
+    public String tampilkanForms(@RequestParam(value = "id", required = false) JenisKegiatan jeniskegiatan, Model m) {
         if (jeniskegiatan == null) {
             jeniskegiatan = new JenisKegiatan();
         }
-        return new ModelMap("jenisKegiatan", jeniskegiatan);
+        m.addAttribute("jenisKegiatan", jeniskegiatan);
+        m.addAttribute("listKategoriKegiatan", kategoriKegiatanDao.findAll());
+        return "/jeniskegiatan/form";
     }
 
     @PostMapping("/jeniskegiatan/form")

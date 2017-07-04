@@ -21,9 +21,14 @@
                         <form role="form" th:object="${jenisKegiatan}" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="kode">Kode</label>
-                                    <input type="text" class="form-control" th:field="*{kode}" id="kode" name="kode" placeholder="Kode" />
-                                    <label class="control-label" th:errors="*{kode}">
+                                    <label for="kode">Kategori Kegiatan</label>
+                                    <select class="form-control" th:field="*{kategoriKegiatan}">
+                                        <option th:each="p : ${listKategoriKegiatan}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilihan Jabatan
+                                        </option>
+                                    </select>
+                                    <label class="control-label" th:errors="*{kategoriKegiatan}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>

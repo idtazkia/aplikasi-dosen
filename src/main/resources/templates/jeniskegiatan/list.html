@@ -43,7 +43,7 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th align="center">Kode</th>
+                                        <th align="center">Kategori Kegiatan</th>
                                         <th align="center">Komponen Kegiatan</th>
                                         <th align="center">Bukti Kegiatan</th>
                                         <th align="center">Batas Maksimal Diakui</th>
@@ -51,7 +51,7 @@
                                         <th>&nbsp;</th>
                                     </tr>
                                     <tr th:each="jenisKegiatan : ${jenisKegiatanList}">
-                                        <td th:text="${jenisKegiatan.kode}">jenis kegiatan 1</td>
+                                        <td th:text="${jenisKegiatan.kategoriKegiatan.nama}">jenis kegiatan 1</td>
                                         <td th:text="${jenisKegiatan.nama}">keterangan jenis kegiatan 1</td>
                                         <td th:text="${jenisKegiatan.bukti}">template jenis kegiatan 1</td>
                                         <td th:text="${jenisKegiatan.batasMaksimal}">1</td>
