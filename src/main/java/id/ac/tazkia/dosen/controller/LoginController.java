@@ -5,9 +5,9 @@
  */
 package id.ac.tazkia.dosen.controller;
 
-import id.ac.tazkia.dosen.dao.MailService;
+import id.ac.tazkia.dosen.service.MailService;
 import id.ac.tazkia.dosen.dao.PasswordResetTokenDao;
-import id.ac.tazkia.dosen.dao.PasswordResetTokenService;
+import id.ac.tazkia.dosen.service.PasswordResetTokenService;
 import id.ac.tazkia.dosen.dao.UserDao;
 import id.ac.tazkia.dosen.entity.PasswordResetToken;
 import id.ac.tazkia.dosen.entity.User;

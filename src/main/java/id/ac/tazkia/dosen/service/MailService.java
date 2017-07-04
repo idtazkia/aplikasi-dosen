@@ -1,4 +1,4 @@
-package id.ac.tazkia.dosen.dao;
+package id.ac.tazkia.dosen.service;
 
 import com.google.api.services.gmail.model.Message;
 import id.ac.tazkia.dosen.config.GmailApiUtil;

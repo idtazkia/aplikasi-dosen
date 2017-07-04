@@ -8,7 +8,7 @@ public class HomeTests extends BaseSeleniumTests {
     private String urlView = "/";
     private String titleView = "Aplikasi Dosen :: Home";
 
-    @Test
+//    @Test
     public void testListView() throws Exception {
         webDriver.get(baseUrl + urlView);
         assertThat(webDriver.getTitle()).isEqualTo(titleView);
