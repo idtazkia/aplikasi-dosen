@@ -5,7 +5,6 @@
  */
 package id.ac.tazkia.dosen.entity;
 
-import id.ac.tazkia.dosen.constant.JenjangConstant;
 import id.ac.tazkia.dosen.constant.SemesterConstant;
 import id.ac.tazkia.dosen.constant.StatusRekomendasi;
 import java.io.Serializable;
@@ -30,8 +29,8 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author ivans
  */
 @Entity
-@Table(name = "t_kinerja_pendidikan")
-public class KinerjaPendidikan implements Serializable {
+@Table(name = "t_kegiatan_belajar_mengajar")
+public class KegitanBelajarMengajar implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
