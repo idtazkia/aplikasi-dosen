@@ -83,6 +83,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/forgot_password/**").permitAll()
                 .antMatchers("/reset_password/**").permitAll()
+                
+                .antMatchers("/kegiatan/**").hasAnyRole("KEGIATAN")
+                
+                .antMatchers("/institusi/**").hasAnyRole("MASTER_INSTITUSI")
+                .antMatchers("/jenissurat/**").hasAnyRole("MASTER_JENIS_SURAT")
+                .antMatchers("/jabatan/**").hasAnyRole("MASTER_JABATAN")
+                .antMatchers("/programstudi/**").hasAnyRole("MASTER_PROGRAM_STUDI")
+                .antMatchers("/matakuliah/**").hasAnyRole("MASTER_MATA_KULIAH")
+                .antMatchers("/surattugas/**").hasAnyRole("MASTER_SURAT_TUGAS")
+                .antMatchers("/kategorikegiatan/**").hasAnyRole("MASTER_KATEGORI_KEGIATAN")
+                .antMatchers("/jeniskegiatan/**").hasAnyRole("MASTER_JENIS_KEGIATAN")
+                .antMatchers("/kategoribuktikegiatan/**").hasAnyRole("MASTER_KATEGORI_BUKTI_KEGIATAN")
+                .antMatchers("/jenisbuktikegiatan/**").hasAnyRole("MASTER_JENIS_BUKTI_KEGIATAN")
+                .antMatchers("/poinkegiatan/**").hasAnyRole("MASTER_POIN_KEGIATAN")
+                
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
