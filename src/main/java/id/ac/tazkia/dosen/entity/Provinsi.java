@@ -28,6 +28,14 @@ public class Provinsi {
     @NotEmpty
     @Size(max = 225)
     private String nama;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     
     public String getKode() {
         return kode;
@@ -45,5 +53,5 @@ public class Provinsi {
         this.nama = nama;
     }
 
-   
+
 }

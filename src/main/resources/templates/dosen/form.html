@@ -6,13 +6,16 @@
 <body>
 <div layout:fragment="content">
     <h1>Edit Data Dosen</h1>
-    <form class="form-horizontal" method="post">
+    <form class="form-horizontal" action="#" th:action="@{/dosen/form}" th:object="${dosen}" 
+               method="post" enctype="multipart/form-data" >
+    <input type="hidden" th:field="*{id}" />
+    
         <div class="form-group" >
             <label for="nama" class="col-sm-2 control-label">Nama Dosen</label>
             <div class="col-sm-10">
-                <input type="text"
+                <input type="text" th:field="*{nama}"
                        name="nama" class="form-control" id="nama" placeholder="Nama Dosen" />
-                <label class="control-label">
+                <label class="control-label" th:errors="*{nama}">
                     Pesan error nanti di sini
                 </label>
             </div>
@@ -20,9 +23,9 @@
         <div class="form-group" >
             <label for="nidn" class="col-sm-2 control-label">NIDN</label>
             <div class="col-sm-10">
-                <input type="text"
+                <input type="text" th:field="*{nidn}"
                        name="nidn" class="form-control" id="nidn" placeholder="NIDN" />
-                <label class="control-label" >
+                <label class="control-label" th:errors="*{nidn}" >
                     Pesan error nanti di sini
                 </label>
             </div>
@@ -31,42 +34,42 @@
         <div class="form-group" >
             <label for="email" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-                <input type="text"
-                       name="email" class="form-control" id="email" placeholder="email" />
-                <label class="control-label" >
+                <input type="text" th:field="*{email}"
+                       name="email" class="form-control" id="email" placeholder="Email" />
+                <label class="control-label" th:errors="*{email}" >
                     Pesan error nanti di sini
                 </label>
             </div>
         </div>
 
         <div class="form-group" >
-            <label for="nohp" class="col-sm-2 control-label">No Handphone</label>
+            <label for="noHandphone" class="col-sm-2 control-label">No Handphone</label>
             <div class="col-sm-10">
-                <input type="text"
+                <input type="text" th:field="*{nohp}"
                        name="nohp" class="form-control" id="nohp" placeholder="No Handphone" />
-                <label class="control-label" >
+                <label class="control-label" th:errors="*{nohp}" >
                     Pesan error nanti di sini
                 </label>
             </div>
         </div>
 
         <div class="form-group" >
-            <label for="tlahir" class="col-sm-2 control-label">Tempat Lahir</label>
+            <label for="tempatLahir" class="col-sm-2 control-label">Tempat Lahir</label>
             <div class="col-sm-10">
-                <input type="text"
-                       name="tlahir" class="form-control" id="tlahir" placeholder="tlahir" />
-                <label class="control-label" >
+                <input type="text" th:field="*{tlahir}"
+                       name="tlahir" class="form-control" id="tlahir" placeholder="Tempat Lahir" />
+                <label class="control-label" th:errors="*{tlahir}" >
                     Pesan error nanti di sini
                 </label>
             </div>
         </div>
 
         <div class="form-group" >
-            <label for="tgllahir" class="col-sm-2 control-label">Tanggal Lahir</label>
+            <label for="tanggalLahir" class="col-sm-2 control-label">Tanggal Lahir</label>
             <div class="col-sm-10">
-                <input type="text"
-                       name="tgllahir" class="form-control" id="tgllahir" placeholder="Tanggal Lahir" />
-                <label class="control-label" >
+                <input type="text" th:field="*{tgllahir}"
+                       name="tgllahir" class="form-control" id="tgllahir" placeholder="dd-MM-yyyy" />
+                <label class="control-label" th:errors="*{tgllahir}" >
                     Pesan error nanti di sini
                 </label>
             </div>
@@ -75,17 +78,65 @@
         <div class="form-group" >
             <label for="alamat" class="col-sm-2 control-label">Alamat</label>
             <div class="col-sm-10">
-                <input type="textarea"
+                <input type="textarea" th:field="*{alamat}"
                        name="alamat" class="form-control" id="alamat" placeholder="alamat" />
-                <label class="control-label" >
+                <label class="control-label" th:errors="*{alamat}" >
                     Pesan error nanti di sini
                 </label>
             </div>
         </div>
 
+    <div class="form-group">
+        <label for="provinsi" class="col-sm-2 control-label">Provinsi</label>
+        <div class="col-sm-10">
+        <select class="form-control" th:field="*{provinsi}">
+            <option th:each="p : ${listProvinsi}"
+                    th:value="${p.id}"
+                    th:text="${p.nama}">Pilih Provinsi
+            </option>
+        </select>
+        <label class="control-label" th:errors="*{provinsi}">
+            Pesan error nanti di sini
+        </label>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="kota" class="col-sm-2 control-label">Kota</label>
+        <div class="col-sm-10">
+        <select class="form-control" th:field="*{kota}">
+            <option th:each="kt : ${listKota}"
+                    th:value="${kt.id}"
+                    th:text="${kt.nama}">Pilih Kota
+            </option>
+        </select>
+        <label class="control-label" th:errors="*{kota}">
+            Pesan error nanti di sini
+        </label>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="kecamatan" class="col-sm-2 control-label">Kecamatan</label>
+        <div class="col-sm-10">
+        <select class="form-control" th:field="*{kecamatan}">
+            <option th:each="k : ${listKecamatan}"
+                    th:value="${k.id}"
+                    th:text="${k.nama}">Pilih Kecamatan
+            </option>
+        </select>
+        <label class="control-label" th:errors="*{kecamatan}">
+            Pesan error nanti di sini
+        </label>
+        </div>
+    </div>
+
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Simpan</button>
+                <a th:href="@{/dosen/list}" class="btn btn-default" role="button">
+		<span aria-hidden="true"></span>Batal
+            </a>
+                <button onclick="return confirm('Yakin ingin menyimpan data ini ?')" type="submit" class="btn btn-default">Simpan</button>
 
             </div>
         </div>

@@ -13,53 +13,67 @@
 	</script>	
 </head>
 <body>
-	<div layout:fragment="breadcrumb">
-      <h1>Daftar Dosen</h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Daftar dosen</li>
-      </ol>	
-	</div>
-	<div layout:fragment="content">	
-		<div class="row">
-		<div class="col-xs-12">
-		<div class="box">
-            <div class="box-header with-border">
-              <a class="box-title btn btn-primary">Tambah data dosen</a>
-              <div class="box-tools">
-                <form id="form" action="#" method="get" th:action="@{/surattugas/search}">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
-                  <input type="hidden" name="mode" id="mode"/>
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-                </form>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table class="table table-bordered">
-                <tbody>
-                <tr>
-		            <th>No.</th>
-		            <th>NIK</th>
-		            <th>Nama</th>
-					<th>&nbsp;</th>
-                </tr>
-                <tr th:each="jenis,iter : ${daftarJenisKendaraan}">
-		            <td th:text="${iter.count}">1</td>
-		            <td th:text="${jenis.nama}">Motor</td>
-		            <td th:text="${jenis.keterangan}">Kendaraan Roda Dua</td>
-					<td>
-						<a href="#" class="btn btn-info" th:href="@{/jeniskendaraan/form(id=${jenis.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-						<a href="#" class="btn btn-info" th:href="@{/jeniskendaraan/delete/{id}(id=${row.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-					</td>
-				</tr>
-              </tbody>
-              </table>
-            </div>
+    <div layout:fragment="breadcrumb">
+        <h1>Daftar Dosen</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Daftar dosen</li>
+        </ol>	
+    </div>
+    <div layout:fragment="content">	
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <a class="box-title btn btn-primary" th:href="@{/dosen/form}">Tambah data dosen</a>
+                        <div class="box-tools">
+                            <form id="form" action="#" method="get" th:action="@{/dosen/search}">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                                    <input type="hidden" name="mode" id="mode"/>
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>NIDN</th>
+                                    <th>Email</th>
+                                    <th>No Telp</th>
+                                    <th>Tempat Lahir</th>
+                                    <th>Tgl Lahir</th>
+                                    <th>Alamat</th>
+                                    <th>Provinsi</th>
+                                    <th>Kota</th>
+                                    <th>Kec</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                <tr th:each="doSen : ${daftarDosen}">
+                                    <td th:text="${doSen.nama}">Nama</td>
+                                    <td th:text="${doSen.nidn}">NIDN</td>
+                                    <td th:text="${doSen.email}">Email</td>
+                                    <td th:text="${doSen.nohp}">No Handphone</td>
+                                    <td th:text="${doSen.tlahir}">Tempat Lahir</td>
+                                    <td th:text="${doSen.tgllahir}">Tanggal Lahir</td>
+                                    <td th:text="${doSen.alamat}">Alamat</td>
+                                    <td th:text="${doSen.provinsi}">Provinsi</td>
+                                    <td th:text="${doSen.kota}">Kota</td>
+                                    <td th:text="${doSen.kecamatan}">Kecamatan</td>
+                                    <td>
+                                        <a href="form.html" class="btn btn-info" th:href="@{/dosen/form(id=${doSen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a href="delete.html" class="btn btn-info" th:href="@{/dosen/delete(id=${doSen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
             <!-- /.box-body
             <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
              -->
