@@ -63,9 +63,9 @@
                                     <td th:text="${doSen.tlahir}">Tempat Lahir</td>
                                     <td th:text="${doSen.tgllahir}">Tanggal Lahir</td>
                                     <td th:text="${doSen.alamat}">Alamat</td>
-                                    <td th:text="${doSen.provinsi}">Provinsi</td>
-                                    <td th:text="${doSen.kota}">Kota</td>
-                                    <td th:text="${doSen.kecamatan}">Kecamatan</td>
+                                    <td th:text="${doSen.provinsi.nama}">Provinsi</td>
+                                    <td th:text="${doSen.kota.nama}">Kota</td>
+                                    <td th:text="${doSen.kecamatan.nama}">Kecamatan</td>
                                     <td>
                                         <a href="form.html" class="btn btn-info" th:href="@{/dosen/form(id=${doSen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
                                         <a href="delete.html" class="btn btn-info" th:href="@{/dosen/delete(id=${doSen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
