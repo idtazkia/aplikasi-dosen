@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.tazkia.dosen.dao;
+package id.ac.tazkia.dosen.service;
 
+import id.ac.tazkia.dosen.dao.PasswordResetTokenDao;
 import id.ac.tazkia.dosen.entity.PasswordResetToken;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

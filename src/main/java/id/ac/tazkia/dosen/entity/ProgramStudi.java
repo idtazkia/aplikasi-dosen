@@ -1,6 +1,9 @@
 package id.ac.tazkia.dosen.entity;
 
+import id.ac.tazkia.dosen.constant.JenjangConstant;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -30,8 +33,8 @@ public class ProgramStudi {
     private String keterangan;
     
     @NotNull
-    @NotEmpty
-    private String jenjang;
+    @Enumerated(EnumType.STRING)
+    private JenjangConstant jenjang;
 
     public String getId() {
         return id;
@@ -57,12 +60,13 @@ public class ProgramStudi {
         this.keterangan = keterangan;
     }
 
-    public String getJenjang() {
+    public JenjangConstant getJenjang() {
         return jenjang;
     }
 
-    public void setJenjang(String jenjang) {
+    public void setJenjang(JenjangConstant jenjang) {
         this.jenjang = jenjang;
     }
+
 
 }

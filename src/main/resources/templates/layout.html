@@ -1,198 +1,204 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-<head>
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<title layout:title-pattern="$DECORATOR_TITLE :: $CONTENT_TITLE">Aplikasi Dosen</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title layout:title-pattern="$DECORATOR_TITLE :: $CONTENT_TITLE">Aplikasi Dosen</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="#" th:href="@{/css/AdminLTE.min.css}"/>
-	<link rel="stylesheet" href="#" th:href="@{/css/skins/_all-skins.min.css}"/>
-		
-	<!--[if lt IE 9]>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	<link rel="icon" href="#" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="#" th:href="@{/css/AdminLTE.min.css}"/>
+        <link rel="stylesheet" href="#" th:href="@{/css/skins/_all-skins.min.css}"/>
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <link rel="icon" href="#" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="#" th:src="@{/js/app.min.js}"></script>
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var menudd = Cookies.get('menu-dd');
-			
-			if(menudd!=null) {
-				$("#"+menudd).addClass("active");
-			} else {
-				Cookies.set('menu-dd', "user");
-			}
-			
-			$(".treeview").each(function(){
-				$(this).click(function(){
-					$(this.id).addClass("active");
-					$("#"+Cookies.get('menu-dd')).removeClass("active");
-					Cookies.set('menu-dd', this.id);
-				});
-			});
-		});
-	</script>
-</head>
-<body class="hold-transition skin-blue fixed sidebar-mini fuelux">
-<div class="wrapper">
-  <!-- Main Header -->
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="#" th:href="@{/}" class="logo">
-      <span class="logo-mini"><b>A</b>D</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>APLIKASI</b>DOSEN</span>
-    </a>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
 
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><span sec:authentication="name">IDO</span>&nbsp;<i class="fa fa-gears"></i></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <p><span sec:authentication="name">IDO</span></p>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" th:href="@{/user/changepassword}"  class="btn btn-default btn-flat">Change password</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="#" th:src="@{/js/app.min.js}"></script>
 
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var menudd = Cookies.get('menu-dd');
 
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel">
-      </div>
+                if (menudd != null) {
+                    $("#" + menudd).addClass("active");
+                } else {
+                    Cookies.set('menu-dd', "user");
+                }
 
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">Menu</li>
-        
-		<li class="treeview" id="datamaster">
-          <a href="#"><i class="fa fa-inbox"></i> <span>Data Master</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-			<li><a th:href="@{/institusi/view}">Institusi</a></li>
-			<li><a th:href="@{/jenissurat/list}">Jenis Surat</a></li>
-			<li><a th:href="@{/jabatan/list}">Jabatan</a></li>
-			<li><a th:href="@{/dosen/list}">Dosen</a></li>
-			<li><a th:href="@{/programstudi/list}">Program Studi</a></li>
-                        <li><a th:href="@{/matakuliah/list}">Mata Kuliah</a></li>
-			<li><a th:href="@{/surattugas/list}">Surat Tugas</a></li>
-			<li><a th:href="@{/kategorikegiatan/list}">Kategori Kegiatan</a></li>
-			<li><a th:href="@{/jeniskegiatan/list}">Jenis Kegiatan</a></li>
-			<li><a th:href="@{/kategoribuktikegiatan/list}">Kategori Bukti Kegiatan</a></li>
-			<li><a th:href="@{/jenisbuktikegiatan/list}">Jenis Bukti Kegiatan</a></li>
-			<li><a th:href="@{/poinkegiatan/list}">Poin Kegiatan</a></li>
-          </ul>
-        </li>   
-        
-		<li class="treeview" id="kegiatandosen">
-          <a href="#"><i class="fa fa-inbox"></i> <span>Kegiatan dosen</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-	          <li><a th:href="@{/kbm/list}">Kegiatan Belajar Mengajar</a></li>
-	          <li><a th:href="@{/tulisan/list}">Tulisan</a></li>
-	          <li><a th:href="@{/penelitian/list}">Penelitian</a></li>
-	          <li><a th:href="@{/bimbingan/list}">Bimbingan Penelitian</a></li>
-	          <li><a th:href="@{/jurnal/list}">Publikasi ke Jurnal</a></li>
-          </ul>
-        </li>   
-        
-		<li class="treeview" id="laporan">
-          <a href="#"><i class="fa fa-inbox"></i> <span>Laporan</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-             <li><a href="#">Laporan Dikti</a></li>
-             <li><a href="#">Laporan Kopertais</a></li>
-          </ul>
-        </li>   
-        
-      </ul>
-      <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-  
-  	<section class="content-header" layout:fragment="breadcrumb"></section>
-    <!-- Content Header (Page header) -->
-    <!-- Main content -->
-    <section class="content" layout:fragment="content">Di sini content utama</section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <!-- Main Footer -->
-  	<footer class="main-footer">
-    	<strong>Copyright &copy; 2017 <a href="#"></a></strong>
-  	</footer>
-  	<div class="control-sidebar-bg"></div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
- 
-<script type="text/javascript">
-    $(document).ready(function () {
- 
-        $(function () {
-            $(".datepicker").datepicker({
-                todayBtn: "linked",
-                autoclose: true, 
-                todayHighlight: true
-                
+                $(".treeview").each(function () {
+                    $(this).click(function () {
+                        $(this.id).addClass("active");
+                        $("#" + Cookies.get('menu-dd')).removeClass("active");
+                        Cookies.set('menu-dd', this.id);
+                    });
+                });
             });
-        });
-    });
-        
-</script>
-</body>
+        </script>
+    </head>
+    <body class="hold-transition skin-blue fixed sidebar-mini fuelux">
+        <div class="wrapper">
+            <!-- Main Header -->
+            <header class="main-header">
+                <!-- Logo -->
+                <a href="#" th:href="@{/}" class="logo">
+                    <span class="logo-mini"><b>A</b>D</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>APLIKASI</b>DOSEN</span>
+                </a>
+
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="hidden-xs"><span sec:authentication="name">IDO</span>&nbsp;<i class="fa fa-gears"></i></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <p><span sec:authentication="name">IDO</span></p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" th:href="@{/user/changepassword}"  class="btn btn-default btn-flat">Change password</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="#" th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel">
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <ul class="sidebar-menu">
+                        <li class="header">Menu</li>
+
+                        <li class="treeview" id="datamaster">
+                            <a href="#"><i class="fa fa-inbox"></i> <span>Data Master</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a th:href="@{/institusi/view}">Institusi</a></li>
+                                <li><a th:href="@{/jenissurat/list}">Jenis Surat</a></li>
+                                <li><a th:href="@{/jabatan/list}">Jabatan</a></li>
+                                <li><a th:href="@{/dosen/list}">Dosen</a></li>
+                                <li><a th:href="@{/programstudi/list}">Program Studi</a></li>
+                                <li><a th:href="@{/matakuliah/list}">Mata Kuliah</a></li>
+                                <li><a th:href="@{/surattugas/list}">Surat Tugas</a></li>
+                                <li><a th:href="@{/kategorikegiatan/list}">Kategori Kegiatan</a></li>
+                                <li><a th:href="@{/jeniskegiatan/list}">Jenis Kegiatan</a></li>
+                                <li><a th:href="@{/kategoribuktikegiatan/list}">Kategori Bukti Kegiatan</a></li>
+                                <li><a th:href="@{/jenisbuktikegiatan/list}">Jenis Bukti Kegiatan</a></li>
+                                <li><a th:href="@{/poinkegiatan/list}">Poin Kegiatan</a></li>
+                            </ul>
+                        </li>   
+
+                        <li class="treeview" id="kegiatandosen">
+                            <a href="#"><i class="fa fa-inbox"></i> <span>Kegiatan dosen</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+<!--                            <ul class="treeview-menu">
+                                <li><a th:href="@{/kbm/list}">Kegiatan Belajar Mengajar</a></li>
+                                <li><a th:href="@{/tulisan/list}">Tulisan</a></li>
+                                <li><a th:href="@{/penelitian/list}">Penelitian</a></li>
+                                <li><a th:href="@{/bimbingan/list}">Bimbingan Penelitian</a></li>
+                                <li><a th:href="@{/jurnal/list}">Publikasi ke Jurnal</a></li>
+                            </ul>-->
+                            <ul class="treeview-menu">
+                                <li><a th:href="@{/kinerja/pendidikan/list}"> Bidang Pendidikan</a></li>
+                                <li><a th:href="@{/kinerja/penelitian/list}"> Bidang Penelitian</a></li>
+                                <li><a th:href="@{/kinerja/pengabdian/list}"> Bidang Pengabdian</a></li>
+                                <li><a th:href="@{/kinerja/lainnya/list}"> Bidang Penunjang Lainnya</a></li>
+                            </ul>
+                        </li>   
+
+                        <li class="treeview" id="laporan">
+                            <a href="#"><i class="fa fa-inbox"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#">Laporan Dikti</a></li>
+                                <li><a href="#">Laporan Kopertais</a></li>
+                            </ul>
+                        </li>   
+
+                    </ul>
+                    <!-- /.sidebar-menu -->
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+
+                <section class="content-header" layout:fragment="breadcrumb"></section>
+                <!-- Content Header (Page header) -->
+                <!-- Main content -->
+                <section class="content" layout:fragment="content">Di sini content utama</section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2017 <a href="#"></a></strong>
+            </footer>
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $(function () {
+                    $(".datepicker").datepicker({
+                        todayBtn: "linked",
+                        autoclose: true,
+                        todayHighlight: true
+
+                    });
+                });
+            });
+
+        </script>
+    </body>
 </html>
