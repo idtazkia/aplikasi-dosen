@@ -18,17 +18,7 @@ CREATE TABLE kecamatan (
     id_kota character varying(36) NOT NULL
 );
 
--- ALTER TABLE ONLY provinsi
---     ADD CONSTRAINT provinsi_pkey PRIMARY KEY (id);
--- 
--- ALTER TABLE ONLY kota
---     ADD CONSTRAINT kota_pkey PRIMARY KEY (id);
--- 
--- ALTER TABLE ONLY kecamatan
---     ADD CONSTRAINT kecamatan_pkey PRIMARY KEY (id);
--- 
--- ALTER TABLE ONLY kota
---     ADD CONSTRAINT fk6gfr8sod7jv1vrq6a28uwpfoq FOREIGN KEY (id_provinsi) REFERENCES provinsi(id);
--- 
--- ALTER TABLE ONLY kecamatan
---     ADD CONSTRAINT fkbhnomh901bg3qqkogs1l0gad7 FOREIGN KEY (id_kota) REFERENCES kota(id);
+
+ALTER TABLE data_dosen ADD CONSTRAINT fkegnu35g4ojgslgih62so51we0r FOREIGN KEY (provinsi) REFERENCES provinsi (id);
+ALTER TABLE data_dosen ADD CONSTRAINT fkegnu35g4ojslgihd63so51we0r FOREIGN KEY (kota) REFERENCES kota (id);
+ALTER TABLE data_dosen ADD CONSTRAINT fkegnu35gs4ojslgih64so51we0r FOREIGN KEY (kecamatan) REFERENCES kecamatan (id);

@@ -20,7 +20,6 @@ INSERT INTO `kategori_kegiatan` VALUES ('2', 'Penelitian', 'Penelitian');
 INSERT INTO `kategori_kegiatan` VALUES ('3', 'Pengabdian', 'Pengabdian Masyarakat');
 INSERT INTO `kategori_kegiatan` VALUES ('4', 'Penunjang', 'Penunjang');
 
-
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('1', 'Bukti Pendidikan', 'Bukti Pendidikan');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('2', 'Bukti Penelitian', 'Bukti Penelitian');
 INSERT INTO `kategori_bukti_kegiatan` VALUES ('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
