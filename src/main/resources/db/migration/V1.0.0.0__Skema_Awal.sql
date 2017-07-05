@@ -19,14 +19,22 @@ CREATE TABLE jabatan (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE kategori_kegiatan (
+  id              VARCHAR(36),
+  nama            VARCHAR(255),
+  keterangan      VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE jenis_kegiatan (
   id              VARCHAR(36),
-  kode            VARCHAR(255),
+  id_kategori_kegiatan  VARCHAR(36),
   nama            VARCHAR(255),
   bukti           VARCHAR(255),
   batas_maksimal   VARCHAR(255),
   angka_kredit     VARCHAR(255),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_kategori_kegiatan) REFERENCES kategori_kegiatan (id)
 );
 
 CREATE TABLE surat_tugas (
@@ -52,12 +60,7 @@ CREATE TABLE poin_kegiatan (
   FOREIGN KEY (id_jenis_kegiatan) REFERENCES jenis_kegiatan (id)
 );
 
-CREATE TABLE kategori_kegiatan (
-  id              VARCHAR(36),
-  nama            VARCHAR(255),
-  keterangan      VARCHAR(255),
-  PRIMARY KEY (id)
-);
+
 
 CREATE TABLE kategori_bukti_kegiatan (
   id              VARCHAR(36),

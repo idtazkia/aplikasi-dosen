@@ -11,8 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.TimeUnit;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class BaseSeleniumTests {
 
     @LocalServerPort

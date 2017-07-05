@@ -11,13 +11,13 @@ public class DosenTests extends BaseSeleniumTests {
     private String urlFormView = "/dosen/form";
     private String titleFormView = "Aplikasi Dosen :: Edit Data Dosen";
 
-    @Test
+//    @Test
     public void testListView() throws Exception {
         webDriver.get(baseUrl + urlListView);
         assertThat(webDriver.getTitle()).isEqualTo(titleListView);
     }
 
-    @Test
+//    @Test
     public void testFormView() throws Exception {
         webDriver.get(baseUrl + urlFormView);
         assertThat(webDriver.getTitle()).isEqualTo(titleFormView);
