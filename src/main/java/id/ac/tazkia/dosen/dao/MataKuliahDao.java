@@ -6,6 +6,8 @@
 package id.ac.tazkia.dosen.dao;
 
 import id.ac.tazkia.dosen.entity.MataKuliah;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -13,4 +15,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author razi
  */
 public interface MataKuliahDao extends PagingAndSortingRepository<MataKuliah, String> {
+    Page<MataKuliah> findByNamaContainingIgnoreCase(String nama, Pageable pageable);
 }
