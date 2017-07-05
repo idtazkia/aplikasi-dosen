@@ -87,3 +87,18 @@ CREATE TABLE mata_kuliah(
   PRIMARY KEY (id),
   FOREIGN KEY(program_studi) REFERENCES program_studi(id) 
 );
+
+CREATE TABLE data_dosen(
+id          VARCHAR(36),
+nama        VARCHAR(255),
+nidn        VARCHAR(255),
+email       VARCHAR(255),
+nohp        VARCHAR(30),
+tlahir      VARCHAR(255),
+tanggal_lahir     DATE,
+alamat      VARCHAR(255),
+kecamatan   VARCHAR(255),
+kota        VARCHAR(255),
+provinsi    VARCHAR(255),
+PRIMARY KEY (id)
+);
