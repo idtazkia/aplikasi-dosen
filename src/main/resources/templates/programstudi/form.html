@@ -4,52 +4,56 @@
     <title>Edit Program Studi</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <h1>Edit Program Studi</h1>
-<form class="form-horizontal" action="#" th:action="@{/programstudi/form}" th:object="${programstudi}" 
-               method="post" enctype="multipart/form-data" >
-    <input type="hidden" th:field="*{id}" />
+    <div layout:fragment="content">
+        <h1>Edit Program Studi</h1>
+        <form class="form-horizontal" action="#" th:action="@{/programstudi/form}" th:object="${programStudi}" 
+              method="post" enctype="multipart/form-data" >
+            <input type="hidden" th:field="*{id}" />
     
-    <div class="form-group" >
-        <label for="nama" class="col-sm-2 control-label">Nama</label>
-        <div class="col-sm-10">
-            <input type="text" th:field="*{nama}"
-                   name="nama" class="form-control" id="nama" placeholder="Nama" />
-            <label class="control-label" th:if="${#fields.hasErrors('nama')}" th:errors="*{nama}">
-                Pesan error nanti di sini
-            </label>
-        </div>
-    </div>
-    <div class="form-group" >
-        <label for="Keterangan" class="col-sm-2 control-label">Keterangan</label>
-        <div class="col-sm-10">
-            <input type="text" th:field="*{keterangan}"
-                   name="nidn" class="form-control" id="keterangan" placeholder="Keterangan" />
-            <label class="control-label" th:if="${#fields.hasErrors('keterangan')}" th:errors="*{keterangan}" >
-                Pesan error nanti di sini
-            </label>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="jenjang" class="col-sm-2 control-label">Jenjang</label>
-        <div class="col-sm-10">
-            <select class="form-control" name="jenjang" id="jenjang">
-                <option value="D3" >D3</option>
-                <option value="S1" >S1</option>
-                <option value="S2" >S2</option>
-            </select>
-        </div>
-    </div>
+            <div class="form-group">
+                <label for="nama" class="col-sm-2 control-label">Nama</label>
+                <div class="col-sm-10">
+                    <input type="text" 
+                           th:field="*{nama}" 
+                           name="nama" class="form-control" id="nama" placeholder="Nama"/>
+                    <label class="control-label" th:errors="*{nama}">
+                        Pesan error nanti di sini
+                    </label>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <a th:href="@{/programstudi/list}" class="btn btn-default" role="button">
-		<span aria-hidden="true"></span>Batal
-            </a>
-            <button type="submit" class="btn btn-default">Simpan</button>
-        </div>
+            <div class="form-group">
+                <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
+                <div class="col-sm-10">
+                    <input type="text" 
+                           th:field="*{keterangan}" 
+                           name="keterangan" class="form-control" id="keterangan" placeholder="Keterangan"/>
+                    <label class="control-label" th:errors="*{keterangan}">
+                        Pesan error nanti di sini
+                    </label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="Jenjang" class="col-sm-2 control-label">Jenjang</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="jenjang" id="jenjang">
+                        <option value="D3" >D3</option>
+                        <option value="S1" >S1</option>
+                        <option value="S2" >S2</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a th:href="@{/programstudi/list}" class="btn btn-default" role="button">
+                        <span aria-hidden="true"></span>Batal
+                    </a>
+                    <button type="submit" class="btn btn-default">Simpan</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
-</div>
 </body>
 </html>
