@@ -28,10 +28,10 @@
                         <div class="box-header with-border">
                             <a class="box-title btn btn-primary" th:href="@{/matakuliah/form}">Tambah Mata Kuliah</a>
                             <div class="box-tools">
-                                <form id="form" action="#" method="get" th:action="@{/matakuliah/search}">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
-                                        <input type="hidden" name="mode" id="mode"/>
+                                <form th:action="@{/matakuliah/list}" method="get">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Nama" th:if="${key} == null"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Nama" th:if="${key} != null" th:value="${key}" />
                                         <div class="input-group-btn">
                                             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                         </div>
@@ -50,7 +50,7 @@
                                         <th align="center">SKS</th>
                                         <th>&nbsp;</th>
                                     </tr>
-                                    <tr th:each="mataKuliah : ${mataKuliahList}">
+                                    <tr th:each="mataKuliah : ${mataKuliahList.content}">
                                         <td th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
                                         <td th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
                                         <td th:text="${mataKuliah.programStudi.nama}">template jenis kegiatan 1</td>
@@ -63,6 +63,18 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(mataKuliahList.content)}">
+                            <br/>
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>

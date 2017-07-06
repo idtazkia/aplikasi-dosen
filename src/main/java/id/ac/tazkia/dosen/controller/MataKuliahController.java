@@ -11,6 +11,8 @@ import id.ac.tazkia.dosen.entity.MataKuliah;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -37,8 +39,13 @@ public class MataKuliahController {
     private ProgramStudiDao programStudiDao;
 
     @RequestMapping("/matakuliah/list")
-    public String mataKuliah(Model model) {
-        model.addAttribute("mataKuliahList", mataKuliahDao.findAll());
+    public String mataKuliah(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, Model model) {
+        if (value != null) {
+            model.addAttribute("key", value);
+            model.addAttribute("mataKuliahList", mataKuliahDao.findByNamaContainingIgnoreCase(value, pageable));
+        } else {
+            model.addAttribute("mataKuliahList", mataKuliahDao.findAll(pageable));
+        }
         return "/matakuliah/list";
     }
 
