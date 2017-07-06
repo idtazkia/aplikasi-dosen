@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,10 +24,10 @@ public class JenisKegiatan implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @ManyToOne
     @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 255)
-    private String kode;
+    @JoinColumn(name = "id_kategori_kegiatan")
+    private KategoriKegiatan kategoriKegiatan;
 
     @NotNull
     @NotEmpty
@@ -43,20 +45,20 @@ public class JenisKegiatan implements Serializable {
     @Column(name="angka_kredit")
     private String angkaKredit;
 
+    public KategoriKegiatan getKategoriKegiatan() {
+        return kategoriKegiatan;
+    }
+
+    public void setKategoriKegiatan(KategoriKegiatan kategoriKegiatan) {
+        this.kategoriKegiatan = kategoriKegiatan;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getKode() {
-        return kode;
-    }
-
-    public void setKode(String kode) {
-        this.kode = kode;
     }
 
     public String getNama() {

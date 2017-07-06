@@ -1,10 +1,9 @@
 package id.ac.tazkia.dosen.controller;
 
-import id.ac.tazkia.dosen.dao.KegiatanPendidikanDao;
 import id.ac.tazkia.dosen.dao.MataKuliahDao;
 import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
-import id.ac.tazkia.dosen.entity.KinerjaPendidikan;
+import id.ac.tazkia.dosen.entity.KegitanBelajarMengajar;
 import id.ac.tazkia.dosen.service.ImageService;
 import java.io.File;
 import java.util.Arrays;
@@ -29,15 +28,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import id.ac.tazkia.dosen.dao.KegiatanBelajarMengajarDao;
 
 @Controller
-@RequestMapping("/kinerja/pendidikan")
-public class KinerjaBidangPendidikanController {
+@RequestMapping("/kinerja/kbm")
+public class KegiatanBelajarMengajarController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KinerjaBidangPendidikanController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KegiatanBelajarMengajarController.class);
 
     @Autowired
-    private KegiatanPendidikanDao kegiatanPendidikanDao;
+    private KegiatanBelajarMengajarDao kegiatanPendidikanDao;
 
     @Autowired
     private MataKuliahDao mataKuliahDao;
@@ -51,13 +51,13 @@ public class KinerjaBidangPendidikanController {
     public String kegiatanPendidikanList(@PageableDefault(size = 10) Pageable pageable, ModelMap mm) {
         PageRequest page = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "periode");
         mm.addAttribute("data", kegiatanPendidikanDao.findAll(page));
-        return "kinerja/pendidikan/list";
+        return "kinerja/kbm/list";
     }
 
     @GetMapping("/form")
     public String tampilkanForm(@RequestParam(required = false) String id, ModelMap mm) {
         mm.addAttribute("listMatkul", mataKuliahDao.findAll());
-        KinerjaPendidikan kegiatan = new KinerjaPendidikan();
+        KegitanBelajarMengajar kegiatan = new KegitanBelajarMengajar();
         if (id != null && !id.isEmpty()) {
             kegiatan = kegiatanPendidikanDao.findOne(id);
         } else {
@@ -68,22 +68,22 @@ public class KinerjaBidangPendidikanController {
         }
 
         mm.addAttribute("kinerja", kegiatan);
-        return "kinerja/pendidikan/form";
+        return "kinerja/kbm/form";
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam String id, ModelMap mm) {
-        KinerjaPendidikan kegiatan = new KinerjaPendidikan();
+        KegitanBelajarMengajar kegiatan = new KegitanBelajarMengajar();
         if (id != null && !id.isEmpty()) {
             kegiatan = kegiatanPendidikanDao.findOne(id);
             kegiatanPendidikanDao.delete(kegiatan);
         }
 
-        return "redirect:/kinerja/pendidikan/list";
+        return "redirect:/kinerja/kbm/list";
     }
 
     @PostMapping("/form")
-    public String prosesForm(@Valid KinerjaPendidikan kinerja, ModelMap mm, BindingResult errors,
+    public String prosesForm(@Valid KegitanBelajarMengajar kinerja, ModelMap mm, BindingResult errors,
             MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request) {
 
         if (filePenugasan != null && !filePenugasan.isEmpty()) {
@@ -125,14 +125,14 @@ public class KinerjaBidangPendidikanController {
         if (errors.getErrorCount() > 0) {
             mm.addAttribute("kinerja", kinerja);
             mm.addAttribute("listMatkul", mataKuliahDao.findAll());
-            return "kinerja/pendidikan/form";
+            return "kinerja/kbm/form";
         }
         
         if(kinerja.getId() != null){
             LOGGER.info("ID [{}]", kinerja.getId());
         }
         kegiatanPendidikanDao.save(kinerja);
-        return "redirect:/kinerja/pendidikan/list";
+        return "redirect:/kinerja/kbm/list";
     }
 
     private String tokenizer(String originalFilename, String token) {

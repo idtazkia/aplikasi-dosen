@@ -21,7 +21,7 @@ CREATE TABLE jabatan (
 
 CREATE TABLE jenis_kegiatan (
   id              VARCHAR(36),
-  kode            VARCHAR(255),
+  id_kategori_kegiatan  VARCHAR(36),
   nama            VARCHAR(255),
   bukti           VARCHAR(255),
   batas_maksimal   VARCHAR(255),

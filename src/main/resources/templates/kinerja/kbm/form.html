@@ -1,13 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
     <head>
-        <title>Input Kinerja Bidang Pendidikan</title>
+        <title>Input Kegiatan Belajar Mengajar</title>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
-            <h1>Input Kinerja Bidang Pendidikan</h1>
+            <h1>Input Kegiatan Belajar Mengajar</h1>
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Kinerja Bidang Pendidikan</li>
+                <li class="active">Kegiatan Belajar Mengajar</li>
             </ol>
         </div>
         <div layout:fragment="content">
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group text-right">
-                                    <a th:href="@{/kinerja/pendidikan/list}" class="btn btn-danger" role="button">
+                                    <a th:href="@{/kinerja/kbm/list}" class="btn btn-danger" role="button">
                                         <span aria-hidden="true"></span>Batal
                                     </a>
                                     <button type="submit" class="btn btn-primary">Simpan</button>

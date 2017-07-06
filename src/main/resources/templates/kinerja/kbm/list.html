@@ -1,13 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
     <head>
-        <title>Kinerja Bidang Pendidikan</title>
+        <title>Kegiatan Belajar Mengajar</title>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
-            <h1>Kinerja Bidang Pendidikan</h1>
+            <h1>Kegiatan Belajar Mengajar</h1>
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Kinerja Bidang Pendidikan</li>
+                <li class="active">Kegiatan Belajar Mengajar</li>
             </ol>
         </div>
         <div layout:fragment="content">
@@ -15,9 +15,9 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <a class="box-title btn btn-primary" th:href="@{/kinerja/pendidikan/form}">Input Kinerja Bidang Pendidikan</a>
+                            <a class="box-title btn btn-primary" th:href="@{/kinerja/kbm/form}">Input Kinerja Bidang Pendidikan</a>
                             <div class="box-tools">
-                                <form id="form" action="#" method="get" th:action="@{/kinerja/pendidikan/list}">
+                                <form id="form" action="#" method="get" th:action="@{/kinerja/kbm/list}">
                                     <div class="input-group input-group-sm" style="width: 150px;">
                                         <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
                                         <input type="hidden" name="mode" id="mode"/>
@@ -63,9 +63,9 @@
                                         </td>
                                         <td th:text="${k.status}">status</td>
                                         <td>
-                                            <a href="#" th:href="@{/kinerja/pendidikan/form?id={id}(id=${k.id})}"
+                                            <a href="#" th:href="@{/kinerja/kbm/form?id={id}(id=${k.id})}"
                                                title="edit"><span class="glyphicon glyphicon-edit"></span></a> | 
-                                            <a href="#" th:href="@{/kinerja/pendidikan/delete?id={id}(id=${k.id})}"
+                                            <a href="#" th:href="@{/kinerja/kbm/delete?id={id}(id=${k.id})}"
                                                title="delete"><span class="glyphicon glyphicon-remove"></span></a>
                                         </td>
                                     </tr>
