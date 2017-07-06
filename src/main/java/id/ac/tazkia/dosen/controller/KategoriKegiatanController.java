@@ -14,19 +14,21 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 
 @Controller
 public class KategoriKegiatanController {
 
-
+    @Autowired
     private KategoriKegiatanDao kategoriKegiatanDao;
 
     public KategoriKegiatanController(KategoriKegiatanDao KategoriKegiatanDao) {this.kategoriKegiatanDao = KategoriKegiatanDao;
     }
 
     @GetMapping("/kategorikegiatan/list")
-    public ModelMap jabatan(){
-        return new ModelMap().addAttribute("kategorikegiatan", kategoriKegiatanDao.findAll());
+    public ModelMap jabatan(Pageable pageable){
+        return new ModelMap().addAttribute("data", kategoriKegiatanDao.findAll(pageable));
     }
 
 

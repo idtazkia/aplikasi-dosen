@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author ronny susetyo  <ronny at susetyo.com>
@@ -43,9 +44,9 @@ public class SuratTugasController {
     }
 
     @RequestMapping("/surattugas/list")
-    public ModelMap SuratTugas() {
+    public ModelMap SuratTugas(Pageable pageable) {
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("suratTugas", suratTugasDao.findAll());
+        modelMap.addAttribute("data", suratTugasDao.findAll(pageable));
         return modelMap;
     }
 

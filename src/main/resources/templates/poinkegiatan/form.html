@@ -22,7 +22,11 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="kode">Jenis Kegiatan</label>
-                                    <select class="form-control" th:field="*{jenisKegiatan}">
+                                    <select class="selectpicker form-control"
+                                            th:field="*{jenisKegiatan}"
+                                            data-live-search="true"
+                                            data-size="10"
+                                            title="Please Select ...">
                                         <option th:each="p : ${listJenisKegiatan}"
                                                 th:value="${p.id}"
                                                 th:text="${p.nama}">Pilihan Jenis Kegiatan
@@ -34,7 +38,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="bukti">Jabatan</label>
-                                    <select class="form-control" th:field="*{jabatan}">
+                                    <select class="selectpicker form-control" data-live-search="true" data-size="10" title="Please Select ..." th:field="*{jabatan}">
                                         <option th:each="p : ${listJabatan}"
                                                 th:value="${p.id}"
                                                 th:text="${p.nama}">Pilihan Jabatan

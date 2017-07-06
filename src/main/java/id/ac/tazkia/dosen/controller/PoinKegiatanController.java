@@ -8,6 +8,7 @@ import id.ac.tazkia.dosen.entity.*;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -33,8 +34,8 @@ public class PoinKegiatanController {
     private JenisKegiatanDao jenisKegiatanDao;
     
     @RequestMapping("/poinkegiatan/list")
-    public String poinKegiatan(Model model) {
-        model.addAttribute("poinKegiatanList", poinKegiatanDao.findAll());
+    public String poinKegiatan(Model model, Pageable pageable) {
+        model.addAttribute("data", poinKegiatanDao.findAll(pageable));
         return "/poinkegiatan/list";
     }
     

@@ -38,7 +38,7 @@
                             <th>Keterangan</th>
                             <th>&nbsp;</th>
                         </tr>
-                        <tr th:each="st,iter : ${kategorikegiatan}">
+                        <tr th:each="st,iter : ${data}">
                             <td th:text="${iter.count}">1</td>
                             <td th:text="${st.nama}">Kategori Kegiatan</td>
                             <td th:text="${st.keterangan}">Keterangan</td>
@@ -53,6 +53,17 @@
                 <!-- /.box-body
                 <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
                  -->
+                <div th:if="${not #lists.isEmpty(data.content)}">
+                    <div class="text-center"> 
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
