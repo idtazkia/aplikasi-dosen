@@ -1,9 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package id.ac.tazkia.dosen.controller;
 
-import id.ac.tazkia.dosen.dao.MataKuliahDao;
+import id.ac.tazkia.dosen.dao.JenisKegiatanDao;
+import id.ac.tazkia.dosen.dao.KategoriKegiatanDao;
+import id.ac.tazkia.dosen.dao.KegiatanDosenDao;
 import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
+import id.ac.tazkia.dosen.entity.KategoriKegiatan;
 import id.ac.tazkia.dosen.entity.KegiatanBelajarMengajar;
+import id.ac.tazkia.dosen.entity.KegiatanDosen;
 import id.ac.tazkia.dosen.service.ImageService;
 import java.io.File;
 import java.util.Arrays;
@@ -11,11 +20,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,67 +27,94 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import id.ac.tazkia.dosen.dao.KegiatanBelajarMengajarDao;
 
+/**
+ *
+ * @author ivans
+ */
 @Controller
-@RequestMapping("/kegiatan/kbm")
-public class KegiatanBelajarMengajarController {
+@RequestMapping("/kegiatan")
+public class KegiatanDosenController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KegiatanBelajarMengajarController.class);
-
-    @Autowired
-    private KegiatanBelajarMengajarDao kegiatanPendidikanDao;
+    private static final Logger LOGGER = LoggerFactory.getLogger(KegiatanDosenController.class);
 
     @Autowired
-    private MataKuliahDao mataKuliahDao;
+    private KegiatanDosenDao kegiatanDosenDao;
+
+    @Autowired
+    private KategoriKegiatanDao kategoriKegiatanDao;
+
+    @Autowired
+    private JenisKegiatanDao jenisKegiatanDao;
 
     @Autowired
     private ImageService imageService;
 
     private final List<String> FILE_EXTENSION = Arrays.asList("png", "jpg", "jpeg");
 
-    @GetMapping("/list")
-    public String kegiatanPendidikanList(@PageableDefault(size = 10) Pageable pageable, ModelMap mm) {
+    @RequestMapping("/{kegiatan}/list")
+    public String kegiatanList(@PathVariable String kegiatan, @PageableDefault(size = 10) Pageable pageable, ModelMap mm) {
         PageRequest page = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "periode");
-        mm.addAttribute("data", kegiatanPendidikanDao.findAll(page));
-        return "kegiatan/kbm/list";
+
+        KategoriKegiatan kk = kategoriKegiatanDao.findOneByNamaIgnoreCase(kegiatan);
+        if (kk == null) {
+            return "redirect:/";
+        }
+
+        mm.addAttribute("kegiatan", kegiatan);
+        mm.addAttribute("title", getTitle(kegiatan));
+        mm.addAttribute("data", kegiatanDosenDao.findByKategoriKegiatan(kk, pageable));
+        return "kegiatan/list";
     }
 
-    @GetMapping("/form")
-    public String tampilkanForm(@RequestParam(required = false) String id, ModelMap mm) {
-        mm.addAttribute("listMatkul", mataKuliahDao.findAll());
-        KegiatanBelajarMengajar kegiatan = new KegiatanBelajarMengajar();
+    @GetMapping("/{kegiatan}/delete")
+    public String delete(@PathVariable String kegiatan, @RequestParam String id, ModelMap mm) {
+        KegiatanDosen kd = new KegiatanDosen();
         if (id != null && !id.isEmpty()) {
-            kegiatan = kegiatanPendidikanDao.findOne(id);
+            kd = kegiatanDosenDao.findOne(id);
+            kegiatanDosenDao.delete(kd);
+        }
+
+        return "redirect:/kegiatan/" + kegiatan + "/list";
+    }
+
+    @GetMapping("/{kegiatan}/form")
+    public String tampilkanForm(@PathVariable String kegiatan, @RequestParam(required = false) String id, ModelMap mm) {
+        KategoriKegiatan kk = kategoriKegiatanDao.findOneByNamaIgnoreCase(kegiatan);
+        if (kk == null) {
+            return "redirect:/";
+        }
+        mm.addAttribute("listJenisKegiatan", jenisKegiatanDao.findByKategoriKegiatan(kk));
+        mm.addAttribute("kegiatan", kegiatan);
+        mm.addAttribute("title", getTitle(kegiatan));
+
+        KegiatanDosen kd = new KegiatanDosen();
+        if (id != null && !id.isEmpty()) {
+            kd = kegiatanDosenDao.findOne(id);
         } else {
             BuktiKinerja buktiKinerja = new BuktiKinerja();
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
-            kegiatan.setBuktiKinerja(buktiKinerja);
-            kegiatan.setBuktiPenugasan(buktiPenugasan);
+            kd.setBuktiKinerja(buktiKinerja);
+            kd.setBuktiPenugasan(buktiPenugasan);
+            kd.setKategoriKegiatan(kk);
         }
 
-        mm.addAttribute("kinerja", kegiatan);
-        return "kegiatan/kbm/form";
+        mm.addAttribute("kinerja", kd);
+        return "kegiatan/form";
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam String id, ModelMap mm) {
-        KegiatanBelajarMengajar kegiatan = new KegiatanBelajarMengajar();
-        if (id != null && !id.isEmpty()) {
-            kegiatan = kegiatanPendidikanDao.findOne(id);
-            kegiatanPendidikanDao.delete(kegiatan);
-        }
-
-        return "redirect:/kegiatan/kbm/list";
-    }
-
-    @PostMapping("/form")
-    public String prosesForm(@Valid KegiatanBelajarMengajar kinerja, ModelMap mm, BindingResult errors,
+    @PostMapping("/{kegiatan}/form")
+    public String prosesForm(@PathVariable String kegiatan, @Valid KegiatanDosen kinerja, ModelMap mm, BindingResult errors,
             MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request) {
 
         if (filePenugasan != null && !filePenugasan.isEmpty()) {
@@ -124,15 +155,18 @@ public class KegiatanBelajarMengajarController {
 
         if (errors.getErrorCount() > 0) {
             mm.addAttribute("kinerja", kinerja);
-            mm.addAttribute("listMatkul", mataKuliahDao.findAll());
-            return "kegiatan/kbm/form";
+            KategoriKegiatan kk = kategoriKegiatanDao.findOneByNamaIgnoreCase(kegiatan);
+            mm.addAttribute("listJenisKegiatan", jenisKegiatanDao.findByKategoriKegiatan(kk));
+            mm.addAttribute("kegiatan", kegiatan);
+            mm.addAttribute("title", getTitle(kegiatan));
+            return "kegiatan/form";
         }
-        
-        if(kinerja.getId() != null){
+
+        if (kinerja.getId() != null) {
             LOGGER.info("ID [{}]", kinerja.getId());
         }
-        kegiatanPendidikanDao.save(kinerja);
-        return "redirect:/kegiatan/kbm/list";
+        kegiatanDosenDao.save(kinerja);
+        return "redirect:/kegiatan/" + kegiatan + "/list";
     }
 
     private String tokenizer(String originalFilename, String token) {
@@ -142,5 +176,17 @@ public class KegiatanBelajarMengajarController {
             result = tokenizer.nextToken();
         }
         return result;
+    }
+
+    private String getTitle(String kegiatan) {
+        String title = "Kegiatan Bidang Pendidikan";
+        if (kegiatan.equalsIgnoreCase("penelitian")) {
+            title = "Kegiatan Bidang Penelitian";
+        } else if (kegiatan.equalsIgnoreCase("pengabdian")) {
+            title = "Kegiatan Bidang Pengabdian";
+        } else if (kegiatan.equalsIgnoreCase("penunjang")) {
+            title = "Kegiatan Bidang Penunjang";
+        }
+        return title;
     }
 }

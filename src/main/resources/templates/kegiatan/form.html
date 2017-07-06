@@ -1,0 +1,124 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Input Kegiatan Dosen</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1 th:text="${title}">Input Kegiatan</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active" th:text="${title}">Kegiatan</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+
+            <!-- form start -->
+            <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
+                <!--<input type="hidden" th:field="*{id}"/>-->
+                <input type="hidden" th:field="*{buktiPenugasan.url}"/>
+                <input type="hidden" th:field="*{buktiKinerja.url}"/>
+                <input type="hidden" th:field="*{kategoriKegiatan}"/>
+                <input type="hidden" name="dosen" value="5d9b24ff-21d9-44d6-8781-d6b5254c6bd2"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <input th:field="*{keterangan}" type="text" class="form-control" placeholder="Keterangan Kegiatan" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('keterangan')}" th:errors="*{keterangan}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Periode</label>
+                                    <select th:field="*{periode}" class="form-control" required="true">
+                                        <option value="2017/2018">2017/2018</option>
+                                        <option value="2016/2017">2016/2017</option>
+                                        <option value="2015/2016">2015/2016</option>
+                                        <option value="2014/2015">2014/2015</option>
+                                        <option value="2013/2014">2013/2014</option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('periode')}" th:errors="*{periode}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Semester</label>
+                                    <select th:field="*{semester}" class="form-control" required="true">
+                                        <option value="GANJIL">GANJIL</option>
+                                        <option value="GENAP">GENAP</option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('semester')}" th:errors="*{semester}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Jenis Kegiatan</label>
+                                    <select th:field="*{jenisKegiatan}" class="form-control" required="true">
+                                        <option th:each="m : ${listJenisKegiatan}" 
+                                                th:value="${m.id}" 
+                                                th:text="${m.nama}"></option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('jenisKegiatan')}" th:errors="*{jenisKegiatan}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SKS</label>
+                                    <input type="number" th:field="*{sks}" class="form-control" placeholder="sks" required="true" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('sks')}" th:errors="*{sks}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status Rekomendasi</label>
+                                    <select th:field="*{status}" class="form-control" required="true">
+                                        <option value="SELESAI">SELESAI</option>
+                                        <option value="LANJUTKAN">LANJUTKAN</option>
+                                        <option value="GAGAL">GAGAL</option>
+                                        <option value="LAINNYA">LAINNYA</option>
+                                        <option value="BEBAN_LEBIH">BEBAN_LEBIH</option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+                                </div>
+
+                                <div class="form-group text-right">
+                                    <a th:href="@{/kegiatan/} + ${kegiatan} + '/list'" class="btn btn-danger" role="button">
+                                        <span aria-hidden="true"></span>Batal
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>Nama Bukti Penugasan</label>
+                                    <input type="text" th:field="*{buktiPenugasan.nama}" class="form-control" placeholder="Contoh : SK Penugasan" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Bukti Penugasan</label>
+                                    <input type="file" name="filePenugasan" />
+                                </div>
+                                <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiPenugasan.nama')}" th:errors="*{buktiPenugasan.nama}"></div>
+                            </div>
+                        </div>
+                        <div class="box box-primary">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>Nama Bukti Kinerja</label>
+                                    <input type="text" th:field="*{buktiKinerja.nama}" class="form-control" placeholder="Contoh :  Absensi Perkuliahan" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiKinerja.nama')}" th:errors="*{buktiKinerja.nama}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bukti Kinerja</label>
+                                    <input type="file" name="fileKinerja" />
+                                </div>
+                                <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiPenugasan.nama')}" th:errors="*{buktiPenugasan.nama}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface KategoriKegiatanDao extends PagingAndSortingRepository<KategoriKegiatan, String> {
-
+    KategoriKegiatan findOneByNamaIgnoreCase(String nama);
 }
