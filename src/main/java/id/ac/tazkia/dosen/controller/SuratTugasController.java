@@ -7,7 +7,10 @@ import id.ac.tazkia.dosen.entity.Dosen;
 import id.ac.tazkia.dosen.entity.JenisSurat;
 import id.ac.tazkia.dosen.entity.SuratTugas;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,10 +46,12 @@ public class SuratTugasController {
     }
 
     @RequestMapping("/surattugas/list")
-    public ModelMap SuratTugas() {
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("suratTugas", suratTugasDao.findAll());
-        return modelMap;
+    public String SuratTugas(Model model, Pageable pageable) {
+        Page<SuratTugas> suratTugasPage = suratTugasDao.findAll(pageable);
+        PageWrapper<SuratTugas> page = new PageWrapper<>(suratTugasPage, "/surattugas/list");
+        model.addAttribute("suratTugas", page.getContent());
+        model.addAttribute("page", page);
+        return "/surattugas/list";
     }
 
     @RequestMapping(value = "/surattugas/form", method = RequestMethod.GET)

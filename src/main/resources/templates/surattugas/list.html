@@ -24,6 +24,7 @@
 		<div class="row">
 		<div class="col-xs-12">
 		<div class="box">
+			<!-- /.box-header -->
             <div class="box-header with-border">
               <a class="box-title btn btn-primary" th:href="@{/surattugas/form}">Tambah surat tugas</a>
               <div class="box-tools">
@@ -38,37 +39,39 @@
                 </form>
               </div>
             </div>
-            <!-- /.box-header -->
+
+			<!-- /.box-body -->
             <div class="box-body">
               <table class="table table-bordered">
                 <tbody>
                 <tr>
-		            <th>No.</th>
-		            <th>Jenis Surat</th>
-		            <th>No Surat</th>
-		            <th>Penerima</th>
-		            <th>Tanggal Mulai</th>
-		            <th>Tanggal Selesai</th>
-					<th>&nbsp;</th>
+                    <th>No.</th>
+                    <th>Jenis Surat</th>
+                    <th>No Surat</th>
+                    <th>Penerima</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>&nbsp;</th>
                 </tr>
-		        <tr th:each="st,iter : ${suratTugas}">
-		            <td th:text="${iter.count}">1</td>
-		            <td th:text="${st.jenisSurat.nama}">id</td>
-		            <td th:text="${st.noSurat}">noSurat</td>
-		            <td th:text="${st.penerima.nama}">id</td>
-		            <td th:text="${st.tanggalMulai}">tanggalMulai</td>
-		            <td th:text="${st.tanggalSelesai}">tanggalSelesai</td>
-					<td>
-						<a href="#" class="btn btn-info" th:href="@{/surattugas/form(id=${st.id})}" title="edit surat tugas"><span class="glyphicon glyphicon-edit"></span></a>
-						<a href="#" class="btn btn-info" th:href="@{/surattugas/delete(id=${st.id})}" title="delete surat tugas"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-					</td>
-				</tr>
+                <tr th:each="st,iter : ${suratTugas}">
+                    <td th:text="${iter.count}">1</td>
+                    <td th:text="${st.jenisSurat.nama}">id</td>
+                    <td th:text="${st.noSurat}">noSurat</td>
+                    <td th:text="${st.penerima.nama}">id</td>
+                    <td th:text="${st.tanggalMulai}">tanggalMulai</td>
+                    <td th:text="${st.tanggalSelesai}">tanggalSelesai</td>
+                    <td>
+                        <a href="#" class="btn btn-info" th:href="@{/surattugas/form(id=${st.id})}" title="edit surat tugas"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="#" class="btn btn-info" th:href="@{/surattugas/delete(id=${st.id})}" title="delete surat tugas"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                    </td>
+                </tr>
               </tbody>
               </table>
             </div>
-            <!-- /.box-body
+
+            <!-- /.box-footer -->
             <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
-             -->
+
           </div>		
         </div>
 		</div>
