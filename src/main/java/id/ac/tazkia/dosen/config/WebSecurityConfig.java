@@ -89,6 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/institusi/**").hasAnyRole("MASTER_INSTITUSI")
                 .antMatchers("/jenissurat/**").hasAnyRole("MASTER_JENIS_SURAT")
                 .antMatchers("/jabatan/**").hasAnyRole("MASTER_JABATAN")
+                .antMatchers("/dosen/**").hasAnyRole("MASTER_DOSEN")
                 .antMatchers("/programstudi/**").hasAnyRole("MASTER_PROGRAM_STUDI")
                 .antMatchers("/matakuliah/**").hasAnyRole("MASTER_MATA_KULIAH")
                 .antMatchers("/surattugas/**").hasAnyRole("MASTER_SURAT_TUGAS")

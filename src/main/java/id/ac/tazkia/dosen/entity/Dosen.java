@@ -60,10 +60,9 @@ public class Dosen implements Serializable {
     private String tempatLahir;
 
     @Past
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "tanggal_lahir", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date tglLahir;
 
     @NotNull
@@ -90,7 +89,6 @@ public class Dosen implements Serializable {
     @JoinColumn(name = "id_jabatan")
     private Jabatan jabatan;
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;

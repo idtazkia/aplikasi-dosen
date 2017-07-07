@@ -85,7 +85,7 @@ public class KegiatanDosenController {
             return "redirect:/";
         }
 
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL"))) {
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL"))) {
             mm.addAttribute("data", kegiatanDosenDao.findByKategoriKegiatan(kk, pageable));
         } else {
             Dosen dosen = dosenDao.findOneByEmail(principal.getName());
@@ -103,7 +103,7 @@ public class KegiatanDosenController {
         KegiatanDosen kd = new KegiatanDosen();
         if (id != null && !id.isEmpty()) {
             kd = kegiatanDosenDao.findOne(id);
-            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kd.getDosen().getId())) {
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kd.getDosen().getId())) {
                 return "redirect:/kegiatan/" + kegiatan + "/list";
             }
             kegiatanDosenDao.delete(kd);
@@ -126,7 +126,7 @@ public class KegiatanDosenController {
         KegiatanDosen kd = new KegiatanDosen();
         if (id != null && !id.isEmpty()) {
             kd = kegiatanDosenDao.findOne(id);
-            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kd.getDosen().getId())) {
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kd.getDosen().getId())) {
                 return "redirect:/kegiatan/" + kegiatan + "/list";
             }
         } else {
@@ -135,6 +135,13 @@ public class KegiatanDosenController {
             kd.setBuktiKinerja(buktiKinerja);
             kd.setBuktiPenugasan(buktiPenugasan);
             kd.setKategoriKegiatan(kk);
+        }
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL"))) {
+            mm.addAttribute("listDosen", dosenDao.findAll());
+        } else {
+            Dosen dosen = dosenDao.findOneByEmail(principal.getName());
+            kd.setDosen(dosen);
         }
 
         mm.addAttribute("kinerja", kd);
@@ -150,7 +157,7 @@ public class KegiatanDosenController {
             LOGGER.info("ID [{}]", kinerja.getId());
         }
 
-        if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kinerja.getDosen().getId())) {
+        if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kinerja.getDosen().getId())) {
             return "redirect:/kegiatan/" + kegiatan + "/list";
         }
 

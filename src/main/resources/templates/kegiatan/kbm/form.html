@@ -14,15 +14,27 @@
 
             <!-- form start -->
             <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
-                <!--<input type="hidden" th:field="*{id}"/>-->
+                <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{buktiPenugasan.url}"/>
                 <input type="hidden" th:field="*{buktiKinerja.url}"/>
-                <input type="hidden" name="dosen" value="5d9b24ff-21d9-44d6-8781-d6b5254c6bd2"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="box box-primary">
                             <!-- /.box-header -->
                             <div class="box-body">
+
+                                <input th:if="${#lists.isEmpty(listDosen)}" type="hidden" th:field="*{dosen}"/>
+                                <div class="form-group" th:if="${not #lists.isEmpty(listDosen)}">
+                                    <label>Dosen</label>
+                                    <select th:field="*{dosen}" class="form-control" required="true">
+                                        <option th:each="p : ${listDosen}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Dosen
+                                        </option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('dosen')}" th:errors="*{dosen}"></div>
+                                </div>
+
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <input th:field="*{keterangan}" type="text" class="form-control" placeholder="Keterangan Kegiatan" />

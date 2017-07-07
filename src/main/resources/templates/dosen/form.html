@@ -9,9 +9,10 @@
             <form class="form-horizontal" action="#" th:action="@{/dosen/form}" th:object="${dosen}" 
                   method="post" enctype="multipart/form-data" >
                 <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{user}" />
 
                 <div class="form-group" >
-                    <label for="nama" class="col-sm-2 control-label">Nama Dosen</label>
+                    <label class="col-sm-2 control-label">Nama Dosen</label>
                     <div class="col-sm-10">
                         <input type="text" th:field="*{nama}"
                                name="nama" class="form-control" id="nama" placeholder="Nama Dosen" />
@@ -21,7 +22,7 @@
                     </div>
                 </div>
                 <div class="form-group" >
-                    <label for="nidn" class="col-sm-2 control-label">NIDN</label>
+                    <label class="col-sm-2 control-label">NIDN</label>
                     <div class="col-sm-10">
                         <input type="text" th:field="*{nidn}"
                                name="nidn" class="form-control" id="nidn" placeholder="NIDN" />
@@ -32,7 +33,7 @@
                 </div>
 
                 <div class="form-group" >
-                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <label class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
                         <input type="text" th:field="*{email}"
                                name="email" class="form-control" id="email" placeholder="Email" />
@@ -43,33 +44,30 @@
                 </div>
 
                 <div class="form-group" >
-                    <label for="noHandphone" class="col-sm-2 control-label">No Handphone</label>
+                    <label class="col-sm-2 control-label">No Handphone</label>
                     <div class="col-sm-10">
-                        <input type="text" th:field="*{nohp}"
-                               name="nohp" class="form-control" id="nohp" placeholder="No Handphone" />
-                        <label class="control-label" th:errors="*{nohp}" >
+                        <input type="text" th:field="*{noTelp}" class="form-control" placeholder="No Handphone" />
+                        <label class="control-label" th:errors="*{noTelp}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
                 </div>
 
                 <div class="form-group" >
-                    <label for="tempatLahir" class="col-sm-2 control-label">Tempat Lahir</label>
+                    <label class="col-sm-2 control-label">Tempat Lahir</label>
                     <div class="col-sm-10">
-                        <input type="text" th:field="*{tlahir}"
-                               name="tlahir" class="form-control" id="tlahir" placeholder="Tempat Lahir" />
-                        <label class="control-label" th:errors="*{tlahir}" >
+                        <input type="text" th:field="*{tempatLahir}" class="form-control" placeholder="Tempat Lahir" />
+                        <label class="control-label" th:errors="*{tempatLahir}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
                 </div>
 
                 <div class="form-group" >
-                    <label for="tanggalLahir" class="col-sm-2 control-label">Tanggal Lahir</label>
+                    <label class="col-sm-2 control-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
-                        <input type="text" th:field="*{tgllahir}"
-                               name="tgllahir" class="form-control" id="tgllahir" placeholder="dd-MM-yyyy" />
-                        <label class="control-label" th:errors="*{tgllahir}" >
+                        <input type="text" th:field="*{tglLahir}" class="form-control" placeholder="yyyy-MM-dd"  />
+                        <label class="control-label" th:errors="*{tglLahir}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -87,9 +85,24 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">Jabatan</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" th:field="*{jabatan}">
+                            <option th:each="p : ${listJabatan}"
+                                    th:value="${p.id}"
+                                    th:text="${p.nama}">Pilih Jabatan
+                            </option>
+                        </select>
+                        <label class="control-label selectpicker" th:errors="*{jabatan}">
+                            Pesan error nanti di sini
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
                     <label for="provinsi" class="col-sm-2 control-label">Provinsi</label>
                     <div class="col-sm-10">
-                        <select class="form-control" th:field="*{provinsi}">
+                        <select class="form-control selectpicker" th:field="*{provinsi}">
                             <option th:each="p : ${listProvinsi}"
                                     th:value="${p.id}"
                                     th:text="${p.nama}">Pilih Provinsi
@@ -104,11 +117,7 @@
                 <div class="form-group">
                     <label for="kota" class="col-sm-2 control-label">Kota</label>
                     <div class="col-sm-10">
-                        <select class="form-control" th:field="*{kota}">
-                            <option th:each="kt : ${listKota}"
-                                    th:value="${kt.id}"
-                                    th:text="${kt.nama}">Pilih Kota
-                            </option>
+                        <select class="form-control selectpicker" th:field="*{kota}">
                         </select>
                         <label class="control-label" th:errors="*{kota}">
                             Pesan error nanti di sini
@@ -119,11 +128,7 @@
                 <div class="form-group">
                     <label for="kecamatan" class="col-sm-2 control-label">Kecamatan</label>
                     <div class="col-sm-10">
-                        <select class="form-control" th:field="*{kecamatan}">
-                            <option th:each="k : ${listKecamatan}"
-                                    th:value="${k.id}"
-                                    th:text="${k.nama}">Pilih Kecamatan
-                            </option>
+                        <select class="form-control selectpicker" th:field="*{kecamatan}">
                         </select>
                         <label class="control-label" th:errors="*{kecamatan}">
                             Pesan error nanti di sini

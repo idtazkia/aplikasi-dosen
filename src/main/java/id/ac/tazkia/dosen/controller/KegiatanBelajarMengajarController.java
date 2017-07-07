@@ -60,7 +60,7 @@ public class KegiatanBelajarMengajarController {
             ModelMap mm, Principal principal, Authentication authentication) {
         PageRequest page = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "periode");
 
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL"))) {
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL"))) {
             mm.addAttribute("data", kegiatanPendidikanDao.findAll(page));
         } else {
             Dosen dosen = dosenDao.findOneByEmail(principal.getName());
@@ -77,7 +77,7 @@ public class KegiatanBelajarMengajarController {
         KegiatanBelajarMengajar kegiatan = new KegiatanBelajarMengajar();
         if (id != null && !id.isEmpty()) {
             kegiatan = kegiatanPendidikanDao.findOne(id);
-            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kegiatan.getDosen().getId())) {
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kegiatan.getDosen().getId())) {
                 return "redirect:/kegiatan/kbm/list";
             }
         } else {
@@ -85,6 +85,13 @@ public class KegiatanBelajarMengajarController {
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
             kegiatan.setBuktiKinerja(buktiKinerja);
             kegiatan.setBuktiPenugasan(buktiPenugasan);
+        }
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL"))) {
+            mm.addAttribute("listDosen", dosenDao.findAll());
+        } else {
+            Dosen dosen = dosenDao.findOneByEmail(principal.getName());
+            kegiatan.setDosen(dosen);
         }
 
         mm.addAttribute("kinerja", kegiatan);
@@ -110,8 +117,8 @@ public class KegiatanBelajarMengajarController {
     public String prosesForm(@Valid KegiatanBelajarMengajar kinerja, ModelMap mm, BindingResult errors,
             MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request,
             Principal principal, Authentication authentication) {
-        
-        if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kinerja.getDosen().getId())) {
+
+        if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kinerja.getDosen().getId())) {
             return "redirect:/kegiatan/kbm/list";
         }
         if (filePenugasan != null && !filePenugasan.isEmpty()) {
