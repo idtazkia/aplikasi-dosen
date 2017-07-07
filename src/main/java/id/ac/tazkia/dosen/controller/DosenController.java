@@ -1,9 +1,5 @@
 package id.ac.tazkia.dosen.controller;
 
-/**
- * Created by yogi on 30/03/2017.
- */
-
 import id.ac.tazkia.dosen.dao.DosenDao;
 import id.ac.tazkia.dosen.dao.KecamatanDao;
 import id.ac.tazkia.dosen.dao.KotaDao;
@@ -15,10 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,17 +28,17 @@ import org.springframework.web.bind.support.SessionStatus;
 public class DosenController {
 
     @Autowired
-    private DosenDao dosendao;
-    
+    private DosenDao dosenDao;
+
     @Autowired
     private ProvinsiDao provinsidao;
-    
+
     @Autowired
     private KotaDao kotadao;
-    
+
     @Autowired
     private KecamatanDao kecamatandao;
-    
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -50,38 +47,37 @@ public class DosenController {
     }
 
     @RequestMapping("/dosen/list")
-    public void daftarDosen(Model m) {
-        m.addAttribute("daftarDosen", dosendao.findAll());
+    public void daftarDosen(Model m, @PageableDefault(size = 10) Pageable pageable) {
+        m.addAttribute("data", dosenDao.findAll(pageable));
     }
-    
+
     @GetMapping(value = "/dosen/form")
-    public String tampilkanForms(@RequestParam(value = "id", required = false) Dosen dosen, Model model) {
-        if (dosen == null) {
-            dosen = new Dosen();
+    public String tampilkanForms(@RequestParam(value = "id", required = false) String id, Model model) {
+        Dosen dosen = new Dosen();
+        if (id != null && !id.isEmpty()) {
+            dosen = dosenDao.findOne(id);
         }
-        
+
         model.addAttribute("dosen", dosen);
         model.addAttribute("listProvinsi", provinsidao.findAll());
-        
-        model.addAttribute("listKota", kotadao.findAll());
-
-        model.addAttribute("listKecamatan", kecamatandao.findAll());
-        
         return "/dosen/form";
     }
 
     @RequestMapping(value = "/dosen/form", method = RequestMethod.POST)
-    public String simpan(@ModelAttribute @Valid Dosen doSen, BindingResult errors, SessionStatus status) {
+    public String simpan(@ModelAttribute @Valid Dosen dosen, BindingResult errors) {
         if (errors.hasErrors()) {
             return "dosen/form";
         }
-        dosendao.save(doSen);
-        status.setComplete();
+        dosenDao.save(dosen);
         return "redirect:/dosen/list";
     }
+
     @RequestMapping("/dosen/delete")
     public String hapus(@RequestParam("id") String id) {
-        dosendao.delete(id);
+        Dosen dosen = dosenDao.findOne(id);
+        if (dosen != null) {
+            dosenDao.delete(id);
+        }
         return "redirect:/dosen/list";
     }
 }

@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DosenDao extends PagingAndSortingRepository<Dosen, String> {
-
+    Dosen findOneByEmail(String email);
 }
