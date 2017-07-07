@@ -22,7 +22,12 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="kode">Kategori Kegiatan</label>
-                                    <select class="form-control" th:field="*{kategoriKegiatan}">
+                                    <select 
+                                        class="selectpicker form-control" 
+                                        data-live-search="true" 
+                                        data-size="10" 
+                                        title="Please Select ..."
+                                        th:field="*{kategoriKegiatan}">
                                         <option th:each="p : ${listKategoriKegiatan}"
                                                 th:value="${p.id}"
                                                 th:text="${p.nama}">Pilihan Jabatan

@@ -49,7 +49,7 @@
                                         <th align="center">Nilai</th>
                                         <th>&nbsp;</th>
                                     </tr>
-                                    <tr th:each="poinKegiatan : ${poinKegiatanList}">
+                                    <tr th:each="poinKegiatan : ${data}">
                                         <td th:text="${poinKegiatan.jenisKegiatan.nama}">jenis kegiatan 1</td>
                                         <td th:text="${poinKegiatan.jabatan.nama}">keterangan jenis kegiatan 1</td>
                                         <td th:text="${poinKegiatan.nilaiMaksimum}">template jenis kegiatan 1</td>
@@ -61,6 +61,17 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(data.content)}">
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
