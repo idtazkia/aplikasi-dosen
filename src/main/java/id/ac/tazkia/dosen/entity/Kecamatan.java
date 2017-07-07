@@ -36,6 +36,14 @@ public class Kecamatan{
     @Size(max = 225)
     private String nama;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Kota getKota() {
         return kota;
     }
