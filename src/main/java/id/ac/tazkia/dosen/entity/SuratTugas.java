@@ -31,15 +31,10 @@ public class SuratTugas implements Serializable {
     @JoinColumn(name = "id_jenis_surat")
     private JenisSurat jenisSurat;
 
-//    @ManyToOne
-//    @NotNull
-//    @JoinColumn(name = "id_dosen")
-//    private Dosen penerima;
-
+    @ManyToOne
     @NotNull
-    @NotEmpty
-    @Column(name="id_dosen")
-    private String penerima;
+    @JoinColumn(name = "id_dosen")
+    private Dosen penerima;
     
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -76,22 +71,14 @@ public class SuratTugas implements Serializable {
         this.jenisSurat = jenisSurat;
     }
 
-//    public Dosen getPenerima() {
-//        return penerima;
-//    }
-//
-//    public void setPenerima(Dosen penerima) {
-//        this.penerima = penerima;
-//    }
-
-    public String getPenerima() {
+    public Dosen getPenerima() {
         return penerima;
     }
 
-    public void setPenerima(String penerima) {
+    public void setPenerima(Dosen penerima) {
         this.penerima = penerima;
     }
-    
+
     public Date getTanggalMulai() {
         return tanggalMulai;
     }
