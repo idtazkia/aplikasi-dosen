@@ -10,6 +10,7 @@ import id.ac.tazkia.dosen.entity.KategoriBuktiKegiatan;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,8 +35,8 @@ public class KategoriBuktiKegiatanController {
 
     @RequestMapping("/kategoribuktikegiatan/list")
 
-    public String kategoriBuktiKegiatan(Model model){
-        model.addAttribute("kategoriBuktiKegiatanList", kategoriBuktiKegiatanDao.findAll());
+    public String kategoriBuktiKegiatan(Model model, Pageable pageable){
+        model.addAttribute("data", kategoriBuktiKegiatanDao.findAll(pageable));
         return "/kategoribuktikegiatan/list";
     }
 

@@ -73,6 +73,52 @@
                     </div>		
                 </div>
             </div>
+            <!-- </form>
+              </div>
+            </div>  -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tbody>
+                <tr>
+		            <th>No.</th>
+		            <th>Jenis Surat</th>
+		            <th>No Surat</th>
+		            <th>Penerima</th>
+		            <th>Tanggal Mulai</th>
+		            <th>Tanggal Selesai</th>
+					<th>&nbsp;</th>
+                </tr>
+		        <tr th:each="st,iter : ${data}">
+		            <td th:text="${iter.count}">1</td>
+		            <td th:text="${st.jenisSurat.nama}">id</td>
+		            <td th:text="${st.noSurat}">noSurat</td>
+		            <td th:text="${st.penerima}">id</td>
+		            <td th:text="${st.tanggalMulai}">tanggalMulai</td>
+		            <td th:text="${st.tanggalSelesai}">tanggalSelesai</td>
+					<td>
+						<a href="#" class="btn btn-info" th:href="@{/surattugas/form(id=${st.id})}" title="edit surat tugas"><span class="glyphicon glyphicon-edit"></span></a>
+						<a href="#" class="btn btn-info" th:href="@{/surattugas/delete(id=${st.id})}" title="delete surat tugas"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+					</td>
+				</tr>
+              </tbody>
+              </table>
+            </div>
+            <!-- /.box-body
+            <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
+             -->
+             <div th:if="${not #lists.isEmpty(data.content)}">
+                <div class="text-center"> 
+                    <nav>
+                        <ul class="pagination" sd:pagination="full">
+                            <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+          </div>		
         </div>
     </body>
 </html>
