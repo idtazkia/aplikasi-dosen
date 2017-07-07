@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,14 +20,16 @@ import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author ronny susetyo  <ronny at susetyo.com>
  * @since 14 Apr 2017
  */
 @Entity
-@Table(name = "data_dosen")
+@Table(name = "dosen")
 public class Dosen implements Serializable {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -35,50 +38,103 @@ public class Dosen implements Serializable {
     @NotNull
     @Size(min = 3, max = 255)
     private String nama;
-    
+
     @NotNull
     @NotEmpty
     private String nidn;
-    
-    @Column(nullable = false, unique = true)
+
     @Email
     @NotNull
     @NotEmpty
+    @Column(nullable = false, unique = true)
     private String email;
-    
+
     @NotNull
     @NotEmpty
-    private String nohp;
-    
+    @Column(name = "no_telp")
+    private String noTelp;
+
     @NotNull
     @NotEmpty
-    private String tlahir;
-    
-    @Column(name = "tanggal_lahir", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(name = "tempat_lahir")
+    private String tempatLahir;
+
     @Past
     @NotNull
-    private Date tgllahir;
-    
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "tanggal_lahir", nullable = false)
+    private Date tglLahir;
+
     @NotNull
     @NotEmpty
     private String alamat;
-    
-    @ManyToOne
+
     @NotNull
-    @JoinColumn(name = "kecamatan")
+    @ManyToOne
+    @JoinColumn(name = "id_kecamatan")
     private Kecamatan kecamatan;
 
-    @ManyToOne
     @NotNull
-    @JoinColumn(name = "kota")
+    @ManyToOne
+    @JoinColumn(name = "id_kota")
     private Kota kota;
-    
-    @ManyToOne
+
     @NotNull
-    @JoinColumn(name = "provinsi")
+    @ManyToOne
+    @JoinColumn(name = "id_provinsi")
     private Provinsi provinsi;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_jabatan")
+    private Jabatan jabatan;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
+
+    public Jabatan getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(Jabatan jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
+    public String getNoTelp() {
+        return noTelp;
+    }
+
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+
+    public String getTempatLahir() {
+        return tempatLahir;
+    }
+
+    public void setTempatLahir(String tempatLahir) {
+        this.tempatLahir = tempatLahir;
+    }
+
+    public Date getTglLahir() {
+        return tglLahir;
+    }
+
+    public void setTglLahir(Date tglLahir) {
+        this.tglLahir = tglLahir;
+    }
 
     public String getId() {
         return id;
@@ -110,30 +166,6 @@ public class Dosen implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getNohp() {
-        return nohp;
-    }
-
-    public void setNohp(String nohp) {
-        this.nohp = nohp;
-    }
-
-    public String getTlahir() {
-        return tlahir;
-    }
-
-    public void setTlahir(String tlahir) {
-        this.tlahir = tlahir;
-    }
-
-    public Date getTgllahir() {
-        return tgllahir;
-    }
-
-    public void setTgllahir(Date tgllahir) {
-        this.tgllahir = tgllahir;
     }
 
     public String getAlamat() {
@@ -168,5 +200,4 @@ public class Dosen implements Serializable {
         this.provinsi = provinsi;
     }
 
-       
 }

@@ -1,5 +1,6 @@
 package id.ac.tazkia.dosen.controller;
 
+import id.ac.tazkia.dosen.dao.DosenDao;
 import id.ac.tazkia.dosen.dao.MataKuliahDao;
 import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
@@ -29,6 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import id.ac.tazkia.dosen.dao.KegiatanBelajarMengajarDao;
+import id.ac.tazkia.dosen.entity.Dosen;
+import java.security.Principal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Controller
 @RequestMapping("/kegiatan/kbm")
@@ -45,21 +50,36 @@ public class KegiatanBelajarMengajarController {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private DosenDao dosenDao;
+
     private final List<String> FILE_EXTENSION = Arrays.asList("png", "jpg", "jpeg");
 
     @GetMapping("/list")
-    public String kegiatanPendidikanList(@PageableDefault(size = 10) Pageable pageable, ModelMap mm) {
+    public String kegiatanPendidikanList(@PageableDefault(size = 10) Pageable pageable,
+            ModelMap mm, Principal principal, Authentication authentication) {
         PageRequest page = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "periode");
-        mm.addAttribute("data", kegiatanPendidikanDao.findAll(page));
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL"))) {
+            mm.addAttribute("data", kegiatanPendidikanDao.findAll(page));
+        } else {
+            Dosen dosen = dosenDao.findOneByEmail(principal.getName());
+            mm.addAttribute("data", kegiatanPendidikanDao.findByDosen(dosen, pageable));
+        }
+
         return "kegiatan/kbm/list";
     }
 
     @GetMapping("/form")
-    public String tampilkanForm(@RequestParam(required = false) String id, ModelMap mm) {
+    public String tampilkanForm(@RequestParam(required = false) String id,
+            ModelMap mm, Principal principal, Authentication authentication) {
         mm.addAttribute("listMatkul", mataKuliahDao.findAll());
         KegiatanBelajarMengajar kegiatan = new KegiatanBelajarMengajar();
         if (id != null && !id.isEmpty()) {
             kegiatan = kegiatanPendidikanDao.findOne(id);
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kegiatan.getDosen().getId())) {
+                return "redirect:/kegiatan/kbm/list";
+            }
         } else {
             BuktiKinerja buktiKinerja = new BuktiKinerja();
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
@@ -72,10 +92,14 @@ public class KegiatanBelajarMengajarController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam String id, ModelMap mm) {
+    public String delete(@RequestParam String id, ModelMap mm,
+            Principal principal, Authentication authentication) {
         KegiatanBelajarMengajar kegiatan = new KegiatanBelajarMengajar();
         if (id != null && !id.isEmpty()) {
             kegiatan = kegiatanPendidikanDao.findOne(id);
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kegiatan.getDosen().getId())) {
+                return "redirect:/kegiatan/kbm/list";
+            }
             kegiatanPendidikanDao.delete(kegiatan);
         }
 
@@ -84,8 +108,12 @@ public class KegiatanBelajarMengajarController {
 
     @PostMapping("/form")
     public String prosesForm(@Valid KegiatanBelajarMengajar kinerja, ModelMap mm, BindingResult errors,
-            MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request) {
-
+            MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request,
+            Principal principal, Authentication authentication) {
+        
+        if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kinerja.getDosen().getId())) {
+            return "redirect:/kegiatan/kbm/list";
+        }
         if (filePenugasan != null && !filePenugasan.isEmpty()) {
             if (filePenugasan.getSize() > 2097152) {
                 LOGGER.info("UPLOAD GAGAL");
@@ -127,8 +155,8 @@ public class KegiatanBelajarMengajarController {
             mm.addAttribute("listMatkul", mataKuliahDao.findAll());
             return "kegiatan/kbm/form";
         }
-        
-        if(kinerja.getId() != null){
+
+        if (kinerja.getId() != null) {
             LOGGER.info("ID [{}]", kinerja.getId());
         }
         kegiatanPendidikanDao.save(kinerja);
@@ -142,5 +170,15 @@ public class KegiatanBelajarMengajarController {
             result = tokenizer.nextToken();
         }
         return result;
+    }
+
+    private Boolean validasiDosen(String email, Boolean isAdmin, String idDosen) {
+        if (!isAdmin) {
+            Dosen dosen = dosenDao.findOneByEmail(email);
+            if (dosen == null || !dosen.getId().equalsIgnoreCase(idDosen)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

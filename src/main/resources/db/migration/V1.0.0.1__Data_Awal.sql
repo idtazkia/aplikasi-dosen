@@ -1,760 +1,759 @@
-INSERT INTO `dosen` VALUES ('5d9b24ff-21d9-44d6-8781-d6b5254c6bd2', 'Dosen 1');
-INSERT INTO `dosen` VALUES ('47a1b8e8-fc1f-4082-8dea-6fa7a4899bbd', 'Dosen 2');
+INSERT INTO jenis_surat (id, nama, keterangan, template) VALUES 
+('6a20627f-65db-4a40-b92f-c575daaef370', 'SK Mengajar', 'SK Tugas Mengajar Mata Kuliah', 'Template Jenis Surat 1'),
+('af6d73bb-cf8e-4c47-be1c-9a93bc1f1e21', 'SK Bimbingan', 'SK Tugas Membimbing Skripsi', 'Template Jenis Surat 2');
 
-INSERT INTO `jenis_surat` VALUES ('6a20627f-65db-4a40-b92f-c575daaef370', 'SK Mengajar', 'SK Tugas Mengajar Mata Kuliah', 'Template Jenis Surat 1');
-INSERT INTO `jenis_surat` VALUES ('af6d73bb-cf8e-4c47-be1c-9a93bc1f1e21', 'SK Bimbingan', 'SK Tugas Membimbing Skripsi', 'Template Jenis Surat 2');
+INSERT INTO jabatan (id, nama, keterangan) VALUES 
+('1', 'Asisten Ahli', 'Asisten ahli'),
+('2', 'Lektor', 'Lektor'),
+('3', 'Lektor Kepala', 'Lektor Kepala'),
+('4', 'Profesor', 'Profesor'),
+('5', 'Dokter', 'Dokter');
 
-INSERT INTO `surat_tugas` VALUES ('4fd3cf54-77dc-4523-9bab-36387987d99e', '123', '6a20627f-65db-4a40-b92f-c575daaef370',
-                                  '5d9b24ff-21d9-44d6-8781-d6b5254c6bd2', '2017-04-14', '2017-04-15');
-INSERT INTO `surat_tugas` VALUES ('5118e180-7055-4fc7-8394-e287b405840c', '321', 'af6d73bb-cf8e-4c47-be1c-9a93bc1f1e21',
-                                  '47a1b8e8-fc1f-4082-8dea-6fa7a4899bbd', '2017-04-16', '2017-04-17');
+INSERT INTO kategori_kegiatan (id, nama, keterangan) VALUES 
+('1', 'Pendidikan', 'Pendidikan'),
+('2', 'Penelitian', 'Penelitian'),
+('3', 'Pengabdian', 'Pengabdian Masyarakat'),
+('4', 'Penunjang', 'Penunjang');
 
-INSERT INTO `jabatan` VALUES ('1', 'Asisten Ahli', 'Asisten ahli');
-INSERT INTO `jabatan` VALUES ('2', 'Lektor', 'Lektor');
-INSERT INTO `jabatan` VALUES ('3', 'Lektor Kepala', 'Lektor Kepala');
-INSERT INTO `jabatan` VALUES ('4', 'Profesor', 'Profesor');
-INSERT INTO `jabatan` VALUES ('5', 'Dokter', 'Dokter');
+INSERT INTO kategori_bukti_kegiatan (id, nama, keterangan) VALUES 
+('1', 'Bukti Pendidikan', 'Bukti Pendidikan'),
+('2', 'Bukti Penelitian', 'Bukti Penelitian'),
+('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
 
-INSERT INTO `kategori_kegiatan` VALUES ('1', 'Pendidikan', 'Pendidikan');
-INSERT INTO `kategori_kegiatan` VALUES ('2', 'Penelitian', 'Penelitian');
-INSERT INTO `kategori_kegiatan` VALUES ('3', 'Pengabdian', 'Pengabdian Masyarakat');
-INSERT INTO `kategori_kegiatan` VALUES ('4', 'Penunjang', 'Penunjang');
+INSERT INTO jenis_kegiatan (id, id_kategori_kegiatan, nama, bukti, batas_maksimal, angka_kredit) VALUES 
+('1', '1', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Doktor / sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '200'),
+('2', '1', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Magister/sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '150'),
+('3', '1', 'Mengikuti diklat prajabatan golongan III', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '3'),
+('4', '1', 'Asisten Ahli untuk : beban mengajar 10 sks pertama ', 'Pindai SK penugasan asli dan bukti kinerja', '5', '0,5'),
+('5', '1', 'Asisten Ahli untuk : beban mengajar 2 sks berikutnya', 'Pindai SK penugasan asli dan bukti kinerja', '0,5', '0,25'),
+('6', '1', 'Lektor/Lektor Kepala/Profesor untuk : beban mengajar 10 sks pertama', 'Pindai SK penugasan asli dan bukti kinerja', '10/semester', '1'),
+('7', '1', 'Lektor/Lektor Kepala/Profesor untuk : beban mengajar 2 sks berikutnya ', 'Pindai SK penugasan asli dan bukti kinerja', '1/semester', '0,5'),
+('8','1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pengajaran untuk peserta   pendidikan dokter melalui tindakan medik spesialistik', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '4'),
+('9', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pengajaran   Konsultasi spesialis  kepada peserta   pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '2'),
+('10', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pemeriksaan luar dengan pembimbingan terhadap peserta   pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '2'),
+('11', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pemeriksaan dalam dengan pembimbingan terhadap peserta   pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '3'),
+('12', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Menjadi saksi ahli dengan  pembimbingan terhadap peserta pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '1'),
+('13', '1', 'Membimbing seminar mahasiswa (setiap mahasiswa)', 'Pindai SK penugasan asli dan bukti kinerja', '', '1'),
+('14', '1', 'Membimbing KKN, Praktik Kerja Nyata, Praktik Kerja Lapangan (setiap semester) ', 'Pindai SK penugasan asli dan bukti kinerja', '', '1'),
+('15', '1', 'Pembimbing Utama per orang (setiap mahasiswa) - Disertasi', 'Pindai lembar pengesahan dan bukti kinerja', '4 lulusan/semester', '8'),
+('16', '1', 'Pembimbing Utama per orang (setiap mahasiswa) - Tesis', 'Pindai lembar pengesahan dan bukti kinerja', '6 lulusan/semester', '3'),
+('17', '1', 'Pembimbing Utama per orang (setiap mahasiswa) - Skripsi', 'Pindai lembar pengesahan dan bukti kinerja', '8 lulusan/semester', '1'),
+('18','1', 'Pembimbing Utama per orang (setiap mahasiswa) - Laporan akhir studi', 'Pindai lembar pengesahan dan bukti kinerja', '10 lulusan/semester', '1'),
+('19', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Disertasi', 'Pindai lembar pengesahan dan bukti kinerja', '4 lulusan/semester', '6'),
+('20', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Tesis ', 'Pindai lembar pengesahan dan bukti kinerja', '6 lulusan/semester', '2'),
+('21', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Skripsi ', 'Pindai lembar pengesahan dan bukti kinerja', '8 lulusan/semester', '0,5'),
+('22', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Laporan akhir studi ', 'Pindai lembar pengesahan dan bukti kinerja', '10 lulusan/semester', '0,5'),
+('23', '1', 'Bertugas sebagai penguji pada ujian akhir/Profesi*** (setiap mahasiswa) : Ketua penguji', 'Pindai SK penugasan, bukti kinerja dan undangan', '4 lulusan/semester', '1'),
+('24', '1', 'Bertugas sebagai penguji pada ujian akhir/Profesi*** (setiap mahasiswa) : Anggota penguji ', 'Pindai SK penugasan, bukti kinerja dan undangan', '8 lulusan/semester', '0,5'),
+('25', '1', 'Membina kegiatan mahasiswa di bidang akademik dan kemahasiswaan, termasuk dalam kegiatan ini adalah membimbing mahasiswa menghasilkan produk saintifik (setiap semester)', 'Pindai SK penugasan, dan bukti kinerja', '2 kegiatan/semester', '1'),
+('26', '1', 'Mengembangkan program kuliah yang mempunyai nilai kebaharuan metode atau substansi (setiap produk) ', 'File produk', '1 mata kuliah/semester', '2'),
+('27', '1', 'Mengembangkan bahan pengajaran/ bahan kuliah yang mempunyai nilai kebaharuan (setiap produk), Buku ajar ', 'File produk', '1 buku/tahun', '20'),
+('28', '1', 'Mengembangkan bahan pengajaran/ bahan kuliah yang mempunyai nilai kebaharuan (setiap produk), Diktat,Modul, Petunjuk praktikum,      Model, Alat bantu, Audio visual, Naskah tutorial, Job sheet praktikum terkait dengan mata kuliah yang diampu ', 'File produk', '1 Produk/semester', '5'),
+('29', '1', 'Menyampaikan orasi ilmiah di tingkat perguruan tinggi ', 'File produk', '2 orasi/semester', '5'),
+('30', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Rektor ', 'Pindai SK Jabatan', '1 Jabatan/semester', '6'),
+('31', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Wakil rektor/dekan/direktur program pasca sarjana/ketua lembaga ', 'Pindai SK Jabatan', '1 Jabatan/semester', '5'),
+('32', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Ketua sekolah tinggi/pembantu dekan/asisten direktur program pasca sarjana/direktur politeknik/koordinator kopertis ', 'Pindai SK Jabatan', '1 Jabatan/semester', '4'),
+('33', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Pembantu ketua sekolah tinggi/pembantu direktur politeknik', 'Pindai SK Jabatan', '1 Jabatan/semester', '4'),
+('34', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Direktur akademi ', 'Pindai SK Jabatan', '1 Jabatan/semester', '4'),
+('35', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Pembantu direktur politeknik, ketua jurusan/ bagian pada universitas/ institut/sekolah tinggi', 'Pindai SK Jabatan', '1 Jabatan/semester', '3'),
+('36', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Pembantu direktur akademi/ketua jurusan/ketua prodi pada universitas/politeknik/akademi, sekretaris jurusan/bagian pada universitas/institut/sekolah tinggi ', 'Pindai SK Jabatan', '1 Jabatan/semester', '3'),
+('37', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Sekretaris jurusan pada politeknik/akademi dan kepala laboratorium (bengkel) universitas/institut/sekolah tinggi/politeknik/akademi ', 'Pindai SK Jabatan', '1 Jabatan/semester', '3'),
+('38', '1', 'Membimbing dosen yang mempunyai jabatan akademik lebih rendah setiap semester (bagi dosen Lektor Kepala ke atas) : Pembimbing pencangkokan ', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '2'),
+('39', '1', 'Membimbing dosen yang mempunyai jabatan akademik lebih rendah setiap semester (bagi dosen Lektor Kepala ke atas) : Reguler', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '1'),
+('40', '1', 'Melaksanakan kegiatan detasering dan pencangkokan di luar institusi tempat bekerja setiap semester (bagi dosen Lektor kepala ke atas) : Detasering', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '5'),
+('41', '1', 'Melaksanakan kegiatan detasering dan pencangkokan di luar institusi tempat bekerja setiap semester (bagi dosen Lektor kepala ke atas) : Pencangkokan', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '4'),
+('42', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya lebih dari 960 jam', 'Pindai sertifikat asli', '', '15'),
+('43', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara  641- 960 jam', 'Pindai sertifikat asli', '', '9'),
+('44', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 481- 640 jam ', 'Pindai sertifikat asli', '', '6'),
+('45', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 161- 480 jam ', 'Pindai sertifikat asli', '', '3'),
+('46', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara   81- 160 jam', 'Pindai sertifikat asli', '', '2'),
+('47', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 30 - 80 jam ', 'Pindai sertifikat asli', '', '1'),
+('48', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 - 30 jam ', 'Pindai sertifikat asli', '', '0,5'),
+('49', '2', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 -Hasil penelitian atau hasil pemikiran yang dipublikasikan dalam bentuk buku : Buku Referensi', 'Pindai halaman sampul, dan kinerja', '1 buku/tahun', '40'),
+('50', '2', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 -Hasil penelitian atau hasil pemikiran yang dipublikasikan dalam bentuk buku : Monograf', 'Pindai halaman sampul, dan kinerja', '1 buku/tahun', '20'),
+('51', '2', 'Hasil penilitian atau hasil pemikiran dalam buku yang dipublikasikan dan berisi berbagai tulisan dari berbagai penulis (book chapter) : International', 'pindai halaman sampul, daftar isi dan bukti kinerja', '1 buku/tahun', '15'),
+('52', '2', 'Hasil penilitian atau hasil pemikiran dalam buku yang dipublikasikan dan berisi berbagai tulisan dari berbagai penulis (book chapter) : Nasional', 'pindai halaman sampul, daftar isi dan bukti kinerja', '1 buku/tahun', '10'),
+('53', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal international bereputasi (terindex pada database internasional berreputasi dan berfaktor dampak', 'Pindai halaman sampul, daftar isi, dewan redaksi/redaksi pelaksanaan dan bukti kinerjaa', '', '40'),
+('54', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal international terindek pada database international bereputasi', 'Pindai halaman sampul, daftar isi, dewan redaksi/redaksi pelaksanaan dan bukti kinerjaa', '', '30'),
+('55', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal international terindex pada database internasional di luar kategori 2)', 'Pindai halaman sampul, daftar isi, redaksi pelaksanaan dan bukti kinerjaa', '', '20'),
+('56', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal Nasional terakreditasi', 'Pindai halaman sampul, daftar isi, dewan redaksi/redaksi pelaksanaan dan bukti kinerjaa', '', '25'),
+('57', '2', 'Jurnal Nasional berbahasa Indonesia terindek pada DOAJ', 'pindai halaman sampul, daftar isi, redaksi pelaksanaan dan bukti kinerja', '', '15'),
+('58', '2', 'Jurnal Nasional berbahasa Inngris atau bahasa resmi(PBB) terindek pada DOAJ', 'pindai halaman sampul, daftar isi, redaksi pelaksanaan dan bukti kinerja', '', '20'),
+('59', '2', 'Jurnal Nasional', 'Pindai halaman sampul, dewan redaksi/redaksi pelaksana, daftar isi dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penelitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor yang diterbitkan di Jurnal nasional', '10'),
+('60', '2', 'Jurnal ilmiah yang ditulisa dalam Bahasa Resmi PBB namun tidak memenuhi syarat-syarat sebagai jurnal ilmiah internasional', 'Pindai halaman sampul, dewan redaksi/redaksi pelaksana, daftar isi dan bukti kinerja', '', '10'),
+('61', '2', 'Dipresentasikan secara oral dan dimuat dalam prosiding yang dipublikasikan (ber ISSN/ISBN) : International', 'Pindai halaman sampul, Panitia pelaksana, Panitia pengarah, daftar isi dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Professor', '15'),
+('62', '2', 'Dipresentasikan secara oral dan dimuat dalam prosiding yang dipublikasikan (ber ISSN/ISBN) : Nasional', 'Pindai halaman sampul, Panitia pelaksana, Panitia pengarah, daftar isi dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Professor', '10'),
+('63', '2', 'Disajikan dalam bentuk poster dan dimuat dalam prosiding yang dipublikasikan: Internasional', 'Pindai poster, Panitia Pelaksana, Panitia Pengarah daftar isi dan buku panduan', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusualan ke Lektor Kepala dan Profesor', '10'),
+('64', '2', 'Disajikan dalam bentuk poster dan dimuat dalam prosiding yang dipublikasikan: Nasional', 'Pindai poster, Panitia Pelaksana, Panitia Pengarah daftar isi dan buku panduan', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusualan ke Lektor Kepala dan Profesor', '5'),
+('65', '2', 'Disajikan dalam seminar/simposium/lokakarya, tetapi tidak dimuat dalam prosiding yang dipublikasikan : Internasional', 'Pindai bukti kehadiran atau sertifikat dan bukti kinerja, Panitian', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '5'),
+('66', '2', 'Disajikan dalam seminar/simposium/lokakarya, tetapi tidak dimuat dalam prosiding yang dipublikasikan : Nasioanal', 'Pindai bukti kehadiran atau sertifikat dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '3'),
+('67', '2', 'Hasil penilitian/pemikiran yang tidak disajikan dalam seminar/simposium/lokakarya, tetapi dimuat dalam prosiding : Internasional', 'Pindai halaman sampul, daftar isi makan, daftar Panitia Pelaksana, Panitian Pengarah dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '10'),
+('68', '2', 'Hasil penilitian/pemikiran yang tidak disajikan dalam seminar/simposium/lokakarya, tetapi dimuat dalam prosiding : Nasional', 'Pindai halaman sampul, Panitian Pelaksana, Panitia Pengarah, daftar isi makalah dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '5'),
+('69', '2', 'Hasil penilitian/pemikiran yang disajikan dalam koran/majalah populer/umum', 'Pindai halaman sampul dan bukti kinerja', 'Paling banyak 5% dari AK unsur penilitian untuk pengajuan ke semua jenjang', '1'),
+('70', '2', 'Hasil penilitian atau pemikiran atau kerjasana industri yang tidak dipublikasikan (tersimpan dalam perpustakaan)', 'Pindai halaman sampul, daftar isi, lembar pengesahan dan bukti kinerja', 'Paling banyak 5% dari AK unsur penilitian untuk pengajuan ke semua jenjang', '2'),
+('71', '2', 'Menerjemahkan/menyadur buku ilmiah yang diterbitkan(ber ISBN)', 'Pindai halaman sampul dan bukti kinerja yang dapat diakses oleh asesor', '', '15'),
+('72', '2', 'Mengedit/menyunting karya ilmiah dalam bentuk buku yang diterbitkan (ber ISBN)', 'Pindai halaman sampul dan bukti kinerja yang dapat diakses oleh asesor', '', '10'),
+('73', '2', 'Membuat rancangan dan karya teknologi/seni yang dipatenkan secara nasional atau internasional : Internasional (paling sedikit diakui oleh 4 Negara)', 'Pindai bukti kinerja dan sertifkat paten', '', '60'),
+('74', '2', 'Membuat rancangan dan karya teknologi/seni yang dipatenkan secara nasional atau internasional : Nasional', 'Pindai bukti kinerja dan sertifkat paten', '', '40'),
+('75', '2', 'Membuat rancangan dan karya teknologi yang tidak dipatenkan, rancangan dan karya seni monumental/seni pertunjukan, karya sastra : Tingkat Intenasional', 'Pindai bukti kinerja, peer review internasional sesuai bidang ilmu', '', '20'),
+('76', '2', 'Membuat rancangan dan karya teknologi yang tidak dipatenkan, rancangan dan karya seni monumental/seni pertunjukan, karya sastra : Tingkat Nasional', 'Pindai bukti kinerja, peer review sesuai bidang ilmu', '', '15'),
+('77', '2', 'Membuat rancangan dan karya teknologi yang tidak dipatenkan, rancangan dan karya seni monumental/seni pertunjukan, karya sastra : Tingkat Lokal', 'Pindai bukti kinerja, peer review sesuai bidang ilmu', '', '10'),
+('78', '2', 'Membuat rancangan dan karya seni/seni pertunjukan yang tidak mendapatkan HKI*)', 'Pindai bukti kinerja, peer review sesuai bidang ilmu', '', ''),
+('79', '3', 'Menduduki jabatan pimpinan pada lembaga pemerintahan/pejabat negera yang harus dibebaskan dari jabatan organiknya tiap semester', '', '', '5,5'),
+('80', '3', 'Melaksanakan pengembangan hasil pendidikan, dan penilitian yang dapat dimanfaatkan oleh masyarakat/industri setiap program', '', '', '3'),
+('81', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Dalam satu semester atau lebih: Tingkat internasional tiap program', '', '', '4'),
+('82', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Dalam satu semester atau lebih: Tingkat Nasional, tiap program', '', '', '3'),
+('83', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Dalam satu semester atau lebih: Tingkat Lokal, tiap program', '', '', '2'),
+('84', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Tingkat Internasional : tiap program', '', '', '3'),
+('85', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Tingkat Nasional, tiap program', '', '', '2'),
+('86', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Tingkat Lokal, tiap program', '', '', '1'),
+('87', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Insidental, tiap kegiatan/program', '', '', '1'),
+('88', '3', 'Memberi pelayanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas pemerintahan dan pembangunan : Berdasarkan bidang keahlian, tiap program', '', '', '1,5'),
+('89', '3', 'Memberi pelayanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas pemerintahan dan pembangunan : Berdasarkan penugasan lembaga perguruan tinggi, tiap program', '', '', '1'),
+('90', '3', 'Memberi pelayanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas pemerintahan dan pembangunan : Berdasarkan fungsi/jabatantiap program', '', '', '0,5'),
+('91', '3', 'Membuat/menulis karya pengabdian pada masyarakat yang tidak dipublikasikan tiap karya', '', '', '3'),
+('92', '4', 'Menjadi anggota dalam suatu Panitia/Badan pada Peguruan Tinggi : Sebagai Ketua/Wakil Ketua merangkap Anggota, tiap tahun', '', '', '3'),
+('93', '4', 'Menjadi anggota dalam suatu Panitia/Badan pada Peguruan Tinggi : Sebagai Anggota, tiap tahun', '', '', '2'),
+('94', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah a. Panitian Pusat, sebagai Ketua/Wakil Ketua, tiap kepanitian', '', '', '3'),
+('95', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah a. Panitian Pusat, sebagai Anggota, tiap kepanitian', '', '', '2'),
+('96', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah b. Panitian Daerah, sebagai Ketua/Wakil Ketua, tiap kepanitian', '', '', '2'),
+('97', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah b. Panitian Daerah, sebagai Anggota, tiap kepanitian', '', '', '1'),
+('98', '4', 'Menjadi anggota organisasi profesi a. Tingkat Internasional, sebagai Pengurus, tiap periode jabatan**', '', '', '2'),
+('99', '4', 'Menjadi anggota organisasi profesi a. Tingkat Internasional, sebagai Anggota atas permintaan, tiap periode jabatan*', '', '', '1'),
+('100', '4', 'Menjadi anggota organisasi profesi a. Tingkat Internasional, sebagai Anggota, tiap periode jabatan*', '', '', '0.5'),
+('101', '4', 'Menjadi anggota organisasi profesi b. Tingkat Nasional, sebagai Pengurus, tiap periode jabatan', '', '', '1.5'),
+('102', '4', 'Menjadi anggota organisasi profesi b. Tingkat Nasional, sebagai Anggota atas permintaan, tiap periode jabatan', '', '', '1'),
+('103', '4', 'Menjadi anggota organisasi profesi b. Tingkat Nasional, sebagai Anggota, tiap periode jabatan', '', '', '0.5'),
+('104', '4', 'Mewakili Perguruan Tinggi/Lembaga Pemerintah duduk dalam Panitia Antar Lembaga, tiap kepanitian', '', '', '1'),
+('105', '4', 'Menjadi anggota delegasi Nasional ke pertemuan Internasional : Sebagai Ketua delegasi, tiap kegiatan', '', '', '3'),
+('106', '4', 'Menjadi anggota delegasi Nasional ke pertemuan Internasional : Sebagai Anggota, tiap kegiatan', '', '', '2'),
+('107', '4', 'Berperan serta aktif dalam pengelolaan jurnal ilmah (per tahun : Editor/dewan penyunting/dewan redaksi jurnal ilmiah internasional)', '', '', '4'),
+('108', '4', 'Berperan serta aktif dalam pengelolaan jurnal ilmah (per tahun : Editor/dewan penyunting/dewan redaksi jurnal ilmiah nasiona)', '', '', '2'),
+('109', '4', 'Berperan serta aktif dalam pertemuan ilmiah Tingkat Internasional/Nasional/Regional sebagai : Ketua, tiap kegiatan', '', '', '3'),
+('110', '4', 'Berperan serta aktif dalam pertemuan ilmiah Tingkat Internasional/Nasional/Regional sebagai : Anggota/peserta, tiap kegiatan', '', '', '2'),
+('111', '4', 'Berperan serta aktif dalam pertemuan ilmiah Di lingkungan Perguruan Tinggi sebagai : Ketua, tiap kegiatan', '', '', '2');
 
-INSERT INTO `kategori_bukti_kegiatan` VALUES ('1', 'Bukti Pendidikan', 'Bukti Pendidikan');
-INSERT INTO `kategori_bukti_kegiatan` VALUES ('2', 'Bukti Penelitian', 'Bukti Penelitian');
-INSERT INTO `kategori_bukti_kegiatan` VALUES ('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
+INSERT INTO program_studi (id, nama, keterangan, jenjang) VALUES 
+('0', 'Matrikulasi', 'Matrikulation', 'S1'),
+('1', 'Bisnis dan Manajemen Islam', 'Islamic Business and Management', 'S1'),
+('2', 'Akuntansi Islam', 'Islamic Accounting', 'S1'),
+('3', 'Ekonomi Islam', 'Islamic Economics', 'S1'),
+('4', 'Manajemen Keuangan Mikro Syariah', 'Islamic Micro Finance Management', 'D3'),
+('5', 'Magister Ekonomi Syariah', 'Magister  of Syaria Economics', 'S2'),
+('6', 'Hukum Ekonomi Syariah (Muamalat)', 'Islamic Economics Laws (Muamalat)', 'S1');
 
-INSERT INTO `jenis_kegiatan` VALUES ('1', '1', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Doktor / sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '200');
-INSERT INTO `jenis_kegiatan` VALUES ('2', '1', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Magister/sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '150');
-INSERT INTO `jenis_kegiatan` VALUES ('3', '1', 'Mengikuti diklat prajabatan golongan III', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('4', '1', 'Asisten Ahli untuk : beban mengajar 10 sks pertama ', 'Pindai SK penugasan asli dan bukti kinerja', '5', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('5', '1', 'Asisten Ahli untuk : beban mengajar 2 sks berikutnya', 'Pindai SK penugasan asli dan bukti kinerja', '0,5', '0,25');
-INSERT INTO `jenis_kegiatan` VALUES ('6', '1', 'Lektor/Lektor Kepala/Profesor untuk : beban mengajar 10 sks pertama', 'Pindai SK penugasan asli dan bukti kinerja', '10/semester', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('7', '1', 'Lektor/Lektor Kepala/Profesor untuk : beban mengajar 2 sks berikutnya ', 'Pindai SK penugasan asli dan bukti kinerja', '1/semester', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('8','1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pengajaran untuk peserta   pendidikan dokter melalui tindakan medik spesialistik', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('9', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pengajaran   Konsultasi spesialis  kepada peserta   pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('10', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pemeriksaan luar dengan pembimbingan terhadap peserta   pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('11', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Melakukan pemeriksaan dalam dengan pembimbingan terhadap peserta   pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('12', '1', 'Kegiatan pelaksanaan pendidikan untuk pendidikan dokter klinis - Menjadi saksi ahli dengan  pembimbingan terhadap peserta pendidikan dokter ', 'Pindai SK Penugasan dan bukti kinerja', '11/semester', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('13', '1', 'Membimbing seminar mahasiswa (setiap mahasiswa)', 'Pindai SK penugasan asli dan bukti kinerja', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('14', '1', 'Membimbing KKN, Praktik Kerja Nyata, Praktik Kerja Lapangan (setiap semester) ', 'Pindai SK penugasan asli dan bukti kinerja', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('15', '1', 'Pembimbing Utama per orang (setiap mahasiswa) - Disertasi', 'Pindai lembar pengesahan dan bukti kinerja', '4 lulusan/semester', '8');
-INSERT INTO `jenis_kegiatan` VALUES ('16', '1', 'Pembimbing Utama per orang (setiap mahasiswa) - Tesis', 'Pindai lembar pengesahan dan bukti kinerja', '6 lulusan/semester', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('17', '1', 'Pembimbing Utama per orang (setiap mahasiswa) - Skripsi', 'Pindai lembar pengesahan dan bukti kinerja', '8 lulusan/semester', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('18','1', 'Pembimbing Utama per orang (setiap mahasiswa) - Laporan akhir studi', 'Pindai lembar pengesahan dan bukti kinerja', '10 lulusan/semester', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('19', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Disertasi', 'Pindai lembar pengesahan dan bukti kinerja', '4 lulusan/semester', '6');
-INSERT INTO `jenis_kegiatan` VALUES ('20', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Tesis ', 'Pindai lembar pengesahan dan bukti kinerja', '6 lulusan/semester', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('21', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Skripsi ', 'Pindai lembar pengesahan dan bukti kinerja', '8 lulusan/semester', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('22', '1', 'Pembimbing Pendamping/Pembantu per orang (setiap mahasiswa) : Laporan akhir studi ', 'Pindai lembar pengesahan dan bukti kinerja', '10 lulusan/semester', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('23', '1', 'Bertugas sebagai penguji pada ujian akhir/Profesi*** (setiap mahasiswa) : Ketua penguji', 'Pindai SK penugasan, bukti kinerja dan undangan', '4 lulusan/semester', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('24', '1', 'Bertugas sebagai penguji pada ujian akhir/Profesi*** (setiap mahasiswa) : Anggota penguji ', 'Pindai SK penugasan, bukti kinerja dan undangan', '8 lulusan/semester', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('25', '1', 'Membina kegiatan mahasiswa di bidang akademik dan kemahasiswaan, termasuk dalam kegiatan ini adalah membimbing mahasiswa menghasilkan produk saintifik (setiap semester)', 'Pindai SK penugasan, dan bukti kinerja', '2 kegiatan/semester', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('26', '1', 'Mengembangkan program kuliah yang mempunyai nilai kebaharuan metode atau substansi (setiap produk) ', 'File produk', '1 mata kuliah/semester', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('27', '1', 'Mengembangkan bahan pengajaran/ bahan kuliah yang mempunyai nilai kebaharuan (setiap produk), Buku ajar ', 'File produk', '1 buku/tahun', '20');
-INSERT INTO `jenis_kegiatan` VALUES ('28', '1', 'Mengembangkan bahan pengajaran/ bahan kuliah yang mempunyai nilai kebaharuan (setiap produk), Diktat,Modul, Petunjuk praktikum,      Model, Alat bantu, Audio visual, Naskah tutorial, Job sheet praktikum terkait dengan mata kuliah yang diampu ', 'File produk', '1 Produk/semester', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('29', '1', 'Menyampaikan orasi ilmiah di tingkat perguruan tinggi ', 'File produk', '2 orasi/semester', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('30', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Rektor ', 'Pindai SK Jabatan', '1 Jabatan/semester', '6');
-INSERT INTO `jenis_kegiatan` VALUES ('31', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Wakil rektor/dekan/direktur program pasca sarjana/ketua lembaga ', 'Pindai SK Jabatan', '1 Jabatan/semester', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('32', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Ketua sekolah tinggi/pembantu dekan/asisten direktur program pasca sarjana/direktur politeknik/koordinator kopertis ', 'Pindai SK Jabatan', '1 Jabatan/semester', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('33', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Pembantu ketua sekolah tinggi/pembantu direktur politeknik', 'Pindai SK Jabatan', '1 Jabatan/semester', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('34', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Direktur akademi ', 'Pindai SK Jabatan', '1 Jabatan/semester', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('35', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Pembantu direktur politeknik, ketua jurusan/ bagian pada universitas/ institut/sekolah tinggi', 'Pindai SK Jabatan', '1 Jabatan/semester', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('36', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Pembantu direktur akademi/ketua jurusan/ketua prodi pada universitas/politeknik/akademi, sekretaris jurusan/bagian pada universitas/institut/sekolah tinggi ', 'Pindai SK Jabatan', '1 Jabatan/semester', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('37', '1', 'Menduduki jabatan pimpinan perguruan tinggi (setiap semester) : Sekretaris jurusan pada politeknik/akademi dan kepala laboratorium (bengkel) universitas/institut/sekolah tinggi/politeknik/akademi ', 'Pindai SK Jabatan', '1 Jabatan/semester', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('38', '1', 'Membimbing dosen yang mempunyai jabatan akademik lebih rendah setiap semester (bagi dosen Lektor Kepala ke atas) : Pembimbing pencangkokan ', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('39', '1', 'Membimbing dosen yang mempunyai jabatan akademik lebih rendah setiap semester (bagi dosen Lektor Kepala ke atas) : Reguler', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('40', '1', 'Melaksanakan kegiatan detasering dan pencangkokan di luar institusi tempat bekerja setiap semester (bagi dosen Lektor kepala ke atas) : Detasering', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('41', '1', 'Melaksanakan kegiatan detasering dan pencangkokan di luar institusi tempat bekerja setiap semester (bagi dosen Lektor kepala ke atas) : Pencangkokan', 'Pindai SK Penugasan, dan bukti kinerja', '1 orang', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('42', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya lebih dari 960 jam', 'Pindai sertifikat asli', '', '15');
-INSERT INTO `jenis_kegiatan` VALUES ('43', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara  641- 960 jam', 'Pindai sertifikat asli', '', '9');
-INSERT INTO `jenis_kegiatan` VALUES ('44', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 481- 640 jam ', 'Pindai sertifikat asli', '', '6');
-INSERT INTO `jenis_kegiatan` VALUES ('45', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 161- 480 jam ', 'Pindai sertifikat asli', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('46', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara   81- 160 jam', 'Pindai sertifikat asli', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('47', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 30 - 80 jam ', 'Pindai sertifikat asli', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('48', '1', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 - 30 jam ', 'Pindai sertifikat asli', '', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('49', '2', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 -Hasil penelitian atau hasil pemikiran yang dipublikasikan dalam bentuk buku : Buku Referensi', 'Pindai halaman sampul, dan kinerja', '1 buku/tahun', '40');
-INSERT INTO `jenis_kegiatan` VALUES ('50', '2', 'Melaksanakan pengembangan diri untuk meningkatkan kompetensi : Lamanya antara 10 -Hasil penelitian atau hasil pemikiran yang dipublikasikan dalam bentuk buku : Monograf', 'Pindai halaman sampul, dan kinerja', '1 buku/tahun', '20');
-INSERT INTO `jenis_kegiatan` VALUES ('51', '2', 'Hasil penilitian atau hasil pemikiran dalam buku yang dipublikasikan dan berisi berbagai tulisan dari berbagai penulis (book chapter) : International', 'pindai halaman sampul, daftar isi dan bukti kinerja', '1 buku/tahun', '15');
-INSERT INTO `jenis_kegiatan` VALUES ('52', '2', 'Hasil penilitian atau hasil pemikiran dalam buku yang dipublikasikan dan berisi berbagai tulisan dari berbagai penulis (book chapter) : Nasional', 'pindai halaman sampul, daftar isi dan bukti kinerja', '1 buku/tahun', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('53', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal international bereputasi (terindex pada database internasional berreputasi dan berfaktor dampak', 'Pindai halaman sampul, daftar isi, dewan redaksi/redaksi pelaksanaan dan bukti kinerjaa', '', '40');
-INSERT INTO `jenis_kegiatan` VALUES ('54', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal international terindek pada database international bereputasi', 'Pindai halaman sampul, daftar isi, dewan redaksi/redaksi pelaksanaan dan bukti kinerjaa', '', '30');
-INSERT INTO `jenis_kegiatan` VALUES ('55', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal international terindex pada database internasional di luar kategori 2)', 'Pindai halaman sampul, daftar isi, redaksi pelaksanaan dan bukti kinerjaa', '', '20');
-INSERT INTO `jenis_kegiatan` VALUES ('56', '2', 'Hasil penilitian atau hasil pemikiran yang dipublikasikan : Jurnal Nasional terakreditasi', 'Pindai halaman sampul, daftar isi, dewan redaksi/redaksi pelaksanaan dan bukti kinerjaa', '', '25');
-INSERT INTO `jenis_kegiatan` VALUES ('57', '2', 'Jurnal Nasional berbahasa Indonesia terindek pada DOAJ', 'pindai halaman sampul, daftar isi, redaksi pelaksanaan dan bukti kinerja', '', '15');
-INSERT INTO `jenis_kegiatan` VALUES ('58', '2', 'Jurnal Nasional berbahasa Inngris atau bahasa resmi(PBB) terindek pada DOAJ', 'pindai halaman sampul, daftar isi, redaksi pelaksanaan dan bukti kinerja', '', '20');
-INSERT INTO `jenis_kegiatan` VALUES ('59', '2', 'Jurnal Nasional', 'Pindai halaman sampul, dewan redaksi/redaksi pelaksana, daftar isi dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penelitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor yang diterbitkan di Jurnal nasional', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('60', '2', 'Jurnal ilmiah yang ditulisa dalam Bahasa Resmi PBB namun tidak memenuhi syarat-syarat sebagai jurnal ilmiah internasional', 'Pindai halaman sampul, dewan redaksi/redaksi pelaksana, daftar isi dan bukti kinerja', '', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('61', '2', 'Dipresentasikan secara oral dan dimuat dalam prosiding yang dipublikasikan (ber ISSN/ISBN) : International', 'Pindai halaman sampul, Panitia pelaksana, Panitia pengarah, daftar isi dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Professor', '15');
-INSERT INTO `jenis_kegiatan` VALUES ('62', '2', 'Dipresentasikan secara oral dan dimuat dalam prosiding yang dipublikasikan (ber ISSN/ISBN) : Nasional', 'Pindai halaman sampul, Panitia pelaksana, Panitia pengarah, daftar isi dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Professor', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('63', '2', 'Disajikan dalam bentuk poster dan dimuat dalam prosiding yang dipublikasikan: Internasional', 'Pindai poster, Panitia Pelaksana, Panitia Pengarah daftar isi dan buku panduan', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusualan ke Lektor Kepala dan Profesor', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('64', '2', 'Disajikan dalam bentuk poster dan dimuat dalam prosiding yang dipublikasikan: Nasional', 'Pindai poster, Panitia Pelaksana, Panitia Pengarah daftar isi dan buku panduan', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusualan ke Lektor Kepala dan Profesor', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('65', '2', 'Disajikan dalam seminar/simposium/lokakarya, tetapi tidak dimuat dalam prosiding yang dipublikasikan : Internasional', 'Pindai bukti kehadiran atau sertifikat dan bukti kinerja, Panitian', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('66', '2', 'Disajikan dalam seminar/simposium/lokakarya, tetapi tidak dimuat dalam prosiding yang dipublikasikan : Nasioanal', 'Pindai bukti kehadiran atau sertifikat dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('67', '2', 'Hasil penilitian/pemikiran yang tidak disajikan dalam seminar/simposium/lokakarya, tetapi dimuat dalam prosiding : Internasional', 'Pindai halaman sampul, daftar isi makan, daftar Panitia Pelaksana, Panitian Pengarah dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('68', '2', 'Hasil penilitian/pemikiran yang tidak disajikan dalam seminar/simposium/lokakarya, tetapi dimuat dalam prosiding : Nasional', 'Pindai halaman sampul, Panitian Pelaksana, Panitia Pengarah, daftar isi makalah dan bukti kinerja', 'Paling tinggi 25% dari AK unsur penilitian yang diperlukan untuk pengusulan ke Lektor Kepala dan Profesor', '5');
-INSERT INTO `jenis_kegiatan` VALUES ('69', '2', 'Hasil penilitian/pemikiran yang disajikan dalam koran/majalah populer/umum', 'Pindai halaman sampul dan bukti kinerja', 'Paling banyak 5% dari AK unsur penilitian untuk pengajuan ke semua jenjang', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('70', '2', 'Hasil penilitian atau pemikiran atau kerjasana industri yang tidak dipublikasikan (tersimpan dalam perpustakaan)', 'Pindai halaman sampul, daftar isi, lembar pengesahan dan bukti kinerja', 'Paling banyak 5% dari AK unsur penilitian untuk pengajuan ke semua jenjang', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('71', '2', 'Menerjemahkan/menyadur buku ilmiah yang diterbitkan(ber ISBN)', 'Pindai halaman sampul dan bukti kinerja yang dapat diakses oleh asesor', '', '15');
-INSERT INTO `jenis_kegiatan` VALUES ('72', '2', 'Mengedit/menyunting karya ilmiah dalam bentuk buku yang diterbitkan (ber ISBN)', 'Pindai halaman sampul dan bukti kinerja yang dapat diakses oleh asesor', '', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('73', '2', 'Membuat rancangan dan karya teknologi/seni yang dipatenkan secara nasional atau internasional : Internasional (paling sedikit diakui oleh 4 Negara)', 'Pindai bukti kinerja dan sertifkat paten', '', '60');
-INSERT INTO `jenis_kegiatan` VALUES ('74', '2', 'Membuat rancangan dan karya teknologi/seni yang dipatenkan secara nasional atau internasional : Nasional', 'Pindai bukti kinerja dan sertifkat paten', '', '40');
-INSERT INTO `jenis_kegiatan` VALUES ('75', '2', 'Membuat rancangan dan karya teknologi yang tidak dipatenkan; rancangan dan karya seni monumental/seni pertunjukan; karya sastra : Tingkat Intenasional', 'Pindai bukti kinerja, peer review internasional sesuai bidang ilmu', '', '20');
-INSERT INTO `jenis_kegiatan` VALUES ('76', '2', 'Membuat rancangan dan karya teknologi yang tidak dipatenkan; rancangan dan karya seni monumental/seni pertunjukan; karya sastra : Tingkat Nasional', 'Pindai bukti kinerja, peer review sesuai bidang ilmu', '', '15');
-INSERT INTO `jenis_kegiatan` VALUES ('77', '2', 'Membuat rancangan dan karya teknologi yang tidak dipatenkan; rancangan dan karya seni monumental/seni pertunjukan; karya sastra : Tingkat Lokal', 'Pindai bukti kinerja, peer review sesuai bidang ilmu', '', '10');
-INSERT INTO `jenis_kegiatan` VALUES ('78', '2', 'Membuat rancangan dan karya seni/seni pertunjukan yang tidak mendapatkan HKI*)', 'Pindai bukti kinerja, peer review sesuai bidang ilmu', '', '');
-INSERT INTO `jenis_kegiatan` VALUES ('79', '3', 'Menduduki jabatan pimpinan pada lembaga pemerintahan/pejabat negera yang harus dibebaskan dari jabatan organiknya tiap semester', '', '', '5,5');
-INSERT INTO `jenis_kegiatan` VALUES ('80', '3', 'Melaksanakan pengembangan hasil pendidikan, dan penilitian yang dapat dimanfaatkan oleh masyarakat/industri setiap program', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('81', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Dalam satu semester atau lebih: Tingkat internasional tiap program', '', '', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('82', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Dalam satu semester atau lebih: Tingkat Nasional, tiap program', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('83', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Dalam satu semester atau lebih: Tingkat Lokal, tiap program', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('84', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Tingkat Internasional : tiap program', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('85', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Tingkat Nasional, tiap program', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('86', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Tingkat Lokal, tiap program', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('87', '3', 'Memberi latihan/penyuluhan/penataran/ceramah pada masyarakat, terjadwal/terprogram: Kurang dari satu semester dan minimal satu bulan : Insidental, tiap kegiatan/program', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('88', '3', 'Memberi pelayanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas pemerintahan dan pembangunan : Berdasarkan bidang keahlian, tiap program', '', '', '1,5');
-INSERT INTO `jenis_kegiatan` VALUES ('89', '3', 'Memberi pelayanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas pemerintahan dan pembangunan : Berdasarkan penugasan lembaga perguruan tinggi, tiap program', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('90', '3', 'Memberi pelayanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas pemerintahan dan pembangunan : Berdasarkan fungsi/jabatantiap program', '', '', '0,5');
-INSERT INTO `jenis_kegiatan` VALUES ('91', '3', 'Membuat/menulis karya pengabdian pada masyarakat yang tidak dipublikasikan tiap karya', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('92', '4', 'Menjadi anggota dalam suatu Panitia/Badan pada Peguruan Tinggi : Sebagai Ketua/Wakil Ketua merangkap Anggota, tiap tahun', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('93', '4', 'Menjadi anggota dalam suatu Panitia/Badan pada Peguruan Tinggi : Sebagai Anggota, tiap tahun', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('94', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah a. Panitian Pusat, sebagai Ketua/Wakil Ketua, tiap kepanitian', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('95', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah a. Panitian Pusat, sebagai Anggota, tiap kepanitian', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('96', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah b. Panitian Daerah, sebagai Ketua/Wakil Ketua, tiap kepanitian', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('97', '4', 'Menjadi anggota panitia/badan pada lembaga pemerintah b. Panitian Daerah, sebagai Anggota, tiap kepanitian', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('98', '4', 'Menjadi anggota organisasi profesi a. Tingkat Internasional, sebagai Pengurus, tiap periode jabatan**', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('99', '4', 'Menjadi anggota organisasi profesi a. Tingkat Internasional, sebagai Anggota atas permintaan, tiap periode jabatan*', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('100', '4', 'Menjadi anggota organisasi profesi a. Tingkat Internasional, sebagai Anggota, tiap periode jabatan*', '', '', '0.5');
-INSERT INTO `jenis_kegiatan` VALUES ('101', '4', 'Menjadi anggota organisasi profesi b. Tingkat Nasional, sebagai Pengurus, tiap periode jabatan', '', '', '1.5');
-INSERT INTO `jenis_kegiatan` VALUES ('102', '4', 'Menjadi anggota organisasi profesi b. Tingkat Nasional, sebagai Anggota atas permintaan, tiap periode jabatan', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('103', '4', 'Menjadi anggota organisasi profesi b. Tingkat Nasional, sebagai Anggota, tiap periode jabatan', '', '', '0.5');
-INSERT INTO `jenis_kegiatan` VALUES ('104', '4', 'Mewakili Perguruan Tinggi/Lembaga Pemerintah duduk dalam Panitia Antar Lembaga, tiap kepanitian', '', '', '1');
-INSERT INTO `jenis_kegiatan` VALUES ('105', '4', 'Menjadi anggota delegasi Nasional ke pertemuan Internasional : Sebagai Ketua delegasi, tiap kegiatan', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('106', '4', 'Menjadi anggota delegasi Nasional ke pertemuan Internasional : Sebagai Anggota, tiap kegiatan', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('107', '4', 'Berperan serta aktif dalam pengelolaan jurnal ilmah (per tahun : Editor/dewan penyunting/dewan redaksi jurnal ilmiah internasional)', '', '', '4');
-INSERT INTO `jenis_kegiatan` VALUES ('108', '4', 'Berperan serta aktif dalam pengelolaan jurnal ilmah (per tahun : Editor/dewan penyunting/dewan redaksi jurnal ilmiah nasiona)', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('109', '4', 'Berperan serta aktif dalam pertemuan ilmiah Tingkat Internasional/Nasional/Regional sebagai : Ketua, tiap kegiatan', '', '', '3');
-INSERT INTO `jenis_kegiatan` VALUES ('110', '4', 'Berperan serta aktif dalam pertemuan ilmiah Tingkat Internasional/Nasional/Regional sebagai : Anggota/peserta, tiap kegiatan', '', '', '2');
-INSERT INTO `jenis_kegiatan` VALUES ('111', '4', 'Berperan serta aktif dalam pertemuan ilmiah Di lingkungan Perguruan Tinggi sebagai : Ketua, tiap kegiatan', '', '', '2');
-
-INSERT INTO `program_studi` VALUES ('0', 'Matrikulasi', 'Matrikulation', 'S1');
-INSERT INTO `program_studi` VALUES ('1', 'Bisnis dan Manajemen Islam', 'Islamic Business and Management', 'S1');
-INSERT INTO `program_studi` VALUES ('2', 'Akuntansi Islam', 'Islamic Accounting', 'S1');
-INSERT INTO `program_studi` VALUES ('3', 'Ekonomi Islam', 'Islamic Economics', 'S1');
-INSERT INTO `program_studi` VALUES ('4', 'Manajemen Keuangan Mikro Syariah', 'Islamic Micro Finance Management', 'D3');
-INSERT INTO `program_studi` VALUES ('5', 'Magister Ekonomi Syariah', 'Magister  of Syaria Economics', 'S2');
-INSERT INTO `program_studi` VALUES ('6', 'Hukum Ekonomi Syariah (Muamalat)', 'Islamic Economics Laws (Muamalat)', 'S1');
-
-INSERT INTO `mata_kuliah` VALUES ('1', '1', 'General Arabic', '0', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('2', '2', 'General English', '0', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('3', 'AEM1101', 'Dirasah Islamiah', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('4', 'AEM1201', 'Bahasa Inggris Ekonomi', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('5', 'MKK-U08', 'Statistik I', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('6', 'AEM1202', 'Bahasa Indonesia', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('7', 'AEM1301', 'Matematika Ekonomi', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('8', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('9', 'AEM1401', 'Pengantar Aplikasi Komputer', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('10', 'AEM1401', 'Pengantar Ekonomi', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('11', 'MKK-U10', 'Pengantar Fiqh Muamalah', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('12', 'MKK-U15', 'Pengantar Ekonomi Makro', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('13', 'MKK-U16', 'Pengantar Komputer', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('14', 'MKK-U14', 'Pengantar Ekonomi Mikro', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('15', 'TJA', 'Tahfidz Juz', '0', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('16', 'AEM1102', 'Sejarah Peradaban & Kepemimpinan Islam', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('17', 'AEM1203', 'Bahasa Arab Ekonomi', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('18', 'MKK-U01', 'Bahasa Arab I', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('19', 'AEM1302', 'Statistika Ekonomi & Bisnis', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('20', 'ACC1101', 'Pengantar Akuntansi I', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('21', 'AEM1103', 'Fiqh Muamalah I', '0', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('22', 'MKK-U07', 'Matematika Ekonomi II', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('23', 'MKK-U09', 'Statistika II', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('24', 'AEM1104', 'Ayat & Hadits Ekonomi', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('25', 'MKK-U04', 'Bahasa Inggris II', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('26', 'AEM1402', 'Kewarganegaraan', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('27', 'MKK-U02', 'Bahasa Arab II', '0', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('28', 'AEM2105', 'Ushul Fiqh I', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('29', 'AEM2303', 'Bank & Lembaga Keuangan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('30', 'AEM2304', 'Ekonometrik Dasar', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('31', 'AEM2106', 'Fiqh Muamalah II', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('32', 'ACC2102', 'Pengantar Akuntansi II', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('33', 'AEM2305', 'Aspek Hukum Dalam Ekonomi', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('34', 'AEM2204', 'Bahasa Inggris Akademik', '1', '', '1');
-INSERT INTO `mata_kuliah` VALUES ('35', 'AEM3301', 'Matematika Keuangan Dan Bisnis', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('36', 'ACC2701', 'Etika Bisnis Islam', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('37', 'ECO2203', 'Teori Ekonomi Mikro I', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('38', 'AEM2107', 'Ushul Fiqh II', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('39', 'AEM2108', 'Fiqh Mawarist', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('40', 'MKK-U18', 'Metode Kuantitatif', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('41', 'AEM2109', 'Studi Kepemimpinan Islam', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('42', 'AEM2110', 'Fundamental Ekonomi Islam', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('43', 'FIN2301', 'Manajemen Keuangan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('44', 'ECO2201', 'Teori Ekonomi Makro I', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('45', 'ACC2201', 'Akuntansi Biaya', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('46', 'ENT3601', 'Kewirausahaan I', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('47', 'AEM3111', 'Fiqh Zakat', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('48', 'AEM3306', 'Lab Mini Bank Syariah', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('49', 'MGT3102', 'Sistem Informasi Manajemen', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('50', 'IFI3401', 'Manajemen Perbankan Islam I', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('51', 'MKJ-K02', 'Manajemen Perbankan Syariah I', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('52', 'BIS3203', 'Manajemen Operasi', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('53', 'BIS3202', 'Bisnis Internasional', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('54', 'ACC3501', 'Akuntansi Lembaga Keuangan Syariah', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('55', 'BIS3204', 'Perilaku Organisasi', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('56', 'IFI3402', 'Manajemen Lembaga Keuangan Syariah', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('57', 'MGT3301', 'Manajemen Pemasaran', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('58', 'MGT3101', 'Metode Penelitian Bisnis', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('59', 'MGT3103', 'Manajemen Investasi', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('60', 'FIN3302', 'Manajemen Keuangan Lanjutan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('61', 'MGT4105', 'Manajemen Strategi', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('62', 'MKP-P-3706', 'Manajemen Pemasaran Bank Syariah', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('63', 'MKJ-U04', 'Manajemen Pemasaran Jasa', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('64', 'MKK-P12', 'Pemasaran Stratejik', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('65', 'MKP-P-3602', 'Manajemen Pemasaran Syariah', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('66', 'IFI3403', 'Manajemen Keuangan Islam', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('67', 'MGT3303', 'Pemasaran Internasional', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('68', 'MKP-K-3603', 'Manajemen Keuangan Syariah', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('69', 'ACC3202', 'Akuntansi Manajemen', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('70', 'MKJ-P08', 'Manajemen Produk Dan Harga', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('71', 'AEM3205', 'Fahmul Maqruq', '1', '', '1');
-INSERT INTO `mata_kuliah` VALUES ('72', 'MKJ-K03', 'Manajemen Asuransi Syariah', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('73', 'BIS3201', 'Magang', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('74', 'IFI4404', 'Manajemen Perbankan Islam II', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('75', 'MKT4503', 'Riset Pemasaran & Studi Kelayakan Bisnis', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('76', 'MKJ-K11', 'Manajemen Perbankan Syariah II', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('77', 'IFI4303', 'Manajemen Keuangan Internasional', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('78', 'MKT4504', 'Komunikasi Pemasaran', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('79', 'MKJ-K05', 'Keuangan Internasional', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('80', 'MGT4309', 'Manajemen Produk dan Harga', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('81', 'IFI4405', 'Pasar & Instr. Keuangan Islam', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('82', 'MGT4306', 'Strategi Kewirausahaan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('83', 'MKJ-U06', 'Manajemen Internasional', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('84', 'FIN4305', 'Manajemen Resiko Keuangan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('85', 'MKJ-K12', 'Manajemen Resiko Pembiayaan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('86', 'BIS4206', 'Studi Kelayakan Bisnis', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('87', 'FIN4304', 'Seminar Keuangan & Perbankan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('88', 'ENT4607', 'Seminar Pemasaran & Kewirausahaan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('89', 'MKB-U16', 'Ekonomi Manajerial', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('90', 'MGT3401', 'Manajemen Pemasaran Islam', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('91', 'MKB-U13', 'Penganggaran Perusahaan', '1', '', '2');
-INSERT INTO `mata_kuliah` VALUES ('92', 'FIN4104', 'Manajemen Sumber Daya Insani', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('93', 'MKJ-P07', 'Manajemen Inovasi&Kreativitas', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('94', 'MKB-U13', 'Manjemen Penganggaran', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('95', 'MKB-U17', 'Teori Pengambilan Keputusan', '1', '', '3');
-INSERT INTO `mata_kuliah` VALUES ('96', 'MGT4107', 'Skripsi', '1', '', '6');
-INSERT INTO `mata_kuliah` VALUES ('97', 'AEM2105', 'Usul Fiqh I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('98', 'AEM2303', 'Bank & Lembaga Keuangan', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('99', 'AEM2304', 'Applied Statistics', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('100', 'AEM2106', 'Fiqh Muamalah II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('101', 'ACC2102', 'Pengantar Akuntansi II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('102', 'AEM2305', 'Aspek Hukum Dalam Ekonomi', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('103', 'AEM2204', 'Bahasa Inggris Akademik', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('104', 'ACC2701', 'Etika Bisnis Islam', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('105', 'ACC2401', 'Perpajakan I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('106', 'AEM2107', 'Ushul Fiqh II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('107', 'AEM2108', 'Fiqh Mawarist', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('108', 'AEM2109', 'Studi Kepemimpinan Islam', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('109', 'AEM2110', 'Fundamental Ekonomi Islam', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('110', 'FIN2301', 'Manajemen Keuangan', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('111', 'ACC2103', 'Akuntansi Keuangan I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('112', 'ACC2201', 'Akuntansi Biaya', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('113', 'ENT3601', 'Kewirausahaan I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('114', 'AEM3111', 'Fiqh Zakat', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('115', 'AEM3306', 'Lab Mini Bank Islam', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('116', 'ACC3403', 'Akuntansi Sektor Publik', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('117', 'ACC3802', 'Laboratorium Akuntansi', '2', '1', '3');
-INSERT INTO `mata_kuliah` VALUES ('118', 'ACC3104', 'Akuntansi Keuangan II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('119', 'ACC3501', 'Akuntansi Lembaga Keuangan Syariah', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('120', 'ACC3901', 'Sistem Informasi Akuntansi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('121', 'ENT3102', 'Sistem Informasi Manajemen', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('122', 'ACC3601', 'Akuntansi Zakat', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('123', 'ACC3105', 'Teori Akuntansi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('124', 'ACC3202', 'Akuntansi Manajemen', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('125', 'ACC3106', 'Akuntansi Keuangan Lanjutan', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('126', 'ACC3402', 'Perpajakan II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('127', 'ACC3301', 'Auditing I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('128', 'AEM3205', 'Fahmul Maqruq', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('129', 'ACC3102', 'Magang', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('130', 'MKK-A-3720', 'Lab Audit', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('131', 'MKK-A-3710', 'Lab. Pemeriksaan Akuntansi II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('132', 'ACC4904', 'Network Based Accounting Information Systems I', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('133', 'MKJ-A04', 'Akuntansi Keuangan Lanjutan II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('134', 'ACC4108', 'Akuntansi Islam', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('135', 'ACC4302', 'Pemeriksaan Akuntansi II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('136', 'ACC4702', 'Metodologi Penelitian Akuntansi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('137', 'ACC4304', 'Audit Internal', '2', '2', '2');
-INSERT INTO `mata_kuliah` VALUES ('138', 'ACC4902', 'Applied Database Management Systems', '2', '1', '3');
-INSERT INTO `mata_kuliah` VALUES ('139', 'ACC4305', 'Audit Forensik', '2', '2', '3');
-INSERT INTO `mata_kuliah` VALUES ('140', 'ACC4903', 'Decision Support Systems', '2', '1', '2');
-INSERT INTO `mata_kuliah` VALUES ('141', 'ACC4306', 'EDP Auditing', '2', '2', '3');
-INSERT INTO `mata_kuliah` VALUES ('142', 'ACC4905', 'Network Based Accounting Information Systems II', '2', '1', '2');
-INSERT INTO `mata_kuliah` VALUES ('143', 'MKK-A-3721', 'Akuntansi Internasional', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('144', 'ACC4101', 'Skripsi', '2', '0', '6');
-INSERT INTO `mata_kuliah` VALUES ('145', 'MKJ-E03', 'Matematika Ekonomi Lanjutan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('146', 'MKU-B-3317', 'Fiqh Muamalah', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('147', 'AEM2105', 'Usul Fiqh I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('148', 'ENT3601', 'Kewirausahaan I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('149', 'AEM2304', 'Applied Statistics', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('150', 'AEM2106', 'Fiqh Muamalah II', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('151', 'ACC2102', 'Pengantar Akuntansi II', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('152', 'AEM2305', 'Aspek Hukum Dalam Ekonomi', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('153', 'AEM2108', 'Fiqh Mawarist', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('154', 'ACC2701', 'Etika Bisnis Islam', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('155', 'ECO2203', 'Teori Ekonomi MIkro I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('156', 'AEM2107', 'Usul Fiqh II', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('157', 'AEM2204', 'Bahasa Inggris Akademik', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('158', 'AEM2109', 'Studi Kepemimpinan Islam', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('159', 'AEM2110', 'Fundamental Ekonomi Islam', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('160', 'MGT2201', 'Manajemen Keuangan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('161', 'MKK-E-2401', 'Mustalahat Iqtishadiyah', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('162', 'ECO2201', 'Teori Ekonomi Makro I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('163', 'ECO3202', 'Teori Ekonomi Makro II', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('164', 'AEM2303', 'Bank & Lembaga Keuangan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('165', 'AEM3111', 'Fiqh Zakat', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('166', 'AEM3306', 'Lab Mini Bank Islam', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('167', 'ECO3401', 'Ekonomi Moneter', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('168', 'ECO3603', 'Ekonometrik I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('169', 'ECO2204', 'Teori Ekonomi Mikro II', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('170', 'ECO3103', 'Mikro Ekonomi Islam', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('171', 'ECO3206', 'Sejarah Pemikiran Ekonomi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('172', 'ECO3104', 'Maqoshid Syariah', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('173', 'ENT3102', 'Sistem Informasi Manajemen', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('174', 'ECO3602', 'Ekonometrik II', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('175', 'ECO3101', 'Makro Ekonomi Islam', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('176', 'ECO3105', 'Sejarah Pemikiran Ekonomi Islam', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('177', 'ECO3106', 'Seminar Ekonomi Islam', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('178', 'ECO3402', 'Keuangan Publik', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('179', 'AEM3205', 'Fahmul Maqruq', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('180', 'ECO3303', 'Ekonomi Pembangunan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('181', 'ECO3102', 'Magang', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('182', 'ECO4602', 'Riset Metodologi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('183', 'MKJ-U07', 'Operational Research', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('184', 'MKK-U17', 'Metodologi Penelitian', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('185', 'ECO4304', 'Perekonomian Indonesia', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('186', 'MKJ-E14', 'Perbandingan Sistem Ekonomi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('187', 'ECO4302', 'Ekonomi Industri', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('188', 'ECO4305', 'Ekonomi Internasional', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('189', 'ECO4501', 'Islamic Capital Market', '3', '6', '3');
-INSERT INTO `mata_kuliah` VALUES ('190', 'ECO4502', 'Islamic Monetary System', '3', '6', '3');
-INSERT INTO `mata_kuliah` VALUES ('191', 'MKJ-E04', 'Ekonomi Mikro Lanjutan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('192', 'ECO4503', 'Corporate Finance', '3', '6', '3');
-INSERT INTO `mata_kuliah` VALUES ('193', 'ECO3406', 'Pembangunan Sdi', '3', '5', '3');
-INSERT INTO `mata_kuliah` VALUES ('194', 'MKJ-U17', 'Teori Pengambilan Keputusan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('195', 'ECO4101', 'Skripsi', '3', '0', '6');
-INSERT INTO `mata_kuliah` VALUES ('196', 'BIS3205', 'Perilaku Konsumen', '1', '4', '3');
-INSERT INTO `mata_kuliah` VALUES ('197', 'ACC4302', 'Auditing II', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('198', 'ECO4401', 'Masalah Dan Kebijakan Pembangunan', '3', '5', '3');
-INSERT INTO `mata_kuliah` VALUES ('199', 'ECO3106', 'Seminar Ekonomi Islam', '1', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('200', 'AEM1101', 'Dirasah Islamiah', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('201', 'AEM1201', 'Bahasa Inggris Ekonomi', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('202', 'AEM1202', 'Bahasa Indonesia', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('203', 'AEM1301', 'Matematika Ekonomi', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('204', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('205', 'AEM1401', 'Pengantar Aplikasi Komputer', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('206', 'ECO1205', 'Pengantar Ekonomi', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('207', 'TJA', 'TAHFIDZ JUZ', '1', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('208', 'AEM1102', 'Sejarah Peradaban Islam', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('209', 'AEM1203', 'Bahasa Arab Ekonomi', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('210', 'AEM1302', 'Metode Statistik', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('211', 'ACC1101', 'Pengantar Akuntansi I', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('212', 'AEM1103', 'Fiqh Muamalah I', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('213', 'AEM1104', 'Ayat & Hadits Ekonomi', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('214', 'AEM1105', 'Kewarganegaraan', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('215', 'AEM1101', 'Dirasah Islamiah', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('216', 'AEM1201', 'Bahasa Inggris Ekonomi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('217', 'AEM1202', 'Bahasa Indonesia', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('218', 'AEM1301', 'Matematika Ekonomi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('219', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('220', 'AEM1401', 'Teknologi Informasi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('221', 'ECO1205', 'Pengantar Ekonomi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('222', 'TJA', 'TAHFIDZ JUZ', '2', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('223', 'AEM1102', 'Sejarah Peradaban Islam', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('224', 'AEM1203', 'Bahasa Arab Ekonomi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('225', 'AEM1302', 'Metode Statistik', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('226', 'ACC1101', 'Pengantar Akuntansi I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('227', 'AEM1103', 'Fiqh Muamalah I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('228', 'AEM1104', 'Ayat & Hadits Ekonomi', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('229', 'AEM1105', 'Kewarganegaraan', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('230', 'AEM1101', 'Dirasah Islamiah', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('231', 'AEM1201', 'Bahasa Inggris Ekonomi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('232', 'AEM1202', 'Bahasa Indonesia', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('233', 'AEM1301', 'Matematika Ekonomi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('234', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('235', 'AEM1401', 'Teknologi Informasi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('236', 'ECO1205', 'Pengantar Ekonomi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('237', 'TJA', 'TAHFIDZ JUZ', '3', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('238', 'AEM1102', 'Sejarah Peradaban Islam', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('239', 'AEM1203', 'Bahasa Arab Ekonomi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('240', 'AEM1302', 'Metode Statistik', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('241', 'ACC1101', 'Pengantar Akuntansi I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('242', 'AEM1103', 'Fiqh Muamalah I', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('243', 'AEM1104', 'Ayat & Hadits Ekonomi', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('244', 'AEM1402', 'Kewarganegaraan', '3', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('245', 'ECO3406', 'Pembangunan Sdi', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('246', 'ECO3603', 'Ekonometrik I', '1', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('247', 'ECO4501', 'Islamic Capital Market', '1', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('248', 'ECO4503', 'Corporate Finance', '1', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('249', 'ACC2401', 'Perpajakan I', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('250', 'ECO2204', 'Teori Ekonomi MIkro II', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('251', 'ECO3104', 'Maqoshid Syariah', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('252', 'ECO3202', 'Teori Ekonomi Makro II', '1', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('253', 'ECO3401', 'Ekonomi Moneter', '1', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('254', 'ECO3106', 'Seminar Ekonomi Islam', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('255', 'ECO3406', 'Pembangunan Sdi', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('256', 'ECO3603', 'Ekonometrik I', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('257', 'ECO4501', 'Islamic Capital Market', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('258', 'ECO4503', 'Corporate Finance', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('259', 'MKT3502', 'Pemasaran Internasional', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('260', 'BIS3205', 'Perilaku Konsumen', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('261', 'FIN4304', 'Seminar Keuangan & Perbankan', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('262', 'FIN4305', 'Manajemen Resiko Keuangan', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('263', 'ECO2201', 'Teori Ekonomi Makro I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('264', 'ECO2203', 'Teori Ekonomi Mikro I', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('265', 'BIS4206', 'Studi Kelayakan Bisnis', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('266', 'ACC2401', 'Perpajakan I', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('267', 'MKT3502', 'Pemasaran Internasional', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('268', 'BIS3205', 'Perilaku Konsumen', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('269', 'FIN4304', 'Seminar Keuangan & Perbankan', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('270', 'FIN4305', 'Manajemen Resiko Keuangan', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('271', 'ACC3501', 'Akuntansi Lembaga Keuangan Syariah', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('272', 'ACC3601', 'Akuntansi Zakat', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('273', 'MGT3103', 'Manajemen Investasi', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('274', 'FIN3302', 'Manajemen Keuangan Lanjutan', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('275', 'BIS3202', 'Bisnis Internasional', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('276', 'MGT3301', 'Manajemen Pemasaran', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('277', 'IFI3401', 'Manajemen Perbankan Islam I', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('278', 'IFI3402', 'Manajemen Lks', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('279', 'BIS3203', 'Manajemen Operasi', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('280', 'BIS3204', 'Perilaku Organisasi', '3', '10', '3');
-INSERT INTO `mata_kuliah` VALUES ('281', 'ECO3401', 'Ekonomi Moneter', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('282', 'MGT3103', 'Manajemen Investasi', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('283', 'FIN3302', 'Manajemen Keuangan Lanjutan', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('284', 'BIS3202', 'Bisnis Internasional', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('285', 'MGT3301', 'Manajemen Pemasaran', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('286', 'IFI3401', 'Manajemen Perbankan Islam I', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('287', 'IFI3403', 'Manajemen Keuangan Islam', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('288', 'IFI3402', 'Manajemen Lks', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('289', 'BIS3203', 'Manajemen Operasi', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('290', 'BIS3204', 'Perilaku Organisasi', '2', '9', '3');
-INSERT INTO `mata_kuliah` VALUES ('291', 'ECO4301', 'Masalah dan Kebijakan Ekonomi', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('292', 'AEM1205', 'Ushul Fiqh 1', '1', '3', '3');
-INSERT INTO `mata_kuliah` VALUES ('293', 'DPL1101', 'Dirasah Islamiah', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('294', 'DPL1102', 'Bahasa Inggris Ekonomi', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('295', 'DPL1103', 'Bahasa Arab 1', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('296', 'DPL1201', 'Pengantar Bisnis dan Manajemen', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('297', 'DPL1113', 'Pengantar Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('298', 'DPL1301', 'Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('299', 'DPL1104', 'Kewarganegaraan', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('300', 'DPL1105', 'Matematika Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('301', 'DPL1106', 'Bahasa Arab 2', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('302', 'DPL1107', 'Fiqh Muamalah 1', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('303', 'DPL1108', 'Bahasa Indonesia', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('304', 'DPL1109', 'Fundamental Ekonomi Islam', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('305', 'DPL1302', 'Dasar Usaha Mikro Kecil dan Menengah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('306', 'DPL1110', 'Aplikasi Komputer', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('307', 'DPL1401', 'Pengantar Akuntansi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('308', 'DPL1111', 'Pengantar Statistika', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('309', 'DPL1112', 'Ayat dan Hadist Ekonomi', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('310', 'DPL2114', 'Kepemimpinan Islam', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('311', 'DPL2303', 'Manajemen Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('312', 'DPL2202', 'Manajemen Pemasaran', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('313', 'DPL2203', 'Sistem Informasi Manajemen', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('314', 'DPL2204', 'Kewirausahaan', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('315', 'DPL2115', 'Ushul Fiqh', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('316', 'DPL2402', 'Akuntansi Lembaga Keuangan Mikro Syariah 1', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('317', 'DPL2304', 'Aspek Hukum dalam Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('318', 'DPL2205', 'Penganggaran', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('319', 'DPL2116', 'Fiqh Muamalah 2', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('320', 'DPL2305', 'Dasar-Dasar Koperasi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('321', 'DPL2306', 'Manajemen Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('322', 'DPL2206', 'Manajemen Risiko', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('323', 'DPL2207', 'Manajemen Sumber Daya Insani', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('324', 'DPL2307', 'Produk Lembaga Keuangan Mikro Syariah', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('325', 'DPL2308', 'Lab mini BPRS', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('326', 'DPL3309', 'Analisa Laporan Keuangan Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('327', 'DPL3403', 'Audit Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('328', 'DPL3404', 'Praktikum Akuntansi Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('329', 'DPL3405', 'Akuntansi Lembaga Keuangan Mikro Syariah 2', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES('330', 'DPL3406', 'Perpajakan', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES('331', 'DPL3210', 'Perilaku Organisasi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES('332', 'DPL3118', 'Tugas Akhir', '4', '0', '4');
-INSERT INTO `mata_kuliah` VALUES('333', 'DPL3117', 'Magang', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES('334', 'MKK-600', 'Akuntansi Manajemen Strategik', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('335', 'MKD-505', 'Manajemen Risiko Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('336', 'MKD-504', 'Manajemen Investasi Islam', '5', '9', '3');
-INSERT INTO `mata_kuliah` VALUES('337', 'MKK-503', 'Teori Uang dan Perbankan', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('338', 'MKK-502', 'Kepemilikan dan Distribusi Harta dalam Islam', '5', '9', '3');
-INSERT INTO `mata_kuliah` VALUES('339', 'MKK-501', 'Pasar Keuangan Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('340', 'MKK-500', 'Manajemen Kekayaan Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('341', 'MKD-407', 'Restrukturisasi', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('342', 'MKD-406', 'Manajemen Stratejik Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('343', 'MKD-405', 'Derifatif Keuangan Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('344', 'MKD-404', 'Manajemen Lembaga Keuangan Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('345', 'MKK-403', 'Manajemen Operasi', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('346', 'MKK-402', 'Manajemen Sumber Daya Insani', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('347', 'MKK-401', 'Manajemen Pemasaran Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('348', 'MKK-400', 'Manajemen Keuangan Islam', '5', '8', '3');
-INSERT INTO `mata_kuliah` VALUES('349', 'MKD-307', 'Ushul Fiqh dan Maqashid Syariah', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('350', 'MKD-306', 'Filsafat dan Pemikiran Ekonomi Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('351', 'MKD-304', 'Metode Penelitian', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('352', 'MKD-301', 'Ekonomi Makro Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('353', 'MKD-305', 'Ekonometrika', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('354', 'MKD-303', 'Tata Kelola dan Etika Bisnis Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('355', 'MKD-302', 'Fiqh Muamalah', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('356', 'MKD-300', 'Ekonomi Mikro Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('357', 'MKK-601', 'Sistem Informasi Akuntansi', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('358', 'MKK-602', 'Praktik dan Isu Auditing', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('359', 'MKK-603', 'Akuntansi Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('360', 'MKD-604', 'Standar dan Pedoman Akuntansi Islam', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES('361', 'MKD-605', 'Analisis Laporan Keuangan', '5','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('362', 'MGT4105', 'Manajemen Strategi', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('363', 'AEM1101', 'Dirasah Islamiyah', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('364', 'AEM1201', 'Bahasa Inggris Ekonomi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('365', 'AEM1202', 'Bahasa Indonesia', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('366', 'AEM1301', 'Matematika ekonomi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('367', 'MGT1207', 'Pengantar Bisnis & Manajemen', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('368', 'AEM1401', 'Teknologi Informasi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('369', 'ECO1205', 'Pengantar Ekonomi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('370', 'AEM1102', 'Sejarah Peradaban Islam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('371', 'AEM1203', 'Bahasa Arab ekonomi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('372', 'AEM1302', 'Metode Statistik', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('373', 'ACC1101', 'Pengantar Akuntansi I', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('374', 'AEM1103', 'Fiqih Mualamah I', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('375', 'AEM1104', 'Ayat & Hadits ekonomi', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('376', 'AEM1401', 'Kewarganegaraan', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('377', 'AEM2105', 'Ushul Fiqih I', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('378', 'MUA0601', 'Hukum Bisnis Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('379', 'LAW2201', 'Ayat & Hadist Ekonomi Lanjutan', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('380', 'AEM2304', 'Applied Statistics', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('381', 'ACC2701', 'Etika Bisnis Islam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('382', 'AEM2108', 'Fiqih Mawarist', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('383', 'MUA0604', 'Qaidah Fiqhiyah I', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('384', 'AEM2107', 'Ushul Fiqh II', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('385', 'AEM2110', 'Fundamental Ekonomi Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('386', 'AEM2111', 'Fiqh Zakat', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('387', 'MUA0605', 'Fiqh Muamalat Kontemporer', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('388', 'MUA0606', 'Sosiologi Hukum Islam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('389', 'MGT2201', 'Manajemen Keuangan', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('390', 'MUA0607', 'Hukum Asuransi Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('391', 'MUA0608', 'Hukum Perbankan Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('392', 'MUA0609', 'Qaidah Fiqhiyah II', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('393', 'MUA0610', 'Hukum Zakat dan Wakaf di Indonesia', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('394', 'ENT3601', 'Enterpreneurship', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('395', 'MUA0611', 'Hukum Perdata', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('396', 'MUA0612', 'Hukum Investasi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('397', 'LAW3303', 'Pemikiran Modern Hukum Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('398', 'MUA0613', 'Hukum Pasar Modal Syariah', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('399', 'MUA0614', 'Seminar isu-isu Muamalat', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('400', 'LAW4311', 'Penyelesaian Sengketa Alternatif (ADR)', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('401', 'MUA0616', 'Hukum Hak Milik Intelektual dan Hak Cipta', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('402', 'LAW3115', 'Hukum Keluarga Islam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('403', 'MUA0617', 'Business Legal Contract', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('404', 'ECO3104', 'Maqoshid Syariah', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('405', 'MUA0618', 'Legal Drafting', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('406', 'LAW3306', 'Hukum Organisasi Perusahaan', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('407', 'MUA0619', 'Usul Fiqih III (ekonomi Islam)', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('408', 'MUA0620', 'Peradilan Islam dan Praktik Peradilan di Indonesia', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('409', 'MUA0621', 'Tindak Pidana Ekonomi', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('410', 'MUA0622', 'Fatwa Bisnis Syariah', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('411', 'MUA0623', 'Pemberdayaan Masyarakat', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('412', 'MUA0624', 'Filsafat Hukum Islam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('413', 'MUA0625', 'Metode Penelitian Hukum 3', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('414', 'MUA0626', 'Studi Naskah Hukum Bisnis Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('415', 'MUA0629', 'Hukum Surat-surat Berharga', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('416', 'MUA0630', 'Fiqh Peradilan (Qhadha)', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('417', 'MUA0632', 'Hukum Pajak', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('418', 'MUA0635', 'Tafsir ayat-ayat Ahkam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('419', 'MUA0637', 'Fiqh Daulah / Siasat Syariah', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('420', 'MUA0638', 'Hukum Perdata Internasional', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('421', 'MUA0639', 'Tarikh Tasyri', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('422', 'MUA0627', 'Magang', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('423', 'MUA0628', 'Skripsi', '6', '0', '6');
-INSERT INTO `mata_kuliah` VALUES ('425', 'DPL3209', 'Manajemen Perkantoran dan Administrasi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('426', 'DPL3311', 'Pricing', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('427', 'DPL3310', 'Pengarsipan', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('428', 'DPL3308', 'Praktek Operasi Lembaga Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('429', 'ACC2103', 'Akuntansi Keuangan I', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('430', 'ECO3104', 'Maqoshid Syariah', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('431', 'ACC3502', 'Pajak', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('432', 'ACC3811', 'Algorithm and Data Structure on Sharia Compliance', '2', '11', '5');
-INSERT INTO `mata_kuliah` VALUES ('433', 'ACC3815', 'Computer Network', '2', '11', '4');
-INSERT INTO `mata_kuliah` VALUES ('434', 'ACC3812', 'Database Introduction', '2', '11', '3');
-INSERT INTO `mata_kuliah` VALUES ('435', 'ACC3813', 'Management Information System', '2', '11', '3');
-INSERT INTO `mata_kuliah` VALUES ('436', 'ACC3814', 'Sharia Banking Information Technology', '2', '11', '4');
-INSERT INTO `mata_kuliah` VALUES ('437', 'ACC3816', 'Database Administration', '2', '11', '3');
-INSERT INTO `mata_kuliah` VALUES ('438', 'ACC3804', 'Decission Support System', '2', '11', '2');
-INSERT INTO `mata_kuliah` VALUES ('439', 'ACC3817', 'Object Oriented Programming', '2', '11', '3');
-INSERT INTO `mata_kuliah` VALUES ('440', 'ACC3505', 'Sharia Banking Funding Products and Services', '2', '11', '3');
-INSERT INTO `mata_kuliah` VALUES ('441', 'ACC3819', 'Software Engineering', '2', '11', '3');
-INSERT INTO `mata_kuliah` VALUES ('442', 'ACC4819', 'Advanced Programming', '2', '11', '0');
-INSERT INTO `mata_kuliah` VALUES ('443', 'ACC4820', 'Rapid Application Development with Sharia Complian', '2', '11', '0');
-INSERT INTO `mata_kuliah` VALUES ('444', 'ACC4506', 'Sharia Banking Financing Products', '2', '11', '0');
-INSERT INTO `mata_kuliah` VALUES ('445', 'ACC4822', 'Web Programming for Sharia Compliance', '2', '11', '0');
-INSERT INTO `mata_kuliah` VALUES ('446', 'ACC4826', 'Information System Project Management', '2', '11', '0');
-INSERT INTO `mata_kuliah` VALUES ('447', 'ACC4825', 'XML and Web Service', '2', '11', '0');
-INSERT INTO `mata_kuliah` VALUES ('448', 'LAW3210', 'Hadits Ahkam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('449', 'SDS3035', 'Student Dynamic Session', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('450', 'AEM2303', 'Bank & Lembaga Keuangan Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('451', 'ENT 2601', 'Kewirausahaan I', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('452', 'IFI 3305', 'Manajemen Asuransi Syariah', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('453', 'FIN 4306', 'Analisa Pembiayaan', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('454', 'ENT 3303', 'Entrepreneurship II', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('455', 'ECO2304', 'Ekonometrika Dasar', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('456', 'AEM 2111', 'Fiqh Muamalah III', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('457', 'ACC2304', 'Ekonometrika Dasar', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('458', 'SDS3003', 'Student Dynamic Session', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('459', 'ACC3602', 'Sistem Informasi Enterprise', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('460', 'ACC4207', 'Seminar Akuntansi Keuangan', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('461', 'ACC4605', 'Knowledge Management System', '2', '1', '3');
-INSERT INTO `mata_kuliah` VALUES ('462', 'ACC4606', 'Data Mining', '2', '1', '3');
-INSERT INTO `mata_kuliah` VALUES ('463', 'ACC4208', 'Best Practice In Accounting', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('464', 'ACC4405', 'Auditing Internal', '2', '2', '2');
-INSERT INTO `mata_kuliah` VALUES ('465', 'ACC3502', 'Pajak', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('466', 'SDS3031', 'Student Dynamic Session', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('467', 'FIN 4306', 'Analisa Pembiayaan', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('468', 'LAW3303', 'Pemikiran Modern Hukum Islam', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('469', 'SDS0005', 'Student Dynamics Session V', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('470', 'MKT-700', 'Tesis', '5', '0', '6');
-INSERT INTO `mata_kuliah` VALUES ('471', 'LAW3400', 'Islamic Financial Planner I', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('472', 'LAW3401', 'Islamic Financial Planner II', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('473', 'LAW4403', 'Pengantar Hukum Indonesia', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('474', 'LAW4404', 'Hukum Perikatan', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('475', 'LAW3404', 'Hukum Acara Perdata dan PA', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('476', 'ACC3801', 'Lab Akuntansi', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('477', 'ACC 3203', 'Cost & Management Accounting', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('478', 'DPL-O.03.02', 'UMKM dan Perkoperasian', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('479', 'DPL-O.03.03', 'Manajemen LKS', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('480', 'MKD-401', 'Keuangan dan Perbankan Islam', '5', '8', '3');
-INSERT INTO `mata_kuliah` VALUES ('481', 'ECO3105', 'Sejarah Pemikiran Ekonomi Islam', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('482', 'ECO3402', 'Keuangan Publik', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('483', 'FIN4104', 'Manajemen Sumber Daya Insani', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('484', 'ECO3402', 'Keuangan Publik', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('485', 'MUA0614', 'Seminar isu-isu Muamalat', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('486', 'MGT3101', 'Metode Penelitian Bisnis', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('487', 'MUA0603', 'Bank dan Keuangan Islam', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('488', 'ACC2201', 'Akuntansi Biaya', '0','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('489', 'ECO4703', 'Islamic Wealth Management', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('490', 'ECO4703', 'Islamic Wealth Management', '3', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('491', 'ACC2502', 'Accounting for Islamic Banks I', '2', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('492', 'ENT4603', 'Entrepreneurship III', '1', '4', '3');
-INSERT INTO `mata_kuliah` VALUES ('493', 'ACC4306', 'EDP Auditing', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('494', 'DPL-O.03.01', 'Pengantar Bisnis Manajemen', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('495', 'DPL-U.01.01', 'Matematika Ekonomi', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('496', 'ACC4402', 'Auditing II', '2', '2', '2');
-INSERT INTO `mata_kuliah` VALUES ('497', 'DPL-T.02.02', 'Dirasah Islamiyah', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('498', 'DPL-T.02.01', 'Pengantar Ekonomi', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('499', 'DPL-U.01.02', 'Bahasa Indonesia', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('500', 'DPL-O.03.13', 'Aplikasi Komputer', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('501', 'ACC4404', 'Audit Forensik', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('502', 'ACC4403', 'EDP Audit', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('503', 'ACC4108', 'Akuntansi Islam', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('504', 'MUA0612', 'Hukum Investasi', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('505', 'ECO4305', 'Islamic Wealth Management', '6', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('506', 'AEM2306', 'Applied Statistics', '1', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('507', 'DPL2117', 'Ushul Fiqh 2', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('508', 'DPL2208', 'Kewirausahaan 2', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('509', 'DPL2209', 'UMKM dan Perkoperasian', '4', '0', '3');
-INSERT INTO `mata_kuliah` VALUES ('510', 'SDS3004', 'Student Dynamic Session', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('511', 'SDS4005', 'Student Dynamic Session V', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('512', 'SDS3036', 'Student Dynamic Session', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('513', 'SDS0005', 'Student Dynamic Session V', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('514', 'SDS3032', 'Student Dynamic Session', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('515', 'SDS0005', 'Student Dynamic Session V', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('516', 'SDS3039', 'Student Dynamic Session', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('517', 'SDS3030', 'Student Dynamic Session', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('518', 'SDS20142', 'Student Dynamic Session', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('519', 'SDS20142', 'Student Dynamic Session', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('520', 'SDS20142', 'Student Dynamic Session', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('521', 'SDS20142', 'Student Dynamic Session', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('522', 'SDS20134', 'Student Dynamic Session', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('523', 'SDS20134', 'Student Dynamic Session', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('524', 'SDS20134', 'Student Dynamic Session', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('525', 'SDS20134', 'Student Dynamic Session', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('526', 'ACC2502', 'Accounting For Islamic Banks I', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('527', 'ACC2306', 'Basic Auditing For Islamic Financial', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('528', 'ACC2109', 'Financial Statment Analysis', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('529', 0, 'Tahfidz dan Takhsin', '5', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('530', 'ACC2204', 'Cost Management', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('531', 'ACC2601', 'Akuntansi Zakat', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('532', 'DPL1136', 'Bahasa Arab Ekonomi', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('533', 'ACC2504', 'Accounting for Islamic Banks II', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('534', 'SDS0001', 'Student Dynamic Session I', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('535', 'SDS0001', 'Student Dynamic Session I', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('536', 'SDS0002', 'Student Dynamic Session II', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('537', 'SDS0003', 'Student Dynamic Session III', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('538', 'SDS0004', 'Student Dynamic Session IV', '2', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('539', 'SDS0001', 'Student Dynamic Session I', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('540', 'SDS0002', 'Student Dynamic Session', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('541', 'SDS0003', 'Student Dynamic Session III', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('542', 'SDS0004', 'Student Dynamic Session IV', '1', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('543', 'SDS0002', 'Student Dynamic Session', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('544', 'SDS0003', 'Student Dynamic Session III', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('545', 'SDS0004', 'Student Dynamic Session IV', '3', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('546', 'SDS0001', 'Student Dynamic Session I', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('547', 'SDS0002', 'Student Dynamic Session', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('548', 'SDS0003', 'Student Dynamic Session III', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('549', 'SDS0004', 'Student Dynamic Session IV', '6', '0', '1');
-INSERT INTO `mata_kuliah` VALUES ('550', 'TLC01', 'Bahasa Inggris', '0', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('551', 'TLC03', 'Bahasa Inggris', '0', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('552', 'TLC02', 'Bahasa Arab', '0', '0', '0');
-INSERT INTO `mata_kuliah` VALUES ('553', 'TLC04', 'Bahasa Arab', '0','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('554', 'ACC2103', 'Akuntansi Keuangan I', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('555', 'BIS3205', 'Perilaku Konsumen', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('556', 'DPL-O 03.01', 'Pengantar Bisnis & Manajemen', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('557', 'DPL-U 01.01', 'Matematika Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('558', 'DPL-T 02.01', 'Pengantar Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('559', 'DPL-O 03.13', 'Aplikasi Komputer', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('560', 'DPL-T 02.02', 'Dirasah Islamiah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('561', 'DPL-U 01.02', 'Bahasa Indonesia', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('562', 'DPL-O 03.02', 'UMKM & Perkoperasian', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('563', 'DPL-O 03.15', 'Statistika', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('564', 'DPL-A 05.01', 'Pengantar Akuntansi  1', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('565', 'DPL-U 01.03', 'Bahasa Inggris Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('566', 'DPL-O 03.14', 'Bahasa Arab Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('567', 'DPL-T 02.03', 'Ushul Fiqih', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('568', 'DPL-T 02.04', 'Ayat Hadis Ekonomi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('569', 'DPL-O 03.03', 'Manajemen LKS', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('570', 'DPL-O 03.04', 'Manajemen Keuangan Mikro Syariah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('571', 'DPL-O 03.05', 'Aspek Hukum LKS', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('572', 'DPL-U 01.04', 'Pendidikan Kewarganegaraan', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('573', 'DPL-T 02.05', 'Fundamental Ekonomi Islam', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('574', 'DPL-A 05.02', 'Pengantar Akuntansi  2', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('575', 'DPL-T 02.06', 'Fiqh Muamalah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('576', 'DPL-P 04.01', 'Enterpreneurship', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('577', 'DPL-O 03.06', 'Manajemen Sumber Daya Insani', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('578', 'DPL-O 03.07', 'Perilaku Organisasi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('579', 'DPL-A 05.03', 'Akuntansi KMS 1', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('580', 'DPL-P 04.02', 'Manajemen Pemasaran Jasa', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('581', 'DPL-O 03.08', 'Praktek Operasi KMS Bank', '4', '0', '4');
-INSERT INTO `mata_kuliah` VALUES ('582', 'DPL-O 03.09', 'Analisa Pembiayaan', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('583', 'DPL-P 04.03', 'Perilaku Pelanggan', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('584', 'DPL-P 04.04', 'Pengembangan Produk', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('585', 'DPL-A 05.04', 'Akuntansi KMS 2', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('586', 'DPL-T 02.07', 'Pemberdayaan Ekonomi Masyarakat', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('587', 'DPL-O 03.10', 'Praktek Operasi KMS Non Bank', '4', '0', '4');
-INSERT INTO `mata_kuliah` VALUES ('588', 'DPL-P 04.05', 'Penanganan Pembiayaan Bermasalah', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('589', 'DPL-A 05.05', 'Perpajakan', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('590', 'DPL-P 04.06', 'Customer Relationship Management (CRM)', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('591', 'DPL-P 04.07', 'Metodologi Survey', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('592', 'DPLA 05.06', 'Praktik Software Akuntansi', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('593', 'DPL-O 03.11', 'Magang', '4', '0', '5');
-INSERT INTO `mata_kuliah` VALUES ('594', 'DPL-O 03.12', 'Tugas Akhir', '4','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('595', 'DPL-T 02.08', 'Prophetic Leadership & Management Rasulullah SAW', '4', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('596', 'ACC3805', 'Enterprise Resource Planning', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('597', 'AEM3306', 'Lab Mini Bank Islam', '6', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('598', 'AEM2106', 'Fiqh Muamalah II', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('599', 'MUA0604', 'Qaedah Fiqhiyah I', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('600', 'MUA0604', 'Qaedah Fiqhiyah I', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('601', 'MKT4504', 'Komunikasi Pemasaran', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('602', 'ECO3206', 'Sejarah Pemikiran Ekonomi', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('603', 'LAW3210', 'Hadits Ahkam', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('604', 'MUA0613', 'Hukum Pasar Modal Syariah', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('605', 'FIN4306', 'Analisa Pembiayaan', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('606', 'ECO3206', 'Sejarah Pemikiran Ekonomi', '2','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('607', 'ECO4302', 'Ekonomi Industri', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('608', 'MKT4504', 'Komunikasi Pemasaran', '6','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('609', 'ACC4605', 'Knowledge Management System', '1','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('610', 'MUA0622', 'Fatwa Bisnis Syariah', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('611', 'MKT4504', 'Komunikasi Pemasaran', '3','0', '3');
-INSERT INTO `mata_kuliah` VALUES ('612', 'ACC3806', 'Oracle I', '2', '1', '3');
-INSERT INTO `mata_kuliah` VALUES ('613', 'LAW3115', 'Hukum Keluarga Islam', '2', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('614', 'LAW3115', 'Hukum Keluarga Islam', '1', '0', '2');
-INSERT INTO `mata_kuliah` VALUES ('615', 'ACC3818', 'Information Security System', '2', '0', '2');
+INSERT INTO mata_kuliah (id, kode, nama, program_studi, konsentrasi, sks) VALUES 
+('1', '1', 'General Arabic', '0', '0', '0'),
+('2', '2', 'General English', '0', '0', '0'),
+('3', 'AEM1101', 'Dirasah Islamiah', '0', '0', '3'),
+('4', 'AEM1201', 'Bahasa Inggris Ekonomi', '0', '0', '3'),
+('5', 'MKK-U08', 'Statistik I', '0', '0', '2'),
+('6', 'AEM1202', 'Bahasa Indonesia', '0', '0', '2'),
+('7', 'AEM1301', 'Matematika Ekonomi', '0', '0', '3'),
+('8', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '0', '0', '3'),
+('9', 'AEM1401', 'Pengantar Aplikasi Komputer', '0', '0', '3'),
+('10', 'AEM1401', 'Pengantar Ekonomi', '0', '0', '3'),
+('11', 'MKK-U10', 'Pengantar Fiqh Muamalah', '0', '0', '2'),
+('12', 'MKK-U15', 'Pengantar Ekonomi Makro', '0', '0', '2'),
+('13', 'MKK-U16', 'Pengantar Komputer', '0', '0', '2'),
+('14', 'MKK-U14', 'Pengantar Ekonomi Mikro', '0', '0', '2'),
+('15', 'TJA', 'Tahfidz Juz', '0', '0', '0'),
+('16', 'AEM1102', 'Sejarah Peradaban & Kepemimpinan Islam', '0', '0', '2'),
+('17', 'AEM1203', 'Bahasa Arab Ekonomi', '0', '0', '3'),
+('18', 'MKK-U01', 'Bahasa Arab I', '0', '0', '2'),
+('19', 'AEM1302', 'Statistika Ekonomi & Bisnis', '0', '0', '3'),
+('20', 'ACC1101', 'Pengantar Akuntansi I', '0', '0', '3'),
+('21', 'AEM1103', 'Fiqh Muamalah I', '0', '0', '3'),
+('22', 'MKK-U07', 'Matematika Ekonomi II', '0', '0', '2'),
+('23', 'MKK-U09', 'Statistika II', '0', '0', '2'),
+('24', 'AEM1104', 'Ayat & Hadits Ekonomi', '0', '0', '2'),
+('25', 'MKK-U04', 'Bahasa Inggris II', '0', '0', '2'),
+('26', 'AEM1402', 'Kewarganegaraan', '0', '0', '2'),
+('27', 'MKK-U02', 'Bahasa Arab II', '0', '0', '2'),
+('28', 'AEM2105', 'Ushul Fiqh I', '1', '', '3'),
+('29', 'AEM2303', 'Bank & Lembaga Keuangan', '1', '', '3'),
+('30', 'AEM2304', 'Ekonometrik Dasar', '1', '', '3'),
+('31', 'AEM2106', 'Fiqh Muamalah II', '1', '', '3'),
+('32', 'ACC2102', 'Pengantar Akuntansi II', '1', '', '3'),
+('33', 'AEM2305', 'Aspek Hukum Dalam Ekonomi', '1', '', '2'),
+('34', 'AEM2204', 'Bahasa Inggris Akademik', '1', '', '1'),
+('35', 'AEM3301', 'Matematika Keuangan Dan Bisnis', '1', '', '3'),
+('36', 'ACC2701', 'Etika Bisnis Islam', '1', '', '2'),
+('37', 'ECO2203', 'Teori Ekonomi Mikro I', '1', '', '3'),
+('38', 'AEM2107', 'Ushul Fiqh II', '1', '', '3'),
+('39', 'AEM2108', 'Fiqh Mawarist', '1', '', '2'),
+('40', 'MKK-U18', 'Metode Kuantitatif', '1', '', '2'),
+('41', 'AEM2109', 'Studi Kepemimpinan Islam', '1', '', '2'),
+('42', 'AEM2110', 'Fundamental Ekonomi Islam', '1', '', '3'),
+('43', 'FIN2301', 'Manajemen Keuangan', '1', '', '3'),
+('44', 'ECO2201', 'Teori Ekonomi Makro I', '1', '', '3'),
+('45', 'ACC2201', 'Akuntansi Biaya', '1', '', '3'),
+('46', 'ENT3601', 'Kewirausahaan I', '1', '', '3'),
+('47', 'AEM3111', 'Fiqh Zakat', '1', '', '3'),
+('48', 'AEM3306', 'Lab Mini Bank Syariah', '1', '', '2'),
+('49', 'MGT3102', 'Sistem Informasi Manajemen', '1', '', '3'),
+('50', 'IFI3401', 'Manajemen Perbankan Islam I', '1', '', '3'),
+('51', 'MKJ-K02', 'Manajemen Perbankan Syariah I', '1', '', '3'),
+('52', 'BIS3203', 'Manajemen Operasi', '1', '', '3'),
+('53', 'BIS3202', 'Bisnis Internasional', '1', '', '3'),
+('54', 'ACC3501', 'Akuntansi Lembaga Keuangan Syariah', '1', '', '3'),
+('55', 'BIS3204', 'Perilaku Organisasi', '1', '', '3'),
+('56', 'IFI3402', 'Manajemen Lembaga Keuangan Syariah', '1', '', '3'),
+('57', 'MGT3301', 'Manajemen Pemasaran', '1', '', '3'),
+('58', 'MGT3101', 'Metode Penelitian Bisnis', '1', '', '3'),
+('59', 'MGT3103', 'Manajemen Investasi', '1', '', '3'),
+('60', 'FIN3302', 'Manajemen Keuangan Lanjutan', '1', '', '3'),
+('61', 'MGT4105', 'Manajemen Strategi', '1', '', '3'),
+('62', 'MKP-P-3706', 'Manajemen Pemasaran Bank Syariah', '1', '', '3'),
+('63', 'MKJ-U04', 'Manajemen Pemasaran Jasa', '1', '', '3'),
+('64', 'MKK-P12', 'Pemasaran Stratejik', '1', '', '3'),
+('65', 'MKP-P-3602', 'Manajemen Pemasaran Syariah', '1', '', '3'),
+('66', 'IFI3403', 'Manajemen Keuangan Islam', '1', '', '3'),
+('67', 'MGT3303', 'Pemasaran Internasional', '1', '', '3'),
+('68', 'MKP-K-3603', 'Manajemen Keuangan Syariah', '1', '', '3'),
+('69', 'ACC3202', 'Akuntansi Manajemen', '1', '', '3'),
+('70', 'MKJ-P08', 'Manajemen Produk Dan Harga', '1', '', '3'),
+('71', 'AEM3205', 'Fahmul Maqruq', '1', '', '1'),
+('72', 'MKJ-K03', 'Manajemen Asuransi Syariah', '1', '', '3'),
+('73', 'BIS3201', 'Magang', '1', '', '3'),
+('74', 'IFI4404', 'Manajemen Perbankan Islam II', '1', '', '3'),
+('75', 'MKT4503', 'Riset Pemasaran & Studi Kelayakan Bisnis', '1', '', '3'),
+('76', 'MKJ-K11', 'Manajemen Perbankan Syariah II', '1', '', '3'),
+('77', 'IFI4303', 'Manajemen Keuangan Internasional', '1', '', '3'),
+('78', 'MKT4504', 'Komunikasi Pemasaran', '1', '', '3'),
+('79', 'MKJ-K05', 'Keuangan Internasional', '1', '', '3'),
+('80', 'MGT4309', 'Manajemen Produk dan Harga', '1', '', '3'),
+('81', 'IFI4405', 'Pasar & Instr. Keuangan Islam', '1', '', '3'),
+('82', 'MGT4306', 'Strategi Kewirausahaan', '1', '', '3'),
+('83', 'MKJ-U06', 'Manajemen Internasional', '1', '', '3'),
+('84', 'FIN4305', 'Manajemen Resiko Keuangan', '1', '', '3'),
+('85', 'MKJ-K12', 'Manajemen Resiko Pembiayaan', '1', '', '3'),
+('86', 'BIS4206', 'Studi Kelayakan Bisnis', '1', '', '3'),
+('87', 'FIN4304', 'Seminar Keuangan & Perbankan', '1', '', '3'),
+('88', 'ENT4607', 'Seminar Pemasaran & Kewirausahaan', '1', '', '3'),
+('89', 'MKB-U16', 'Ekonomi Manajerial', '1', '', '3'),
+('90', 'MGT3401', 'Manajemen Pemasaran Islam', '1', '', '3'),
+('91', 'MKB-U13', 'Penganggaran Perusahaan', '1', '', '2'),
+('92', 'FIN4104', 'Manajemen Sumber Daya Insani', '1', '', '3'),
+('93', 'MKJ-P07', 'Manajemen Inovasi&Kreativitas', '1', '', '3'),
+('94', 'MKB-U13', 'Manjemen Penganggaran', '1', '', '3'),
+('95', 'MKB-U17', 'Teori Pengambilan Keputusan', '1', '', '3'),
+('96', 'MGT4107', 'Skripsi', '1', '', '6'),
+('97', 'AEM2105', 'Usul Fiqh I', '2', '0', '3'),
+('98', 'AEM2303', 'Bank & Lembaga Keuangan', '2', '0', '3'),
+('99', 'AEM2304', 'Applied Statistics', '2', '0', '3'),
+('100', 'AEM2106', 'Fiqh Muamalah II', '2', '0', '3'),
+('101', 'ACC2102', 'Pengantar Akuntansi II', '2', '0', '3'),
+('102', 'AEM2305', 'Aspek Hukum Dalam Ekonomi', '2', '0', '2'),
+('103', 'AEM2204', 'Bahasa Inggris Akademik', '2', '0', '1'),
+('104', 'ACC2701', 'Etika Bisnis Islam', '2', '0', '2'),
+('105', 'ACC2401', 'Perpajakan I', '2', '0', '3'),
+('106', 'AEM2107', 'Ushul Fiqh II', '2', '0', '3'),
+('107', 'AEM2108', 'Fiqh Mawarist', '2', '0', '2'),
+('108', 'AEM2109', 'Studi Kepemimpinan Islam', '2', '0', '2'),
+('109', 'AEM2110', 'Fundamental Ekonomi Islam', '2', '0', '3'),
+('110', 'FIN2301', 'Manajemen Keuangan', '2', '0', '3'),
+('111', 'ACC2103', 'Akuntansi Keuangan I', '2', '0', '3'),
+('112', 'ACC2201', 'Akuntansi Biaya', '2', '0', '3'),
+('113', 'ENT3601', 'Kewirausahaan I', '2', '0', '3'),
+('114', 'AEM3111', 'Fiqh Zakat', '2', '0', '3'),
+('115', 'AEM3306', 'Lab Mini Bank Islam', '2', '0', '2'),
+('116', 'ACC3403', 'Akuntansi Sektor Publik', '2', '0', '3'),
+('117', 'ACC3802', 'Laboratorium Akuntansi', '2', '1', '3'),
+('118', 'ACC3104', 'Akuntansi Keuangan II', '2', '0', '3'),
+('119', 'ACC3501', 'Akuntansi Lembaga Keuangan Syariah', '2', '0', '3'),
+('120', 'ACC3901', 'Sistem Informasi Akuntansi', '2', '0', '3'),
+('121', 'ENT3102', 'Sistem Informasi Manajemen', '2', '0', '3'),
+('122', 'ACC3601', 'Akuntansi Zakat', '2', '0', '3'),
+('123', 'ACC3105', 'Teori Akuntansi', '2', '0', '3'),
+('124', 'ACC3202', 'Akuntansi Manajemen', '2', '0', '3'),
+('125', 'ACC3106', 'Akuntansi Keuangan Lanjutan', '2', '0', '3'),
+('126', 'ACC3402', 'Perpajakan II', '2', '0', '3'),
+('127', 'ACC3301', 'Auditing I', '2', '0', '3'),
+('128', 'AEM3205', 'Fahmul Maqruq', '2', '0', '1'),
+('129', 'ACC3102', 'Magang', '2', '0', '3'),
+('130', 'MKK-A-3720', 'Lab Audit', '2', '0', '3'),
+('131', 'MKK-A-3710', 'Lab. Pemeriksaan Akuntansi II', '2', '0', '3'),
+('132', 'ACC4904', 'Network Based Accounting Information Systems I', '2', '0', '2'),
+('133', 'MKJ-A04', 'Akuntansi Keuangan Lanjutan II', '2', '0', '3'),
+('134', 'ACC4108', 'Akuntansi Islam', '2', '0', '3'),
+('135', 'ACC4302', 'Pemeriksaan Akuntansi II', '2', '0', '3'),
+('136', 'ACC4702', 'Metodologi Penelitian Akuntansi', '2', '0', '3'),
+('137', 'ACC4304', 'Audit Internal', '2', '2', '2'),
+('138', 'ACC4902', 'Applied Database Management Systems', '2', '1', '3'),
+('139', 'ACC4305', 'Audit Forensik', '2', '2', '3'),
+('140', 'ACC4903', 'Decision Support Systems', '2', '1', '2'),
+('141', 'ACC4306', 'EDP Auditing', '2', '2', '3'),
+('142', 'ACC4905', 'Network Based Accounting Information Systems II', '2', '1', '2'),
+('143', 'MKK-A-3721', 'Akuntansi Internasional', '2', '0', '3'),
+('144', 'ACC4101', 'Skripsi', '2', '0', '6'),
+('145', 'MKJ-E03', 'Matematika Ekonomi Lanjutan', '3', '0', '3'),
+('146', 'MKU-B-3317', 'Fiqh Muamalah', '3', '0', '3'),
+('147', 'AEM2105', 'Usul Fiqh I', '3', '0', '3'),
+('148', 'ENT3601', 'Kewirausahaan I', '3', '0', '3'),
+('149', 'AEM2304', 'Applied Statistics', '3', '0', '3'),
+('150', 'AEM2106', 'Fiqh Muamalah II', '3', '0', '3'),
+('151', 'ACC2102', 'Pengantar Akuntansi II', '3', '0', '3'),
+('152', 'AEM2305', 'Aspek Hukum Dalam Ekonomi', '3', '0', '2'),
+('153', 'AEM2108', 'Fiqh Mawarist', '3', '0', '2'),
+('154', 'ACC2701', 'Etika Bisnis Islam', '3', '0', '2'),
+('155', 'ECO2203', 'Teori Ekonomi MIkro I', '3', '0', '3'),
+('156', 'AEM2107', 'Usul Fiqh II', '3', '0', '3'),
+('157', 'AEM2204', 'Bahasa Inggris Akademik', '3', '0', '1'),
+('158', 'AEM2109', 'Studi Kepemimpinan Islam', '3', '0', '2'),
+('159', 'AEM2110', 'Fundamental Ekonomi Islam', '3', '0', '3'),
+('160', 'MGT2201', 'Manajemen Keuangan', '3', '0', '3'),
+('161', 'MKK-E-2401', 'Mustalahat Iqtishadiyah', '3', '0', '2'),
+('162', 'ECO2201', 'Teori Ekonomi Makro I', '3', '0', '3'),
+('163', 'ECO3202', 'Teori Ekonomi Makro II', '3', '0', '3'),
+('164', 'AEM2303', 'Bank & Lembaga Keuangan', '3', '0', '3'),
+('165', 'AEM3111', 'Fiqh Zakat', '3', '0', '3'),
+('166', 'AEM3306', 'Lab Mini Bank Islam', '3', '0', '2'),
+('167', 'ECO3401', 'Ekonomi Moneter', '3', '0', '3'),
+('168', 'ECO3603', 'Ekonometrik I', '3', '0', '3'),
+('169', 'ECO2204', 'Teori Ekonomi Mikro II', '3', '0', '3'),
+('170', 'ECO3103', 'Mikro Ekonomi Islam', '3', '0', '3'),
+('171', 'ECO3206', 'Sejarah Pemikiran Ekonomi', '3', '0', '3'),
+('172', 'ECO3104', 'Maqoshid Syariah', '3', '0', '3'),
+('173', 'ENT3102', 'Sistem Informasi Manajemen', '3', '0', '3'),
+('174', 'ECO3602', 'Ekonometrik II', '3', '0', '3'),
+('175', 'ECO3101', 'Makro Ekonomi Islam', '3', '0', '3'),
+('176', 'ECO3105', 'Sejarah Pemikiran Ekonomi Islam', '3', '0', '3'),
+('177', 'ECO3106', 'Seminar Ekonomi Islam', '3', '0', '3'),
+('178', 'ECO3402', 'Keuangan Publik', '3', '0', '3'),
+('179', 'AEM3205', 'Fahmul Maqruq', '3', '0', '1'),
+('180', 'ECO3303', 'Ekonomi Pembangunan', '3', '0', '3'),
+('181', 'ECO3102', 'Magang', '3', '0', '3'),
+('182', 'ECO4602', 'Riset Metodologi', '3', '0', '3'),
+('183', 'MKJ-U07', 'Operational Research', '3', '0', '3'),
+('184', 'MKK-U17', 'Metodologi Penelitian', '3', '0', '3'),
+('185', 'ECO4304', 'Perekonomian Indonesia', '3', '0', '3'),
+('186', 'MKJ-E14', 'Perbandingan Sistem Ekonomi', '3', '0', '3'),
+('187', 'ECO4302', 'Ekonomi Industri', '3', '0', '3'),
+('188', 'ECO4305', 'Ekonomi Internasional', '3', '0', '3'),
+('189', 'ECO4501', 'Islamic Capital Market', '3', '6', '3'),
+('190', 'ECO4502', 'Islamic Monetary System', '3', '6', '3'),
+('191', 'MKJ-E04', 'Ekonomi Mikro Lanjutan', '3', '0', '3'),
+('192', 'ECO4503', 'Corporate Finance', '3', '6', '3'),
+('193', 'ECO3406', 'Pembangunan Sdi', '3', '5', '3'),
+('194', 'MKJ-U17', 'Teori Pengambilan Keputusan', '3', '0', '3'),
+('195', 'ECO4101', 'Skripsi', '3', '0', '6'),
+('196', 'BIS3205', 'Perilaku Konsumen', '1', '4', '3'),
+('197', 'ACC4302', 'Auditing II', '2', '0', '3'),
+('198', 'ECO4401', 'Masalah Dan Kebijakan Pembangunan', '3', '5', '3'),
+('199', 'ECO3106', 'Seminar Ekonomi Islam', '1', '8', '3'),
+('200', 'AEM1101', 'Dirasah Islamiah', '1', '0', '2'),
+('201', 'AEM1201', 'Bahasa Inggris Ekonomi', '1', '0', '3'),
+('202', 'AEM1202', 'Bahasa Indonesia', '1', '0', '2'),
+('203', 'AEM1301', 'Matematika Ekonomi', '1', '0', '3'),
+('204', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '1', '0', '3'),
+('205', 'AEM1401', 'Pengantar Aplikasi Komputer', '1', '0', '3'),
+('206', 'ECO1205', 'Pengantar Ekonomi', '1', '0', '3'),
+('207', 'TJA', 'TAHFIDZ JUZ', '1', '0', '0'),
+('208', 'AEM1102', 'Sejarah Peradaban Islam', '1', '0', '2'),
+('209', 'AEM1203', 'Bahasa Arab Ekonomi', '1', '0', '3'),
+('210', 'AEM1302', 'Metode Statistik', '1', '0', '3'),
+('211', 'ACC1101', 'Pengantar Akuntansi I', '1', '0', '3'),
+('212', 'AEM1103', 'Fiqh Muamalah I', '1', '0', '3'),
+('213', 'AEM1104', 'Ayat & Hadits Ekonomi', '1', '0', '2'),
+('214', 'AEM1105', 'Kewarganegaraan', '1', '0', '2'),
+('215', 'AEM1101', 'Dirasah Islamiah', '2', '0', '2'),
+('216', 'AEM1201', 'Bahasa Inggris Ekonomi', '2', '0', '3'),
+('217', 'AEM1202', 'Bahasa Indonesia', '2', '0', '2'),
+('218', 'AEM1301', 'Matematika Ekonomi', '2', '0', '3'),
+('219', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '2', '0', '3'),
+('220', 'AEM1401', 'Teknologi Informasi', '2', '0', '3'),
+('221', 'ECO1205', 'Pengantar Ekonomi', '2', '0', '3'),
+('222', 'TJA', 'TAHFIDZ JUZ', '2', '0', '0'),
+('223', 'AEM1102', 'Sejarah Peradaban Islam', '2', '0', '2'),
+('224', 'AEM1203', 'Bahasa Arab Ekonomi', '2', '0', '3'),
+('225', 'AEM1302', 'Metode Statistik', '2', '0', '3'),
+('226', 'ACC1101', 'Pengantar Akuntansi I', '2', '0', '3'),
+('227', 'AEM1103', 'Fiqh Muamalah I', '2', '0', '3'),
+('228', 'AEM1104', 'Ayat & Hadits Ekonomi', '2', '0', '2'),
+('229', 'AEM1105', 'Kewarganegaraan', '2', '0', '2'),
+('230', 'AEM1101', 'Dirasah Islamiah', '3', '0', '2'),
+('231', 'AEM1201', 'Bahasa Inggris Ekonomi', '3', '0', '3'),
+('232', 'AEM1202', 'Bahasa Indonesia', '3', '0', '2'),
+('233', 'AEM1301', 'Matematika Ekonomi', '3', '0', '3'),
+('234', 'MGT1207', 'Pengantar Bisnis dan Manajemen', '3', '0', '3'),
+('235', 'AEM1401', 'Teknologi Informasi', '3', '0', '3'),
+('236', 'ECO1205', 'Pengantar Ekonomi', '3', '0', '3'),
+('237', 'TJA', 'TAHFIDZ JUZ', '3', '0', '0'),
+('238', 'AEM1102', 'Sejarah Peradaban Islam', '3', '0', '2'),
+('239', 'AEM1203', 'Bahasa Arab Ekonomi', '3', '0', '3'),
+('240', 'AEM1302', 'Metode Statistik', '3', '0', '3'),
+('241', 'ACC1101', 'Pengantar Akuntansi I', '3', '0', '3'),
+('242', 'AEM1103', 'Fiqh Muamalah I', '3', '0', '3'),
+('243', 'AEM1104', 'Ayat & Hadits Ekonomi', '3', '0', '2'),
+('244', 'AEM1402', 'Kewarganegaraan', '3', '0', '2'),
+('245', 'ECO3406', 'Pembangunan Sdi', '1', '0', '3'),
+('246', 'ECO3603', 'Ekonometrik I', '1', '8', '3'),
+('247', 'ECO4501', 'Islamic Capital Market', '1', '8', '3'),
+('248', 'ECO4503', 'Corporate Finance', '1', '8', '3'),
+('249', 'ACC2401', 'Perpajakan I', '1', '0', '3'),
+('250', 'ECO2204', 'Teori Ekonomi MIkro II', '1', '0', '3'),
+('251', 'ECO3104', 'Maqoshid Syariah', '1', '0', '3'),
+('252', 'ECO3202', 'Teori Ekonomi Makro II', '1', '8', '3'),
+('253', 'ECO3401', 'Ekonomi Moneter', '1', '8', '3'),
+('254', 'ECO3106', 'Seminar Ekonomi Islam', '2', '9', '3'),
+('255', 'ECO3406', 'Pembangunan Sdi', '2', '9', '3'),
+('256', 'ECO3603', 'Ekonometrik I', '2', '9', '3'),
+('257', 'ECO4501', 'Islamic Capital Market', '2', '9', '3'),
+('258', 'ECO4503', 'Corporate Finance', '2', '9', '3'),
+('259', 'MKT3502', 'Pemasaran Internasional', '2', '9', '3'),
+('260', 'BIS3205', 'Perilaku Konsumen', '2', '0', '3'),
+('261', 'FIN4304', 'Seminar Keuangan & Perbankan', '2', '9', '3'),
+('262', 'FIN4305', 'Manajemen Resiko Keuangan', '2', '9', '3'),
+('263', 'ECO2201', 'Teori Ekonomi Makro I', '2', '0', '3'),
+('264', 'ECO2203', 'Teori Ekonomi Mikro I', '2', '9', '3'),
+('265', 'BIS4206', 'Studi Kelayakan Bisnis', '2', '9', '3'),
+('266', 'ACC2401', 'Perpajakan I', '3', '10', '3'),
+('267', 'MKT3502', 'Pemasaran Internasional', '3', '10', '3'),
+('268', 'BIS3205', 'Perilaku Konsumen', '3', '0', '3'),
+('269', 'FIN4304', 'Seminar Keuangan & Perbankan', '3', '10', '3'),
+('270', 'FIN4305', 'Manajemen Resiko Keuangan', '3', '10', '3'),
+('271', 'ACC3501', 'Akuntansi Lembaga Keuangan Syariah', '3', '10', '3'),
+('272', 'ACC3601', 'Akuntansi Zakat', '3', '0', '3'),
+('273', 'MGT3103', 'Manajemen Investasi', '3', '0', '3'),
+('274', 'FIN3302', 'Manajemen Keuangan Lanjutan', '3', '0', '3'),
+('275', 'BIS3202', 'Bisnis Internasional', '3', '10', '3'),
+('276', 'MGT3301', 'Manajemen Pemasaran', '3', '10', '3'),
+('277', 'IFI3401', 'Manajemen Perbankan Islam I', '3', '10', '3'),
+('278', 'IFI3402', 'Manajemen Lks', '3', '10', '3'),
+('279', 'BIS3203', 'Manajemen Operasi', '3', '10', '3'),
+('280', 'BIS3204', 'Perilaku Organisasi', '3', '10', '3'),
+('281', 'ECO3401', 'Ekonomi Moneter', '2', '9', '3'),
+('282', 'MGT3103', 'Manajemen Investasi', '2', '0', '3'),
+('283', 'FIN3302', 'Manajemen Keuangan Lanjutan', '2','0', '3'),
+('284', 'BIS3202', 'Bisnis Internasional', '2','0', '3'),
+('285', 'MGT3301', 'Manajemen Pemasaran', '2','0', '3'),
+('286', 'IFI3401', 'Manajemen Perbankan Islam I', '2', '9', '3'),
+('287', 'IFI3403', 'Manajemen Keuangan Islam', '2', '9', '3'),
+('288', 'IFI3402', 'Manajemen Lks', '2', '9', '3'),
+('289', 'BIS3203', 'Manajemen Operasi', '2','0', '3'),
+('290', 'BIS3204', 'Perilaku Organisasi', '2', '9', '3'),
+('291', 'ECO4301', 'Masalah dan Kebijakan Ekonomi', '3','0', '3'),
+('292', 'AEM1205', 'Ushul Fiqh 1', '1', '3', '3'),
+('293', 'DPL1101', 'Dirasah Islamiah', '4', '0', '2'),
+('294', 'DPL1102', 'Bahasa Inggris Ekonomi', '4', '0', '2'),
+('295', 'DPL1103', 'Bahasa Arab 1', '4', '0', '2'),
+('296', 'DPL1201', 'Pengantar Bisnis dan Manajemen', '4','0', '3'),
+('297', 'DPL1113', 'Pengantar Ekonomi', '4','0', '3'),
+('298', 'DPL1301', 'Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('299', 'DPL1104', 'Kewarganegaraan', '4', '0', '2'),
+('300', 'DPL1105', 'Matematika Ekonomi', '4','0', '3'),
+('301', 'DPL1106', 'Bahasa Arab 2', '4', '0', '2'),
+('302', 'DPL1107', 'Fiqh Muamalah 1', '4', '0', '2'),
+('303', 'DPL1108', 'Bahasa Indonesia', '4', '0', '2'),
+('304', 'DPL1109', 'Fundamental Ekonomi Islam', '4','0', '3'),
+('305', 'DPL1302', 'Dasar Usaha Mikro Kecil dan Menengah', '4','0', '3'),
+('306', 'DPL1110', 'Aplikasi Komputer', '4','0', '3'),
+('307', 'DPL1401', 'Pengantar Akuntansi', '4','0', '3'),
+('308', 'DPL1111', 'Pengantar Statistika', '4','0', '3'),
+('309', 'DPL1112', 'Ayat dan Hadist Ekonomi', '4', '0', '2'),
+('310', 'DPL2114', 'Kepemimpinan Islam', '4', '0', '2'),
+('311', 'DPL2303', 'Manajemen Keuangan Mikro Syariah', '4','0', '3'),
+('312', 'DPL2202', 'Manajemen Pemasaran', '4','0', '3'),
+('313', 'DPL2203', 'Sistem Informasi Manajemen', '4','0', '3'),
+('314', 'DPL2204', 'Kewirausahaan', '4','0', '3'),
+('315', 'DPL2115', 'Ushul Fiqh', '4', '0', '2'),
+('316', 'DPL2402', 'Akuntansi Lembaga Keuangan Mikro Syariah 1', '4','0', '3'),
+('317', 'DPL2304', 'Aspek Hukum dalam Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('318', 'DPL2205', 'Penganggaran', '4','0', '3'),
+('319', 'DPL2116', 'Fiqh Muamalah 2', '4','0', '3'),
+('320', 'DPL2305', 'Dasar-Dasar Koperasi', '4','0', '3'),
+('321', 'DPL2306', 'Manajemen Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('322', 'DPL2206', 'Manajemen Risiko', '4','0', '3'),
+('323', 'DPL2207', 'Manajemen Sumber Daya Insani', '4','0', '3'),
+('324', 'DPL2307', 'Produk Lembaga Keuangan Mikro Syariah', '4', '0', '2'),
+('325', 'DPL2308', 'Lab mini BPRS', '4', '0', '2'),
+('326', 'DPL3309', 'Analisa Laporan Keuangan Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('327', 'DPL3403', 'Audit Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('328', 'DPL3404', 'Praktikum Akuntansi Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('329', 'DPL3405', 'Akuntansi Lembaga Keuangan Mikro Syariah 2', '4','0', '3'),
+('330', 'DPL3406', 'Perpajakan', '4','0', '3'),
+('331', 'DPL3210', 'Perilaku Organisasi', '4','0', '3'),
+('332', 'DPL3118', 'Tugas Akhir', '4', '0', '4'),
+('333', 'DPL3117', 'Magang', '4','0', '3'),
+('334', 'MKK-600', 'Akuntansi Manajemen Strategik', '5','0', '3'),
+('335', 'MKD-505', 'Manajemen Risiko Islam', '5','0', '3'),
+('336', 'MKD-504', 'Manajemen Investasi Islam', '5', '9', '3'),
+('337', 'MKK-503', 'Teori Uang dan Perbankan', '5','0', '3'),
+('338', 'MKK-502', 'Kepemilikan dan Distribusi Harta dalam Islam', '5', '9', '3'),
+('339', 'MKK-501', 'Pasar Keuangan Islam', '5','0', '3'),
+('340', 'MKK-500', 'Manajemen Kekayaan Islam', '5','0', '3'),
+('341', 'MKD-407', 'Restrukturisasi', '5','0', '3'),
+('342', 'MKD-406', 'Manajemen Stratejik Islam', '5','0', '3'),
+('343', 'MKD-405', 'Derifatif Keuangan Islam', '5','0', '3'),
+('344', 'MKD-404', 'Manajemen Lembaga Keuangan Islam', '5','0', '3'),
+('345', 'MKK-403', 'Manajemen Operasi', '5','0', '3'),
+('346', 'MKK-402', 'Manajemen Sumber Daya Insani', '5','0', '3'),
+('347', 'MKK-401', 'Manajemen Pemasaran Islam', '5','0', '3'),
+('348', 'MKK-400', 'Manajemen Keuangan Islam', '5', '8', '3'),
+('349', 'MKD-307', 'Ushul Fiqh dan Maqashid Syariah', '5','0', '3'),
+('350', 'MKD-306', 'Filsafat dan Pemikiran Ekonomi Islam', '5','0', '3'),
+('351', 'MKD-304', 'Metode Penelitian', '5','0', '3'),
+('352', 'MKD-301', 'Ekonomi Makro Islam', '5','0', '3'),
+('353', 'MKD-305', 'Ekonometrika', '5','0', '3'),
+('354', 'MKD-303', 'Tata Kelola dan Etika Bisnis Islam', '5','0', '3'),
+('355', 'MKD-302', 'Fiqh Muamalah', '5','0', '3'),
+('356', 'MKD-300', 'Ekonomi Mikro Islam', '5','0', '3'),
+('357', 'MKK-601', 'Sistem Informasi Akuntansi', '5','0', '3'),
+('358', 'MKK-602', 'Praktik dan Isu Auditing', '5','0', '3'),
+('359', 'MKK-603', 'Akuntansi Islam', '5','0', '3'),
+('360', 'MKD-604', 'Standar dan Pedoman Akuntansi Islam', '5','0', '3'),
+('361', 'MKD-605', 'Analisis Laporan Keuangan', '5','0', '3'),
+('362', 'MGT4105', 'Manajemen Strategi', '2','0', '3'),
+('363', 'AEM1101', 'Dirasah Islamiyah', '6','0', '3'),
+('364', 'AEM1201', 'Bahasa Inggris Ekonomi', '6','0', '3'),
+('365', 'AEM1202', 'Bahasa Indonesia', '6', '0', '2'),
+('366', 'AEM1301', 'Matematika ekonomi', '6','0', '3'),
+('367', 'MGT1207', 'Pengantar Bisnis & Manajemen', '6','0', '3'),
+('368', 'AEM1401', 'Teknologi Informasi', '6','0', '3'),
+('369', 'ECO1205', 'Pengantar Ekonomi', '6','0', '3'),
+('370', 'AEM1102', 'Sejarah Peradaban Islam', '6', '0', '2'),
+('371', 'AEM1203', 'Bahasa Arab ekonomi', '6','0', '3'),
+('372', 'AEM1302', 'Metode Statistik', '6','0', '3'),
+('373', 'ACC1101', 'Pengantar Akuntansi I', '6','0', '3'),
+('374', 'AEM1103', 'Fiqih Mualamah I', '6','0', '3'),
+('375', 'AEM1104', 'Ayat & Hadits ekonomi', '6', '0', '2'),
+('376', 'AEM1401', 'Kewarganegaraan', '6', '0', '2'),
+('377', 'AEM2105', 'Ushul Fiqih I', '6','0', '3'),
+('378', 'MUA0601', 'Hukum Bisnis Islam', '6','0', '3'),
+('379', 'LAW2201', 'Ayat & Hadist Ekonomi Lanjutan', '6', '0', '2'),
+('380', 'AEM2304', 'Applied Statistics', '6','0', '3'),
+('381', 'ACC2701', 'Etika Bisnis Islam', '6', '0', '2'),
+('382', 'AEM2108', 'Fiqih Mawarist', '6', '0', '2'),
+('383', 'MUA0604', 'Qaidah Fiqhiyah I', '6','0', '3'),
+('384', 'AEM2107', 'Ushul Fiqh II', '6','0', '3'),
+('385', 'AEM2110', 'Fundamental Ekonomi Islam', '6','0', '3'),
+('386', 'AEM2111', 'Fiqh Zakat', '6','0', '3'),
+('387', 'MUA0605', 'Fiqh Muamalat Kontemporer', '6','0', '3'),
+('388', 'MUA0606', 'Sosiologi Hukum Islam', '6', '0', '2'),
+('389', 'MGT2201', 'Manajemen Keuangan', '6','0', '3'),
+('390', 'MUA0607', 'Hukum Asuransi Islam', '6','0', '3'),
+('391', 'MUA0608', 'Hukum Perbankan Islam', '6','0', '3'),
+('392', 'MUA0609', 'Qaidah Fiqhiyah II', '6','0', '3'),
+('393', 'MUA0610', 'Hukum Zakat dan Wakaf di Indonesia', '6','0', '3'),
+('394', 'ENT3601', 'Enterpreneurship', '6','0', '3'),
+('395', 'MUA0611', 'Hukum Perdata', '6', '0', '2'),
+('396', 'MUA0612', 'Hukum Investasi', '6','0', '3'),
+('397', 'LAW3303', 'Pemikiran Modern Hukum Islam', '6','0', '3'),
+('398', 'MUA0613', 'Hukum Pasar Modal Syariah', '6','0', '3'),
+('399', 'MUA0614', 'Seminar isu-isu Muamalat', '6','0', '3'),
+('400', 'LAW4311', 'Penyelesaian Sengketa Alternatif (ADR)', '6','0', '3'),
+('401', 'MUA0616', 'Hukum Hak Milik Intelektual dan Hak Cipta', '6','0', '3'),
+('402', 'LAW3115', 'Hukum Keluarga Islam', '6', '0', '2'),
+('403', 'MUA0617', 'Business Legal Contract', '6','0', '3'),
+('404', 'ECO3104', 'Maqoshid Syariah', '6','0', '3'),
+('405', 'MUA0618', 'Legal Drafting', '6','0', '3'),
+('406', 'LAW3306', 'Hukum Organisasi Perusahaan', '6', '0', '2'),
+('407', 'MUA0619', 'Usul Fiqih III (ekonomi Islam)', '6','0', '3'),
+('408', 'MUA0620', 'Peradilan Islam dan Praktik Peradilan di Indonesia', '6','0', '3'),
+('409', 'MUA0621', 'Tindak Pidana Ekonomi', '6','0', '3'),
+('410', 'MUA0622', 'Fatwa Bisnis Syariah', '6','0', '3'),
+('411', 'MUA0623', 'Pemberdayaan Masyarakat', '6','0', '3'),
+('412', 'MUA0624', 'Filsafat Hukum Islam', '6', '0', '2'),
+('413', 'MUA0625', 'Metode Penelitian Hukum 3', '6','0', '3'),
+('414', 'MUA0626', 'Studi Naskah Hukum Bisnis Islam', '6','0', '3'),
+('415', 'MUA0629', 'Hukum Surat-surat Berharga', '6', '0', '2'),
+('416', 'MUA0630', 'Fiqh Peradilan (Qhadha)', '6','0', '3'),
+('417', 'MUA0632', 'Hukum Pajak', '6', '0', '2'),
+('418', 'MUA0635', 'Tafsir ayat-ayat Ahkam', '6','0', '3'),
+('419', 'MUA0637', 'Fiqh Daulah / Siasat Syariah', '6','0', '3'),
+('420', 'MUA0638', 'Hukum Perdata Internasional', '6', '0', '2'),
+('421', 'MUA0639', 'Tarikh Tasyri', '6','0', '3'),
+('422', 'MUA0627', 'Magang', '6','0', '3'),
+('423', 'MUA0628', 'Skripsi', '6', '0', '6'),
+('425', 'DPL3209', 'Manajemen Perkantoran dan Administrasi', '4','0', '3'),
+('426', 'DPL3311', 'Pricing', '4','0', '3'),
+('427', 'DPL3310', 'Pengarsipan', '4','0', '3'),
+('428', 'DPL3308', 'Praktek Operasi Lembaga Keuangan Mikro Syariah', '4','0', '3'),
+('429', 'ACC2103', 'Akuntansi Keuangan I', '1','0', '3'),
+('430', 'ECO3104', 'Maqoshid Syariah', '2','0', '3'),
+('431', 'ACC3502', 'Pajak', '2','0', '3'),
+('432', 'ACC3811', 'Algorithm and Data Structure on Sharia Compliance', '2', '11', '5'),
+('433', 'ACC3815', 'Computer Network', '2', '11', '4'),
+('434', 'ACC3812', 'Database Introduction', '2', '11', '3'),
+('435', 'ACC3813', 'Management Information System', '2', '11', '3'),
+('436', 'ACC3814', 'Sharia Banking Information Technology', '2', '11', '4'),
+('437', 'ACC3816', 'Database Administration', '2', '11', '3'),
+('438', 'ACC3804', 'Decission Support System', '2', '11', '2'),
+('439', 'ACC3817', 'Object Oriented Programming', '2', '11', '3'),
+('440', 'ACC3505', 'Sharia Banking Funding Products and Services', '2', '11', '3'),
+('441', 'ACC3819', 'Software Engineering', '2', '11', '3'),
+('442', 'ACC4819', 'Advanced Programming', '2', '11', '0'),
+('443', 'ACC4820', 'Rapid Application Development with Sharia Complian', '2', '11', '0'),
+('444', 'ACC4506', 'Sharia Banking Financing Products', '2', '11', '0'),
+('445', 'ACC4822', 'Web Programming for Sharia Compliance', '2', '11', '0'),
+('446', 'ACC4826', 'Information System Project Management', '2', '11', '0'),
+('447', 'ACC4825', 'XML and Web Service', '2', '11', '0'),
+('448', 'LAW3210', 'Hadits Ahkam', '6', '0', '2'),
+('449', 'SDS3035', 'Student Dynamic Session', '1', '0', '1'),
+('450', 'AEM2303', 'Bank & Lembaga Keuangan Islam', '6','0', '3'),
+('451', 'ENT 2601', 'Kewirausahaan I', '1','0', '3'),
+('452', 'IFI 3305', 'Manajemen Asuransi Syariah', '1', '0', '2'),
+('453', 'FIN 4306', 'Analisa Pembiayaan', '1','0', '3'),
+('454', 'ENT 3303', 'Entrepreneurship II', '1','0', '3'),
+('455', 'ECO2304', 'Ekonometrika Dasar', '3','0', '3'),
+('456', 'AEM 2111', 'Fiqh Muamalah III', '3','0', '3'),
+('457', 'ACC2304', 'Ekonometrika Dasar', '2','0', '3'),
+('458', 'SDS3003', 'Student Dynamic Session', '2', '0', '1'),
+('459', 'ACC3602', 'Sistem Informasi Enterprise', '2', '0', '2'),
+('460', 'ACC4207', 'Seminar Akuntansi Keuangan', '2','0', '3'),
+('461', 'ACC4605', 'Knowledge Management System', '2', '1', '3'),
+('462', 'ACC4606', 'Data Mining', '2', '1', '3'),
+('463', 'ACC4208', 'Best Practice In Accounting', '2', '0', '2'),
+('464', 'ACC4405', 'Auditing Internal', '2', '2', '2'),
+('465', 'ACC3502', 'Pajak', '1','0', '3'),
+('466', 'SDS3031', 'Student Dynamic Session', '3', '0', '1'),
+('467', 'FIN 4306', 'Analisa Pembiayaan', '2','0', '3'),
+('468', 'LAW3303', 'Pemikiran Modern Hukum Islam', '1','0', '3'),
+('469', 'SDS0005', 'Student Dynamics Session V', '6', '0', '1'),
+('470', 'MKT-700', 'Tesis', '5', '0', '6'),
+('471', 'LAW3400', 'Islamic Financial Planner I', '6','0', '3'),
+('472', 'LAW3401', 'Islamic Financial Planner II', '6','0', '3'),
+('473', 'LAW4403', 'Pengantar Hukum Indonesia', '6', '0', '2'),
+('474', 'LAW4404', 'Hukum Perikatan', '6','0', '3'),
+('475', 'LAW3404', 'Hukum Acara Perdata dan PA', '6','0', '3'),
+('476', 'ACC3801', 'Lab Akuntansi', '2', '0', '2'),
+('477', 'ACC 3203', 'Cost & Management Accounting', '1','0', '3'),
+('478', 'DPL-O.03.02', 'UMKM dan Perkoperasian', '4','0', '3'),
+('479', 'DPL-O.03.03', 'Manajemen LKS', '4','0', '3'),
+('480', 'MKD-401', 'Keuangan dan Perbankan Islam', '5', '8', '3'),
+('481', 'ECO3105', 'Sejarah Pemikiran Ekonomi Islam', '1','0', '3'),
+('482', 'ECO3402', 'Keuangan Publik', '1','0', '3'),
+('483', 'FIN4104', 'Manajemen Sumber Daya Insani', '3','0', '3'),
+('484', 'ECO3402', 'Keuangan Publik', '2','0', '3'),
+('485', 'MUA0614', 'Seminar isu-isu Muamalat', '1','0', '3'),
+('486', 'MGT3101', 'Metode Penelitian Bisnis', '3','0', '3'),
+('487', 'MUA0603', 'Bank dan Keuangan Islam', '6','0', '3'),
+('488', 'ACC2201', 'Akuntansi Biaya', '0','0', '3'),
+('489', 'ECO4703', 'Islamic Wealth Management', '1','0', '3'),
+('490', 'ECO4703', 'Islamic Wealth Management', '3', '0', '3'),
+('491', 'ACC2502', 'Accounting for Islamic Banks I', '2', '0', '3'),
+('492', 'ENT4603', 'Entrepreneurship III', '1', '4', '3'),
+('493', 'ACC4306', 'EDP Auditing', '1', '0', '3'),
+('494', 'DPL-O.03.01', 'Pengantar Bisnis Manajemen', '4', '0', '3'),
+('495', 'DPL-U.01.01', 'Matematika Ekonomi', '4', '0', '3'),
+('496', 'ACC4402', 'Auditing II', '2', '2', '2'),
+('497', 'DPL-T.02.02', 'Dirasah Islamiyah', '4', '0', '3'),
+('498', 'DPL-T.02.01', 'Pengantar Ekonomi', '4', '0', '3'),
+('499', 'DPL-U.01.02', 'Bahasa Indonesia', '4', '0', '2'),
+('500', 'DPL-O.03.13', 'Aplikasi Komputer', '4', '0', '3'),
+('501', 'ACC4404', 'Audit Forensik', '2', '0', '2'),
+('502', 'ACC4403', 'EDP Audit', '2', '0', '2'),
+('503', 'ACC4108', 'Akuntansi Islam', '1', '0', '3'),
+('504', 'MUA0612', 'Hukum Investasi', '1', '0', '3'),
+('505', 'ECO4305', 'Islamic Wealth Management', '6', '0', '3'),
+('506', 'AEM2306', 'Applied Statistics', '1', '0', '3'),
+('507', 'DPL2117', 'Ushul Fiqh 2', '4', '0', '2'),
+('508', 'DPL2208', 'Kewirausahaan 2', '4', '0', '3'),
+('509', 'DPL2209', 'UMKM dan Perkoperasian', '4', '0', '3'),
+('510', 'SDS3004', 'Student Dynamic Session', '2', '0', '1'),
+('511', 'SDS4005', 'Student Dynamic Session V', '2', '0', '1'),
+('512', 'SDS3036', 'Student Dynamic Session', '1', '0', '1'),
+('513', 'SDS0005', 'Student Dynamic Session V', '1', '0', '1'),
+('514', 'SDS3032', 'Student Dynamic Session', '3', '0', '1'),
+('515', 'SDS0005', 'Student Dynamic Session V', '3', '0', '1'),
+('516', 'SDS3039', 'Student Dynamic Session', '6', '0', '1'),
+('517', 'SDS3030', 'Student Dynamic Session', '6', '0', '1'),
+('518', 'SDS20142', 'Student Dynamic Session', '1', '0', '1'),
+('519', 'SDS20142', 'Student Dynamic Session', '2', '0', '1'),
+('520', 'SDS20142', 'Student Dynamic Session', '3', '0', '1'),
+('521', 'SDS20142', 'Student Dynamic Session', '6', '0', '1'),
+('522', 'SDS20134', 'Student Dynamic Session', '6', '0', '1'),
+('523', 'SDS20134', 'Student Dynamic Session', '1', '0', '1'),
+('524', 'SDS20134', 'Student Dynamic Session', '2', '0', '1'),
+('525', 'SDS20134', 'Student Dynamic Session', '3', '0', '1'),
+('526', 'ACC2502', 'Accounting For Islamic Banks I', '2','0', '3'),
+('527', 'ACC2306', 'Basic Auditing For Islamic Financial', '2','0', '3'),
+('528', 'ACC2109', 'Financial Statment Analysis', '2','0', '3'),
+('529', 0, 'Tahfidz dan Takhsin', '5', '0', '0'),
+('530', 'ACC2204', 'Cost Management', '2','0', '3'),
+('531', 'ACC2601', 'Akuntansi Zakat', '2','0', '3'),
+('532', 'DPL1136', 'Bahasa Arab Ekonomi', '6', '0', '2'),
+('533', 'ACC2504', 'Accounting for Islamic Banks II', '2','0', '3'),
+('534', 'SDS0001', 'Student Dynamic Session I', '3', '0', '1'),
+('535', 'SDS0001', 'Student Dynamic Session I', '2', '0', '1'),
+('536', 'SDS0002', 'Student Dynamic Session II', '2', '0', '1'),
+('537', 'SDS0003', 'Student Dynamic Session III', '2', '0', '1'),
+('538', 'SDS0004', 'Student Dynamic Session IV', '2', '0', '1'),
+('539', 'SDS0001', 'Student Dynamic Session I', '1', '0', '1'),
+('540', 'SDS0002', 'Student Dynamic Session', '1', '0', '1'),
+('541', 'SDS0003', 'Student Dynamic Session III', '1', '0', '1'),
+('542', 'SDS0004', 'Student Dynamic Session IV', '1', '0', '1'),
+('543', 'SDS0002', 'Student Dynamic Session', '3', '0', '1'),
+('544', 'SDS0003', 'Student Dynamic Session III', '3', '0', '1'),
+('545', 'SDS0004', 'Student Dynamic Session IV', '3', '0', '1'),
+('546', 'SDS0001', 'Student Dynamic Session I', '6', '0', '1'),
+('547', 'SDS0002', 'Student Dynamic Session', '6', '0', '1'),
+('548', 'SDS0003', 'Student Dynamic Session III', '6', '0', '1'),
+('549', 'SDS0004', 'Student Dynamic Session IV', '6', '0', '1'),
+('550', 'TLC01', 'Bahasa Inggris', '0', '0', '0'),
+('551', 'TLC03', 'Bahasa Inggris', '0', '0', '0'),
+('552', 'TLC02', 'Bahasa Arab', '0', '0', '0'),
+('553', 'TLC04', 'Bahasa Arab', '0','0', '3'),
+('554', 'ACC2103', 'Akuntansi Keuangan I', '6','0', '3'),
+('555', 'BIS3205', 'Perilaku Konsumen', '6','0', '3'),
+('556', 'DPL-O 03.01', 'Pengantar Bisnis & Manajemen', '4','0', '3'),
+('557', 'DPL-U 01.01', 'Matematika Ekonomi', '4','0', '3'),
+('558', 'DPL-T 02.01', 'Pengantar Ekonomi', '4','0', '3'),
+('559', 'DPL-O 03.13', 'Aplikasi Komputer', '4','0', '3'),
+('560', 'DPL-T 02.02', 'Dirasah Islamiah', '4','0', '3'),
+('561', 'DPL-U 01.02', 'Bahasa Indonesia', '4', '0', '2'),
+('562', 'DPL-O 03.02', 'UMKM & Perkoperasian', '4','0', '3'),
+('563', 'DPL-O 03.15', 'Statistika', '4','0', '3'),
+('564', 'DPL-A 05.01', 'Pengantar Akuntansi  1', '4','0', '3'),
+('565', 'DPL-U 01.03', 'Bahasa Inggris Ekonomi', '4','0', '3'),
+('566', 'DPL-O 03.14', 'Bahasa Arab Ekonomi', '4','0', '3'),
+('567', 'DPL-T 02.03', 'Ushul Fiqih', '4', '0', '2'),
+('568', 'DPL-T 02.04', 'Ayat Hadis Ekonomi', '4','0', '3'),
+('569', 'DPL-O 03.03', 'Manajemen LKS', '4','0', '3'),
+('570', 'DPL-O 03.04', 'Manajemen Keuangan Mikro Syariah', '4','0', '3'),
+('571', 'DPL-O 03.05', 'Aspek Hukum LKS', '4','0', '3'),
+('572', 'DPL-U 01.04', 'Pendidikan Kewarganegaraan', '4', '0', '2'),
+('573', 'DPL-T 02.05', 'Fundamental Ekonomi Islam', '4','0', '3'),
+('574', 'DPL-A 05.02', 'Pengantar Akuntansi  2', '4','0', '3'),
+('575', 'DPL-T 02.06', 'Fiqh Muamalah', '4','0', '3'),
+('576', 'DPL-P 04.01', 'Enterpreneurship', '4','0', '3'),
+('577', 'DPL-O 03.06', 'Manajemen Sumber Daya Insani', '4','0', '3'),
+('578', 'DPL-O 03.07', 'Perilaku Organisasi', '4','0', '3'),
+('579', 'DPL-A 05.03', 'Akuntansi KMS 1', '4','0', '3'),
+('580', 'DPL-P 04.02', 'Manajemen Pemasaran Jasa', '4','0', '3'),
+('581', 'DPL-O 03.08', 'Praktek Operasi KMS Bank', '4', '0', '4'),
+('582', 'DPL-O 03.09', 'Analisa Pembiayaan', '4','0', '3'),
+('583', 'DPL-P 04.03', 'Perilaku Pelanggan', '4','0', '3'),
+('584', 'DPL-P 04.04', 'Pengembangan Produk', '4','0', '3'),
+('585', 'DPL-A 05.04', 'Akuntansi KMS 2', '4','0', '3'),
+('586', 'DPL-T 02.07', 'Pemberdayaan Ekonomi Masyarakat', '4','0', '3'),
+('587', 'DPL-O 03.10', 'Praktek Operasi KMS Non Bank', '4', '0', '4'),
+('588', 'DPL-P 04.05', 'Penanganan Pembiayaan Bermasalah', '4','0', '3'),
+('589', 'DPL-A 05.05', 'Perpajakan', '4','0', '3'),
+('590', 'DPL-P 04.06', 'Customer Relationship Management (CRM)', '4','0', '3'),
+('591', 'DPL-P 04.07', 'Metodologi Survey', '4','0', '3'),
+('592', 'DPLA 05.06', 'Praktik Software Akuntansi', '4','0', '3'),
+('593', 'DPL-O 03.11', 'Magang', '4', '0', '5'),
+('594', 'DPL-O 03.12', 'Tugas Akhir', '4','0', '3'),
+('595', 'DPL-T 02.08', 'Prophetic Leadership & Management Rasulullah SAW', '4', '0', '2'),
+('596', 'ACC3805', 'Enterprise Resource Planning', '2', '0', '2'),
+('597', 'AEM3306', 'Lab Mini Bank Islam', '6', '0', '2'),
+('598', 'AEM2106', 'Fiqh Muamalah II', '6','0', '3'),
+('599', 'MUA0604', 'Qaedah Fiqhiyah I', '1','0', '3'),
+('600', 'MUA0604', 'Qaedah Fiqhiyah I', '2','0', '3'),
+('601', 'MKT4504', 'Komunikasi Pemasaran', '2','0', '3'),
+('602', 'ECO3206', 'Sejarah Pemikiran Ekonomi', '1','0', '3'),
+('603', 'LAW3210', 'Hadits Ahkam', '1','0', '3'),
+('604', 'MUA0613', 'Hukum Pasar Modal Syariah', '1','0', '3'),
+('605', 'FIN4306', 'Analisa Pembiayaan', '3','0', '3'),
+('606', 'ECO3206', 'Sejarah Pemikiran Ekonomi', '2','0', '3'),
+('607', 'ECO4302', 'Ekonomi Industri', '1','0', '3'),
+('608', 'MKT4504', 'Komunikasi Pemasaran', '6','0', '3'),
+('609', 'ACC4605', 'Knowledge Management System', '1','0', '3'),
+('610', 'MUA0622', 'Fatwa Bisnis Syariah', '1', '0', '2'),
+('611', 'MKT4504', 'Komunikasi Pemasaran', '3','0', '3'),
+('612', 'ACC3806', 'Oracle I', '2', '1', '3'),
+('613', 'LAW3115', 'Hukum Keluarga Islam', '2', '0', '2'),
+('614', 'LAW3115', 'Hukum Keluarga Islam', '1', '0', '2'),
+('615', 'ACC3818', 'Information Security System', '2', '0', '2');

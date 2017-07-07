@@ -5,16 +5,21 @@
  */
 package id.ac.tazkia.dosen.controller;
 
+import id.ac.tazkia.dosen.dao.DosenDao;
 import id.ac.tazkia.dosen.dao.JenisKegiatanDao;
 import id.ac.tazkia.dosen.dao.KategoriKegiatanDao;
 import id.ac.tazkia.dosen.dao.KegiatanDosenDao;
+import id.ac.tazkia.dosen.dao.UserDao;
 import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
+import id.ac.tazkia.dosen.entity.Dosen;
 import id.ac.tazkia.dosen.entity.KategoriKegiatan;
 import id.ac.tazkia.dosen.entity.KegiatanBelajarMengajar;
 import id.ac.tazkia.dosen.entity.KegiatanDosen;
+import id.ac.tazkia.dosen.entity.User;
 import id.ac.tazkia.dosen.service.ImageService;
 import java.io.File;
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -27,6 +32,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -60,10 +67,17 @@ public class KegiatanDosenController {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private DosenDao dosenDao;
+
+    @Autowired
+    private UserDao userDao;
+
     private final List<String> FILE_EXTENSION = Arrays.asList("png", "jpg", "jpeg");
 
     @RequestMapping("/{kegiatan}/list")
-    public String kegiatanList(@PathVariable String kegiatan, @PageableDefault(size = 10) Pageable pageable, ModelMap mm) {
+    public String kegiatanList(@PathVariable String kegiatan, @PageableDefault(size = 10) Pageable pageable,
+            ModelMap mm, Principal principal, Authentication authentication) {
         PageRequest page = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "periode");
 
         KategoriKegiatan kk = kategoriKegiatanDao.findOneByNamaIgnoreCase(kegiatan);
@@ -71,17 +85,27 @@ public class KegiatanDosenController {
             return "redirect:/";
         }
 
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL"))) {
+            mm.addAttribute("data", kegiatanDosenDao.findByKategoriKegiatan(kk, pageable));
+        } else {
+            Dosen dosen = dosenDao.findOneByEmail(principal.getName());
+            mm.addAttribute("data", kegiatanDosenDao.findByDosenAndKategoriKegiatan(dosen, kk, pageable));
+        }
+
         mm.addAttribute("kegiatan", kegiatan);
         mm.addAttribute("title", getTitle(kegiatan));
-        mm.addAttribute("data", kegiatanDosenDao.findByKategoriKegiatan(kk, pageable));
         return "kegiatan/list";
     }
 
     @GetMapping("/{kegiatan}/delete")
-    public String delete(@PathVariable String kegiatan, @RequestParam String id, ModelMap mm) {
+    public String delete(@PathVariable String kegiatan, @RequestParam String id,
+            ModelMap mm, Principal principal, Authentication authentication) {
         KegiatanDosen kd = new KegiatanDosen();
         if (id != null && !id.isEmpty()) {
             kd = kegiatanDosenDao.findOne(id);
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kd.getDosen().getId())) {
+                return "redirect:/kegiatan/" + kegiatan + "/list";
+            }
             kegiatanDosenDao.delete(kd);
         }
 
@@ -89,7 +113,8 @@ public class KegiatanDosenController {
     }
 
     @GetMapping("/{kegiatan}/form")
-    public String tampilkanForm(@PathVariable String kegiatan, @RequestParam(required = false) String id, ModelMap mm) {
+    public String tampilkanForm(@PathVariable String kegiatan, @RequestParam(required = false) String id,
+            ModelMap mm, Principal principal, Authentication authentication) {
         KategoriKegiatan kk = kategoriKegiatanDao.findOneByNamaIgnoreCase(kegiatan);
         if (kk == null) {
             return "redirect:/";
@@ -101,6 +126,9 @@ public class KegiatanDosenController {
         KegiatanDosen kd = new KegiatanDosen();
         if (id != null && !id.isEmpty()) {
             kd = kegiatanDosenDao.findOne(id);
+            if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kd.getDosen().getId())) {
+                return "redirect:/kegiatan/" + kegiatan + "/list";
+            }
         } else {
             BuktiKinerja buktiKinerja = new BuktiKinerja();
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
@@ -115,7 +143,16 @@ public class KegiatanDosenController {
 
     @PostMapping("/{kegiatan}/form")
     public String prosesForm(@PathVariable String kegiatan, @Valid KegiatanDosen kinerja, ModelMap mm, BindingResult errors,
-            MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request) {
+            MultipartFile filePenugasan, MultipartFile fileKinerja,
+            HttpServletRequest request, Principal principal, Authentication authentication) {
+
+        if (kinerja.getId() != null) {
+            LOGGER.info("ID [{}]", kinerja.getId());
+        }
+
+        if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("KEGIATAN_ALL")), kinerja.getDosen().getId())) {
+            return "redirect:/kegiatan/" + kegiatan + "/list";
+        }
 
         if (filePenugasan != null && !filePenugasan.isEmpty()) {
             if (filePenugasan.getSize() > 2097152) {
@@ -162,9 +199,6 @@ public class KegiatanDosenController {
             return "kegiatan/form";
         }
 
-        if (kinerja.getId() != null) {
-            LOGGER.info("ID [{}]", kinerja.getId());
-        }
         kegiatanDosenDao.save(kinerja);
         return "redirect:/kegiatan/" + kegiatan + "/list";
     }
@@ -189,4 +223,15 @@ public class KegiatanDosenController {
         }
         return title;
     }
+
+    private Boolean validasiDosen(String email, Boolean isAdmin, String idDosen) {
+        if (!isAdmin) {
+            Dosen dosen = dosenDao.findOneByEmail(email);
+            if (dosen == null || !dosen.getId().equalsIgnoreCase(idDosen)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
