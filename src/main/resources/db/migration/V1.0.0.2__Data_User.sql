@@ -2,6 +2,7 @@ INSERT INTO c_security_permission (id, permission_label, permission_value) VALUE
 ('KEGIATAN', 'Halaman Kegiatan', 'ROLE_KEGIATAN'),
 ('KEGIATAN_ALL', 'All Kegiatan Dosen', 'ROLE_KEGIATAN_ALL'),
 ('MASTER_INSTITUSI', 'Halaman Institusi', 'ROLE_MASTER_INSTITUSI'),
+('MASTER_DOSEN', 'Halaman Dosen', 'ROLE_MASTER_DOSEN'),
 ('MASTER_JENIS_SURAT', 'Halaman Jenis Surat', 'ROLE_MASTER_JENIS_SURAT'),
 ('MASTER_JABATAN', 'Halaman Jabatan', 'ROLE_MASTER_JABATAN'),
 ('MASTER_PROGRAM_STUDI', 'Halaman Program Studi', 'ROLE_MASTER_PROGRAM_STUDI'),
@@ -33,14 +34,13 @@ INSERT INTO c_security_role_permission (id_role, id_permission) VALUES
 ('ADMINISTRATOR', 'MASTER_KATEGORI_BUKTI_KEGIATAN'),
 ('ADMINISTRATOR', 'MASTER_JENIS_BUKTI_KEGIATAN'),
 ('ADMINISTRATOR', 'MASTER_POIN_KEGIATAN'),
+('ADMINISTRATOR', 'MASTER_DOSEN'),
 
 ('DOSEN', 'KEGIATAN'),
 ('DOSEN', 'USER_LOGGED_IN');
 
 INSERT INTO c_security_user (id, active, username, id_role) VALUES
-('admin', true,'admin', 'ADMINISTRATOR'),
-('1', true,'vaansaa@gmail.com', 'DOSEN');
+('admin', true,'admin', 'ADMINISTRATOR');
 
 INSERT INTO c_security_user_password (id_user, password) VALUES
-('admin', '$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6'),
-('1', '$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6');
+('admin', '$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6');
