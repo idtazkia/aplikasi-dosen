@@ -1,9 +1,7 @@
 package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.JabatanDao;
-import id.ac.tazkia.dosen.dao.JenisSuratDao;
 import id.ac.tazkia.dosen.entity.Jabatan;
-import id.ac.tazkia.dosen.entity.JenisSurat;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,20 +14,28 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 
 @Controller
 public class JabatanController {
 
 
-    private JabatanDao jabatanDao;
+    private final JabatanDao jabatanDao;
 
     public JabatanController(JabatanDao jabatanDao) {
         this.jabatanDao = jabatanDao;
     }
 
     @GetMapping("/jabatan/list")
-    public ModelMap jabatan(){
-        return new ModelMap().addAttribute("jabatan", jabatanDao.findAll());
+    public ModelMap jabatan(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, Model model){
+        if (value != null) {
+            model.addAttribute("key", value);
+            return new ModelMap().addAttribute("jabatan", jabatanDao.findByNamaContainingIgnoreCase(value, pageable));
+        } else {
+            return new ModelMap().addAttribute("jabatan", jabatanDao.findAll(pageable));
+        }
     }
 
 

@@ -1,7 +1,8 @@
 package id.ac.tazkia.dosen.dao;
 
-import id.ac.tazkia.dosen.entity.Dosen;
 import id.ac.tazkia.dosen.entity.Jabatan;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface JabatanDao extends PagingAndSortingRepository<Jabatan, String> {
-
+    public Page<Jabatan> findByNamaContainingIgnoreCase(String nama, Pageable pageable);
 }

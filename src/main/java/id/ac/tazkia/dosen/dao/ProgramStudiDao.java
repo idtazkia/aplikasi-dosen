@@ -1,6 +1,8 @@
 package id.ac.tazkia.dosen.dao;
 
 import id.ac.tazkia.dosen.entity.ProgramStudi;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -9,5 +11,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 
 public interface ProgramStudiDao extends PagingAndSortingRepository<ProgramStudi, String> {
-    
+    public Page<ProgramStudi> findByNamaContainingIgnoreCase(String nama, Pageable pageable);
 }

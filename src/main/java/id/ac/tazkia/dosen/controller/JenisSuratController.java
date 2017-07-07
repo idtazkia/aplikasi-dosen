@@ -3,7 +3,6 @@ package id.ac.tazkia.dosen.controller;
 /**
  * Created by yogi on 03/04/2017.
  */
-
 import id.ac.tazkia.dosen.dao.JenisSuratDao;
 import id.ac.tazkia.dosen.entity.JenisSurat;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,21 +15,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 
 @Controller
 public class JenisSuratController {
 
-    private JenisSuratDao jenisSuratDao;
+    private final JenisSuratDao jenisSuratDao;
 
     public JenisSuratController(JenisSuratDao jenisSuratDao) {
         this.jenisSuratDao = jenisSuratDao;
     }
 
     @GetMapping("/jenissurat/list")
-    public ModelMap jenissurat(){
-        return new ModelMap().addAttribute("jenisSurat", jenisSuratDao.findAll());
+    public ModelMap jenissurat(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, Model model) {
+        if (value != null) {
+            model.addAttribute("key", value);
+            return new ModelMap().addAttribute("jenisSurat", jenisSuratDao.findByNamaContainingIgnoreCase(value, pageable));
+        } else {
+            return new ModelMap().addAttribute("jenisSurat", jenisSuratDao.findAll(pageable));
+        }
     }
 
     @GetMapping("/jenissurat/form")
@@ -58,7 +64,7 @@ public class JenisSuratController {
 
     @PostMapping("/jenissurat/delete")
     public Object delete(@ModelAttribute JenisSurat jenisSurat, SessionStatus status) {
-        try{
+        try {
             jenisSuratDao.delete(jenisSurat);
         } catch (DataIntegrityViolationException exception) {
             status.setComplete();
@@ -66,7 +72,7 @@ public class JenisSuratController {
                     .addObject("entityId", jenisSurat.getNama())
                     .addObject("entityName", "Jenis Surat")
                     .addObject("errorCause", exception.getRootCause().getMessage())
-                    .addObject("backLink","/jenissurat/list");
+                    .addObject("backLink", "/jenissurat/list");
         }
         status.setComplete();
         return "redirect:/jenissurat/list";
