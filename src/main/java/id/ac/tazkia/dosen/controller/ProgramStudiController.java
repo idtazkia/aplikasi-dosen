@@ -4,12 +4,13 @@ import id.ac.tazkia.dosen.dao.ProgramStudiDao;
 import id.ac.tazkia.dosen.entity.ProgramStudi;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.http.ResponseEntity.status;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +23,13 @@ public class ProgramStudiController {
     private ProgramStudiDao psd;
 
     @RequestMapping("/programstudi/list")
-    public void daftarProgramStudi(Model m) {
-        m.addAttribute("daftarProgramStudi", psd.findAll());
+    public void daftarProgramStudi(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, Model model) {
+        if (value != null) {
+            model.addAttribute("key", value);
+            model.addAttribute("daftarProgramStudi", psd.findByNamaContainingIgnoreCase(value, pageable));
+        } else {
+            model.addAttribute("daftarProgramStudi", psd.findAll(pageable));
+        }
     }
 
     @RequestMapping("/programstudi/delete")
