@@ -17,9 +17,10 @@
                 <div class="box-header with-border">
                     <a class="box-title btn btn-primary" th:href="@{/kategorikegiatan/form}">Tambah Kategori</a>
                     <div class="box-tools">
-                        <form id="form" action="#" method="get" th:action="@{/kategorikegiatan/search}">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                        <form id="form" action="#" method="get" th:action="@{/kategorikegiatan/list}">
+                            <div class="input-group input-group-sm" style="width: 200px;">
+                                <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian berdasarkan nama" th:if="${key} == null"/>
+                                <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian berdasarkan nama" th:if="${key} != null" th:value="${key}"/>
                                 <input type="hidden" name="mode" id="mode"/>
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>

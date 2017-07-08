@@ -5,15 +5,16 @@
  */
 package id.ac.tazkia.dosen.dao;
 
-import id.ac.tazkia.dosen.entity.KategoriBuktiKegiatan;
+import id.ac.tazkia.dosen.entity.JenisBuktiKegiatan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
- * @author razi
+ * @author anggi
  */
-public interface KategoriBuktiKegiatanDao extends PagingAndSortingRepository<KategoriBuktiKegiatan, String>{
-    Page<KategoriBuktiKegiatan> findByNamaContainingIgnoreCase(String nama, Pageable p);
+public interface JenisBuktiKegiatanDao extends PagingAndSortingRepository<JenisBuktiKegiatan, String>{
+    Page<JenisBuktiKegiatan> findByNamaContainingIgnoreCase(String nama,Pageable pageable);
+    
 }

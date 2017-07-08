@@ -1,90 +1,79 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
-<head>
-    <title>Jenis Bukti Kegiatan</title>
-</head>
-<body>
-<div layout:fragment="breadcrumb">
-    <h1>Daftar Jenis Bukti Kegiatan</h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Daftar Jenis Bukti Kegiatan</li>
-    </ol>
-</div>
-<div layout:fragment="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <a class="box-title btn btn-primary" th:href="@{/jenisbuktikegiatan/form}">Tambah jenis bukti kegiatan</a>
-                    <div class="box-tools">
-                        <form id="form" action="#" method="get" th:action="@{/jenisbuktikegiatan/search}">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
-                                <input type="hidden" name="mode" id="mode"/>
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
+    <head>
+        <title>Jenis Bukti Kegiatan</title>
+        <script language="JavaScript">
+            $(document).ready(function () {
+                $(".remove-data").each(function () {
+                    $(this).click(function () {
+                        if (confirm('Data will be deleted?'))
+                            return true;
+                        return false;
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Daftar Jenis Bukti Kegiatan</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Daftar Jenis Bukti Kegiatan</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/jenisbuktikegiatan/form}">Tambah jenis bukti kegiatan</a>
+                            <div class="box-tools">
+                                <form id="form" action="#" method="get" th:action="@{/jenisbuktikegiatan/list}">
+                                    <div class="input-group input-group-sm" style="width: 200px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian berdasarkan nama" th:if="${key == null}"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian berdasarkan nama" th:if="${key != null}" th:value="${key}"/>
+                                        <input type="hidden" name="mode" id="mode"/>
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Keterangan</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr th:each="jenisBuktiKegiatan : ${data}">
+                                        <td th:text="${jenisBuktiKegiatan.nama}"></td>
+                                        <td th:text="${jenisBuktiKegiatan.keterangan}"></td>
+                                        <td>
+                                            <a href="#" class="btn btn-info" th:href="@{/jenisbuktikegiatan/form(id=${jenisBuktiKegiatan.id})}" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="#" class="btn btn-info" th:href="@{/jenisbuktikegiatan/delete(id=${jenisBuktiKegiatan.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(data.content)}">
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama</th>
-                            <th>Keterangan</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>SK Penugasan</td>
-                            <td>Keterangan</td>
-                            <td>
-                                <a href="#" class="btn btn-info" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="#" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Absensi Perkuliahan</td>
-                            <td>Keterangan</td>
-                            <td>
-                                <a href="#" class="btn btn-info" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="#" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Lembar Pengesahan</td>
-                            <td>Keterangan</td>
-                            <td>
-                                <a href="#" class="btn btn-info" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a href="#" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.box-body
-                <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
-                 -->
-<!--                <div th:if="${not #lists.isEmpty(data.content)}">
-                    <div class="text-center"> 
-                        <nav>
-                            <ul class="pagination" sd:pagination="full">
-                                 Pagination created by SpringDataDialect, this content is just for mockup 
-                                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>-->
             </div>
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>

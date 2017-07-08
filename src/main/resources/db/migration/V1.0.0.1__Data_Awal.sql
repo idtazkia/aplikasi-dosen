@@ -20,6 +20,11 @@ INSERT INTO kategori_bukti_kegiatan (id, nama, keterangan) VALUES
 ('2', 'Bukti Penelitian', 'Bukti Penelitian'),
 ('3', 'Bukti Pengabdian Masyarakat', 'Bukti Pengabdian Masyarakat');
 
+INSERT INTO jenis_bukti_kegiatan (id, nama, keterangan) VALUES 
+('1', 'SK Penugasan', 'SK Penugasan'),
+('2', 'Absensi Perkuliahan', 'Absensi Perkuliahan'),
+('3', 'Lembar Pengesahan', 'Lembar Pengesahan');
+
 INSERT INTO jenis_kegiatan (id, id_kategori_kegiatan, nama, bukti, batas_maksimal, angka_kredit) VALUES 
 ('1', '1', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Doktor / sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '200'),
 ('2', '1', 'Mengikuti pendidikan formal dan memperoleh gelar/sebutan/ijazah : Magister/sederajat', 'Bukti tugas/izin belajar dan pindai ijazah asli', '1/periode penilaian', '150'),

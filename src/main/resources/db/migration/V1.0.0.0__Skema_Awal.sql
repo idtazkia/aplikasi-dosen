@@ -78,6 +78,12 @@ CREATE TABLE kategori_bukti_kegiatan (
     nama character varying(255) NOT NULL
 );
 
+CREATE TABLE jenis_bukti_kegiatan (
+    id character varying(255) NOT NULL,
+    keterangan character varying(255),
+    nama character varying(255) NOT NULL
+);
+
 CREATE TABLE kategori_kegiatan (
     id character varying(255) NOT NULL,
     keterangan character varying(255),

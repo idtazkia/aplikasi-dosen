@@ -28,9 +28,10 @@
                         <div class="box-header with-border">
                             <a class="box-title btn btn-primary" th:href="@{/dosen/form}">Tambah data dosen</a>
                             <div class="box-tools">
-                                <form id="form" action="#" method="get" th:action="@{/dosen/search}">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                                <form id="form" action="#" method="get" th:action="@{/dosen/list}">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan nama" th:if="${key} == null"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan nama" th:if="${key} != null" th:value="${key}"/>
                                         <input type="hidden" name="mode" id="mode"/>
                                         <div class="input-group-btn">
                                             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>

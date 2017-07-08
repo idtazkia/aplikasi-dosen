@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 
 @Controller
 public class KategoriKegiatanController {
@@ -27,10 +29,16 @@ public class KategoriKegiatanController {
     }
 
     @GetMapping("/kategorikegiatan/list")
-    public ModelMap jabatan(Pageable pageable){
-        return new ModelMap().addAttribute("data", kategoriKegiatanDao.findAll(pageable));
+    public String jabatan(@PageableDefault(size = 10) Pageable pageable, Model model,
+            @RequestParam(name = "value", required = false) String value){
+        if(value != null){
+            model.addAttribute("key",value);
+            model.addAttribute("data",kategoriKegiatanDao.findByNamaContainingIgnoreCase(value, pageable));
+        }else{
+            model.addAttribute("data", kategoriKegiatanDao.findAll(pageable));
+        }
+        return "/kategorikegiatan/list";
     }
-
 
     @GetMapping("/kategorikegiatan/form")
     public ModelMap tampilkanForm(@RequestParam(value = "id", required = false) KategoriKegiatan kategorikegiatan) {

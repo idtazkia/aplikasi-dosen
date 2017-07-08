@@ -38,7 +38,6 @@ public class JabatanController {
         }
     }
 
-
     @GetMapping("/jabatan/form")
     public ModelMap tampilkanForm(@RequestParam(value = "id", required = false) Jabatan jabatan) {
         if (jabatan == null) {

@@ -27,22 +27,30 @@ public class DosenController {
 
     @Autowired
     private DosenDao dosenDao;
-    
+
     @Autowired
     private UserDao userDao;
-    
+
     @Autowired
     private RoleDao roleDao;
 
     @Autowired
     private ProvinsiDao provinsidao;
-    
+
     @Autowired
     private JabatanDao jabatanDao;
 
     @RequestMapping("/dosen/list")
-    public void daftarDosen(Model m, @PageableDefault(size = 10) Pageable pageable) {
-        m.addAttribute("data", dosenDao.findAll(pageable));
+    public String daftarDosen(Model m, @PageableDefault(size = 10) Pageable pageable,
+            @RequestParam(name = "value", required = false) String value) {
+
+        if (value != null) {
+            m.addAttribute("key", value);
+            m.addAttribute("data", dosenDao.findBynamaContainingIgnoreCase(value, pageable));
+        } else {
+            m.addAttribute("data", dosenDao.findAll(pageable));
+        }
+        return "/dosen/list";
     }
 
     @GetMapping(value = "/dosen/form")
@@ -50,7 +58,7 @@ public class DosenController {
         Dosen dosen = new Dosen();
         if (id != null && !id.isEmpty()) {
             dosen = dosenDao.findOne(id);
-        }else{
+        } else {
             dosen.setUser(new User());
         }
 
@@ -65,27 +73,27 @@ public class DosenController {
         if (errors.hasErrors()) {
             return "dosen/form";
         }
-        
+
         User user = new User();
-        if(dosen.getId() != null && !dosen.getId().isEmpty()){
+        if (dosen.getId() != null && !dosen.getId().isEmpty()) {
             user = userDao.findOne(dosen.getUser().getId());
             user.setUsername(dosen.getEmail());
-        }else{
+        } else {
             Role role = roleDao.findOne("DOSEN");
             UserPassword password = new UserPassword();
             password.setUser(user);
             password.setPassword("$2a$08$LS3sz9Ft014MNaIGCEyt4u6VflkslOW/xosyRbinIF9.uaVLpEhB6");
-            
+
             user.setActive(Boolean.TRUE);
             user.setRole(role);
             user.setUsername(dosen.getEmail());
             user.setUserPassword(password);
         }
         userDao.save(user);
-        
+
         dosen.setUser(user);
         dosenDao.save(dosen);
-        
+
         return "redirect:/dosen/list";
     }
 
