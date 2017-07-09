@@ -118,6 +118,11 @@ public class KegiatanBelajarMengajarController {
             MultipartFile filePenugasan, MultipartFile fileKinerja, HttpServletRequest request,
             Principal principal, Authentication authentication) {
 
+        if (errors.hasErrors()) {
+            LOGGER.error("masuk ke sini");
+            return "/kegiatan/kbm/form";
+        }
+
         if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kinerja.getDosen().getId())) {
             return "redirect:/kegiatan/kbm/list";
         }

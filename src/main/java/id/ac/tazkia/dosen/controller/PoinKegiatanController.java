@@ -86,28 +86,4 @@ public class PoinKegiatanController {
         status.setComplete();
         return "redirect:/poinkegiatan/list";
     }
-    
-//    @ModelAttribute("daftarJabatan")
-//    public Iterable<Jabatan> daftarJabatan() {
-//        return jabatanDao.findAll();
-//    }
-//
-//    @ModelAttribute("daftaJenisKegiatan")
-//    public Iterable<JenisKegiatan> daftarJenisKegiatan() {
-//        return jenisKegiatanDao.findAll();
-//    }
-//
-//    @GetMapping("/poinkegiatan/list")
-//    public void list(){
-//
-//    }
-//
-    
-//
-//
-//
-//    @PostMapping("/poinkegiatan/form")
-//    public String prosesForm(){
-//        return "redirect:/poinkegiatan/list";
-//    }
 }

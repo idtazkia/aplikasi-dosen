@@ -132,13 +132,13 @@
                 function formatRepo(repo) {
                     if (repo.loading)
                         return repo.text;
-                    var markup = repo.nama;
+                    var markup = repo.kode + " - " + repo.nama;
 
                     return markup;
                 }
 
                 function formatRepoSelection(repo) {
-                    return repo.nama || repo.text;
+                    return repo.text || repo.kode + " - " + repo.nama;
                 }
 
                 $(function () {
@@ -168,12 +168,12 @@
                         escapeMarkup: function (markup) {
                             return markup;
                         },
-                        minimumInputLength: 1,
+                        minimumInputLength: 0,
                         placeholder: 'pilih matakuliah',
                         theme: 'bootstrap',
                         templateResult: formatRepo,
                         templateSelection: formatRepoSelection
-                    });
+                });
                 });
                 /*]]>*/
             </script>

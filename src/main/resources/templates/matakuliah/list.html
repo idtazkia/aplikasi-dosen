@@ -46,7 +46,6 @@
                                         <th align="center">Kode</th>
                                         <th align="center">Nama</th>
                                         <th align="center">Program Studi</th>
-                                        <th align="center">Konsentrasi</th>
                                         <th align="center">SKS</th>
                                         <th>&nbsp;</th>
                                     </tr>
@@ -54,7 +53,6 @@
                                         <td th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
                                         <td th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
                                         <td th:text="${mataKuliah.programStudi.nama}">template jenis kegiatan 1</td>
-                                        <td th:text="${mataKuliah.konsentrasi}">1</td>
                                         <td th:text="${mataKuliah.sks}">1</td>
                                         <td>
                                             <a href="#" class="btn btn-info" th:href="@{/matakuliah/form(id=${mataKuliah.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>

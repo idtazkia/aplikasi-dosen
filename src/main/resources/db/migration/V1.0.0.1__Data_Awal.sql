@@ -148,8 +148,6 @@ INSERT INTO program_studi (id, nama, keterangan, jenjang) VALUES
 ('6', 'Hukum Ekonomi Syariah (Muamalat)', 'Islamic Economics Laws (Muamalat)', 'S1');
 
 INSERT INTO mata_kuliah (id, kode, nama, program_studi, konsentrasi, sks) VALUES 
-('1', '1', 'General Arabic', '0', '0', '0'),
-('2', '2', 'General English', '0', '0', '0'),
 ('3', 'AEM1101', 'Dirasah Islamiah', '0', '0', '3'),
 ('4', 'AEM1201', 'Bahasa Inggris Ekonomi', '0', '0', '3'),
 ('5', 'MKK-U08', 'Statistik I', '0', '0', '2'),
