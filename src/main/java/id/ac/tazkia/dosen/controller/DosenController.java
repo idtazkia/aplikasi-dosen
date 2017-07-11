@@ -50,7 +50,7 @@ public class DosenController {
         } else {
             m.addAttribute("data", dosenDao.findAll(pageable));
         }
-        return "/dosen/list";
+        return "dosen/list";
     }
 
     @GetMapping(value = "/dosen/form")
@@ -65,7 +65,7 @@ public class DosenController {
         model.addAttribute("listJabatan", jabatanDao.findAll());
         model.addAttribute("dosen", dosen);
         model.addAttribute("listProvinsi", provinsidao.findAll());
-        return "/dosen/form";
+        return "dosen/form";
     }
 
     @RequestMapping(value = "/dosen/form", method = RequestMethod.POST)
