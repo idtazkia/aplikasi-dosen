@@ -40,3 +40,4 @@ deploy-ke-production:
       - /-RC\./
   script:
   - scp target/*.jar root@bkd.tazkia.ac.id:/var/aplikasi-dosen/
+  - ssh root@bkd.tazkia.ac.id service aplikasi-dosen restart
