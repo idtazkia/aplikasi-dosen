@@ -25,6 +25,6 @@ ALTER TABLE t_kegiatan_belajar_mengajar
 
 -- data satuan hasil kegiatan
 
-INSERT INTO jenis_surat (id, kode, nama) VALUES 
+INSERT INTO satuan_hasil_kegiatan (id, kode, nama) VALUES 
 ('1', 'kls', 'Kelas'),
 ('2', 'mhs', 'Mahasiswa');
