@@ -58,9 +58,14 @@ public class KegiatanBelajarMengajar implements Serializable {
     @JoinColumn(name = "id_dosen")
     private Dosen dosen;
 
-    @Column(name = "jumlah_mahasiswa")
+    @Column(name = "volume")
     @NotNull
-    private int jumlahMahasiswa;
+    private int volume;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_satuan_hasil_kegiatan")
+    private SatuanHasilKegiatan satuanKegiatan;
 
     @Cascade(CascadeType.ALL)
     @OneToOne(orphanRemoval = true)
@@ -79,14 +84,6 @@ public class KegiatanBelajarMengajar implements Serializable {
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusRekomendasi status;
-
-    public Dosen getDosen() {
-        return dosen;
-    }
-
-    public void setDosen(Dosen dosen) {
-        this.dosen = dosen;
-    }
 
     public String getId() {
         return id;
@@ -128,12 +125,28 @@ public class KegiatanBelajarMengajar implements Serializable {
         this.mataKuliah = mataKuliah;
     }
 
-    public int getJumlahMahasiswa() {
-        return jumlahMahasiswa;
+    public Dosen getDosen() {
+        return dosen;
     }
 
-    public void setJumlahMahasiswa(int jumlahMahasiswa) {
-        this.jumlahMahasiswa = jumlahMahasiswa;
+    public void setDosen(Dosen dosen) {
+        this.dosen = dosen;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public SatuanHasilKegiatan getSatuanKegiatan() {
+        return satuanKegiatan;
+    }
+
+    public void setSatuanKegiatan(SatuanHasilKegiatan satuanKegiatan) {
+        this.satuanKegiatan = satuanKegiatan;
     }
 
     public BuktiPenugasan getBuktiPenugasan() {
@@ -160,4 +173,6 @@ public class KegiatanBelajarMengajar implements Serializable {
         this.status = status;
     }
 
+    
+    
 }

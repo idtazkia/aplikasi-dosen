@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import id.ac.tazkia.dosen.dao.KegiatanBelajarMengajarDao;
+import id.ac.tazkia.dosen.dao.SatuanHasilKegiatanDao;
 import id.ac.tazkia.dosen.entity.Dosen;
 import java.security.Principal;
 import org.springframework.security.core.Authentication;
@@ -52,6 +53,9 @@ public class KegiatanBelajarMengajarController {
 
     @Autowired
     private DosenDao dosenDao;
+    
+    @Autowired
+    private SatuanHasilKegiatanDao satuanHKDao;
 
     private final List<String> FILE_EXTENSION = Arrays.asList("png", "jpg", "jpeg");
 
@@ -93,7 +97,8 @@ public class KegiatanBelajarMengajarController {
             Dosen dosen = dosenDao.findOneByEmail(principal.getName());
             kegiatan.setDosen(dosen);
         }
-
+        
+        mm.addAttribute("listSatuan", satuanHKDao.findAll());
         mm.addAttribute("kinerja", kegiatan);
         return "kegiatan/kbm/form";
     }

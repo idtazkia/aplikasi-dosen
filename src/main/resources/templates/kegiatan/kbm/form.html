@@ -66,9 +66,19 @@
                                     <div class="help-block with-errors" th:if="${#fields.hasErrors('mataKuliah')}" th:errors="*{mataKuliah}"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Jumlah Mahasiswa</label>
-                                    <input type="number" th:field="*{jumlahMahasiswa}" class="form-control" placeholder="Jumlah Mahasiswa" required="true" />
-                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('jumlahMahasiswa')}" th:errors="*{jumlahMahasiswa}"></div>
+                                    <label>Volume</label>
+                                    <input type="number" th:field="*{volume}" class="form-control" placeholder="Volume" required="true" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <select th:field="*{satuanKegiatan}" class="form-control" required="true">
+                                        <option th:each="p : ${listSatuan}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Satuan
+                                        </option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('dosen')}" th:errors="*{dosen}"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Status Rekomendasi</label>
