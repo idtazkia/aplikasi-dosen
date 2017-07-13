@@ -9,6 +9,8 @@
             <form class="form-horizontal" action="#" th:action="@{/dosen/form}" th:object="${dosen}" 
                   method="post" enctype="multipart/form-data" >
                 <input type="hidden" th:field="*{id}" />
+                <span th:if="${dosen.kota != null}" id="kotaId" class="hidden" th:text="${dosen.kota.id}"></span>
+                <span th:if="${dosen.kecamatan != null}" id="kecamatanId" class="hidden" th:text="${dosen.kecamatan.id}"></span>
                 <input type="hidden" th:field="*{user}" />
 
                 <div class="form-group" >
@@ -102,7 +104,12 @@
                 <div class="form-group">
                     <label for="provinsi" class="col-sm-2 control-label">Provinsi</label>
                     <div class="col-sm-10">
-                        <select class="form-control selectpicker" th:field="*{provinsi}">
+                        <select class="form-control selectpicker" 
+                                th:field="*{provinsi}"
+                                data-live-search="true"
+                                data-size="5" 
+                                title="Pilih Provinsi..." 
+                                >
                             <option th:each="p : ${listProvinsi}"
                                     th:value="${p.id}"
                                     th:text="${p.nama}">Pilih Provinsi
@@ -117,7 +124,11 @@
                 <div class="form-group">
                     <label for="kota" class="col-sm-2 control-label">Kota</label>
                     <div class="col-sm-10">
-                        <select class="form-control selectpicker" th:field="*{kota}">
+                        <select class="form-control selectpicker" 
+                                th:field="*{kota}"
+                                data-live-search="true"
+                                data-size="5" 
+                                title="Pilih Kota..." >
                         </select>
                         <label class="control-label" th:errors="*{kota}">
                             Pesan error nanti di sini
@@ -128,7 +139,11 @@
                 <div class="form-group">
                     <label for="kecamatan" class="col-sm-2 control-label">Kecamatan</label>
                     <div class="col-sm-10">
-                        <select class="form-control selectpicker" th:field="*{kecamatan}">
+                        <select class="form-control selectpicker" 
+                                th:field="*{kecamatan}"
+                                data-live-search="true"
+                                data-size="5" 
+                                title="Pilih Kecamatan..." >
                         </select>
                         <label class="control-label" th:errors="*{kecamatan}">
                             Pesan error nanti di sini
@@ -160,10 +175,9 @@
                                     $("#kotaId").text(),
                                     $("#kecamatanId").text(),
                                     "formAddress");
-
                         }
                     }
-        //                    injectRegionValueOnEdit();
+                    injectRegionValueOnEdit();
 
                     $("#provinsi").on("change", function () {
                         var idProvinsi = $(this).val();
