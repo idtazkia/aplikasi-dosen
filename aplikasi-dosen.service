@@ -1,0 +1,12 @@
+[Unit]
+Description=Aplikasi Dosen
+After=syslog.target
+
+[Service]
+User=root
+ExecStart=/var/aplikasi-dosen/aplikasi-dosen.jar
+SuccessExitStatus=143
+Environment=SERVER_PORT=443
+
+[Install]
+WantedBy=multi-user.target
