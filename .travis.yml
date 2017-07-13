@@ -1,8 +1,20 @@
 language: java
+
 jdk:
 - oraclejdk8
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database appdosendb;' -U postgres
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+env:
+  - SPRING_DATASOURCE_USERNAME=postgres SPRING_DATASOURCE_PASSWORD=
+
 deploy:
   provider: heroku
   api_key:

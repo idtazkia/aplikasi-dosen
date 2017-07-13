@@ -1,0 +1,43 @@
+image: docker:latest
+
+services:
+  - docker:dind
+  - postgres:latest
+
+variables:
+  DOCKER_DRIVER: "overlay"
+  POSTGRES_USER: "appdosendb"
+  POSTGRES_PASSWORD: "123456"
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres/appdosendb
+
+cache:
+  paths:
+    - .m2/repository
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && ssh-keyscan -H "bkd.tazkia.ac.id" > ~/.ssh/known_hosts'
+
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script: mvn package -B -Dmaven.repo.local=.m2/repository
+  artifacts:
+    paths:
+      - target/*.jar
+
+deploy-ke-production:
+  image: debian:latest
+  stage: deploy
+  only:
+      - /-RC\./
+  script:
+  - scp target/*.jar root@bkd.tazkia.ac.id:/var/aplikasi-dosen/
+  - ssh root@bkd.tazkia.ac.id service aplikasi-dosen restart
