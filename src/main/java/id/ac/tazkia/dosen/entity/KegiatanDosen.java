@@ -63,6 +63,15 @@ public class KegiatanDosen  implements Serializable{
     private KategoriKegiatan kategoriKegiatan;
 
     private int sks;
+    
+    @Column(name = "volume")
+    @NotNull
+    private int volume;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_satuan_hasil_kegiatan")
+    private SatuanHasilKegiatan satuanKegiatan;
 
     @Cascade(CascadeType.ALL)
     @OneToOne(orphanRemoval = true)
@@ -166,4 +175,20 @@ public class KegiatanDosen  implements Serializable{
         this.status = status;
     }
 
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public SatuanHasilKegiatan getSatuanKegiatan() {
+        return satuanKegiatan;
+    }
+
+    public void setSatuanKegiatan(SatuanHasilKegiatan satuanKegiatan) {
+        this.satuanKegiatan = satuanKegiatan;
+    }
+    
 }

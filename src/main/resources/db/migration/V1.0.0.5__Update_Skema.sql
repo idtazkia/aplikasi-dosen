@@ -23,6 +23,16 @@ ALTER TABLE ONLY t_kegiatan_belajar_mengajar
 ALTER TABLE t_kegiatan_belajar_mengajar
     RENAME COLUMN jumlah_mahasiswa TO volume;
 
+-- ALTER TABLE KEGIATAN
+ALTER TABLE t_kegiatan_dosen
+    ADD COLUMN id_satuan_hasil_kegiatan character varying(255) NOT NULL;
+
+ALTER TABLE ONLY t_kegiatan_dosen
+    ADD CONSTRAINT fkg28frw8tqmvojc8cyjn1jvcjr FOREIGN KEY (id_satuan_hasil_kegiatan) REFERENCES satuan_hasil_kegiatan(id);
+
+ALTER TABLE t_kegiatan_dosen
+    ADD COLUMN volume integer;
+
 -- data satuan hasil kegiatan
 
 INSERT INTO satuan_hasil_kegiatan (id, kode, nama) VALUES 

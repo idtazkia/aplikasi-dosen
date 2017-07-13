@@ -9,6 +9,7 @@ import id.ac.tazkia.dosen.dao.DosenDao;
 import id.ac.tazkia.dosen.dao.JenisKegiatanDao;
 import id.ac.tazkia.dosen.dao.KategoriKegiatanDao;
 import id.ac.tazkia.dosen.dao.KegiatanDosenDao;
+import id.ac.tazkia.dosen.dao.SatuanHasilKegiatanDao;
 import id.ac.tazkia.dosen.dao.UserDao;
 import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
@@ -72,6 +73,9 @@ public class KegiatanDosenController {
 
     @Autowired
     private UserDao userDao;
+    
+    @Autowired
+    private SatuanHasilKegiatanDao satuanHKDao;
 
     private final List<String> FILE_EXTENSION = Arrays.asList("png", "jpg", "jpeg");
 
@@ -144,6 +148,7 @@ public class KegiatanDosenController {
             kd.setDosen(dosen);
         }
 
+        mm.addAttribute("listSatuan", satuanHKDao.findAll());
         mm.addAttribute("kinerja", kd);
         return "kegiatan/form";
     }

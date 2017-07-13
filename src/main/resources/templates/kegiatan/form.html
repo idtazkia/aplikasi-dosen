@@ -71,6 +71,21 @@
                                     <div class="help-block with-errors" th:if="${#fields.hasErrors('sks')}" th:errors="*{sks}"></div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Volume</label>
+                                    <input type="number" th:field="*{volume}" class="form-control" placeholder="Volume" required="true" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <select th:field="*{satuanKegiatan}" class="form-control" required="true">
+                                        <option th:each="p : ${listSatuan}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Satuan
+                                        </option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('satuanKegiatan')}" th:errors="*{satuanKegiatan}"></div>
+                                </div>
+                                <div class="form-group">
                                     <label>Status Rekomendasi</label>
                                     <select th:field="*{status}" class="form-control" required="true">
                                         <option value="SELESAI">SELESAI</option>
