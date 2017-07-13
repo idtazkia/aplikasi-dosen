@@ -38,6 +38,7 @@
                                         <th>Masa Penugasan</th>
                                         <th>Jenis Kegiatan</th>
                                         <th>SKS</th>
+                                        <th>Jumlah</th>
                                         <th>Bukti Penugasan</th>
                                         <th>Bukti Kinerja</th>
                                         <th>Status</th>
@@ -49,6 +50,7 @@
                                         <td th:text="'SEMESTER ' + ${k.semester} + ' ' + ${k.periode}">GANJIL 2015/2016</td>
                                         <td th:text="${k.jenisKegiatan.nama}">Mata Kuliah</td>
                                         <td th:text="${k.sks}">3</td>
+                                        <td th:text="${k.volume}+ ' ' + ${k.satuanKegiatan.nama}">40 Orang</td>
                                         <td>
                                             <a target="_blank" th:href="@{/image/penugasan/} + ${k.buktiPenugasan.url}" th:text="${k.buktiPenugasan.nama}"></a>
                                         </td>

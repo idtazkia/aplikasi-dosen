@@ -87,6 +87,8 @@ public class KegiatanBelajarMengajarController {
         } else {
             BuktiKinerja buktiKinerja = new BuktiKinerja();
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
+            buktiKinerja.setUrl("dummy");
+            buktiPenugasan.setUrl("dummy");
             kegiatan.setBuktiKinerja(buktiKinerja);
             kegiatan.setBuktiPenugasan(buktiPenugasan);
         }
