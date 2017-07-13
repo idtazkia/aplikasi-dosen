@@ -6,7 +6,7 @@ After=syslog.target
 User=root
 ExecStart=/var/aplikasi-dosen/aplikasi-dosen.jar
 SuccessExitStatus=143
-Environment=SERVER_PORT=443
+Environment=SPRING_PROFILES_ACTIVE=production
 
 [Install]
 WantedBy=multi-user.target
