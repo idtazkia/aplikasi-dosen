@@ -40,27 +40,29 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th align="center">Kode</th>
-                                        <th align="center">Nama</th>
-                                        <th align="center">Program Studi</th>
-                                        <th align="center">SKS</th>
-                                        <th>&nbsp;</th>
-                                    </tr>
-                                    <tr th:each="mataKuliah : ${mataKuliahList.content}">
-                                        <td th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
-                                        <td th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
-                                        <td th:text="${mataKuliah.programStudi.nama}">template jenis kegiatan 1</td>
-                                        <td th:text="${mataKuliah.sks}">1</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info" th:href="@{/matakuliah/form(id=${mataKuliah.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="#" class="btn btn-info" th:href="@{/matakuliah/delete(id=${mataKuliah.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th align="center">Kode</th>
+                                            <th align="center">Nama</th>
+                                            <th align="center">Program Studi</th>
+                                            <th align="center">SKS</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                        <tr th:each="mataKuliah : ${mataKuliahList.content}">
+                                            <td th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
+                                            <td th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
+                                            <td th:text="${mataKuliah.programStudi.nama}">template jenis kegiatan 1</td>
+                                            <td th:text="${mataKuliah.sks}">1</td>
+                                            <td>
+                                                <a href="#" class="btn btn-info" th:href="@{/matakuliah/form(id=${mataKuliah.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#" class="btn btn-info" th:href="@{/matakuliah/delete(id=${mataKuliah.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div th:if="${not #lists.isEmpty(mataKuliahList.content)}">
                             <br/>

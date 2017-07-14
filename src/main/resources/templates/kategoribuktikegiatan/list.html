@@ -30,23 +30,25 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Keterangan</th>
-                                        <th>&nbsp;</th>
-                                    </tr>
-                                    <tr th:each="kategori : ${data}">
-                                        <td th:text="${kategori.nama}">SK Penugasan</td>
-                                        <td th:text="${kategori.keterangan}">Keterangan</td>
-                                        <td>
-                                            <a href="#" th:href="@{/kategoribuktikegiatan/form(id=${kategori.id})}" class="btn btn-info" title="edit kategori bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="#" th:href="@{/kategoribuktikegiatan/delete(id=${kategori.id})}" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Keterangan</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                        <tr th:each="kategori : ${data}">
+                                            <td th:text="${kategori.nama}">SK Penugasan</td>
+                                            <td th:text="${kategori.keterangan}">Keterangan</td>
+                                            <td>
+                                                <a href="#" th:href="@{/kategoribuktikegiatan/form(id=${kategori.id})}" class="btn btn-info" title="edit kategori bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#" th:href="@{/kategoribuktikegiatan/delete(id=${kategori.id})}" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div th:if="${not #lists.isEmpty(data.content)}">
                             <div class="text-center"> 

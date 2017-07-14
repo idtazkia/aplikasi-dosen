@@ -42,43 +42,44 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>NIDN</th>
-                                        <th>Email</th>
-                                        <th>No Telp</th>
-                                        <th>Tempat Lahir</th>
-                                        <th>Tgl Lahir</th>
-                                        <th>Alamat</th>
-                                        <th>Provinsi</th>
-                                        <th>Kota</th>
-                                        <th>Kec</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr th:each="dosen : ${data.content}">
-                                        <td th:text="${dosen.nama}">Nama</td>
-                                        <td th:text="${dosen.nidn}">NIDN</td>
-                                        <td th:text="${dosen.email}">Email</td>
-                                        <td th:text="${dosen.noTelp}">No Handphone</td>
-                                        <td th:text="${dosen.tempatLahir}">Tempat Lahir</td>
-                                        <td th:text="${dosen.tglLahir}">Tanggal Lahir</td>
-                                        <td th:text="${dosen.alamat}">Alamat</td>
-                                        <td th:text="${dosen.provinsi.nama}">Provinsi</td>
-                                        <td th:text="${dosen.kota.nama}">Kota</td>
-                                        <td th:text="${dosen.kecamatan.nama}">Kecamatan</td>
-                                        <td>
-                                            <a href="form.html" th:href="@{/dosen/form?id={id}(id=${dosen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="delete.html" th:href="@{/dosen/delete?id={id}(id=${dosen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr th:if="${#lists.isEmpty(data.content)}">
-                                        <td colspan="13" class="text-center">Data dosen tidak ditemukan</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>NIDN</th>
+                                            <th>Email</th>
+                                            <th>No Telp</th>
+                                            <th>Tempat Lahir</th>
+                                            <th>Tgl Lahir</th>
+                                            <th>Alamat</th>
+                                            <th>Provinsi</th>
+                                            <th>Kota</th>
+                                            <th>Kec</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr th:each="dosen : ${data.content}">
+                                            <td th:text="${dosen.nama}">Nama</td>
+                                            <td th:text="${dosen.nidn}">NIDN</td>
+                                            <td th:text="${dosen.email}">Email</td>
+                                            <td th:text="${dosen.noTelp}">No Handphone</td>
+                                            <td th:text="${dosen.tempatLahir}">Tempat Lahir</td>
+                                            <td th:text="${dosen.tglLahir}">Tanggal Lahir</td>
+                                            <td th:text="${dosen.alamat}">Alamat</td>
+                                            <td th:text="${dosen.provinsi.nama}">Provinsi</td>
+                                            <td th:text="${dosen.kota.nama}">Kota</td>
+                                            <td th:text="${dosen.kecamatan.nama}">Kecamatan</td>
+                                            <td>
+                                                <a href="form.html" th:href="@{/dosen/form?id={id}(id=${dosen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="delete.html" th:href="@{/dosen/delete?id={id}(id=${dosen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(data.content)}">
+                                            <td colspan="13" class="text-center">Data dosen tidak ditemukan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="text-center" th:if="${not #lists.isEmpty(data.content)}">
                                 <ul class="pagination" sd:pagination="full"></ul>
                             </div>

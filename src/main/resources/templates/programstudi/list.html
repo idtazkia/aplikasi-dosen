@@ -30,25 +30,27 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Keterangan</th>
-                                        <th>Jenjang</th>
-                                        <th>&nbsp;</th>
-                                    </tr>
-                                    <tr th:each="ps :${daftarProgramStudi.content}">
-                                        <td th:text="${ps.nama}">Muhammad Fadlan</td>
-                                        <td th:text="${ps.keterangan}">Teknik Informatika</td>
-                                        <td th:text="${ps.jenjang}">S1</td>
-                                        <td>
-                                            <a href="form.html" class="btn btn-info" th:href="@{/programstudi/form(id=${ps.id})}" title="edit program studi"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="delete.html" class="btn btn-info" th:href="@{/programstudi/delete(id=${ps.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Keterangan</th>
+                                            <th>Jenjang</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                        <tr th:each="ps :${daftarProgramStudi.content}">
+                                            <td th:text="${ps.nama}">Muhammad Fadlan</td>
+                                            <td th:text="${ps.keterangan}">Teknik Informatika</td>
+                                            <td th:text="${ps.jenjang}">S1</td>
+                                            <td>
+                                                <a href="form.html" class="btn btn-info" th:href="@{/programstudi/form(id=${ps.id})}" title="edit program studi"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="delete.html" class="btn btn-info" th:href="@{/programstudi/delete(id=${ps.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div th:if="${not #lists.isEmpty(daftarProgramStudi.content)}">
                             <br/>
