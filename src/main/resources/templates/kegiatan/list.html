@@ -15,7 +15,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <a class="box-title btn btn-primary" th:href="@{/kegiatan/} + ${kegiatan} + '/form'">Input Kinerja Bidang Pendidikan</a>
+                            <a class="box-title btn btn-primary" th:href="@{/kegiatan/} + ${kegiatan} + '/form'">Input <span th:text="${title}">Kegiatan</span></a>
                             <div class="box-tools">
                                 <form id="form" action="#" method="get" th:action="@{/kinerja/} + ${kegiatan} + '/list'">
                                     <div class="input-group input-group-sm" style="width: 150px;">
