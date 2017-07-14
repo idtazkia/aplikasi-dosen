@@ -66,6 +66,16 @@
                                     <div class="help-block with-errors" th:if="${#fields.hasErrors('mataKuliah')}" th:errors="*{mataKuliah}"></div>
                                 </div>
                                 <div class="form-group">
+                                    <label>SKS Mata Kuliah</label>
+                                    <input id="sksMataKuliah" type="number" th:field="*{sksMataKuliah}" class="form-control" placeholder="Sks Mata Kuliah" required="true" readonly="readonly"/>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('sksMataKuliah')}" th:errors="*{sksMataKuliah}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SKS Kegiatan</label>
+                                    <input type="number" th:field="*{sksKegiatan}" class="form-control" placeholder="Sks Kegiatan" required="true" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('sksKegiatan')}" th:errors="*{sksKegiatan}"></div>
+                                </div>
+                                <div class="form-group">
                                     <label>Volume</label>
                                     <input type="number" th:field="*{volume}" class="form-control" placeholder="Volume" required="true" />
                                     <div class="help-block with-errors" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></div>
@@ -183,7 +193,10 @@
                         theme: 'bootstrap',
                         templateResult: formatRepo,
                         templateSelection: formatRepoSelection
-                });
+                    }).on('select2:select', function (evt) {
+//                        console.log("selected", evt.params.data.sks);
+                        $("#sksMataKuliah").val(evt.params.data.sks);
+                    });
                 });
                 /*]]>*/
             </script>

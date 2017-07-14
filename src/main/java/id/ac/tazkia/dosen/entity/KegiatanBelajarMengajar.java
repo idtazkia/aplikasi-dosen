@@ -84,6 +84,14 @@ public class KegiatanBelajarMengajar implements Serializable {
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusRekomendasi status;
+    
+    @Column(name = "sks_kegiatan")
+    @NotNull
+    private int sksKegiatan;
+    
+    @Column(name = "sks_mata_kuliah")
+    @NotNull
+    private int sksMataKuliah;
 
     public String getId() {
         return id;
@@ -173,6 +181,20 @@ public class KegiatanBelajarMengajar implements Serializable {
         this.status = status;
     }
 
-    
-    
+    public int getSksKegiatan() {
+        return sksKegiatan;
+    }
+
+    public void setSksKegiatan(int sksKegiatan) {
+        this.sksKegiatan = sksKegiatan;
+    }
+
+    public int getSksMataKuliah() {
+        return sksMataKuliah;
+    }
+
+    public void setSksMataKuliah(int sksMataKuliah) {
+        this.sksMataKuliah = sksMataKuliah;
+    }
+
 }

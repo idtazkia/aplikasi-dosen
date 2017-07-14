@@ -38,3 +38,15 @@ ALTER TABLE t_kegiatan_dosen
 INSERT INTO satuan_hasil_kegiatan (id, kode, nama) VALUES 
 ('1', 'kls', 'Kelas'),
 ('2', 'mhs', 'Mahasiswa');
+
+-- ALTER TABLE KBM, ADD COLUMN SKS AND SKS KEGIATAN
+ALTER TABLE t_kegiatan_belajar_mengajar
+    ADD COLUMN sks_mata_kuliah integer NOT NULL;
+
+ALTER TABLE t_kegiatan_belajar_mengajar
+    ADD COLUMN sks_kegiatan integer NOT NULL;
+
+-- FIXING kolom sks master mata kuliah
+
+ALTER TABLE mata_kuliah 
+    ALTER COLUMN sks TYPE integer USING (sks::integer);

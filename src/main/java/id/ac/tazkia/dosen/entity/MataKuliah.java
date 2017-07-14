@@ -47,8 +47,7 @@ public class MataKuliah implements Serializable {
     @Size(max = 255)
     private String konsentrasi;
 
-    @Size(max = 255)
-    private String sks;
+    private Integer sks;
 
     public String getId() {
         return id;
@@ -82,8 +81,6 @@ public class MataKuliah implements Serializable {
         this.programStudi = programStudi;
     }
 
-    
-
     public String getKonsentrasi() {
         return konsentrasi;
     }
@@ -92,11 +89,11 @@ public class MataKuliah implements Serializable {
         this.konsentrasi = konsentrasi;
     }
 
-    public String getSks() {
+    public Integer getSks() {
         return sks;
     }
 
-    public void setSks(String sks) {
+    public void setSks(Integer sks) {
         this.sks = sks;
     }
 }
