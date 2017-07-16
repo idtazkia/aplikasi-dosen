@@ -110,11 +110,11 @@ public class BuktiKinerjaKegiatanController {
     public String delete(@RequestParam String id, @RequestParam String idKeg, ModelMap mm,
             Principal principal, Authentication authentication) {
         if (id != null && !id.isEmpty()) {
-            // TODO : hapus file resource juga
-            
-            
             BuktiKinerjaKegiatan buktiKinerjaKegiatan = buktiKinerjaKegiatanDao.findOne(id);
             buktiKinerjaKegiatanDao.delete(buktiKinerjaKegiatan);
+            
+            // remove file from resource
+            imageService.removeFile("bukti-kinerja", buktiKinerjaKegiatan.getUrl());
         }
 
         return "redirect:/kegiatan/buktikinerja/form?idKeg=" + idKeg;

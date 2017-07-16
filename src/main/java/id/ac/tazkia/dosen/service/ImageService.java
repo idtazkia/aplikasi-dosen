@@ -77,6 +77,15 @@ public class ImageService {
         return new File(uploadDir).toPath().resolve(folder+"/"+filename);
     }
     
+    public void removeFile(String folder, String filename) {
+        Path pathOfFile = new File(uploadDir).toPath().resolve(folder+"/"+filename);
+        
+        File f = pathOfFile.toFile();
+        if(f.exists()) {
+            f.delete();
+        }
+    }
+    
     public Resource loadAsResource(String filename, String tpe) throws MalformedURLException {
         Path filePath = load(tpe, filename);
         Resource resource = new UrlResource(filePath.toUri());
