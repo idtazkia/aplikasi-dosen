@@ -1,6 +1,7 @@
 package id.ac.tazkia.dosen.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,13 +32,11 @@ public class BuktiPenugasanKegiatan implements Serializable {
     @NotEmpty
     private String nama;
 
-    @NotNull
-    @NotEmpty
+    @Column(nullable = false)
     private String url;
     
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_kegiatan_dosen")
+    @JoinColumn(name = "id_kegiatan_dosen", nullable = false)
     private KegiatanDosen kegiatanDosen;
 
     public String getId() {
