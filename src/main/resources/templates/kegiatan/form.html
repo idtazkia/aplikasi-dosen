@@ -84,6 +84,24 @@
                                     <div class="help-block with-errors" th:if="${#fields.hasErrors('satuanKegiatan')}" th:errors="*{satuanKegiatan}"></div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Tanggal Mulai</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="tanggalMulai" th:field="*{tanggalMulai}" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Selesai</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="tanggalSelesai" th:field="*{tanggalSelesai}" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label>Status Rekomendasi</label>
                                     <select th:field="*{status}" class="form-control" required="true">
                                         <option value="SELESAI">SELESAI</option>
@@ -154,6 +172,22 @@
                         theme: 'bootstrap',
                         templateResult: formatRepo,
                         templateSelection: formatRepoSelection
+                    });
+                    
+                    $('#tanggalMulai').datepicker({
+                        autoclose: true,
+                        clearBtn: true,
+                        format: "dd-mm-yyyy",
+                        todayHighlight: true
+                    }).on('changeDate', function (e) {
+                        $('#tanggalSelesai').datepicker('setDate', e.date);
+                    });
+
+                    $('#tanggalSelesai').datepicker({
+                        autoclose: true,
+                        clearBtn: true,
+                        format: "dd-mm-yyyy",
+                        todayHighlight: true
                     });
                 });
                 /*]]>*/

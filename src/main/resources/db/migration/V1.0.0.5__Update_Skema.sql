@@ -101,3 +101,17 @@ ALTER TABLE ONLY t_bukti_kinerja_kegiatan
 
 ALTER TABLE ONLY t_bukti_penugasan_kegiatan
     ADD CONSTRAINT fkbdj8iish0huo6hlfy5kwn044j FOREIGN KEY (id_kegiatan_dosen) REFERENCES t_kegiatan_dosen(id);
+
+-- TAMBAH tanggal mulai dan tanggal selesai pada kegiatan
+ALTER TABLE t_kegiatan_belajar_mengajar
+    ADD COLUMN tgl_mulai date;
+
+ALTER TABLE t_kegiatan_belajar_mengajar
+    ADD COLUMN tgl_selesai date;
+
+ALTER TABLE t_kegiatan_dosen
+    ADD COLUMN tgl_mulai date;
+
+ALTER TABLE t_kegiatan_dosen
+    ADD COLUMN tgl_selesai date;
+

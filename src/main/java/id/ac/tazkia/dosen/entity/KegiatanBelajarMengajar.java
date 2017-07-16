@@ -8,6 +8,7 @@ package id.ac.tazkia.dosen.entity;
 import id.ac.tazkia.dosen.constant.SemesterConstant;
 import id.ac.tazkia.dosen.constant.StatusRekomendasi;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,9 +18,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -74,6 +78,16 @@ public class KegiatanBelajarMengajar implements Serializable {
     @Column(name = "sks_mata_kuliah")
     @NotNull
     private int sksMataKuliah;
+    
+    @DateTimeFormat(pattern="dd-mm-yyyy")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "tgl_mulai")
+    private Date tanggalMulai;
+    
+    @DateTimeFormat(pattern="dd-mm-yyyy")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "tgl_selesai")
+    private Date tanggalSelesai;
 
     public String getId() {
         return id;
@@ -163,4 +177,20 @@ public class KegiatanBelajarMengajar implements Serializable {
         this.sksMataKuliah = sksMataKuliah;
     }
 
+    public Date getTanggalMulai() {
+        return tanggalMulai;
+    }
+
+    public void setTanggalMulai(Date tanggalMulai) {
+        this.tanggalMulai = tanggalMulai;
+    }
+
+    public Date getTanggalSelesai() {
+        return tanggalSelesai;
+    }
+
+    public void setTanggalSelesai(Date tanggalSelesai) {
+        this.tanggalSelesai = tanggalSelesai;
+    }
+    
 }
