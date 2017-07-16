@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.DosenDao;
@@ -15,9 +10,7 @@ import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
 import id.ac.tazkia.dosen.entity.Dosen;
 import id.ac.tazkia.dosen.entity.KategoriKegiatan;
-import id.ac.tazkia.dosen.entity.KegiatanBelajarMengajar;
 import id.ac.tazkia.dosen.entity.KegiatanDosen;
-import id.ac.tazkia.dosen.entity.User;
 import id.ac.tazkia.dosen.service.ImageService;
 import java.io.File;
 import java.security.Principal;
@@ -136,8 +129,8 @@ public class KegiatanDosenController {
         } else {
             BuktiKinerja buktiKinerja = new BuktiKinerja();
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
-            kd.setBuktiKinerja(buktiKinerja);
-            kd.setBuktiPenugasan(buktiPenugasan);
+//            kd.setBuktiKinerja(buktiKinerja);
+//            kd.setBuktiPenugasan(buktiPenugasan);
             kd.setKategoriKegiatan(kk);
         }
 
@@ -166,41 +159,41 @@ public class KegiatanDosenController {
             return "redirect:/kegiatan/" + kegiatan + "/list";
         }
 
-        if (filePenugasan != null && !filePenugasan.isEmpty()) {
-            if (filePenugasan.getSize() > 2097152) {
-                LOGGER.info("UPLOAD GAGAL");
-                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", filePenugasan.getSize());
-                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
+//        if (filePenugasan != null && !filePenugasan.isEmpty()) {
+//            if (filePenugasan.getSize() > 2097152) {
+//                LOGGER.info("UPLOAD GAGAL");
+//                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", filePenugasan.getSize());
+//                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
+//
+//                errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File terlalu besar, max 2mb"));
+//            } else {
+//                String extention = tokenizer(filePenugasan.getOriginalFilename(), ".");
+//                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
+//                    File file = imageService.moveFile(filePenugasan, "bukti-penugasan", extention);
+//                    kinerja.getBuktiPenugasan().setUrl(file.getName());
+//                } else {
+//                    errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File yang diperbolehkan png, jpg, jpeg"));
+//                }
+//            }
+//        }
 
-                errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File terlalu besar, max 2mb"));
-            } else {
-                String extention = tokenizer(filePenugasan.getOriginalFilename(), ".");
-                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-                    File file = imageService.moveFile(filePenugasan, "bukti-penugasan", extention);
-                    kinerja.getBuktiPenugasan().setUrl(file.getName());
-                } else {
-                    errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File yang diperbolehkan png, jpg, jpeg"));
-                }
-            }
-        }
-
-        if (fileKinerja != null && !fileKinerja.isEmpty()) {
-            if (fileKinerja.getSize() > 2097152) {
-                LOGGER.info("UPLOAD GAGAL");
-                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
-                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
-
-                errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File terlalu besar, max 2mb"));
-            } else {
-                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
-                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
-                    kinerja.getBuktiKinerja().setUrl(file.getName());
-                } else {
-                    errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File yang diperbolehkan png, jpg, jpeg"));
-                }
-            }
-        }
+//        if (fileKinerja != null && !fileKinerja.isEmpty()) {
+//            if (fileKinerja.getSize() > 2097152) {
+//                LOGGER.info("UPLOAD GAGAL");
+//                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
+//                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
+//
+//                errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File terlalu besar, max 2mb"));
+//            } else {
+//                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
+//                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
+//                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
+//                    kinerja.getBuktiKinerja().setUrl(file.getName());
+//                } else {
+//                    errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File yang diperbolehkan png, jpg, jpeg"));
+//                }
+//            }
+//        }
 
         if (errors.getErrorCount() > 0) {
             mm.addAttribute("kinerja", kinerja);

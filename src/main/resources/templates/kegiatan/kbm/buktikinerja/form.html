@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>List / Input Bukti Kinerja</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>List / Input Bukti Kinerja</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">List / Input Bukti Kinerja</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+
+            <!-- form start -->
+            <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>Nama Bukti Kinerja</label>
+                                    <input type="text" th:field="*{buktiKinerja.nama}" class="form-control" placeholder="Contoh :  Absensi Perkuliahan" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiKinerja.nama')}" th:errors="*{buktiKinerja.nama}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bukti Kinerja</label>
+                                    <input type="file" name="fileKinerja" />
+                                </div>
+                                <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiPenugasan.nama')}" th:errors="*{buktiPenugasan.nama}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

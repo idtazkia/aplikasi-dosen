@@ -15,10 +15,8 @@
             <!-- form start -->
             <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{buktiPenugasan.url}"/>
-                <input type="hidden" th:field="*{buktiKinerja.url}"/>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="box box-primary">
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -114,9 +112,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+<!--                    <div class="col-md-6">
                         <div class="box box-primary">
-                            <!-- /.box-header -->
+                             /.box-header 
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Nama Bukti Penugasan</label>
@@ -130,7 +128,7 @@
                             </div>
                         </div>
                         <div class="box box-primary">
-                            <!-- /.box-header -->
+                             /.box-header 
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Nama Bukti Kinerja</label>
@@ -144,7 +142,7 @@
                                 <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiPenugasan.nama')}" th:errors="*{buktiPenugasan.nama}"></div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </form>
             <script th:inline="javascript">

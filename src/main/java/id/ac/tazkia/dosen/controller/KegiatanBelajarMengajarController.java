@@ -89,8 +89,8 @@ public class KegiatanBelajarMengajarController {
             BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
             buktiKinerja.setUrl("dummy");
             buktiPenugasan.setUrl("dummy");
-            kegiatan.setBuktiKinerja(buktiKinerja);
-            kegiatan.setBuktiPenugasan(buktiPenugasan);
+//            kegiatan.setBuktiKinerja(buktiKinerja);
+//            kegiatan.setBuktiPenugasan(buktiPenugasan);
         }
 
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL"))) {
@@ -133,41 +133,24 @@ public class KegiatanBelajarMengajarController {
         if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kinerja.getDosen().getId())) {
             return "redirect:/kegiatan/kbm/list";
         }
-        if (filePenugasan != null && !filePenugasan.isEmpty()) {
-            if (filePenugasan.getSize() > 2097152) {
-                LOGGER.info("UPLOAD GAGAL");
-                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", filePenugasan.getSize());
-                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
 
-                errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File terlalu besar, max 2mb"));
-            } else {
-                String extention = tokenizer(filePenugasan.getOriginalFilename(), ".");
-                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-                    File file = imageService.moveFile(filePenugasan, "bukti-penugasan", extention);
-                    kinerja.getBuktiPenugasan().setUrl(file.getName());
-                } else {
-                    errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File yang diperbolehkan png, jpg, jpeg"));
-                }
-            }
-        }
-
-        if (fileKinerja != null && !fileKinerja.isEmpty()) {
-            if (fileKinerja.getSize() > 2097152) {
-                LOGGER.info("UPLOAD GAGAL");
-                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
-                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
-
-                errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File terlalu besar, max 2mb"));
-            } else {
-                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
-                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
-                    kinerja.getBuktiKinerja().setUrl(file.getName());
-                } else {
-                    errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File yang diperbolehkan png, jpg, jpeg"));
-                }
-            }
-        }
+//        if (fileKinerja != null && !fileKinerja.isEmpty()) {
+//            if (fileKinerja.getSize() > 2097152) {
+//                LOGGER.info("UPLOAD GAGAL");
+//                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
+//                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
+//
+//                errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File terlalu besar, max 2mb"));
+//            } else {
+//                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
+//                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
+//                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
+//                    kinerja.getBuktiKinerja().setUrl(file.getName());
+//                } else {
+//                    errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File yang diperbolehkan png, jpg, jpeg"));
+//                }
+//            }
+//        }
 
         if (errors.getErrorCount() > 0) {
             mm.addAttribute("kinerja", kinerja);
@@ -178,17 +161,9 @@ public class KegiatanBelajarMengajarController {
         if (kinerja.getId() != null) {
             LOGGER.info("ID [{}]", kinerja.getId());
         }
+        
         kegiatanPendidikanDao.save(kinerja);
         return "redirect:/kegiatan/kbm/list";
-    }
-
-    private String tokenizer(String originalFilename, String token) {
-        StringTokenizer tokenizer = new StringTokenizer(originalFilename, token);
-        String result = "";
-        while (tokenizer.hasMoreTokens()) {
-            result = tokenizer.nextToken();
-        }
-        return result;
     }
 
     private Boolean validasiDosen(String email, Boolean isAdmin, String idDosen) {

@@ -72,7 +72,7 @@ public class ImageService {
             return null;
         }
     }
-
+    
     private Path load(String folder, String filename){
         return new File(uploadDir).toPath().resolve(folder+"/"+filename);
     }
