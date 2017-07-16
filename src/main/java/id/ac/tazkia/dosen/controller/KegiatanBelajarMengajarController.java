@@ -134,24 +134,6 @@ public class KegiatanBelajarMengajarController {
             return "redirect:/kegiatan/kbm/list";
         }
 
-//        if (fileKinerja != null && !fileKinerja.isEmpty()) {
-//            if (fileKinerja.getSize() > 2097152) {
-//                LOGGER.info("UPLOAD GAGAL");
-//                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
-//                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
-//
-//                errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File terlalu besar, max 2mb"));
-//            } else {
-//                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
-//                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-//                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
-//                    kinerja.getBuktiKinerja().setUrl(file.getName());
-//                } else {
-//                    errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File yang diperbolehkan png, jpg, jpeg"));
-//                }
-//            }
-//        }
-
         if (errors.getErrorCount() > 0) {
             mm.addAttribute("kinerja", kinerja);
             mm.addAttribute("listMatkul", mataKuliahDao.findAll());

@@ -1,7 +1,9 @@
 package id.ac.tazkia.dosen.controller;
 
+import id.ac.tazkia.dosen.dao.BuktiKinerjaDao;
 import id.ac.tazkia.dosen.dao.BuktiPenugasanDao;
 import id.ac.tazkia.dosen.dao.KegiatanBelajarMengajarDao;
+import id.ac.tazkia.dosen.entity.BuktiKinerja;
 import id.ac.tazkia.dosen.entity.BuktiPenugasan;
 import id.ac.tazkia.dosen.entity.KegiatanBelajarMengajar;
 import id.ac.tazkia.dosen.service.ImageService;
@@ -33,13 +35,13 @@ import org.springframework.web.multipart.MultipartFile;
  * @author jimmy
  */
 @Controller
-@RequestMapping("/kegiatan/kbm/buktipenugasan")
-public class BuktiPenugasanKBMController {
-
+@RequestMapping("/kegiatan/kbm/buktikinerja")
+public class BuktiKinerjaKBMController {
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(BuktiPenugasanKBMController.class);
 
     @Autowired
-    private BuktiPenugasanDao buktiPenugasanDao;
+    private BuktiKinerjaDao buktiKinerjaDao;
     
     @Autowired
     private ImageService imageService;
@@ -52,25 +54,25 @@ public class BuktiPenugasanKBMController {
     @GetMapping("/form")
     public String tampilkanForm(@RequestParam String idKbm, @PageableDefault(size = 10) Pageable pageable,
             ModelMap mm, Principal principal, Authentication authentication) {
-        mm.addAttribute("listBukti", buktiPenugasanDao.findByKegiatanBelajarMengajarId(idKbm, pageable));
-        mm.addAttribute("buktiPenugasan", new BuktiPenugasan());
+        mm.addAttribute("listBukti", buktiKinerjaDao.findByKegiatanBelajarMengajarId(idKbm, pageable));
+        mm.addAttribute("buktiKinerja", new BuktiPenugasan());
         mm.addAttribute("idKbm", idKbm);
 
-        return "kegiatan/kbm/buktipenugasan/form";
+        return "kegiatan/kbm/buktikinerja/form";
     }
 
     @PostMapping("/form")
-    public String prosesForm(@RequestParam String idKbm, @Valid BuktiPenugasan buktiPenugasan, ModelMap mm, BindingResult errors,
-            MultipartFile filePenugasan, HttpServletRequest request,
+    public String prosesForm(@RequestParam String idKbm, @Valid BuktiKinerja buktiKinerja, ModelMap mm, BindingResult errors,
+            MultipartFile fileKinerja, HttpServletRequest request,
             Principal principal, Authentication authentication) {
 
         if (errors.hasErrors()) {
             LOGGER.error("masuk ke sini");
-            return "/kegiatan/kbm/buktipenugasan/form?idKbm=" + idKbm;
+            return "/kegiatan/kbm/buktikinerja/form?idKbm=" + idKbm;
         }
 
         if (errors.getErrorCount() > 0) {
-            return "kegiatan/kbm/buktipenugasan/form?idKbm=" + idKbm;
+            return "kegiatan/kbm/buktikinerja/form?idKbm=" + idKbm;
         }
         
         LOGGER.debug("ID KBM [{}]", idKbm);
@@ -78,30 +80,30 @@ public class BuktiPenugasanKBMController {
         KegiatanBelajarMengajar kbm = kbmDao.findOne(idKbm);
         if(kbm == null) {
             LOGGER.error("ID KBM tidak ditemukan");
-            return "kegiatan/kbm/buktipenugasan/form?idKbm=" + idKbm;
+            return "kegiatan/kbm/buktikinerja/form?idKbm=" + idKbm;
         }
         
-        if (filePenugasan != null && !filePenugasan.isEmpty()) {
-            if (filePenugasan.getSize() > 2097152) {
+        if (fileKinerja != null && !fileKinerja.isEmpty()) {
+            if (fileKinerja.getSize() > 2097152) {
                 LOGGER.info("UPLOAD GAGAL");
-                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", filePenugasan.getSize());
+                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
                 LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
 
                 errors.addError(new FieldError("nama", "nama", "File terlalu besar, max 2mb"));
             } else {
-                String extention = tokenizer(filePenugasan.getOriginalFilename(), ".");
+                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
                 if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-                    File file = imageService.moveFile(filePenugasan, "bukti-penugasan", extention);
-                    buktiPenugasan.setUrl(file.getName());
+                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
+                    buktiKinerja.setUrl(file.getName());
                 } else {
                     errors.addError(new FieldError("nama", "nama", "File yang diperbolehkan png, jpg, jpeg"));
                 }
             }
         }
         
-        buktiPenugasan.setKegiatanBelajarMengajar(kbm);
-        buktiPenugasanDao.save(buktiPenugasan);
-        return "redirect:/kegiatan/kbm/buktipenugasan/form?idKbm=" + idKbm;
+        buktiKinerja.setKegiatanBelajarMengajar(kbm);
+        buktiKinerjaDao.save(buktiKinerja);
+        return "redirect:/kegiatan/kbm/buktikinerja/form?idKbm=" + idKbm;
     }
     
     @GetMapping("/delete")
@@ -111,11 +113,11 @@ public class BuktiPenugasanKBMController {
             // TODO : hapus file resource juga
             
             
-            BuktiPenugasan buktiPenugasan = buktiPenugasanDao.findOne(id);
-            buktiPenugasanDao.delete(buktiPenugasan);
+            BuktiKinerja buktiKinerja = buktiKinerjaDao.findOne(id);
+            buktiKinerjaDao.delete(buktiKinerja);
         }
 
-        return "redirect:/kegiatan/kbm/buktipenugasan/form?idKbm=" + idKbm;
+        return "redirect:/kegiatan/kbm/buktikinerja/form?idKbm=" + idKbm;
     }
     
     private String tokenizer(String originalFilename, String token) {

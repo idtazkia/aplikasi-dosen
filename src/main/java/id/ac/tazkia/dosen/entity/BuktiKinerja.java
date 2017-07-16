@@ -6,6 +6,7 @@
 package id.ac.tazkia.dosen.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -36,13 +37,11 @@ public class BuktiKinerja implements Serializable {
     @NotEmpty
     private String nama;
 
-    @NotNull
-    @NotEmpty
+    @Column(nullable = false)
     private String url;
     
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_kegiatan_belajar_mengajar")
+    @JoinColumn(name = "id_kegiatan_belajar_mengajar", nullable = false)
     private KegiatanBelajarMengajar kegiatanBelajarMengajar;
     
     public String getId() {
