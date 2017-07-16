@@ -16,12 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -66,20 +62,6 @@ public class KegiatanBelajarMengajar implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_satuan_hasil_kegiatan")
     private SatuanHasilKegiatan satuanKegiatan;
-
-    @Cascade(CascadeType.ALL)
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "id_bukti_penugasan")
-    @NotNull
-    @Valid
-    private BuktiPenugasan buktiPenugasan;
-
-    @Cascade(CascadeType.ALL)
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "id_bukti_kinerja")
-    @NotNull
-    @Valid
-    private BuktiKinerja buktiKinerja;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -155,22 +137,6 @@ public class KegiatanBelajarMengajar implements Serializable {
 
     public void setSatuanKegiatan(SatuanHasilKegiatan satuanKegiatan) {
         this.satuanKegiatan = satuanKegiatan;
-    }
-
-    public BuktiPenugasan getBuktiPenugasan() {
-        return buktiPenugasan;
-    }
-
-    public void setBuktiPenugasan(BuktiPenugasan buktiPenugasan) {
-        this.buktiPenugasan = buktiPenugasan;
-    }
-
-    public BuktiKinerja getBuktiKinerja() {
-        return buktiKinerja;
-    }
-
-    public void setBuktiKinerja(BuktiKinerja buktiKinerja) {
-        this.buktiKinerja = buktiKinerja;
     }
 
     public StatusRekomendasi getStatus() {

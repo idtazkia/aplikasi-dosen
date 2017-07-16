@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package id.ac.tazkia.dosen.entity;
 
 import id.ac.tazkia.dosen.constant.SemesterConstant;
@@ -73,16 +68,6 @@ public class KegiatanDosen  implements Serializable{
     @JoinColumn(name = "id_satuan_hasil_kegiatan")
     private SatuanHasilKegiatan satuanKegiatan;
 
-    @Cascade(CascadeType.ALL)
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "id_bukti_penugasan")
-    private BuktiPenugasan buktiPenugasan;
-
-    @Cascade(CascadeType.ALL)
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "id_bukti_kinerja")
-    private BuktiKinerja buktiKinerja;
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusRekomendasi status;
@@ -149,22 +134,6 @@ public class KegiatanDosen  implements Serializable{
 
     public void setSks(int sks) {
         this.sks = sks;
-    }
-
-    public BuktiPenugasan getBuktiPenugasan() {
-        return buktiPenugasan;
-    }
-
-    public void setBuktiPenugasan(BuktiPenugasan buktiPenugasan) {
-        this.buktiPenugasan = buktiPenugasan;
-    }
-
-    public BuktiKinerja getBuktiKinerja() {
-        return buktiKinerja;
-    }
-
-    public void setBuktiKinerja(BuktiKinerja buktiKinerja) {
-        this.buktiKinerja = buktiKinerja;
     }
 
     public StatusRekomendasi getStatus() {

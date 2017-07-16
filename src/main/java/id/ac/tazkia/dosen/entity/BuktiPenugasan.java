@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
@@ -17,6 +19,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  *
  * @author ivans
+ * Entity ini digunakan untuk relasi kegiatan belajar mengajar, sedangkan
+ * untuk kegiatan dosen menggunakan class entity BuktiPenugasanKegiatan
+ * @see id.ac.tazkia.dosen.entity.BuktiPenugasanKegiatan
  */
 @Entity
 @Table(name = "t_bukti_penugasan")
@@ -31,9 +36,13 @@ public class BuktiPenugasan implements Serializable {
     @NotEmpty
     private String nama;
 
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     private String url;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_kegiatan_belajar_mengajar")
+    private KegiatanBelajarMengajar kegiatanBelajarMengajar;
 
     public String getId() {
         return id;
@@ -59,4 +68,12 @@ public class BuktiPenugasan implements Serializable {
         this.url = url;
     }
 
+    public KegiatanBelajarMengajar getKegiatanBelajarMengajar() {
+        return kegiatanBelajarMengajar;
+    }
+
+    public void setKegiatanBelajarMengajar(KegiatanBelajarMengajar kegiatanBelajarMengajar) {
+        this.kegiatanBelajarMengajar = kegiatanBelajarMengajar;
+    }
+    
 }

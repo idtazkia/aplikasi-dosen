@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package id.ac.tazkia.dosen.entity;
 
 import java.io.Serializable;
@@ -18,15 +13,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
- * @author ivans
- * Entity ini digunakan untuk relasi kegiatan belajar mengajar, sedangkan
- * untuk kegiatan dosen menggunakan class entity BuktiKinerjaKegiatan
- * @see id.ac.tazkia.dosen.entity.BuktiKinerjaKegiatan
+ * @author jimmy
+ * Entity ini digunakan untuk relasi kegiatan dosen, sedangkan
+ * untuk kegiatan belajar mengajar menggunakan class entity BuktiPenugasan
+ * @see id.ac.tazkia.dosen.entity.BuktiPenugasan
  */
 @Entity
-@Table(name = "t_bukti_kinerja")
-public class BuktiKinerja implements Serializable {
-
+@Table(name = "t_bukti_penugasan_kegiatan")
+public class BuktiPenugasanKegiatan implements Serializable {
+    
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -42,9 +37,9 @@ public class BuktiKinerja implements Serializable {
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_kegiatan_belajar_mengajar")
-    private KegiatanBelajarMengajar kegiatanBelajarMengajar;
-    
+    @JoinColumn(name = "id_kegiatan_dosen")
+    private KegiatanDosen kegiatanDosen;
+
     public String getId() {
         return id;
     }
@@ -69,12 +64,12 @@ public class BuktiKinerja implements Serializable {
         this.url = url;
     }
 
-    public KegiatanBelajarMengajar getKegiatanBelajarMengajar() {
-        return kegiatanBelajarMengajar;
+    public KegiatanDosen getKegiatanDosen() {
+        return kegiatanDosen;
     }
 
-    public void setKegiatanBelajarMengajar(KegiatanBelajarMengajar kegiatanBelajarMengajar) {
-        this.kegiatanBelajarMengajar = kegiatanBelajarMengajar;
+    public void setKegiatanDosen(KegiatanDosen kegiatanDosen) {
+        this.kegiatanDosen = kegiatanDosen;
     }
     
 }
