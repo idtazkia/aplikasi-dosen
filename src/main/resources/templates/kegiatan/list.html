@@ -52,10 +52,10 @@
                                         <td th:text="${k.sks}">3</td>
                                         <td th:text="${k.volume}+ ' ' + ${k.satuanKegiatan.nama}">40 Orang</td>
                                         <td>
-                                            <a target="_blank" th:href="@{/image/penugasan/} + ${k.buktiPenugasan.url}" th:text="${k.buktiPenugasan.nama}"></a>
+                                            <!--<a target="_blank" th:href="@{/image/penugasan/} + ${k.buktiPenugasan.url}" th:text="${k.buktiPenugasan.nama}"></a>-->
                                         </td>
                                         <td>
-                                            <a target="_blank" th:href="@{/image/kinerja/} + ${k.buktiKinerja.url}" th:text="${k.buktiKinerja.nama}"></a>
+                                            <a th:href="@{/kegiatan/buktikinerja/form?idKeg={id}(id=${k.id})}" >Lihat Bukti</a>
                                         </td>
                                         <td th:text="${k.status}">status</td>
                                         <td>

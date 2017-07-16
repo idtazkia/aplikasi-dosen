@@ -15,8 +15,6 @@
             <!-- form start -->
             <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{buktiPenugasan.url}"/>
-                <input type="hidden" th:field="*{buktiKinerja.url}"/>
                 <input type="hidden" th:field="*{kategoriKegiatan}"/>
                 <div class="row">
                     <div class="col-md-6">
@@ -106,38 +104,6 @@
                             </div>
                             <!-- /.box-body -->
 
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="box box-primary">
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Nama Bukti Penugasan</label>
-                                    <input type="text" th:field="*{buktiPenugasan.nama}" class="form-control" placeholder="Contoh : SK Penugasan" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Bukti Penugasan</label>
-                                    <input type="file" name="filePenugasan" />
-                                </div>
-                                <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiPenugasan.nama')}" th:errors="*{buktiPenugasan.nama}"></div>
-                            </div>
-                        </div>
-                        <div class="box box-primary">
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Nama Bukti Kinerja</label>
-                                    <input type="text" th:field="*{buktiKinerja.nama}" class="form-control" placeholder="Contoh :  Absensi Perkuliahan" />
-                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiKinerja.nama')}" th:errors="*{buktiKinerja.nama}"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Bukti Kinerja</label>
-                                    <input type="file" name="fileKinerja" />
-                                </div>
-                                <div class="help-block with-errors" th:if="${#fields.hasErrors('buktiPenugasan.nama')}" th:errors="*{buktiPenugasan.nama}"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
