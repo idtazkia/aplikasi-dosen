@@ -11,7 +11,12 @@
                     });
                 });
             });
-        </script>	
+        </script>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -42,45 +47,47 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>NIDN</th>
-                                        <th>Email</th>
-                                        <th>No Telp</th>
-                                        <th>Tempat Lahir</th>
-                                        <th>Tgl Lahir</th>
-                                        <th>Alamat</th>
-                                        <th>Provinsi</th>
-                                        <th>Kota</th>
-                                        <th>Kec</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr th:each="dosen : ${data.content}">
-                                        <td th:text="${dosen.nama}">Nama</td>
-                                        <td th:text="${dosen.nidn}">NIDN</td>
-                                        <td th:text="${dosen.email}">Email</td>
-                                        <td th:text="${dosen.noTelp}">No Handphone</td>
-                                        <td th:text="${dosen.tempatLahir}">Tempat Lahir</td>
-                                        <td th:text="${dosen.tglLahir}">Tanggal Lahir</td>
-                                        <td th:text="${dosen.alamat}">Alamat</td>
-                                        <td th:text="${dosen.provinsi.nama}">Provinsi</td>
-                                        <td th:text="${dosen.kota.nama}">Kota</td>
-                                        <td th:text="${dosen.kecamatan.nama}">Kecamatan</td>
-                                        <td>
-                                            <a href="form.html" th:href="@{/dosen/form?id={id}(id=${dosen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="delete.html" th:href="@{/dosen/delete?id={id}(id=${dosen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr th:if="${#lists.isEmpty(data.content)}">
-                                        <td colspan="13" class="text-center">Data dosen tidak ditemukan</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div style="overflow: auto;">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th class="noWrapColumn">Nama</th>
+                                            <th class="noWrapColumn">NIDN</th>
+                                            <th class="noWrapColumn">Email</th>
+                                            <th class="noWrapColumn">No Telp</th>
+                                            <th class="noWrapColumn">Tempat Lahir</th>
+                                            <th class="noWrapColumn">Tgl Lahir</th>
+                                            <th class="noWrapColumn">Alamat</th>
+                                            <th class="noWrapColumn">Provinsi</th>
+                                            <th class="noWrapColumn">Kota</th>
+                                            <th class="noWrapColumn">Kec</th>
+                                            <th class="noWrapColumn">Action</th>
+                                        </tr>
+                                        <tr th:each="dosen : ${data.content}">
+                                            <td class="noWrapColumn" th:text="${dosen.nama}">Nama</td>
+                                            <td class="noWrapColumn" th:text="${dosen.nidn}">NIDN</td>
+                                            <td class="noWrapColumn" th:text="${dosen.email}">Email</td>
+                                            <td class="noWrapColumn" th:text="${dosen.noTelp}">No Handphone</td>
+                                            <td class="noWrapColumn" th:text="${dosen.tempatLahir}">Tempat Lahir</td>
+                                            <td class="noWrapColumn" th:text="${dosen.tglLahir}">Tanggal Lahir</td>
+                                            <td class="noWrapColumn" th:text="${dosen.alamat}">Alamat</td>
+                                            <td class="noWrapColumn" th:text="${dosen.provinsi.nama}">Provinsi</td>
+                                            <td class="noWrapColumn" th:text="${dosen.kota.nama}">Kota</td>
+                                            <td class="noWrapColumn" th:text="${dosen.kecamatan.nama}">Kecamatan</td>
+                                            <td class="col-lg-2 col-md-2 col-xs-2 text-center noWrapColumn">
+                                                <a href="form.html" th:href="@{/dosen/form?id={id}(id=${dosen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="delete.html" th:href="@{/dosen/delete?id={id}(id=${dosen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(data.content)}">
+                                            <td colspan="13" class="text-center">Data dosen tidak ditemukan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                            <div class="text-center" th:if="${not #lists.isEmpty(data.content)}">
-                                <ul class="pagination" sd:pagination="full"></ul>
+                                <div class="text-center" th:if="${not #lists.isEmpty(data.content)}">
+                                    <ul class="pagination" sd:pagination="full"></ul>
+                                </div>
                             </div>
                         </div>
                         <!-- /.box-body
