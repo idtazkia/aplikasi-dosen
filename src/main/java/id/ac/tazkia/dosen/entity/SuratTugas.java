@@ -35,7 +35,7 @@ public class SuratTugas implements Serializable {
     @NotNull
     @JoinColumn(name = "id_dosen")
     private Dosen penerima;
-
+    
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "tanggal_mulai")

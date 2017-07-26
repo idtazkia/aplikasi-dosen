@@ -1,48 +1,70 @@
-!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
-<head>
-    <title>Program Studi</title>
-</head>
-<body>
-<div layout:fragment="content">
-<h1>Program Studi</h1>
-<form class="form-horizontal" method="post">
-    <div class="form-group" >
-        <label for="nama" class="col-sm-2 control-label">Nama</label>
-        <div class="col-sm-10">
-            <input type="text"
-                   name="nama" class="form-control" id="nama" placeholder="Nama" />
-            <label class="control-label">
-                Pesan error nanti di sini
-            </label>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Program Studi</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Daftar Program Studi</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Daftar program studi</li>
+            </ol>
         </div>
-    </div>
-    <div class="form-group" >
-        <label for="Keterangan" class="col-sm-2 control-label">Keterangan</label>
-        <div class="col-sm-10">
-            <input type="text"
-                   name="nidn" class="form-control" id="Keterangan" placeholder="Keterangan" />
-            <label class="control-label" >
-                Pesan error nanti di sini
-            </label>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/programstudi/form}">Tambah program studi</a>
+                            <div class="box-tools">
+                                <form th:action="@{/programstudi/list}" method="get">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Nama" th:if="${key} == null"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Nama" th:if="${key} != null" th:value="${key}" />
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Keterangan</th>
+                                        <th>Jenjang</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr th:each="ps :${daftarProgramStudi.content}">
+                                        <td th:text="${ps.nama}">Muhammad Fadlan</td>
+                                        <td th:text="${ps.keterangan}">Teknik Informatika</td>
+                                        <td th:text="${ps.jenjang}">S1</td>
+                                        <td>
+                                            <a href="form.html" class="btn btn-info" th:href="@{/programstudi/form(id=${ps.id})}" title="edit program studi"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="delete.html" class="btn btn-info" th:href="@{/programstudi/delete(id=${ps.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(daftarProgramStudi.content)}">
+                            <br/>
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="jenjang" class="col-sm-2 control-label">Jenjang</label>
-        <div class="col-sm-10">
-            <select class="form-control" name="jenjang" id="jenjang">
-                <option value="S1" >S1</option>
-                <option value="D3" >D3</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default" th:href="login.php">Simpan</button>
-        </div>
-    </div>
-</form>
-</div>
-</body>
+    </body>
 </html>

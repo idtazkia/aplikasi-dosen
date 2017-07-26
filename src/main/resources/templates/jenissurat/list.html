@@ -1,50 +1,81 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout" xmlns="http://www.w3.org/1999/html">
-<head>
-    <title>Data Institusi</title>
-</head>
-<body>
-<div layout:fragment="content">
-
-    <div class="form-group" >
-        <label for="nama" class="col-sm-2 control-label">Nama</label>
-        <div class="col-sm-10">
-            <input type="text"
-                   name="nama" class="form-control" id="nama" placeholder="Nama" />
-            <label class="control-label" >
-                Pesan error nanti di sini
-            </label>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Program Studi</title>
+        <script language="JavaScript">
+            $(document).ready(function () {
+                $(".remove-data").each(function () {
+                    $(this).click(function () {
+                        if (confirm('Data will be deleted?'))
+                            return true;
+                        return false;
+                    });
+                });
+            });
+        </script>	
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Daftar Jenis Surat</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Daftar jenis surat</li>
+            </ol>	
         </div>
-    </div>
-
-    <div class="form-group" >
-        <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
-        <div class="col-sm-10">
-            <input type="text"
-                   name="keterangan" class="form-control" id="keterangan" placeholder="Keterangan" />
-            <label class="control-label" >
-                Pesan error nanti di sini
-            </label>
-        </div>
-    </div>
-
-    <div class="form-group" >
-        <label for="template" class="col-sm-2 control-label">Template</label>
-        <div class="col-sm-10">
-            <input type="text"
-                   name="template" class="form-control" id="template" placeholder="Template" />
-            <label class="control-label" >
-                Pesan error nanti di sini
-            </label>
-        </div>
-    </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Simpan</button>
-
+        <div layout:fragment="content">	
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/jenissurat/form}">Tambah jenis surat</a>
+                            <div class="box-tools">
+                                <form th:action="@{/jenissurat/list}" method="get">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Nama" th:if="${key} == null"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Nama" th:if="${key} != null" th:value="${key}" />
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Keterangan</th>
+                                        <th>Template</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr th:each="st,iter : ${jenisSurat.content}">
+                                        <td th:text="${st.nama}">jenis surat 1</td>
+                                        <td th:text="${st.keterangan}">keterangan jenis surat 1</td>
+                                        <td th:text="${st.template}">template jenis surat 1</td>
+                                        <td>
+                                            <a href="#" class="btn btn-info" th:href="@{/jenissurat/form(id=${st.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="#" class="btn btn-info" th:href="@{/jenissurat/delete(id=${st.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(jenisSurat.content)}">
+                            <br/>
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-</div>
-</body>
+        </div>
+    </body>
 </html>

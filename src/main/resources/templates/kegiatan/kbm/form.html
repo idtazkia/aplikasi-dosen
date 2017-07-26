@@ -1,0 +1,206 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Input Kegiatan Belajar Mengajar</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Input Kegiatan Belajar Mengajar</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Kegiatan Belajar Mengajar</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+
+            <!-- form start -->
+            <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <input th:if="${#lists.isEmpty(listDosen)}" type="hidden" th:field="*{dosen}"/>
+                                <div class="form-group" th:if="${not #lists.isEmpty(listDosen)}">
+                                    <label>Dosen</label>
+                                    <select th:field="*{dosen}" class="form-control" required="true">
+                                        <option th:each="p : ${listDosen}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Dosen
+                                        </option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('dosen')}" th:errors="*{dosen}"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <input th:field="*{keterangan}" type="text" class="form-control" placeholder="Keterangan Kegiatan" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('keterangan')}" th:errors="*{keterangan}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Periode</label>
+                                    <select th:field="*{periode}" class="form-control" required="true">
+                                        <option value="2017/2018">2017/2018</option>
+                                        <option value="2016/2017">2016/2017</option>
+                                        <option value="2015/2016">2015/2016</option>
+                                        <option value="2014/2015">2014/2015</option>
+                                        <option value="2013/2014">2013/2014</option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('periode')}" th:errors="*{periode}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Semester</label>
+                                    <select th:field="*{semester}" class="form-control" required="true">
+                                        <option value="GANJIL">GANJIL</option>
+                                        <option value="GENAP">GENAP</option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('semester')}" th:errors="*{semester}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mata Kuliah</label>
+                                    <select th:field="*{mataKuliah}" class="form-control select2" required="true">
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('mataKuliah')}" th:errors="*{mataKuliah}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SKS Mata Kuliah</label>
+                                    <input id="sksMataKuliah" type="number" th:field="*{sksMataKuliah}" class="form-control" placeholder="Sks Mata Kuliah" required="true" readonly="readonly"/>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('sksMataKuliah')}" th:errors="*{sksMataKuliah}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SKS Kegiatan</label>
+                                    <input type="number" th:field="*{sksKegiatan}" class="form-control" placeholder="Sks Kegiatan" required="true" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('sksKegiatan')}" th:errors="*{sksKegiatan}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Volume</label>
+                                    <input type="number" th:field="*{volume}" class="form-control" placeholder="Volume" required="true" />
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <select th:field="*{satuanKegiatan}" class="form-control" required="true">
+                                        <option th:each="p : ${listSatuan}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Satuan
+                                        </option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('satuanKegiatan')}" th:errors="*{satuanKegiatan}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Mulai</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="tanggalMulai" th:field="*{tanggalMulai}" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Selesai</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="tanggalSelesai" th:field="*{tanggalSelesai}" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status Rekomendasi</label>
+                                    <select th:field="*{status}" class="form-control" required="true">
+                                        <option value="SELESAI">SELESAI</option>
+                                        <option value="LANJUTKAN">LANJUTKAN</option>
+                                        <option value="GAGAL">GAGAL</option>
+                                        <option value="LAINNYA">LAINNYA</option>
+                                        <option value="BEBAN_LEBIH">BEBAN_LEBIH</option>
+                                    </select>
+                                    <div class="help-block with-errors" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+                                </div>
+
+                                <div class="form-group text-right">
+                                    <a th:href="@{/kegiatan/kbm/list}" class="btn btn-danger" role="button">
+                                        <span aria-hidden="true"></span>Batal
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                function formatRepo(repo) {
+                    if (repo.loading)
+                        return repo.text;
+                    var markup = repo.kode + " - " + repo.nama;
+
+                    return markup;
+                }
+
+                function formatRepoSelection(repo) {
+                    return repo.text || repo.kode + " - " + repo.nama;
+                }
+
+                $(function () {
+                    $("#mataKuliah").select2({
+                        ajax: {
+                            url: /*[[@{/api/mata_kuliah}]]*/ "",
+                            dataType: 'json',
+                            delay: 250,
+                            data: function (params) {
+                                return {
+                                    nama: params.term, // search term
+                                    page: params.page
+                                };
+                            },
+                            processResults: function (data, params) {
+                                params.page = params.page || 1;
+
+                                return {
+                                    results: data.content,
+                                    pagination: {
+                                        more: (params.page * 30) < data.total_count
+                                    }
+                                };
+                            },
+                            cache: true
+                        },
+                        escapeMarkup: function (markup) {
+                            return markup;
+                        },
+                        minimumInputLength: 0,
+                        placeholder: 'pilih matakuliah',
+                        theme: 'bootstrap',
+                        templateResult: formatRepo,
+                        templateSelection: formatRepoSelection
+                    }).on('select2:select', function (evt) {
+//                        console.log("selected", evt.params.data.sks);
+                        $("#sksMataKuliah").val(evt.params.data.sks);
+                    });
+
+                    $('#tanggalMulai').datepicker({
+                        autoclose: true,
+                        clearBtn: true,
+                        format: "dd-mm-yyyy",
+                        todayHighlight: true
+                    }).on('changeDate', function (e) {
+                        $('#tanggalSelesai').datepicker('setDate', e.date);
+                    });
+
+                    $('#tanggalSelesai').datepicker({
+                        autoclose: true,
+                        clearBtn: true,
+                        format: "dd-mm-yyyy",
+                        todayHighlight: true
+                    });
+                });
+                /*]]>*/
+            </script>
+        </div>
+    </body>
+</html>

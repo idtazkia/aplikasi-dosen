@@ -88,7 +88,7 @@ Kami mengharapkan kontribusi dari rekan-rekan dalam berbagai bentuk, diantaranya
 
 Bila rekan-rekan ingin berkontribusi, caranya sangat mudah.
 
-* Kontribusi menulis kode program : [fork repo ini](https://github.com/idtazkia/aplikasi-dosen#fork-destination-box), lakukan apa yang ingin Anda lakukan, kemudian submit Pull Request (PR). Kami akan review dan merge PR yang berkualitas bagus. Bila ada kekurangan, kami akan [pandu untuk memperbaikinya](https://github.com/idtazkia/aplikasi-dosen/pull/1).
+* Kontribusi menulis kode program : [fork repo ini](https://github.com/idtazkia/aplikasi-dosen#fork-destination-box), lakukan apa yang ingin Anda lakukan, kemudian submit Pull Request (PR). Kami akan review dan merge PR yang berkualitas bagus. Bila ada kekurangan, kami akan [pandu untuk memperbaikinya](https://github.com/idtazkia/aplikasi-dosen/pull/1). Untuk lebih jelasnya bisa nonton [video tutorial tentang workflow Pull Request ini](https://www.youtube.com/watch?v=gDqT_Wvt3VQ)
 
 * Melaporkan bug/error/usulan : cukup [buat issue baru](https://github.com/idtazkia/aplikasi-dosen/issues/new).
 

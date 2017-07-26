@@ -1,0 +1,12 @@
+[Unit]
+Description=Aplikasi Dosen
+After=syslog.target
+
+[Service]
+User=root
+ExecStart=/var/aplikasi-dosen/aplikasi-dosen.jar
+SuccessExitStatus=143
+Environment=SPRING_PROFILES_ACTIVE=production
+
+[Install]
+WantedBy=multi-user.target

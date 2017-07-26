@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>Data Jenis Kegiatan</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <a href="delete.html"></a>
+            <h3>Hapus kategori?</h3>
+
+            <form class="form-horizontal" th:object="${jeniskegiatan}" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Kategori Kegiatan</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="*{kategoriKegiatan.nama}">kode</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Komponen Kegiatan</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="*{nama}">nama</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Bukti Kegiatan</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="*{bukti}">bukti</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Batas Maksimal diakui</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="*{batasMaksimal}">batasMaksimal</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Angka Kredit</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="*{angkaKredit}">angkaKredit</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a th:href="@{/jeniskegiatan/list}" class="btn btn-default" role="button">
+                            <span aria-hidden="true"></span>Batal
+                        </a>
+                        <button onclick="return confirm('Yakin ingin menghapus data ?')" type="submit" class="btn btn-danger">Hapus </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

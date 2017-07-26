@@ -1,44 +1,101 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
-<head>
-    <title>Daftar Dosen</title>
-</head>
-<body>
-<div layout:fragment="content">
-    <h1>Daftar Dosen</h1>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Daftar Dosen</title>
+        <script language="JavaScript">
+            $(document).ready(function () {
+                $(".remove-data").each(function () {
+                    $(this).click(function () {
+                        if (confirm('Data will be deleted?'))
+                            return true;
+                        return false;
+                    });
+                });
+            });
+        </script>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Daftar Dosen</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Daftar Dosen</li>
+            </ol>	
+        </div>
+        <div layout:fragment="content">	
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/dosen/form}">Tambah data dosen</a>
+                            <div class="box-tools">
+                                <form id="form" action="#" method="get" th:action="@{/dosen/list}">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan nama" th:if="${key} == null"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan nama" th:if="${key} != null" th:value="${key}"/>
+                                        <input type="hidden" name="mode" id="mode"/>
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div style="overflow: auto;">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th class="noWrapColumn">Nama</th>
+                                            <th class="noWrapColumn">NIDN</th>
+                                            <th class="noWrapColumn">Email</th>
+                                            <th class="noWrapColumn">No Telp</th>
+                                            <th class="noWrapColumn">Tempat Lahir</th>
+                                            <th class="noWrapColumn">Tgl Lahir</th>
+                                            <th class="noWrapColumn">Alamat</th>
+                                            <th class="noWrapColumn">Provinsi</th>
+                                            <th class="noWrapColumn">Kota</th>
+                                            <th class="noWrapColumn">Kec</th>
+                                            <th class="noWrapColumn">Action</th>
+                                        </tr>
+                                        <tr th:each="dosen : ${data.content}">
+                                            <td class="noWrapColumn" th:text="${dosen.nama}">Nama</td>
+                                            <td class="noWrapColumn" th:text="${dosen.nidn}">NIDN</td>
+                                            <td class="noWrapColumn" th:text="${dosen.email}">Email</td>
+                                            <td class="noWrapColumn" th:text="${dosen.noTelp}">No Handphone</td>
+                                            <td class="noWrapColumn" th:text="${dosen.tempatLahir}">Tempat Lahir</td>
+                                            <td class="noWrapColumn" th:text="${dosen.tglLahir}">Tanggal Lahir</td>
+                                            <td class="noWrapColumn" th:text="${dosen.alamat}">Alamat</td>
+                                            <td class="noWrapColumn" th:text="${dosen.provinsi.nama}">Provinsi</td>
+                                            <td class="noWrapColumn" th:text="${dosen.kota.nama}">Kota</td>
+                                            <td class="noWrapColumn" th:text="${dosen.kecamatan.nama}">Kecamatan</td>
+                                            <td class="col-lg-2 col-md-2 col-xs-2 text-center noWrapColumn">
+                                                <a href="form.html" th:href="@{/dosen/form?id={id}(id=${dosen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="delete.html" th:href="@{/dosen/delete?id={id}(id=${dosen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(data.content)}">
+                                            <td colspan="13" class="text-center">Data dosen tidak ditemukan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-
-    <a class="btn btn-primary pull-right" th:href="@{/dosen/form}">Tambah Data Dosen</a>
-
-    <p />
-
-    <table class="table table-striped table-hovered">
-        <thead>
-        <tr>
-            <th>No.</th>
-            <th>NIK</th>
-            <th>Nama</th>
-            <th>
-                &nbsp;
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="jenis,iter : ${daftarJenisKendaraan}">
-            <td th:text="${iter.count}">1</td>
-            <td th:text="${jenis.nama}">Motor</td>
-            <td th:text="${jenis.keterangan}">Kendaraan Roda Dua</td>
-            <td>
-                <a th:href="@{/jeniskendaraan/form(id=${jenis.id})}" class="btn btn-default" role="button">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    edit
-
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-</body>
+                                <div class="text-center" th:if="${not #lists.isEmpty(data.content)}">
+                                    <ul class="pagination" sd:pagination="full"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body
+                        <div class="box-footer clearfix" th:include="paging :: paginationbar"></div>
+                        -->
+                    </div>		
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

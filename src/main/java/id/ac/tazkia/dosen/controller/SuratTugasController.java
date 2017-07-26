@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 
 /**
  * @author ronny susetyo  <ronny at susetyo.com>
@@ -43,10 +45,13 @@ public class SuratTugasController {
     }
 
     @RequestMapping("/surattugas/list")
-    public ModelMap SuratTugas() {
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("suratTugas", suratTugasDao.findAll());
-        return modelMap;
+    public ModelMap SuratTugas(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, ModelMap modelMap) {
+        if (value != null) {
+            modelMap.addAttribute("key", value);
+            return new ModelMap().addAttribute("data", suratTugasDao.findByNoSuratContainingIgnoreCase(value, pageable));
+        } else {
+            return new ModelMap().addAttribute("data", suratTugasDao.findAll(pageable));
+        }
     }
 
     @RequestMapping(value = "/surattugas/form", method = RequestMethod.GET)
@@ -66,5 +71,12 @@ public class SuratTugasController {
         status.setComplete();
         return "redirect:/surattugas/list";
     }
-}
 
+    @RequestMapping(value = "/surattugas/delete", method = RequestMethod.GET)
+    public String delete(@RequestParam(value = "id", required = true) String id, SessionStatus status) {
+        suratTugasDao.delete(id);
+        status.setComplete();
+        return "redirect:/surattugas/list";
+    }
+
+}

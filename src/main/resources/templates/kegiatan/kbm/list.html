@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Kegiatan Belajar Mengajar</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Kegiatan Belajar Mengajar</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Kegiatan Belajar Mengajar</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/kegiatan/kbm/form}">Input Kinerja Bidang Pendidikan</a>
+                            <div class="box-tools">
+                                <form id="form" action="#" method="get" th:action="@{/kegiatan/kbm/list}">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Search"/>
+                                        <input type="hidden" name="mode" id="mode"/>
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Keterangan</th>
+                                        <th>Masa Penugasan</th>
+                                        <th>Mata Kuliah</th>
+                                        <th>Program Studi</th>
+                                        <th>SKS</th>
+                                        <th>Jenjang</th>
+                                        <th>Jumlah</th>
+                                        <th>Bukti Penugasan</th>
+                                        <th>Bukti Kinerja</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr th:each="k,iter : ${data.content}">
+                                        <td th:text="${iter.count}">1</td>
+                                        <td th:text="${k.keterangan}">Keterangan</td>
+                                        <td th:text="'SEMESTER ' + ${k.semester} + ' ' + ${k.periode}">GANJIL 2015/2016</td>
+                                        <td th:text="${k.mataKuliah.nama}">Mata Kuliah</td>
+                                        <td th:text="${k.mataKuliah.programStudi.nama}">Program Studi</td>
+                                        <td th:text="${k.mataKuliah.sks}">3</td>
+                                        <td th:text="${k.mataKuliah.programStudi.jenjang}">jenjang</td>
+                                        <td th:text="${k.volume}+ ' ' + ${k.satuanKegiatan.nama}">40 Orang</td>
+                                        <td>
+                                            <a th:href="@{/kegiatan/kbm/buktipenugasan/form?idKbm={id}(id=${k.id})}" >Lihat Bukti</a>
+                                        </td>
+                                        <td>
+                                            <a th:href="@{/kegiatan/kbm/buktikinerja/form?idKbm={id}(id=${k.id})}" >Lihat Bukti</a>
+                                        </td>
+                                        <td th:text="${k.status}">status</td>
+                                        <td>
+                                            <a href="#" th:href="@{/kegiatan/kbm/form?id={id}(id=${k.id})}"
+                                               title="edit"><span class="glyphicon glyphicon-edit"></span></a> | 
+                                            <a href="#" th:href="@{/kegiatan/kbm/delete?id={id}(id=${k.id})}"
+                                               title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${#lists.isEmpty(data.content)}">
+                                        <td colspan="13" class="text-center">Data kegiatan tidak ditemukan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center" th:if="${not #lists.isEmpty(data.content)}">
+                            <ul class="pagination" sd:pagination="full"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

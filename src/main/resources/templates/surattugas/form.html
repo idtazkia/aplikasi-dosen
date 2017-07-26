@@ -12,7 +12,7 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('jenisSurat')} ? 'has-error'">
             <label for="jenisSurat" class="col-sm-2 control-label">Jenis Surat</label>
             <div class="col-sm-10">
-                <select class="form-control" name="instruktur" th:field="*{jenisSurat}">
+                <select id="jenisSurat" class="form-control" name="instruktur" th:field="*{jenisSurat}">
                     <option value="">Pilih instruktur</option>
                     <option th:each="js : ${daftarJenisSurat}"
                             th:value="${js.id}"
@@ -38,8 +38,7 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('penerima')} ? 'has-error'">
             <label for="penerima" class="col-sm-2 control-label">Penerima</label>
             <div class="col-sm-10">
-                <select class="form-control" name="penerima" th:field="*{penerima}">
-                    <option value="">Penerima</option>
+                <select id="penerima" class="selectpicker form-control" data-live-search="true" data-size="10" title="Please Select ..." name="penerima" th:field="*{penerima}">
                     <option th:each="ds : ${daftarDosen}"
                             th:value="${ds.id}"
                             th:text="${ds.nama}">Pilihan Penerima
@@ -53,9 +52,9 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('tanggalMulai')} ? 'has-error'">
             <label for="tanggalMulai" class="col-sm-2 control-label">Tanggal Mulai</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control"
+                <input type="text" class="datepicker form-control"
                        th:field="*{tanggalMulai}"
-                       id="nama" name="tanggalMulai" placeholder="Tanggal Mulai"/>
+                       id="tanggalMulai" name="tanggalMulai" placeholder="Tanggal Mulai" data-date-format="yyyy-mm-dd"/>
                 <label class="control-label" th:errors="*{tanggalMulai}">
                     Pesan error nanti di sini
                 </label>
@@ -64,9 +63,9 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('tanggalSelesai')} ? 'has-error'">
             <label for="tanggalSelesai" class="col-sm-2 control-label">Tanggal Selesai</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control"
+                <input type="text" class="datepicker form-control"
                        th:field="*{tanggalSelesai}"
-                       id="nama" name="tanggalSelesai" placeholder="Tanggal Selesai"/>
+                       id="tanggalSelesai" name="tanggalSelesai" placeholder="Tanggal Selesai" data-date-format="yyyy-mm-dd" />
                 <label class="control-label" th:errors="*{tanggalSelesai}">
                     Pesan error nanti di sini
                 </label>
@@ -79,5 +78,6 @@
         </div>
     </form>
 </div>
+
 </body>
 </html>

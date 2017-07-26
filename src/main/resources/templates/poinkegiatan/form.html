@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+    <head>
+        <title>Tambah Poin Kegiatan</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Poin Kegiatan</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Form Poin Kegiatan</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">&nbsp;</h3>
+                        </div>
+                        <form role="form" th:object="${poinKegiatan}" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="kode">Jenis Kegiatan</label>
+                                    <select class="selectpicker form-control"
+                                            th:field="*{jenisKegiatan}"
+                                            data-live-search="true"
+                                            data-size="10"
+                                            title="Please Select ...">
+                                        <option th:each="p : ${listJenisKegiatan}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilihan Jenis Kegiatan
+                                        </option>
+                                    </select>
+                                    <label class="control-label" th:errors="*{jenisKegiatan}">
+                                        Pesan error nanti di sini
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bukti">Jabatan</label>
+                                    <select class="selectpicker form-control" data-live-search="true" data-size="10" title="Please Select ..." th:field="*{jabatan}">
+                                        <option th:each="p : ${listJabatan}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilihan Jabatan
+                                        </option>
+                                    </select>
+                                    <label class="control-label" th:errors="*{jabatan}">
+                                        Pesan error nanti di sini
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama">Nilai Maksimum</label>
+                                    <input type="text" class="form-control" th:field="*{nilaiMaksimum}" id="nilaiMaksimum" name="nilaiMaksimum" placeholder="Nilai Maksimum" />
+                                    <label class="control-label" th:errors="*{nilaiMaksimum}">
+                                        Pesan error nanti di sini
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="batasMaksimal">Nilai</label>
+                                    <input type="text" class="form-control" th:field="*{nilai}" id="nilai" name="nilai" placeholder="Nilai" />
+                                    <label class="control-label" th:errors="*{nilai}">
+                                        Pesan error nanti di sini
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button onclick="return confirm('Yakin ingin menyimpan data ini ?')" type="submit" class="btn btn-primary">Submit </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

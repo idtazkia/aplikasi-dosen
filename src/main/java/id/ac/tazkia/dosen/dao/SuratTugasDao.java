@@ -1,6 +1,8 @@
 package id.ac.tazkia.dosen.dao;
 
 import id.ac.tazkia.dosen.entity.SuratTugas;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,4 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SuratTugasDao extends PagingAndSortingRepository<SuratTugas, String> {
+    
+    Page<SuratTugas> findByNoSuratContainingIgnoreCase(String noSurat, Pageable pageable);
 }

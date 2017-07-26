@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>List / Input Bukti Kinerja</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>List / Input Bukti Kinerja</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">List / Input Bukti Kinerja</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <!-- form start -->
+                <div class="row">
+                    <form role="form" method="post" action="" th:object="${buktiKinerja}" enctype="multipart/form-data">
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>Nama Bukti Kinerja</label>
+                                    <input type="text" th:field="*{nama}" class="form-control" placeholder="Contoh :  Absensi Perkuliahan" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Bukti Kinerja</label>
+                                    <input type="file" name="fileKinerja" />
+                                </div>
+                                <div class="help-block with-errors" th:if="${#fields.hasErrors('nama')}" th:errors="*{nama}"></div>
+                                <div class="form-group text-right">
+                                    <a th:href="@{/kegiatan/kbm/list}" class="btn btn-danger" role="button">
+                                        <span aria-hidden="true"></span>Batal
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Nama</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr th:each="k,iter : ${listBukti.content}">
+                                            <td th:text="${iter.count}">1</td>
+                                            <td th:text="${k.nama}">Nama</td>
+                                            <td>
+                                                <a target="_blank" th:href="@{/image/kinerja/} + ${k.url}"
+                                                   title="Lihat"><span class="glyphicon glyphicon-eye-open"></span></a> | 
+                                                <a th:href="@{/kegiatan/kbm/buktikinerja/delete(id=${k.id}, idKbm=${idKbm})}"
+                                                   title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(listBukti.content)}">
+                                            <td colspan="13" class="text-center">Data tidak ditemukan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </body>
+</html>

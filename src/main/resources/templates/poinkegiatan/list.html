@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Poin Kegiatan</title>
+        <script language="JavaScript">
+            $(document).ready(function () {
+                $(".remove-data").each(function () {
+                    $(this).click(function () {
+                        if (confirm('Data will be deleted?'))
+                            return true;
+                        return false;
+                    });
+                });
+            });
+        </script>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Poin Kegiatan</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Poin Kegiatan</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/poinkegiatan/form}">Tambah Poin Kegiatan</a>
+                            <div class="box-tools">
+                                <form id="form" action="#" method="get" th:action="@{/poinkegiatan/list}">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Jenis Kegiatan" th:if="${key}==null"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarkan Jenis Kegiatan" th:if="${key}!=null" th:value="${key}"/>
+                                        <input type="hidden" name="mode" id="mode"/>
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div style="overflow: auto;">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th class="noWrapColumn" align="center">Jenis Kegiatan</th>
+                                            <th class="noWrapColumn" align="center">Jabatan</th>
+                                            <th class="noWrapColumn" align="center">Nilai Maksimum</th>
+                                            <th class="noWrapColumn" align="center">Nilai</th>
+                                            <th class="noWrapColumn">&nbsp;</th>
+                                        </tr>
+                                        <tr th:each="poinKegiatan : ${data}">
+                                            <td class="noWrapColumn" th:text="${poinKegiatan.jenisKegiatan.nama}">jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${poinKegiatan.jabatan.nama}">keterangan jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${#numbers.formatDecimal(poinKegiatan.nilaiMaksimum, 0, 0, 'POINT')}">template jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${#numbers.formatDecimal(poinKegiatan.nilai, 0, 0, 'POINT')}">1</td>
+                                            <td class="col-lg-2 col-md-2 col-xs-2 text-center noWrapColumn">
+                                                <a href="#" class="btn btn-info" th:href="@{/poinkegiatan/form(id=${poinKegiatan.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#" class="btn btn-info" th:href="@{/poinkegiatan/delete(id=${poinKegiatan.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(data.content)}">
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
