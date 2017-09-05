@@ -59,6 +59,7 @@ public class Dosen implements Serializable {
     @Column(name = "tempat_lahir")
     private String tempatLahir;
 
+    @NotNull
     @Past
     @Column(name = "tanggal_lahir", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

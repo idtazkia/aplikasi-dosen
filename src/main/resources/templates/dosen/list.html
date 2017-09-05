@@ -50,7 +50,7 @@
                             <div style="overflow: auto;">
                                 <table class="table table-bordered">
                                     <tbody>
-                                        <tr>
+                                        <tr th:if="${not #lists.isEmpty(data.content)}">
                                             <th class="noWrapColumn">Nama</th>
                                             <th class="noWrapColumn">NIDN</th>
                                             <th class="noWrapColumn">Email</th>

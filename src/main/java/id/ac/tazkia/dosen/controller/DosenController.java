@@ -69,8 +69,11 @@ public class DosenController {
     }
 
     @RequestMapping(value = "/dosen/form", method = RequestMethod.POST)
-    public String simpan(@Valid Dosen dosen, ModelMap mm, BindingResult errors) {
+    public String simpan(@Valid Dosen dosen, BindingResult errors, ModelMap mm) {
         if (errors.hasErrors()) {
+            mm.addAttribute("listJabatan", jabatanDao.findAll());
+            mm.addAttribute("dosen", dosen);
+            mm.addAttribute("listProvinsi", provinsidao.findAll());
             return "dosen/form";
         }
 

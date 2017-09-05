@@ -18,7 +18,7 @@
                     <div class="col-sm-10">
                         <input type="text" th:field="*{nama}"
                                name="nama" class="form-control" id="nama" placeholder="Nama Dosen" />
-                        <label class="control-label" th:errors="*{nama}">
+                        <label class="control-label error-label" th:errors="*{nama}">
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="col-sm-10">
                         <input type="text" th:field="*{nidn}"
                                name="nidn" class="form-control" id="nidn" placeholder="NIDN" />
-                        <label class="control-label" th:errors="*{nidn}" >
+                        <label class="control-label error-label" th:errors="*{nidn}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="col-sm-10">
                         <input type="text" th:field="*{email}"
                                name="email" class="form-control" id="email" placeholder="Email" />
-                        <label class="control-label" th:errors="*{email}" >
+                        <label class="control-label error-label" th:errors="*{email}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -49,7 +49,7 @@
                     <label class="col-sm-2 control-label">No Handphone</label>
                     <div class="col-sm-10">
                         <input type="text" th:field="*{noTelp}" class="form-control" placeholder="No Handphone" />
-                        <label class="control-label" th:errors="*{noTelp}" >
+                        <label class="control-label error-label" th:errors="*{noTelp}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -59,7 +59,7 @@
                     <label class="col-sm-2 control-label">Tempat Lahir</label>
                     <div class="col-sm-10">
                         <input type="text" th:field="*{tempatLahir}" class="form-control" placeholder="Tempat Lahir" />
-                        <label class="control-label" th:errors="*{tempatLahir}" >
+                        <label class="control-label error-label" th:errors="*{tempatLahir}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -69,7 +69,7 @@
                     <label class="col-sm-2 control-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
                         <input type="text" th:field="*{tglLahir}" class="form-control" placeholder="yyyy-MM-dd"  />
-                        <label class="control-label" th:errors="*{tglLahir}" >
+                        <label class="control-label error-label" th:errors="*{tglLahir}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="col-sm-10">
                         <input type="text" th:field="*{alamat}"
                                name="alamat" class="form-control" id="alamat" placeholder="alamat" />
-                        <label class="control-label" th:errors="*{alamat}" >
+                        <label class="control-label error-label" th:errors="*{alamat}" >
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -95,7 +95,7 @@
                                     th:text="${p.nama}">Pilih Jabatan
                             </option>
                         </select>
-                        <label class="control-label selectpicker" th:errors="*{jabatan}">
+                        <label class="control-label error-label" th:errors="*{jabatan}">
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -115,7 +115,7 @@
                                     th:text="${p.nama}">Pilih Provinsi
                             </option>
                         </select>
-                        <label class="control-label" th:errors="*{provinsi}">
+                        <label class="control-label error-label" th:errors="*{provinsi}">
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -130,7 +130,7 @@
                                 data-size="5" 
                                 title="Pilih Kota..." >
                         </select>
-                        <label class="control-label" th:errors="*{kota}">
+                        <label class="control-label error-label" th:errors="*{kota}">
                             Pesan error nanti di sini
                         </label>
                     </div>
@@ -145,7 +145,7 @@
                                 data-size="5" 
                                 title="Pilih Kecamatan..." >
                         </select>
-                        <label class="control-label" th:errors="*{kecamatan}">
+                        <label class="control-label error-label" th:errors="*{kecamatan}">
                             Pesan error nanti di sini
                         </label>
                     </div>
