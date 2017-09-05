@@ -1,12 +1,8 @@
 package id.ac.tazkia.dosen.entity;
 
 import id.ac.tazkia.dosen.constant.JenjangConstant;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
@@ -35,6 +31,18 @@ public class ProgramStudi {
     @NotNull
     @Enumerated(EnumType.STRING)
     private JenjangConstant jenjang;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fakultas")
+    Fakultas fakultas;
+
+    public Fakultas getFakultas() {
+        return fakultas;
+    }
+
+    public void setFakultas(Fakultas fakultas) {
+        this.fakultas = fakultas;
+    }
 
     public String getId() {
         return id;
