@@ -37,5 +37,43 @@ public class PengajuanDosenDokumen {
     @Column
     String filename;
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public PengajuanDosen getPengajuanDosen() {
+        return pengajuanDosen;
+    }
+
+    public void setPengajuanDosen(PengajuanDosen pengajuanDosen) {
+        this.pengajuanDosen = pengajuanDosen;
+    }
+
+    public JenisPengajuanDokumen getJenisPengajuanDokumen() {
+        return jenisPengajuanDokumen;
+    }
+
+    public void setJenisPengajuanDokumen(JenisPengajuanDokumen jenisPengajuanDokumen) {
+        this.jenisPengajuanDokumen = jenisPengajuanDokumen;
+    }
+
+    public StatusDokumenPengajuan getStatusDokumen() {
+        return statusDokumen;
+    }
+
+    public void setStatusDokumen(StatusDokumenPengajuan statusDokumen) {
+        this.statusDokumen = statusDokumen;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 }

@@ -43,7 +43,8 @@ CREATE TABLE t_pengajuan_dosen(
 CREATE TABLE m_jenis_pengajuan_dokumen(
   id character varying(255) NOT NULL,
   keterangan character varying(255),
-  nama character varying(255) NOT NULL
+  nama character varying(255) NOT NULL,
+  required boolean NOT NULL
 );
 
 CREATE TABLE t_pengajuan_document
