@@ -3,10 +3,7 @@ package id.ac.tazkia.dosen.entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -26,6 +23,18 @@ public class JenisPengajuanDokumen  implements Serializable {
 
     @Size(max = 255)
     private String keterangan;
+
+    @NotNull
+    @Column
+    Boolean required = Boolean.FALSE;
+
+    public Boolean getRequired() {
+        return required;
+    }
+
+    public void setRequired(Boolean required) {
+        this.required = required;
+    }
 
     public String getId() {
         return id;
