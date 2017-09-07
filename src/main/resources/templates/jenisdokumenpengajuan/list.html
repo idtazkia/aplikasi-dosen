@@ -1,0 +1,82 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Jenis Dokumen Pengajuan</title>
+        <script language="JavaScript">
+            function ConfirmDelete()
+            {
+                var x = confirm("Apakah Anda Yakin?");
+                if (x)
+                    return true;
+                else
+                    return false;
+            }
+        </script>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Daftar Jenis Dokumen Pengajuan</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Daftar Jenis Dokumen Pengajuan</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <a class="box-title btn btn-primary" th:href="@{/jenisDokumenPengajuan/form}">Tambah jenis dokumen pengajuan</a>
+                            <div class="box-tools">
+                                <form id="form" action="#" method="get" th:action="@{/jenisDokumenPengajuan/list}">
+                                    <div class="input-group input-group-sm" style="width: 200px;">
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian berdasarkan nama" th:if="${key == null}"/>
+                                        <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian berdasarkan nama" th:if="${key != null}" th:value="${key}"/>
+                                        <input type="hidden" name="mode" id="mode"/>
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table th:if="${not #lists.isEmpty(data.content)}" class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Keterangan</th>
+                                        <th>Required</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr th:each="jd : ${data}">
+                                        <td th:text="${jd.nama}"></td>
+                                        <td th:text="${jd.keterangan}"></td>
+                                        <td th:if="${jd.required == true}"><span class="fa fa-check-square"></span></td>
+                                        <td th:if="${jd.required == false}"><span class="fa fa-window-close"></span></td>
+                                        <td>
+                                            <a href="#" class="btn btn-info" th:href="@{/jenisDokumenPengajuan/form(id=${jd.id})}" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="#" onclick="return ConfirmDelete();" class="btn btn-info" th:href="@{/jenisDokumenPengajuan/delete(id=${jd.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h3 class="text-center" th:if="${#lists.isEmpty(data.content)}">Data tidak ditemukan.</h3>
+                        </div>
+                        <div th:if="${not #lists.isEmpty(data.content)}">
+                            <div class="text-center"> 
+                                <nav>
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
