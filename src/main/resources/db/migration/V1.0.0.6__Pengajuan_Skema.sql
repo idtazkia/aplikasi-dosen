@@ -14,7 +14,7 @@ ALTER TABLE ONLY program_studi
     ADD CONSTRAINT fksukwm0lnhl9g0vigm5unme7l8 FOREIGN KEY (id_fakultas)
       REFERENCES m_fakultas (id);
 
-CREATE TABLE t_pengajuan_dosen(
+CREATE TABLE t_pengajuan_profile(
   id character varying(255) NOT NULL,
   angka_kredit_dibutuhkan integer NOT NULL,
   angka_kredit_sekarang integer NOT NULL,
@@ -34,6 +34,7 @@ CREATE TABLE t_pengajuan_dosen(
   status character varying(255) NOT NULL,
   tanggal_surat date,
   tmt_pangkat date,
+  tmt_jabatan date,
   usulan_menjadi character varying(255) NOT NULL,
   id_dosen character varying(255) NOT NULL,
   id_mata_kuliah character varying(255) NOT NULL,
@@ -53,11 +54,11 @@ CREATE TABLE t_pengajuan_document
   filename character varying(255) NOT NULL,
   status character varying(255) NOT NULL,
   id_jenis_dokumen character varying(255) NOT NULL,
-  id_pengajuan_dosen character varying(255) NOT NULL
+  id_pengajuan_profile character varying(255) NOT NULL
 );
 
-ALTER TABLE ONLY t_pengajuan_dosen
-    ADD CONSTRAINT t_pengajuan_dosen_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY t_pengajuan_profile
+    ADD CONSTRAINT t_pengajuan_profile_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY m_jenis_pengajuan_dokumen
     ADD CONSTRAINT m_jenis_pengajuan_dokumen_pkey PRIMARY KEY (id);
@@ -66,15 +67,15 @@ ALTER TABLE ONLY t_pengajuan_document
     ADD CONSTRAINT t_pengajuan_document_pkey PRIMARY KEY (id);
 
 
-ALTER TABLE ONLY t_pengajuan_dosen
+ALTER TABLE ONLY t_pengajuan_profile
     ADD CONSTRAINT fk4v74m1lq6pyy41tw1u56qfcbu FOREIGN KEY (id_dosen)
          REFERENCES dosen (id);
 
-ALTER TABLE ONLY t_pengajuan_dosen
+ALTER TABLE ONLY t_pengajuan_profile
     ADD CONSTRAINT fka2sltmrvpakny2h24xxs6fp4t FOREIGN KEY (id_program_studi)
          REFERENCES program_studi (id);
 
-ALTER TABLE ONLY t_pengajuan_dosen
+ALTER TABLE ONLY t_pengajuan_profile
     ADD CONSTRAINT fkor6qki9sb76qjndd5yl5abwt9 FOREIGN KEY (id_mata_kuliah)
          REFERENCES mata_kuliah (id);
 
@@ -83,8 +84,8 @@ ALTER TABLE ONLY t_pengajuan_document
         REFERENCES m_jenis_pengajuan_dokumen (id);
 
 ALTER TABLE ONLY t_pengajuan_document
-    ADD CONSTRAINT fkdwl2bpek80bat2ijo64okfbyj FOREIGN KEY (id_pengajuan_dosen)
-        REFERENCES t_pengajuan_dosen (id);
+    ADD CONSTRAINT fkdwl2bpek80bat2ijo64okfbyj FOREIGN KEY (id_pengajuan_profile)
+        REFERENCES t_pengajuan_profile (id);
 
 ALTER TABLE ONLY t_pengajuan_document
-    ADD CONSTRAINT ukmot5j8tnpwqs59o9iftxbl31q UNIQUE (id_pengajuan_dosen, id_jenis_dokumen);
+    ADD CONSTRAINT ukmot5j8tnpwqs59o9iftxbl31q UNIQUE (id_pengajuan_profile, id_jenis_dokumen);

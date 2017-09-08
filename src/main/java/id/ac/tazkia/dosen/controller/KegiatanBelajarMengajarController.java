@@ -127,17 +127,13 @@ public class KegiatanBelajarMengajarController {
 
         if (errors.hasErrors()) {
             LOGGER.error("masuk ke sini");
+            mm.addAttribute("kinerja", kinerja);
+            mm.addAttribute("listMatkul", mataKuliahDao.findAll());
             return "/kegiatan/kbm/form";
         }
 
         if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kinerja.getDosen().getId())) {
             return "redirect:/kegiatan/kbm/list";
-        }
-
-        if (errors.getErrorCount() > 0) {
-            mm.addAttribute("kinerja", kinerja);
-            mm.addAttribute("listMatkul", mataKuliahDao.findAll());
-            return "kegiatan/kbm/form";
         }
 
         if (kinerja.getId() != null) {

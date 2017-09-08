@@ -2,31 +2,33 @@ package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.JenisDokumenPengajuanDao;
 import id.ac.tazkia.dosen.entity.JenisPengajuanDokumen;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/jenisDokumenPengajuan")
 public class JenisDokumenPengajuanController {
 
     private final static String LIST = "jenisdokumenpengajuan/list";
-    private final static String LIST_URL = "jenisDokumenPengajuan/list";
+    private final static String LIST_URL = "/jenisDokumenPengajuan/list";
     private final static String FORM = "jenisdokumenpengajuan/form";
-    private static final Logger LOG = Logger.getLogger(JenisDokumenPengajuanController.class.getName());
-    
+    private static final Logger LOGGER = LoggerFactory.getLogger(JenisDokumenPengajuanController.class);
 
     @Autowired
     private JenisDokumenPengajuanDao jenisDokumenPengajuanDao;
@@ -44,27 +46,24 @@ public class JenisDokumenPengajuanController {
     }
 
     @GetMapping("/form")
-    public String form(@RequestParam(name = "id", required = false) JenisPengajuanDokumen jpd,Model model) {
+    public String form(@RequestParam(name = "id", required = false) JenisPengajuanDokumen jpd, Model model) {
         if (jpd == null) {
-            LOG.info("jpd tidak ditemukan");
             model.addAttribute("jpd", new JenisPengajuanDokumen());
             return FORM;
         } else {
-            LOG.info("jpd ditemukan");
             model.addAttribute("jpd", jpd);
         }
         return FORM;
     }
 
-    @PostMapping("/form")
-    public String simpan(@ModelAttribute @Valid JenisPengajuanDokumen jpd, BindingResult err, SessionStatus status) {
-        if (err.hasErrors()) {
-            LOG.info("error bindingresult");
-            return FORM;
+    @RequestMapping(value = "/form", method = RequestMethod.POST)
+    public String simpan(@ModelAttribute("jpd") @Valid JenisPengajuanDokumen jpd, BindingResult errors, ModelMap mm) {
+        if (errors.hasErrors()) {
+            List<FieldError> fields = errors.getFieldErrors();
+            mm.addAttribute("jpd", jpd);
+            return "jenisdokumenpengajuan/form";
         }
-        LOG.info("save" + jpd.getNama());
         jenisDokumenPengajuanDao.save(jpd);
-        status.setComplete();
         return "redirect:" + LIST_URL;
     }
 

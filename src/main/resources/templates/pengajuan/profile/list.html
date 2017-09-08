@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Profile Pengajuan PAK</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Edit Form Profile Pengajuan PAK Dosen</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li>List Profile Pengajuan PAK Dosen</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Filter</h3>
+                        </div>
+                        <div class="box-body">
+                            <a class="box-title btn btn-primary" th:href="@{/pengajuan/profile/form}">Tambah data dosen</a>
+                            <form method="GET" th:action="@{/pengajuan/profile/list}">
+                                <div class="form-group" th:if="${not #lists.isEmpty(listDosen)}">
+                                    <label>Dosen</label>
+                                    <select nama="dosen" class="form-control" required="true">
+                                        <option th:each="p : ${listDosen}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Dosen
+                                        </option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr th:if="${not #lists.isEmpty(data.content)}">
+                                        <th>Nomor Surat</th>
+                                        <th>Tanggal Surat</th>
+                                        <th>NIDN</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  th:each="x : ${data.content}">
+                                        <td th:text="${x.nomorSurat}"></td>
+                                        <td th:text="${#dates.format(x.tanggalSurat, 'dd-MM-YYYY')}"></td>
+                                        <td th:text="${x.dosen.nidn}"></td>
+                                        <td th:text="${x.dosen.nama}"></td>
+                                        <td>     
+                                            <a href="form.html" th:href="@{/pengajuan/profile/form?id={id}(id=${x.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="delete.html" th:href="@{/pengajuan/profile/delete?id={id}(id=${x.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                        </td>
+                                    </tr>
+
+                                    <tr th:if="${#lists.isEmpty(data.content)}">
+                                        <td colspan="13" class="text-center">Data Profile tidak ditemukan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>

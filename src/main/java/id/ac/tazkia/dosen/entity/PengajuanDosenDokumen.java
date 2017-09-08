@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "t_pengajuan_document", uniqueConstraints={
-    @UniqueConstraint(columnNames = {"id_pengajuan_dosen", "id_jenis_dokumen"})
+    @UniqueConstraint(columnNames = {"id_pengajuan_profile", "id_jenis_dokumen"})
 })
 public class PengajuanDosenDokumen {
     @Id
@@ -19,8 +19,8 @@ public class PengajuanDosenDokumen {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_pengajuan_dosen")
-    PengajuanDosen pengajuanDosen;
+    @JoinColumn(name = "id_pengajuan_profile")
+    PengajuanDosenProfile pengajuanDosen;
 
     @NotNull
     @ManyToOne
@@ -45,11 +45,11 @@ public class PengajuanDosenDokumen {
         this.id = id;
     }
 
-    public PengajuanDosen getPengajuanDosen() {
+    public PengajuanDosenProfile getPengajuanDosen() {
         return pengajuanDosen;
     }
 
-    public void setPengajuanDosen(PengajuanDosen pengajuanDosen) {
+    public void setPengajuanDosen(PengajuanDosenProfile pengajuanDosen) {
         this.pengajuanDosen = pengajuanDosen;
     }
 

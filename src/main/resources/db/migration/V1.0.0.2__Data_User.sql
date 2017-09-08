@@ -13,7 +13,6 @@ INSERT INTO c_security_permission (id, permission_label, permission_value) VALUE
 ('MASTER_KATEGORI_BUKTI_KEGIATAN', 'Halaman Kategori Bukti Kegiatan', 'ROLE_MASTER_KATEGORI_BUKTI_KEGIATAN'),
 ('MASTER_JENIS_BUKTI_KEGIATAN', 'Halaman Jenis Bukti Kegiatan', 'ROLE_MASTER_JENIS_BUKTI_KEGIATAN'),
 ('MASTER_POIN_KEGIATAN', 'Halaman Poin Kegiatan', 'ROLE_MASTER_POIN_KEGIATAN'),
-('MASTER_JENIS_DOKUMEN_PENGAJUAN', 'Halaman Jenis Dokumen Pengajuan', 'ROLE_MASTER_JENIS_DOKUMEN_PENGAJUAN'),
 ('USER_LOGGED_IN', 'Get User Loggin Information', 'ROLE_USER_LOGGED_IN');
 
 INSERT INTO c_security_role (id, description, name) VALUES
@@ -36,7 +35,6 @@ INSERT INTO c_security_role_permission (id_role, id_permission) VALUES
 ('ADMINISTRATOR', 'MASTER_JENIS_BUKTI_KEGIATAN'),
 ('ADMINISTRATOR', 'MASTER_POIN_KEGIATAN'),
 ('ADMINISTRATOR', 'MASTER_DOSEN'),
-('ADMINISTRATOR', 'MASTER_JENIS_DOKUMEN_PENGAJUAN'),
 
 ('DOSEN', 'KEGIATAN'),
 ('DOSEN', 'USER_LOGGED_IN');

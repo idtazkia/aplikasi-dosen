@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "t_pengajuan_dosen")
-public class PengajuanDosen {
+@Table(name = "t_pengajuan_profile")
+public class PengajuanDosenProfile {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -54,6 +54,11 @@ public class PengajuanDosen {
     @Column(name = "tmt_pangkat")
     Date tmtPangkat;
 
+    @DateTimeFormat(pattern="dd-mm-yyyy")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "tmt_jabatan")
+    Date tmtJabatan;
+    
     @NotNull
     @Column(name = "pendidikan_tertinggi_sebelumnya")
     @Enumerated(EnumType.STRING)
@@ -124,6 +129,22 @@ public class PengajuanDosen {
     @NotNull
     @Column(name = "lampiran_lengkap")
     Boolean lampiranLengkap = Boolean.FALSE;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getTmtJabatan() {
+        return tmtJabatan;
+    }
+
+    public void setTmtJabatan(Date tmtJabatan) {
+        this.tmtJabatan = tmtJabatan;
+    }
 
     public Dosen getDosen() {
         return dosen;

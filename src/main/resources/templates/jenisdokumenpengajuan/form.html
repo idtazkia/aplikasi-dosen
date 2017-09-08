@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
     <head>
         <title>Data Jenis Dokumen Pengajuan</title>
         <script language="JavaScript">
@@ -24,19 +24,17 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">&nbsp;</h3>
-                        </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" method="post" th:object="${jpd}">
+                        <form th:action="@{/jenisDokumenPengajuan/form}" th:object="${jpd}" method="post">
                             <div class="box-body">
+                                <input type="hidden" th:field="*{id}" />
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text"
                                            th:field="*{nama}"
                                            name="nama" class="form-control" id="nama" placeholder="Nama" />
-                                    <label class="control-label" th:errors="*{nama}">
+                                    <label class="control-label error-label" th:errors="*{nama}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
@@ -45,7 +43,7 @@
                                     <input type="text"
                                            th:field="*{keterangan}"
                                            name="keterangan" class="form-control" id="keterangan" placeholder="Keterangan" />
-                                    <label class="control-label" th:errors="*{keterangan}">
+                                    <label class="control-label error-label" th:errors="*{keterangan}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
@@ -54,7 +52,7 @@
                                     <div class="checkbox">
                                         <label><input type="checkbox" th:field="*{required}" />Required</label>
                                     </div>
-                                    <label class="control-label" th:errors="*{required}">
+                                    <label class="control-label error-label" th:errors="*{required}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>

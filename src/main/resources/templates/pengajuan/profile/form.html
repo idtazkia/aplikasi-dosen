@@ -1,0 +1,302 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Profile Pengajuan PAK</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Edit Form Pengajuan PAK Dosen</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Edit Form Pengajuan PAK Dosen</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row" th:if="${not #lists.isEmpty(listDosen)}">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Select Dosen</h3>
+                        </div>
+                        <div class="box-body">
+                            <form th:action="@{/pengajuan/profile/form}" method="get">
+                                <div class="form-group">
+                                    <label>Dosen</label>
+                                    <select class="form-control" name="idDosen" required="true">
+                                        <option th:each="p : ${listDosen}"
+                                                th:value="${p.id}"
+                                                th:text="${p.nama}">Pilih Dosen
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <button class="btn btn-primary">Next</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" th:if="${#lists.isEmpty(listDosen)}">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Form</h3>
+                        </div>
+                        <form th:action="@{/pengajuan/profile/form}" th:object="${pengajuan}" method="post">
+                            <div class="box-body">
+
+                                <input type="hidden" th:field="*{id}"/>
+                                <input type="hidden" th:field="*{dosen}"/>
+                                <div class="col-sm-6">
+                                    <!--NIDN-->
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
+                                        <label>NIDN</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.nidn}"></span>
+                                    </div>
+                                    <!--nama-->
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
+                                        <label>Nama</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.nama}"></span>
+                                    </div>
+                                    <!--status dosen-->
+                                    <div class="form-group">
+                                        <label>Status Dosen</label>
+                                        <select class="form-control" id="statusDosen" th:field="*{statusDosen}">
+                                            <option value="PNS">PNS</option>
+                                            <option value="NON_PNS">Non PNS</option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{statusDosen}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--nip/karpeg-->
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" class="form-control" id="nip"  th:field="*{nip}" placeholder="NIP" />
+                                        <label class="control-label error-label" th:errors="*{nip}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Karpeg</label>
+                                        <input type="text" class="form-control" id="karpeg"  th:field="*{karpeg}" placeholder="Karpeg" />
+                                        <label class="control-label error-label" th:errors="*{karpeg}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--tempat dan tanggal lahir-->
+                                    <div class="form-group"  th:if="${pengajuan.dosen != null}">
+                                        <label>Tempat Lahir</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.tempatLahir}"></span>
+                                    </div>
+                                    <div class="form-group"  th:if="${pengajuan.dosen != null}">
+                                        <label>Tanggal Lahir</label>
+                                        <span class="form-control" th:text="${#dates.format(pengajuan.dosen.tglLahir, 'dd-MM-YYYY')}"></span>
+                                    </div>
+                                    <!--pangkat dan golongan-->
+                                    <div class="form-group">
+                                        <label>Pangkat</label>
+                                        <select class="form-control" id="statusDosen" th:field="*{pangkat}">
+                                            <option value="1">Pangkat 1</option>
+                                            <option value="2">Pangkat 2</option>
+                                            <option value="3">Pangkat 3</option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{pangkat}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Golongan</label>
+                                        <select class="form-control" id="statusDosen" th:field="*{golongan}">
+                                            <option value="1">Golongan 1</option>
+                                            <option value="2">Golongan 2</option>
+                                            <option value="3">Golongan 3</option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{golongan}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--tmt pangkat-->
+                                    <div class="form-group">
+                                        <label>TMT Pangkat</label>
+                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY"  th:field="*{tmtPangkat}" />
+                                        <label class="control-label error-label" th:errors="*{tmtPangkat}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--jabatan dosen-->
+                                    <div class="form-group"  th:if="${pengajuan.dosen != null}">
+                                        <label>Jabatan Dosen</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.jabatan.nama}"></span>
+                                    </div>
+                                    <!--tmt jabatan-->
+                                    <div class="form-group">
+                                        <label>TMT jabatan</label>
+                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY"  th:field="*{tmtJabatan}" />
+                                        <label class="control-label error-label" th:errors="*{tmtJabatan}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--pendidikan tertinggi saat pak sebelumnya-->
+                                    <div class="form-group">
+                                        <label>Pendidikan Tertinggi (saat PAK sebelumnya)</label>
+                                        <select class="form-control" th:field="*{pendidikanTertinggiSebelumnya}">
+                                            <option value="S3">S3</option>
+                                            <option value="S2">S2</option>
+                                            <option value="S1">S1</option>
+                                            <option value="D3">D3</option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{pendidikanTertinggiSebelumnya}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--pendidikan tertinggi skrng-->
+                                    <div class="form-group">
+                                        <label>Pendidikan Tertinggi (PAK sekarang)</label>
+                                        <select class="form-control" th:field="*{pendidikanTertinggiSekarang}">
+                                            <option value="S3">S3</option>
+                                            <option value="S2">S2</option>
+                                            <option value="S1">S1</option>
+                                            <option value="D3">D3</option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{pendidikanTertinggiSekarang}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+
+                                    <!--button update-->
+                                    <button class="btn btn-primary">Update</button>
+                                    <a th:href="@{/pengajuan/profile/list}" class="btn btn-danger" role="button">
+                                        <span aria-hidden="true"></span>Batal
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <!--Fakultas-->
+                                    <div class="form-group">
+                                        <label>Fakultas</label>
+                                        <select class="form-control" required="true">
+                                            <option th:each="p : ${listFakultas}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Fakultas
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--jurusan/program studi-->
+                                    <div class="form-group">
+                                        <label>Jurusan/Program studi</label>
+                                        <select th:field="*{programStudi}" class="form-control" required="true">
+                                            <option th:each="p : ${listProdi}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Fakultas
+                                            </option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{programStudi}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--mata kuliah yang dibina-->
+                                    <div class="form-group">
+                                        <label>Mata Kuliah yang Dibina</label>
+                                        <select th:field="*{mataKuliah}" class="form-control" required="true">
+                                            <option th:each="p : ${listMatkul}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Mata Kuliah
+                                            </option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{mataKuliah}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--jenis usulan-->
+                                    <div class="form-group">
+                                        <label>Jenis dan Usulan</label>
+                                        <input type="number" class="form-control" th:field="*{jenisUsulan}" />
+                                        <label class="control-label error-label" th:errors="*{jenisUsulan}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--angka kredit yang dibutuhkan-->
+                                    <div class="form-group">
+                                        <label>Angka Kredit yang Dibutuhkan</label>
+                                        <input type="number" class="form-control" th:field="*{angkaKreditDibutuhkan}" />
+                                        <label class="control-label error-label" th:errors="*{angkaKreditDibutuhkan}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--kode bidang ilmu-->
+                                    <div class="form-group">
+                                        <label>Kode Bidang Ilmu</label>
+                                        <input type="text" class="form-control"  th:field="*{kodeBidangIlmu}" />
+                                        <label class="control-label error-label" th:errors="*{kodeBidangIlmu}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--nama bidang ilmu-->
+                                    <div class="form-group">
+                                        <label>Nama Bidang Ilmu</label>
+                                        <input type="text" class="form-control"  th:field="*{namaBidangIlmu}" />
+                                        <label class="control-label error-label" th:errors="*{namaBidangIlmu}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--diusulkan menjadi-->
+                                    <div class="form-group">
+                                        <label>Diusulkan Menjadi</label>
+                                        <input type="text" class="form-control"  th:field="*{usulanMenjadi}" />
+                                        <label class="control-label error-label" th:errors="*{usulanMenjadi}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--angka kredit sekarang-->
+                                    <div class="form-group">
+                                        <label>Angka Kredit Sekarang</label>
+                                        <input type="number" class="form-control" th:field="*{angkaKreditSekarang}" />
+                                        <label class="control-label error-label" th:errors="*{angkaKreditSekarang}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--angka kredit yang diusulkan-->
+                                    <div class="form-group">
+                                        <label>Angka Kredit yang Diusulkan</label>
+                                        <input type="number" class="form-control" th:field="*{angkaKreditUsulan}" />
+                                        <label class="control-label error-label" th:errors="*{angkaKreditUsulan}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--kategori dosen-->
+                                    <div class="form-group">
+                                        <label>Kategori Dosen</label>
+                                        <input type="text" class="form-control"  th:field="*{kategoriDosen}" />
+                                        <label class="control-label error-label" th:errors="*{kategoriDosen}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--nomor surat-->
+                                    <div class="form-group">
+                                        <label>Nomor Surat</label>
+                                        <input type="text" class="form-control" th:field="*{nomorSurat}" />
+                                        <label class="control-label error-label" th:errors="*{nomorSurat}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--tanggal surat-->
+                                    <div class="form-group">
+                                        <label>Tanggal Surat</label>
+                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY" th:field="*{tanggalSurat}" />
+                                        <label class="control-label error-label" th:errors="*{tanggalSurat}">
+                                            Pesan error nanti di sini
+                                        </label>
+                                    </div>
+                                    <!--lampiran-->
+                                    <div class="form-group">
+                                        <label>Lampiran</label>
+                                        <span class="form-control text-danger">Belum Lengkap</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

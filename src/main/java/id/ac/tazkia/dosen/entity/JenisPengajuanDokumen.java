@@ -17,7 +17,6 @@ public class JenisPengajuanDokumen  implements Serializable {
     private String id;
 
     @NotNull
-    @NotEmpty
     @Size(min = 3, max = 255)
     private String nama;
 
