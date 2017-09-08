@@ -14,7 +14,9 @@ import id.ac.tazkia.dosen.entity.PengajuanDosenDokumen;
 import id.ac.tazkia.dosen.entity.PengajuanDosenProfile;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.ui.ModelMap;
@@ -35,60 +37,52 @@ public class PengajuanDosenDokumenController {
     private DosenDao dosenDao;
 
     @GetMapping("/list")
-    public String tampilkanFormPilihDosen(ModelMap mm, Principal principal, Authentication authentication) {
-        if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
-            return "redirect:/pengajuan/dokumen/form";
-        }
-
-        mm.addAttribute("listDosen", dosenDao.findAll());
-
-        return "pengajuan/dokumen/form_select_dosen";
-    }
-
-    @GetMapping("/form")
-    public String tampilkanForm(@RequestParam(required = false) String id,
+    public String tampilkanForm(@RequestParam(required = true) String id,
             ModelMap mm, Principal principal, Authentication authentication) {
 
-        PengajuanDosenProfile pengajuan = new PengajuanDosenProfile();
+        PengajuanDosenProfile pengajuan = pengajuanDosenProfileDao.findOne(id);
+        if (pengajuan == null) {
+            throw new NullPointerException("Data Pengajuan PAK Tidak Ditemukan");
+        }
+
         Dosen dosen = new Dosen();
 
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
-            if (id == null || id.isEmpty()) {
-                return "redirect:/pengajuan/dokumen/form/getDosen";
-            }
-            dosen = dosenDao.findOne(id);
-            if (dosen == null) {
-                return "redirect:/pengajuan/dokumen/form/getDosen";
-            }
-        } else {
+        if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
             dosen = dosenDao.findOneByEmail(principal.getName());
-            if (dosen == null) {
+            if (dosen == null || !pengajuan.getDosen().getId().equalsIgnoreCase(dosen.getId())) {
                 throw new NullPointerException("Data Dosen Tidak Ditemukan");
             }
         }
 
         Iterable<JenisPengajuanDokumen> listTipeDokumen = jenisDokumenPengajuanDao.findAll();
-        
-        
-        pengajuan = pengajuanDosenProfileDao.findByDosen(dosen);
-        if (pengajuan == null) {
-            return "redirect:/pengajuan/profile/form";
-        }
-        
+
         List<PengajuanDosenDokumen> listDokumen = new ArrayList<>();
-        for(JenisPengajuanDokumen jenis : listTipeDokumen){
+        int docApproved = 0;
+        for (JenisPengajuanDokumen jenis : listTipeDokumen) {
             PengajuanDosenDokumen dokumen = pengajuanDosenDokumenDao.findByPengajuanDosenAndJenisPengajuanDokumen(pengajuan, jenis);
-            if(dokumen == null){
+            if (dokumen == null) {
                 dokumen = new PengajuanDosenDokumen();
                 dokumen.setFilename(null);
                 dokumen.setJenisPengajuanDokumen(jenis);
                 dokumen.setPengajuanDosen(pengajuan);
                 dokumen.setStatusDokumen(StatusDokumenPengajuan.PENDING);
+            } else {
+                if (dokumen.getStatusDokumen().equals(StatusDokumenPengajuan.APPROVED)) {
+                    docApproved += 1;
+                }
             }
+
             listDokumen.add(dokumen);
         }
 
+        Map<String, Object> progressDocument = new HashMap<>();
+        progressDocument.put("totalDoc", "Dari " + listDokumen.size() + " dokumen.");
+        progressDocument.put("approvDoc", docApproved);
+        progressDocument.put("percent", (docApproved*100)/listDokumen.size());
+
+        mm.addAttribute("progressBar", progressDocument);
+        mm.addAttribute("pengajuan", pengajuan);
         mm.addAttribute("listDokumen", listDokumen);
-        return "pengajuan/dokumen/form";
+        return "pengajuan/dokumen/list";
     }
 }

@@ -19,7 +19,7 @@
                         </div>
                         <div class="box-body">
                             <a class="box-title btn btn-primary" th:href="@{/pengajuan/profile/form}">Tambah data dosen</a>
-                            <form method="GET" th:action="@{/pengajuan/profile/list}">
+<!--                            <form method="GET" th:action="@{/pengajuan/profile/list}">
                                 <div class="form-group" th:if="${not #lists.isEmpty(listDosen)}">
                                     <label>Dosen</label>
                                     <select nama="dosen" class="form-control" required="true">
@@ -30,7 +30,7 @@
                                     </select>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Filter</button>
-                            </form>
+                            </form>-->
                         </div>
                     </div>
                 </div>
@@ -46,6 +46,7 @@
                                         <th>Tanggal Surat</th>
                                         <th>NIDN</th>
                                         <th>Nama Lengkap</th>
+                                        <th>Status Dokumen</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -55,9 +56,11 @@
                                         <td th:text="${#dates.format(x.tanggalSurat, 'dd-MM-YYYY')}"></td>
                                         <td th:text="${x.dosen.nidn}"></td>
                                         <td th:text="${x.dosen.nama}"></td>
+                                        <td>Belum Lengkap</td>
                                         <td>     
-                                            <a href="form.html" th:href="@{/pengajuan/profile/form?id={id}(id=${x.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="delete.html" th:href="@{/pengajuan/profile/delete?id={id}(id=${x.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
+                                            <a href="form.html" th:href="@{/pengajuan/dokumen/list?id={id}(id=${x.id})}" title="Upload Document"><span class="glyphicon glyphicon-floppy-save"></span></a>
+                                            <a href="form.html" th:href="@{/pengajuan/profile/form?id={id}(id=${x.id})}" title="Edit Data PAK"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="delete.html" th:href="@{/pengajuan/profile/delete?id={id}(id=${x.id})}" title="Delete Data PAK"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                         </td>
                                     </tr>
 

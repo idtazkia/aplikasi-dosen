@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Kelengkapan Dokumen</title>
+        <style>
+            .thumbs{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .progression{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Kelengkapan Dokumen</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Kelengkapan Dokumen</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <table class="table">
+                                <tr>
+                                    <th>NIDN</th>
+                                    <td th:text="${pengajuan.dosen.nidn}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Nama</th>
+                                    <td th:text="${pengajuan.dosen.nama}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Nomor Surat</th>
+                                    <td th:text="${pengajuan.nomorSurat}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 progression">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="info-box bg-yellow">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Tingkat Kelengkapan</span>
+                                    <span class="info-box-number" th:text="${progressBar.approvDoc}">1</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" th:style="'width: '+ ${progressBar.percent} +'%'"></div>
+                                    </div>
+                                    <span class="progress-description" th:text="${progressBar.totalDoc}"></span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="col-lg-2 col-md-3 col-xs-6 thumbs" th:each="doc : ${listDokumen}">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua">
+                                    <div class="inner" style="height:150px">
+                                        <b><span th:text="${#strings.abbreviate(doc.jenisPengajuanDokumen.nama,90)}">KTP</span> <span th:if="${doc.jenisPengajuanDokumen.required}"> | (Required)</span></b>
+                                    </div>
+                                    <div class="inner">
+                                        <p><span class="pull-left">Status</span><span class="pull-right" th:text="${doc.statusDokumen}">Ok</span></p>
+                                        <br />
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">Upload <i class="fa fa-upload"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
