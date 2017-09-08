@@ -42,6 +42,20 @@ public class ImageController {
         }
     }
 
+    @GetMapping("/dokumen-pengajuan/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> filePengajuan(@PathVariable String filename) {
+        try {
+            Resource file = imageService.loadAsResource(filename, "dokumen-pengajuan");
+            return ResponseEntity
+                    .ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "filename=\"" + file.getFilename() + "\"")
+                    .body(file);
+        } catch (MalformedURLException ex) {
+            return null;
+        }
+    }
+
     @GetMapping("/kinerja/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> imageKinerja(@PathVariable String filename) {

@@ -58,8 +58,8 @@
                                         <td th:text="${x.dosen.nama}"></td>
                                         <td>Belum Lengkap</td>
                                         <td>     
-                                            <a href="form.html" th:href="@{/pengajuan/dokumen/list?id={id}(id=${x.id})}" title="Upload Document"><span class="glyphicon glyphicon-floppy-save"></span></a>
-                                            <a href="form.html" th:href="@{/pengajuan/profile/form?id={id}(id=${x.id})}" title="Edit Data PAK"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="form.html" th:href="@{/pengajuan/dokumen/list?id={id}(id=${x.id})}" title="Upload Document"><span class="glyphicon glyphicon-floppy-save"></span></a> | 
+                                            <a href="form.html" th:href="@{/pengajuan/profile/form?id={id}(id=${x.id})}" title="Edit Data PAK"><span class="glyphicon glyphicon-edit"></span></a> | 
                                             <a href="delete.html" th:href="@{/pengajuan/profile/delete?id={id}(id=${x.id})}" title="Delete Data PAK"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                         </td>
                                     </tr>

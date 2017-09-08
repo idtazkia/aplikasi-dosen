@@ -7,6 +7,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PengajuanDosenDokumenDao  extends PagingAndSortingRepository<PengajuanDosenDokumen, String> {
+public interface PengajuanDosenDokumenDao extends PagingAndSortingRepository<PengajuanDosenDokumen, String> {
+
     public PengajuanDosenDokumen findByPengajuanDosenAndJenisPengajuanDokumen(PengajuanDosenProfile profile, JenisPengajuanDokumen jenis);
+
+    public PengajuanDosenDokumen findByPengajuanDosenIdAndJenisPengajuanDokumenId(String idPengajuan, String idJenis);
+
 }
