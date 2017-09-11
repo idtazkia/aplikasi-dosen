@@ -1,8 +1,11 @@
 package id.ac.tazkia.dosen.controller;
 
+import id.ac.tazkia.dosen.constant.StatusDokumenPengajuan;
 import id.ac.tazkia.dosen.dao.DosenDao;
 import id.ac.tazkia.dosen.dao.FakultasDao;
+import id.ac.tazkia.dosen.dao.JenisDokumenPengajuanDao;
 import id.ac.tazkia.dosen.dao.MataKuliahDao;
+import id.ac.tazkia.dosen.dao.PengajuanDosenDokumenDao;
 import id.ac.tazkia.dosen.entity.Dosen;
 import id.ac.tazkia.dosen.entity.PengajuanDosenProfile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import id.ac.tazkia.dosen.dao.PengajuanDosenProfileDao;
 import id.ac.tazkia.dosen.dao.ProgramStudiDao;
+import id.ac.tazkia.dosen.entity.JenisPengajuanDokumen;
+import id.ac.tazkia.dosen.entity.PengajuanDosenDokumen;
 import id.ac.tazkia.dosen.entity.User;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,9 +42,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/pengajuan/profile")
 public class PengajuanDosenProfileController {
 
+
+    @Autowired
+    private JenisDokumenPengajuanDao jenisDokumenPengajuanDao;
     @Autowired
     private PengajuanDosenProfileDao pengajuanDosenDao;
-
+    @Autowired
+    private PengajuanDosenDokumenDao pengajuanDosenDokumenDao;
     @Autowired
     private DosenDao dosenDao;
 
@@ -51,14 +65,20 @@ public class PengajuanDosenProfileController {
     public String tampilkanFormPilihDosen(@PageableDefault(size = 10) Pageable pageable,
             ModelMap mm, Principal principal, Authentication authentication) {
         PageRequest page = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "tanggalSurat");
+        Page<PengajuanDosenProfile> result = new PageImpl<>(Collections.<PengajuanDosenProfile>emptyList());
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
             mm.addAttribute("listDosen", dosenDao.findAll());
-            mm.addAttribute("data", pengajuanDosenDao.findAll(pageable));
+            result = pengajuanDosenDao.findAll(pageable);
         } else {
             Dosen dosen = dosenDao.findOneByEmail(principal.getName());
-            mm.addAttribute("data", pengajuanDosenDao.findByDosen(dosen, pageable));
+            result = pengajuanDosenDao.findByDosen(dosen, pageable);
         }
 
+        for(PengajuanDosenProfile p : result.getContent()){
+            p.setLampiranLengkap(checkStatusDokumen(p));
+        }
+        
+        mm.addAttribute("data", result);
         return "pengajuan/profile/list";
     }
 
@@ -91,6 +111,8 @@ public class PengajuanDosenProfileController {
             pengajuan.setDosen(dosen);
         }
 
+        pengajuan.setLampiranLengkap(checkStatusDokumen(pengajuan));
+        
         mm.addAttribute("listFakultas", fakultasDao.findAll());
         mm.addAttribute("listProdi", programStudiDao.findAll());
         mm.addAttribute("listMatkul", mataKuliahDao.findAll());
@@ -136,5 +158,24 @@ public class PengajuanDosenProfileController {
             pengajuanDosenDao.delete(pengajuan);
         }
         return "redirect:/pengajuan/profile/list";
+    }
+
+    private Boolean checkStatusDokumen(PengajuanDosenProfile pengajuan) {
+        if(pengajuan == null || !StringUtils.hasText(pengajuan.getId())){
+            return Boolean.FALSE;
+        }
+        
+        Iterable<JenisPengajuanDokumen> listTipeDokumen = jenisDokumenPengajuanDao.findByRequired(Boolean.TRUE);
+
+        List<PengajuanDosenDokumen> listDokumen = new ArrayList<>();
+        Boolean isLengkap = Boolean.TRUE;
+        for (JenisPengajuanDokumen jenis : listTipeDokumen) {
+            PengajuanDosenDokumen dokumen = pengajuanDosenDokumenDao.findByPengajuanDosenAndJenisPengajuanDokumen(pengajuan, jenis);
+            if(dokumen == null || !dokumen.getStatusDokumen().equals(StatusDokumenPengajuan.APPROVED)){
+                isLengkap = Boolean.FALSE;
+                break;
+            }
+        }
+        return isLengkap;
     }
 }

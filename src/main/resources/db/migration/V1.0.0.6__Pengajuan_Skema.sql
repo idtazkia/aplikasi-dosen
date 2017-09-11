@@ -24,7 +24,6 @@ CREATE TABLE t_pengajuan_profile(
   karpeg character varying(255) NOT NULL,
   kategori_dosen character varying(255) NOT NULL,
   kode_bidang_ilmu character varying(255) NOT NULL,
-  lampiran_lengkap boolean NOT NULL,
   nama_bidang_ilmu character varying(255) NOT NULL,
   nip character varying(255) NOT NULL,
   nomor_surat character varying(255) NOT NULL,

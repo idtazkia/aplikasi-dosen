@@ -126,8 +126,7 @@ public class PengajuanDosenProfile {
     @Column(name = "tanggal_surat")
     Date tanggalSurat;
 
-    @NotNull
-    @Column(name = "lampiran_lengkap")
+    @Transient
     Boolean lampiranLengkap = Boolean.FALSE;
 
     public String getId() {

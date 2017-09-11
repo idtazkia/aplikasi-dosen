@@ -72,20 +72,24 @@
                                         <b><span th:id="'docName-'+${doc.jenisPengajuanDokumen.id}" th:text="${#strings.abbreviate(doc.jenisPengajuanDokumen.nama,90)}">KTP</span> <span th:if="${doc.jenisPengajuanDokumen.required}"> | (Required)</span></b>
                                     </div>
                                     <div class="inner">
-                                        <p><span class="pull-left">Status</span><span class="pull-right" th:text="${doc.statusDokumen}">Ok</span></p>
+                                        <p><span class="pull-left" th:text="${doc.jenisPengajuanDokumen.required ? 'REQUIRED' : 'OPTIONAL'}">Status</span><span class="pull-right" th:text="${doc.statusDokumen}">Ok</span></p>
                                         <br />
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-bag"></i>
                                     </div>
-                                    <button 
-                                        th:attr="data-idDoc=${doc.jenisPengajuanDokumen.id}"
-                                        data-toggle="modal" 
-                                        data-target="#modalUpload" class="btn btn-primary">Upload <i class="fa fa-upload"></i></button>
-                                    <a th:if="${doc.filename != null}" 
-                                       target="_blank" th:href="@{/image/dokumen-pengajuan/} + ${doc.filename}"
-                                       class="btn btn-warning">Download <i class="fa fa-download"></i></a>
 
+                                    <center>
+                                        <a 
+                                            th:attr="data-idDoc=${doc.jenisPengajuanDokumen.id}"
+                                            data-toggle="modal" 
+                                            data-target="#modalUpload" style="margin-bottom:8px" class="btn btn-primary">Upload <i class="fa fa-upload"></i></a>
+
+                                        <a th:if="${doc.filename != null}" 
+                                           target="_blank" th:href="@{/image/dokumen-pengajuan/} + ${doc.filename}"
+                                            style="margin-bottom:8px" class="btn btn-default">Download <i class="fa fa-download"></i></a>
+                                    </center>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -19,18 +19,18 @@
                         </div>
                         <div class="box-body">
                             <a class="box-title btn btn-primary" th:href="@{/pengajuan/profile/form}">Tambah data dosen</a>
-<!--                            <form method="GET" th:action="@{/pengajuan/profile/list}">
-                                <div class="form-group" th:if="${not #lists.isEmpty(listDosen)}">
-                                    <label>Dosen</label>
-                                    <select nama="dosen" class="form-control" required="true">
-                                        <option th:each="p : ${listDosen}"
-                                                th:value="${p.id}"
-                                                th:text="${p.nama}">Pilih Dosen
-                                        </option>
-                                    </select>
-                                </div>
-                                <button class="btn btn-primary" type="submit">Filter</button>
-                            </form>-->
+                            <!--                            <form method="GET" th:action="@{/pengajuan/profile/list}">
+                                                            <div class="form-group" th:if="${not #lists.isEmpty(listDosen)}">
+                                                                <label>Dosen</label>
+                                                                <select nama="dosen" class="form-control" required="true">
+                                                                    <option th:each="p : ${listDosen}"
+                                                                            th:value="${p.id}"
+                                                                            th:text="${p.nama}">Pilih Dosen
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <button class="btn btn-primary" type="submit">Filter</button>
+                                                        </form>-->
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,10 @@
                                         <td th:text="${#dates.format(x.tanggalSurat, 'dd-MM-YYYY')}"></td>
                                         <td th:text="${x.dosen.nidn}"></td>
                                         <td th:text="${x.dosen.nama}"></td>
-                                        <td>Belum Lengkap</td>
+                                        <td>
+                                            <span th:if="${!x.lampiranLengkap}" style="color:red">Belum Lengkap</span>
+                                            <span th:if="${x.lampiranLengkap}" style="color:green">Lengkap</span>
+                                        </td>
                                         <td>     
                                             <a href="form.html" th:href="@{/pengajuan/dokumen/list?id={id}(id=${x.id})}" title="Upload Document"><span class="glyphicon glyphicon-floppy-save"></span></a> | 
                                             <a href="form.html" th:href="@{/pengajuan/profile/form?id={id}(id=${x.id})}" title="Edit Data PAK"><span class="glyphicon glyphicon-edit"></span></a> | 

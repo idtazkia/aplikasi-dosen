@@ -289,7 +289,8 @@
                                     <!--lampiran-->
                                     <div class="form-group">
                                         <label>Lampiran</label>
-                                        <span class="form-control text-danger">Belum Lengkap</span>
+                                        <span th:if="${!pengajuan.lampiranLengkap}" class="form-control" style="color:red">Belum Lengkap</span>
+                                        <span th:if="${pengajuan.lampiranLengkap}" class="form-control" style="color:green">Lengkap</span>
                                     </div>
                                 </div>
                             </div>
