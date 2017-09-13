@@ -33,12 +33,15 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
+                                        <th>Fakultas</th>
                                         <th>Nama</th>
                                         <th>Keterangan</th>
                                         <th>Jenjang</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                     <tr th:each="ps :${daftarProgramStudi.content}">
+                                        <td th:if="${ps.fakultas == null}">-</td>
+                                        <td th:if="${ps.fakultas != null}" th:text="${ps.fakultas.nama}">Fakultas</td>
                                         <td th:text="${ps.nama}">Muhammad Fadlan</td>
                                         <td th:text="${ps.keterangan}">Teknik Informatika</td>
                                         <td th:text="${ps.jenjang}">S1</td>
