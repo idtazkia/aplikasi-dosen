@@ -123,7 +123,6 @@ public class PengajuanDosenDokumenController {
         }
         
         LOGGER.info("JENIS : [{}]", jenisDokumen.getNama());
-        LOGGER.info("PENGAJUAN : [{}]", pengajuan.getKarpeg());
 
         PengajuanDosenDokumen dokumen = pengajuanDosenDokumenDao.findByPengajuanDosenAndJenisPengajuanDokumen(pengajuan, jenisDokumen);
         

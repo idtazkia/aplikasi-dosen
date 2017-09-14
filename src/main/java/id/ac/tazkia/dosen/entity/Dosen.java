@@ -41,7 +41,34 @@ public class Dosen implements Serializable {
 
     @NotNull
     @NotEmpty
+    private String nip;
+
+    @NotNull
+    @NotEmpty
     private String nidn;
+
+    @NotNull
+    @NotEmpty
+    String karpeg;
+
+    @NotNull
+    @NotEmpty
+    @Column(name = "nama_pt")
+    private String namaPt;
+
+    @NotNull
+    @NotEmpty
+    @Column(name = "alamat_pt")
+    private String alamatPt;
+
+    @Column(name = "lulusan_s1")
+    private String s1;
+
+    @Column(name = "lulusan_s2")
+    private String s2;
+
+    @Column(name = "lulusan_s3")
+    private String s3;
 
     @Email
     @NotNull
@@ -90,27 +117,138 @@ public class Dosen implements Serializable {
     @JoinColumn(name = "id_jabatan")
     private Jabatan jabatan;
 
+    @NotNull
+    @NotEmpty
+    String golongan;
+
+    @NotNull
+    @NotEmpty
+    @Column(name = "kode_bidang_ilmu")
+    String kodeBidangIlmu;
+
+    @NotNull
+    @NotEmpty
+    @Column(name = "nama_bidang_ilmu")
+    String namaBidangIlmu;
+
+    @NotNull
+    @NotEmpty
+    String jenis;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_program_studi")
+    ProgramStudi programStudi;
+
+    // =============== ASESOR =============
+    @ManyToOne
+    @JoinColumn(name = "asesor_1")
+    Dosen asesor1;
+
+    @ManyToOne
+    @JoinColumn(name = "asesor_2")
+    Dosen asesor2;
+
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;
 
-    public Jabatan getJabatan() {
-        return jabatan;
+    public ProgramStudi getProgramStudi() {
+        return programStudi;
     }
 
-    public void setJabatan(Jabatan jabatan) {
-        this.jabatan = jabatan;
+    public void setProgramStudi(ProgramStudi programStudi) {
+        this.programStudi = programStudi;
     }
 
-    public User getUser() {
-        return user;
+    public String getId() {
+        return id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    public String getNidn() {
+        return nidn;
+    }
+
+    public void setNidn(String nidn) {
+        this.nidn = nidn;
+    }
+
+    public String getKarpeg() {
+        return karpeg;
+    }
+
+    public void setKarpeg(String karpeg) {
+        this.karpeg = karpeg;
+    }
+
+    public String getNamaPt() {
+        return namaPt;
+    }
+
+    public void setNamaPt(String namaPt) {
+        this.namaPt = namaPt;
+    }
+
+    public String getAlamatPt() {
+        return alamatPt;
+    }
+
+    public void setAlamatPt(String alamatPt) {
+        this.alamatPt = alamatPt;
+    }
+
+    public String getS1() {
+        return s1;
+    }
+
+    public void setS1(String s1) {
+        this.s1 = s1;
+    }
+
+    public String getS2() {
+        return s2;
+    }
+
+    public void setS2(String s2) {
+        this.s2 = s2;
+    }
+
+    public String getS3() {
+        return s3;
+    }
+
+    public void setS3(String s3) {
+        this.s3 = s3;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getNoTelp() {
         return noTelp;
     }
@@ -133,38 +271,6 @@ public class Dosen implements Serializable {
 
     public void setTglLahir(Date tglLahir) {
         this.tglLahir = tglLahir;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getNidn() {
-        return nidn;
-    }
-
-    public void setNidn(String nidn) {
-        this.nidn = nidn;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getAlamat() {
@@ -197,6 +303,70 @@ public class Dosen implements Serializable {
 
     public void setProvinsi(Provinsi provinsi) {
         this.provinsi = provinsi;
+    }
+
+    public Jabatan getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(Jabatan jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public String getGolongan() {
+        return golongan;
+    }
+
+    public void setGolongan(String golongan) {
+        this.golongan = golongan;
+    }
+
+    public String getKodeBidangIlmu() {
+        return kodeBidangIlmu;
+    }
+
+    public void setKodeBidangIlmu(String kodeBidangIlmu) {
+        this.kodeBidangIlmu = kodeBidangIlmu;
+    }
+
+    public String getNamaBidangIlmu() {
+        return namaBidangIlmu;
+    }
+
+    public void setNamaBidangIlmu(String namaBidangIlmu) {
+        this.namaBidangIlmu = namaBidangIlmu;
+    }
+
+    public Dosen getAsesor1() {
+        return asesor1;
+    }
+
+    public void setAsesor1(Dosen asesor1) {
+        this.asesor1 = asesor1;
+    }
+
+    public Dosen getAsesor2() {
+        return asesor2;
+    }
+
+    public void setAsesor2(Dosen asesor2) {
+        this.asesor2 = asesor2;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
     }
 
 }

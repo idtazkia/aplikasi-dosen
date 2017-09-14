@@ -52,11 +52,13 @@
                                         <label>NIDN</label>
                                         <span class="form-control" th:text="${pengajuan.dosen.nidn}"></span>
                                     </div>
+                                    
                                     <!--nama-->
                                     <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Nama</label>
                                         <span class="form-control" th:text="${pengajuan.dosen.nama}"></span>
                                     </div>
+                                    
                                     <!--status dosen-->
                                     <div class="form-group">
                                         <label>Status Dosen</label>
@@ -68,21 +70,17 @@
                                             Pesan error nanti di sini
                                         </label>
                                     </div>
+                                    
                                     <!--nip/karpeg-->
-                                    <div class="form-group">
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>NIP</label>
-                                        <input type="text" class="form-control" id="nip"  th:field="*{nip}" placeholder="NIP" />
-                                        <label class="control-label error-label" th:errors="*{nip}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.nip}"></span>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Karpeg</label>
-                                        <input type="text" class="form-control" id="karpeg"  th:field="*{karpeg}" placeholder="Karpeg" />
-                                        <label class="control-label error-label" th:errors="*{karpeg}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.karpeg}"></span>
                                     </div>
+                                    
                                     <!--tempat dan tanggal lahir-->
                                     <div class="form-group"  th:if="${pengajuan.dosen != null}">
                                         <label>Tempat Lahir</label>
@@ -104,16 +102,9 @@
                                             Pesan error nanti di sini
                                         </label>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Golongan</label>
-                                        <select class="form-control" id="statusDosen" th:field="*{golongan}">
-                                            <option value="1">Golongan 1</option>
-                                            <option value="2">Golongan 2</option>
-                                            <option value="3">Golongan 3</option>
-                                        </select>
-                                        <label class="control-label error-label" th:errors="*{golongan}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.golongan}"></span>
                                     </div>
                                     <!--tmt pangkat-->
                                     <div class="form-group">
@@ -124,7 +115,7 @@
                                         </label>
                                     </div>
                                     <!--jabatan dosen-->
-                                    <div class="form-group"  th:if="${pengajuan.dosen != null}">
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Jabatan Dosen</label>
                                         <span class="form-control" th:text="${pengajuan.dosen.jabatan.nama}"></span>
                                     </div>
@@ -171,27 +162,12 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <!--Fakultas-->
-                                    <div class="form-group">
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Fakultas</label>
-                                        <select class="form-control" required="true">
-                                            <option th:each="p : ${listFakultas}"
-                                                    th:value="${p.id}"
-                                                    th:text="${p.nama}">Pilih Fakultas
-                                            </option>
-                                        </select>
                                     </div>
                                     <!--jurusan/program studi-->
-                                    <div class="form-group">
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Jurusan/Program studi</label>
-                                        <select th:field="*{programStudi}" class="form-control" required="true">
-                                            <option th:each="p : ${listProdi}"
-                                                    th:value="${p.id}"
-                                                    th:text="${p.nama}">Pilih Fakultas
-                                            </option>
-                                        </select>
-                                        <label class="control-label error-label" th:errors="*{programStudi}">
-                                            Pesan error nanti di sini
-                                        </label>
                                     </div>
                                     <!--mata kuliah yang dibina-->
                                     <div class="form-group">
@@ -225,18 +201,12 @@
                                     <!--kode bidang ilmu-->
                                     <div class="form-group">
                                         <label>Kode Bidang Ilmu</label>
-                                        <input type="text" class="form-control"  th:field="*{kodeBidangIlmu}" />
-                                        <label class="control-label error-label" th:errors="*{kodeBidangIlmu}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.kodeBidangIlmu}"></span>
                                     </div>
                                     <!--nama bidang ilmu-->
                                     <div class="form-group">
                                         <label>Nama Bidang Ilmu</label>
-                                        <input type="text" class="form-control"  th:field="*{namaBidangIlmu}" />
-                                        <label class="control-label error-label" th:errors="*{namaBidangIlmu}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.namaBidangIlmu}"></span>
                                     </div>
                                     <!--diusulkan menjadi-->
                                     <div class="form-group">

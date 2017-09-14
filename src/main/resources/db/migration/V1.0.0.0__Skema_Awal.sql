@@ -35,19 +35,33 @@ CREATE TABLE c_security_user_password (
 );
 
 CREATE TABLE dosen (
-    id character varying(255) NOT NULL,
-    alamat character varying(255) NOT NULL,
-    email character varying(255) NOT NULL,
-    nama character varying(255) NOT NULL,
-    nidn character varying(255) NOT NULL,
-    no_telp character varying(255) NOT NULL,
-    tempat_lahir character varying(255) NOT NULL,
-    tanggal_lahir date NOT NULL,
-    id_jabatan character varying(255) NOT NULL,
-    id_kecamatan character varying(255) NOT NULL,
-    id_kota character varying(255) NOT NULL,
-    id_provinsi character varying(255) NOT NULL,
-    id_user character varying(255) NOT NULL
+id character varying(255) NOT NULL,
+  alamat character varying(255) NOT NULL,
+  alamat_pt character varying(255) NOT NULL,
+  email character varying(255) NOT NULL,
+  golongan character varying(255) NOT NULL,
+  jenis character varying(255) NOT NULL,
+  karpeg character varying(255) NOT NULL,
+  kode_bidang_ilmu character varying(255) NOT NULL,
+  nama character varying(255) NOT NULL,
+  nama_bidang_ilmu character varying(255) NOT NULL,
+  nama_pt character varying(255) NOT NULL,
+  nidn character varying(255) NOT NULL,
+  nip character varying(255) NOT NULL,
+  no_telp character varying(255) NOT NULL,
+  lulusan_s1 character varying(255),
+  lulusan_s2 character varying(255),
+  lulusan_s3 character varying(255),
+  tempat_lahir character varying(255) NOT NULL,
+  tanggal_lahir date NOT NULL,
+  asesor_1 character varying(255),
+  asesor_2 character varying(255),
+  id_jabatan character varying(255) NOT NULL,
+  id_kecamatan character varying(255) NOT NULL,
+  id_kota character varying(255) NOT NULL,
+  id_program_studi character varying(255) NOT NULL,
+  id_provinsi character varying(255) NOT NULL,
+  id_user character varying(255) NOT NULL
 );
 
 CREATE TABLE jabatan (
@@ -129,11 +143,18 @@ CREATE TABLE poin_kegiatan (
     CONSTRAINT poin_kegiatan_nilai_maksimum_check CHECK (((nilai_maksimum <= (100)::numeric) AND (nilai_maksimum >= (0)::numeric)))
 );
 
+CREATE TABLE m_fakultas(
+  id character varying(255) NOT NULL,
+  keterangan character varying(255),
+  nama character varying(255) NOT NULL
+);
+
 CREATE TABLE program_studi (
     id character varying(255) NOT NULL,
     jenjang character varying(255) NOT NULL,
     keterangan character varying(255) NOT NULL,
-    nama character varying(255) NOT NULL
+    nama character varying(255) NOT NULL,
+    id_fakultas character varying(255)
 );
 
 CREATE TABLE surat_tugas (
@@ -232,6 +253,9 @@ ALTER TABLE ONLY mata_kuliah
 ALTER TABLE ONLY poin_kegiatan
     ADD CONSTRAINT poin_kegiatan_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY m_fakultas
+    ADD CONSTRAINT m_fakultas_pkey PRIMARY KEY (id);
+
 ALTER TABLE ONLY program_studi
     ADD CONSTRAINT program_studi_pkey PRIMARY KEY (id);
 
@@ -279,6 +303,9 @@ ALTER TABLE ONLY c_security_permission
 
 ALTER TABLE ONLY c_password_reset_token
     ADD CONSTRAINT uk_tf9agbefkf39bqj62wprw2vo0 UNIQUE (id_user);
+
+ALTER TABLE ONLY program_studi
+    ADD CONSTRAINT fksukwm0lnhl9g0vigm5unme7l8 FOREIGN KEY (id_fakultas) REFERENCES m_fakultas (id);
 
 ALTER TABLE ONLY t_kegiatan_dosen
     ADD CONSTRAINT fk195t5s845u7kfimjkranyg97v FOREIGN KEY (id_dosen) REFERENCES dosen(id);
@@ -345,6 +372,18 @@ ALTER TABLE ONLY dosen
 
 ALTER TABLE ONLY dosen
     ADD CONSTRAINT fknj0cck97cis98qbp4cq92xj07 FOREIGN KEY (id_provinsi) REFERENCES provinsi(id);
+
+ALTER TABLE ONLY dosen
+    ADD CONSTRAINT fkls0hin3tdsn1kdoprm9aoj698 FOREIGN KEY (asesor_1)
+         REFERENCES dosen (id);
+
+ALTER TABLE ONLY dosen
+    ADD CONSTRAINT fkdfhg5c3ne76cntu32rp2bw9l4 FOREIGN KEY (asesor_2)
+         REFERENCES dosen (id);
+
+ALTER TABLE ONLY dosen
+    ADD CONSTRAINT fkl9dhq2udgvjdgkhh5lgqpse6u FOREIGN KEY (id_program_studi)
+         REFERENCES program_studi (id);
 
 ALTER TABLE ONLY c_security_role_permission
     ADD CONSTRAINT fknqcv2qdac1phe20qqnyi6n1n FOREIGN KEY (id_permission) REFERENCES c_security_permission(id);

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DosenDao extends PagingAndSortingRepository<Dosen, String> {
     Dosen findOneByEmail(String email);
-    Page<Dosen> findBynamaContainingIgnoreCase(String name, Pageable pageable);
+    Page<Dosen> findByNamaContainingIgnoreCase(String name, Pageable pageable);
     
 }

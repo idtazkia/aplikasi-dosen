@@ -22,7 +22,6 @@ import id.ac.tazkia.dosen.dao.PengajuanDosenProfileDao;
 import id.ac.tazkia.dosen.dao.ProgramStudiDao;
 import id.ac.tazkia.dosen.entity.JenisPengajuanDokumen;
 import id.ac.tazkia.dosen.entity.PengajuanDosenDokumen;
-import id.ac.tazkia.dosen.entity.User;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

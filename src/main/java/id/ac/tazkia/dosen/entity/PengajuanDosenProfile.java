@@ -32,22 +32,7 @@ public class PengajuanDosenProfile {
     @NotNull
     @NotEmpty
     @Column
-    String nip;
-
-    @NotNull
-    @NotEmpty
-    @Column
-    String karpeg;
-
-    @NotNull
-    @NotEmpty
-    @Column
     String pangkat;
-
-    @NotNull
-    @NotEmpty
-    @Column
-    String golongan;
 
     @DateTimeFormat(pattern="dd-mm-yyyy")
     @Temporal(TemporalType.DATE)
@@ -71,11 +56,6 @@ public class PengajuanDosenProfile {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_program_studi")
-    ProgramStudi programStudi;
-
-    @NotNull
-    @ManyToOne
     @JoinColumn(name = "id_mata_kuliah")
     MataKuliah mataKuliah;
 
@@ -87,16 +67,6 @@ public class PengajuanDosenProfile {
     @NotNull
     @Column(name = "angka_kredit_dibutuhkan")
     int angkaKreditDibutuhkan;
-
-    @NotNull
-    @NotEmpty
-    @Column(name = "kode_bidang_ilmu")
-    String kodeBidangIlmu;
-
-    @NotNull
-    @NotEmpty
-    @Column(name = "nama_bidang_ilmu")
-    String namaBidangIlmu;
 
     @NotNull
     @NotEmpty
@@ -137,14 +107,6 @@ public class PengajuanDosenProfile {
         this.id = id;
     }
 
-    public Date getTmtJabatan() {
-        return tmtJabatan;
-    }
-
-    public void setTmtJabatan(Date tmtJabatan) {
-        this.tmtJabatan = tmtJabatan;
-    }
-
     public Dosen getDosen() {
         return dosen;
     }
@@ -161,22 +123,6 @@ public class PengajuanDosenProfile {
         this.statusDosen = statusDosen;
     }
 
-    public String getNip() {
-        return nip;
-    }
-
-    public void setNip(String nip) {
-        this.nip = nip;
-    }
-
-    public String getKarpeg() {
-        return karpeg;
-    }
-
-    public void setKarpeg(String karpeg) {
-        this.karpeg = karpeg;
-    }
-
     public String getPangkat() {
         return pangkat;
     }
@@ -185,20 +131,20 @@ public class PengajuanDosenProfile {
         this.pangkat = pangkat;
     }
 
-    public String getGolongan() {
-        return golongan;
-    }
-
-    public void setGolongan(String golongan) {
-        this.golongan = golongan;
-    }
-
     public Date getTmtPangkat() {
         return tmtPangkat;
     }
 
     public void setTmtPangkat(Date tmtPangkat) {
         this.tmtPangkat = tmtPangkat;
+    }
+
+    public Date getTmtJabatan() {
+        return tmtJabatan;
+    }
+
+    public void setTmtJabatan(Date tmtJabatan) {
+        this.tmtJabatan = tmtJabatan;
     }
 
     public JenjangConstant getPendidikanTertinggiSebelumnya() {
@@ -215,14 +161,6 @@ public class PengajuanDosenProfile {
 
     public void setPendidikanTertinggiSekarang(JenjangConstant pendidikanTertinggiSekarang) {
         this.pendidikanTertinggiSekarang = pendidikanTertinggiSekarang;
-    }
-
-    public ProgramStudi getProgramStudi() {
-        return programStudi;
-    }
-
-    public void setProgramStudi(ProgramStudi programStudi) {
-        this.programStudi = programStudi;
     }
 
     public MataKuliah getMataKuliah() {
@@ -247,22 +185,6 @@ public class PengajuanDosenProfile {
 
     public void setAngkaKreditDibutuhkan(int angkaKreditDibutuhkan) {
         this.angkaKreditDibutuhkan = angkaKreditDibutuhkan;
-    }
-
-    public String getKodeBidangIlmu() {
-        return kodeBidangIlmu;
-    }
-
-    public void setKodeBidangIlmu(String kodeBidangIlmu) {
-        this.kodeBidangIlmu = kodeBidangIlmu;
-    }
-
-    public String getNamaBidangIlmu() {
-        return namaBidangIlmu;
-    }
-
-    public void setNamaBidangIlmu(String namaBidangIlmu) {
-        this.namaBidangIlmu = namaBidangIlmu;
     }
 
     public String getUsulanMenjadi() {
@@ -320,4 +242,6 @@ public class PengajuanDosenProfile {
     public void setLampiranLengkap(Boolean lampiranLengkap) {
         this.lampiranLengkap = lampiranLengkap;
     }
+
+    
 }

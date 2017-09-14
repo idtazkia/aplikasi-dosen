@@ -1,7 +1,9 @@
 package id.ac.tazkia.dosen.controller;
 
 import id.ac.tazkia.dosen.dao.DosenDao;
+import id.ac.tazkia.dosen.dao.FakultasDao;
 import id.ac.tazkia.dosen.dao.JabatanDao;
+import id.ac.tazkia.dosen.dao.ProgramStudiDao;
 import id.ac.tazkia.dosen.dao.ProvinsiDao;
 import id.ac.tazkia.dosen.dao.RoleDao;
 import id.ac.tazkia.dosen.dao.UserDao;
@@ -38,6 +40,10 @@ public class DosenController {
     private ProvinsiDao provinsidao;
 
     @Autowired
+    private ProgramStudiDao programStudiDao;
+    @Autowired
+    private FakultasDao fakultasDao;
+    @Autowired
     private JabatanDao jabatanDao;
 
     @RequestMapping("/dosen/list")
@@ -46,7 +52,7 @@ public class DosenController {
 
         if (value != null) {
             m.addAttribute("key", value);
-            m.addAttribute("data", dosenDao.findBynamaContainingIgnoreCase(value, pageable));
+            m.addAttribute("data", dosenDao.findByNamaContainingIgnoreCase(value, pageable));
         } else {
             m.addAttribute("data", dosenDao.findAll(pageable));
         }
@@ -62,18 +68,22 @@ public class DosenController {
             dosen.setUser(new User());
         }
 
-        model.addAttribute("listJabatan", jabatanDao.findAll());
         model.addAttribute("dosen", dosen);
+        model.addAttribute("listJabatan", jabatanDao.findAll());
         model.addAttribute("listProvinsi", provinsidao.findAll());
+        model.addAttribute("listFakultas", fakultasDao.findAll());
+//        model.addAttribute("listProdi", programStudiDao.findAll());
         return "dosen/form";
     }
 
     @RequestMapping(value = "/dosen/form", method = RequestMethod.POST)
     public String simpan(@Valid Dosen dosen, BindingResult errors, ModelMap mm) {
         if (errors.hasErrors()) {
-            mm.addAttribute("listJabatan", jabatanDao.findAll());
             mm.addAttribute("dosen", dosen);
+            mm.addAttribute("listJabatan", jabatanDao.findAll());
             mm.addAttribute("listProvinsi", provinsidao.findAll());
+            mm.addAttribute("listFakultas", fakultasDao.findAll());
+//            mm.addAttribute("listProdi", programStudiDao.findAll());
             return "dosen/form";
         }
 
