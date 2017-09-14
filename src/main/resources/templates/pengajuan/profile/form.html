@@ -52,13 +52,13 @@
                                         <label>NIDN</label>
                                         <span class="form-control" th:text="${pengajuan.dosen.nidn}"></span>
                                     </div>
-                                    
+
                                     <!--nama-->
                                     <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>Nama</label>
                                         <span class="form-control" th:text="${pengajuan.dosen.nama}"></span>
                                     </div>
-                                    
+
                                     <!--status dosen-->
                                     <div class="form-group">
                                         <label>Status Dosen</label>
@@ -70,7 +70,7 @@
                                             Pesan error nanti di sini
                                         </label>
                                     </div>
-                                    
+
                                     <!--nip/karpeg-->
                                     <div class="form-group" th:if="${pengajuan.dosen != null}">
                                         <label>NIP</label>
@@ -80,7 +80,7 @@
                                         <label>Karpeg</label>
                                         <span class="form-control" th:text="${pengajuan.dosen.karpeg}"></span>
                                     </div>
-                                    
+
                                     <!--tempat dan tanggal lahir-->
                                     <div class="form-group"  th:if="${pengajuan.dosen != null}">
                                         <label>Tempat Lahir</label>
@@ -90,6 +90,49 @@
                                         <label>Tanggal Lahir</label>
                                         <span class="form-control" th:text="${#dates.format(pengajuan.dosen.tglLahir, 'dd-MM-YYYY')}"></span>
                                     </div>
+
+                                    <!--Fakultas-->
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
+                                        <label>Fakultas</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.programStudi.fakultas.nama}"></span>
+                                    </div>
+
+                                    <!--jurusan/program studi-->
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
+                                        <label>Jurusan/Program studi</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.programStudi.nama}"></span>
+                                    </div>
+
+                                    <!--jabatan dosen-->
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
+                                        <label>Jabatan Dosen</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.jabatan.nama}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
+                                        <label>Golongan</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.golongan}"></span>
+                                    </div>
+
+                                    <!--kode bidang ilmu-->
+                                    <div class="form-group">
+                                        <label>Kode Bidang Ilmu</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.kodeBidangIlmu}"></span>
+                                    </div>
+                                    <!--nama bidang ilmu-->
+                                    <div class="form-group">
+                                        <label>Nama Bidang Ilmu</label>
+                                        <span class="form-control" th:text="${pengajuan.dosen.namaBidangIlmu}"></span>
+                                    </div>
+
+                                    <!--button update-->
+                                    <button class="btn btn-primary">Update</button>
+                                    <a th:href="@{/pengajuan/profile/list}" class="btn btn-danger" role="button">
+                                        <span aria-hidden="true"></span>Batal
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+
                                     <!--pangkat dan golongan-->
                                     <div class="form-group">
                                         <label>Pangkat</label>
@@ -98,35 +141,31 @@
                                             <option value="2">Pangkat 2</option>
                                             <option value="3">Pangkat 3</option>
                                         </select>
-                                        <label class="control-label error-label" th:errors="*{pangkat}">
-                                            Pesan error nanti di sini
-                                        </label>
-                                    </div>
-                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
-                                        <label>Golongan</label>
-                                        <span class="form-control" th:text="${pengajuan.dosen.golongan}"></span>
+                                        <label class="control-label error-label" th:errors="*{pangkat}"></label>
                                     </div>
                                     <!--tmt pangkat-->
                                     <div class="form-group">
                                         <label>TMT Pangkat</label>
-                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY"  th:field="*{tmtPangkat}" />
-                                        <label class="control-label error-label" th:errors="*{tmtPangkat}">
-                                            Pesan error nanti di sini
-                                        </label>
-                                    </div>
-                                    <!--jabatan dosen-->
-                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
-                                        <label>Jabatan Dosen</label>
-                                        <span class="form-control" th:text="${pengajuan.dosen.jabatan.nama}"></span>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" id="tmtPangkat" th:field="*{tmtPangkat}" required="true" placeholder="DD-MM-YYYY" />
+                                        </div>
+                                        <label class="control-label error-label" th:errors="*{tmtPangkat}"></label>
                                     </div>
                                     <!--tmt jabatan-->
                                     <div class="form-group">
                                         <label>TMT jabatan</label>
-                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY"  th:field="*{tmtJabatan}" />
-                                        <label class="control-label error-label" th:errors="*{tmtJabatan}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" id="tmtJabatan" th:field="*{tmtJabatan}" required="true" placeholder="DD-MM-YYYY" />
+                                        </div>
+                                        <label class="control-label error-label" th:errors="*{tmtJabatan}"></label>
                                     </div>
+
                                     <!--pendidikan tertinggi saat pak sebelumnya-->
                                     <div class="form-group">
                                         <label>Pendidikan Tertinggi (saat PAK sebelumnya)</label>
@@ -140,6 +179,7 @@
                                             Pesan error nanti di sini
                                         </label>
                                     </div>
+
                                     <!--pendidikan tertinggi skrng-->
                                     <div class="form-group">
                                         <label>Pendidikan Tertinggi (PAK sekarang)</label>
@@ -154,21 +194,6 @@
                                         </label>
                                     </div>
 
-                                    <!--button update-->
-                                    <button class="btn btn-primary">Update</button>
-                                    <a th:href="@{/pengajuan/profile/list}" class="btn btn-danger" role="button">
-                                        <span aria-hidden="true"></span>Batal
-                                    </a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <!--Fakultas-->
-                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
-                                        <label>Fakultas</label>
-                                    </div>
-                                    <!--jurusan/program studi-->
-                                    <div class="form-group" th:if="${pengajuan.dosen != null}">
-                                        <label>Jurusan/Program studi</label>
-                                    </div>
                                     <!--mata kuliah yang dibina-->
                                     <div class="form-group">
                                         <label>Mata Kuliah yang Dibina</label>
@@ -198,16 +223,7 @@
                                             Pesan error nanti di sini
                                         </label>
                                     </div>
-                                    <!--kode bidang ilmu-->
-                                    <div class="form-group">
-                                        <label>Kode Bidang Ilmu</label>
-                                        <span class="form-control" th:text="${pengajuan.dosen.kodeBidangIlmu}"></span>
-                                    </div>
-                                    <!--nama bidang ilmu-->
-                                    <div class="form-group">
-                                        <label>Nama Bidang Ilmu</label>
-                                        <span class="form-control" th:text="${pengajuan.dosen.namaBidangIlmu}"></span>
-                                    </div>
+
                                     <!--diusulkan menjadi-->
                                     <div class="form-group">
                                         <label>Diusulkan Menjadi</label>
@@ -244,17 +260,18 @@
                                     <div class="form-group">
                                         <label>Nomor Surat</label>
                                         <input type="text" class="form-control" th:field="*{nomorSurat}" />
-                                        <label class="control-label error-label" th:errors="*{nomorSurat}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <label class="control-label error-label" th:errors="*{nomorSurat}"></label>
                                     </div>
                                     <!--tanggal surat-->
                                     <div class="form-group">
                                         <label>Tanggal Surat</label>
-                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY" th:field="*{tanggalSurat}" />
-                                        <label class="control-label error-label" th:errors="*{tanggalSurat}">
-                                            Pesan error nanti di sini
-                                        </label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" id="tanggalSurat" th:field="*{tanggalSurat}" required="true" placeholder="DD-MM-YYYY" />
+                                        </div>
+                                        <label class="control-label error-label" th:errors="*{tanggalSurat}"></label>
                                     </div>
                                     <!--lampiran-->
                                     <div class="form-group">
@@ -266,6 +283,31 @@
                             </div>
                         </form>
                     </div>
+
+                    <script type="text/javascript" th:inline="javascript">
+                        /*<![CDATA[*/
+                        $(document).ready(function () {
+                            $('#tmtPangkat').datepicker({
+                                autoclose: true,
+                                clearBtn: true,
+                                format: "dd-mm-yyyy",
+                                todayHighlight: true
+                            });
+                            $('#tmtJabatan').datepicker({
+                                autoclose: true,
+                                clearBtn: true,
+                                format: "dd-mm-yyyy",
+                                todayHighlight: true
+                            });
+                            $('#tanggalSurat').datepicker({
+                                autoclose: true,
+                                clearBtn: true,
+                                format: "dd-mm-yyyy",
+                                todayHighlight: true
+                            });
+                        });
+                        /*]]>*/
+                    </script>
                 </div>
             </div>
         </div>

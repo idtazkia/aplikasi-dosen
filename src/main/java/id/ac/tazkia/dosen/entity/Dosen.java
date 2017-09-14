@@ -88,9 +88,9 @@ public class Dosen implements Serializable {
 
     @NotNull
     @Past
-    @Column(name = "tanggal_lahir", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.DATE)
+    @Column(name = "tanggal_lahir", nullable = false)
     private Date tglLahir;
 
     @NotNull

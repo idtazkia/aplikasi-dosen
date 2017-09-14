@@ -79,17 +79,23 @@
                                         <i class="ion ion-bag"></i>
                                     </div>
 
-                                    <center>
+                                    
+                                    <div th:if="${!isAdmin}" style="height:60px;padding-bottom:10px" class="text-center">
                                         <a 
                                             th:attr="data-idDoc=${doc.jenisPengajuanDokumen.id}"
                                             data-toggle="modal" 
-                                            data-target="#modalUpload" style="margin-bottom:8px" class="btn btn-primary">Upload <i class="fa fa-upload"></i></a>
+                                            data-target="#modalUpload" class="btn btn-default">Upload <i class="fa fa-upload"></i></a>
 
                                         <a th:if="${doc.filename != null}" 
                                            target="_blank" th:href="@{/image/dokumen-pengajuan/} + ${doc.filename}"
-                                            style="margin-bottom:8px" class="btn btn-default">Download <i class="fa fa-download"></i></a>
-                                    </center>
-                                    
+                                           class="btn btn-default">Download <i class="fa fa-download"></i></a>
+                                    </div>
+                                    <div th:if="${isAdmin}" style="height:60px;padding-bottom:10px" class="text-center">
+                                        <a th:if="${doc.filename != null} AND ${doc.statusDokumen.toString() != 'APPROVED'}"
+                                            style="margin-bottom:8px" class="btn btn-warning" th:href="@{/pengajuan/dokumen/approve/} + ${doc.id}">Approve</a>
+                                        <a th:if="${doc.filename != null} AND ${doc.statusDokumen != 'REJECT'}"
+                                            style="margin-bottom:8px" class="btn btn-danger" th:href="@{/pengajuan/dokumen/reject/} + ${doc.id}">Tolak</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

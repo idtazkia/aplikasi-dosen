@@ -139,14 +139,15 @@ INSERT INTO jenis_kegiatan (id, id_kategori_kegiatan, nama, bukti, batas_maksima
 ('111', '4', 'Berperan serta aktif dalam pertemuan ilmiah Di lingkungan Perguruan Tinggi sebagai : Ketua, tiap kegiatan', '', '', '2');
 
 INSERT INTO m_fakultas (id, nama, keterangan) VALUES 
-('0', 'Ekonomi', 'Fakultas Ekonomi');
+('0', 'Ekonomi', 'Fakultas Ekonomi'),
+('1', 'Bisnis', 'Fakultas Bisnis');
 
 INSERT INTO program_studi (id, nama, keterangan, jenjang, id_fakultas) VALUES 
-('0', 'Matrikulasi', 'Matrikulation', 'S1', '0'),
-('1', 'Bisnis dan Manajemen Islam', 'Islamic Business and Management', 'S1', '0'),
+('0', 'Matrikulasi', 'Matrikulation', 'S1', '1'),
+('1', 'Bisnis dan Manajemen Islam', 'Islamic Business and Management', 'S1', '1'),
 ('2', 'Akuntansi Islam', 'Islamic Accounting', 'S1', '0'),
 ('3', 'Ekonomi Islam', 'Islamic Economics', 'S1', '0'),
-('4', 'Manajemen Keuangan Mikro Syariah', 'Islamic Micro Finance Management', 'D3', '0'),
+('4', 'Manajemen Keuangan Mikro Syariah', 'Islamic Micro Finance Management', 'D3', '1'),
 ('5', 'Magister Ekonomi Syariah', 'Magister  of Syaria Economics', 'S2', '0'),
 ('6', 'Hukum Ekonomi Syariah (Muamalat)', 'Islamic Economics Laws (Muamalat)', 'S1', '0');
 

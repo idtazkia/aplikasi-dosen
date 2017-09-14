@@ -246,7 +246,6 @@
                 </div>
             </div>
 
-
             <script type="text/javascript" th:inline="javascript">
                 /*<![CDATA[*/
                 function formatRepo(repo) {
@@ -338,19 +337,12 @@
 //                        $('#tglLahir').datepicker('setDate', e.date);
                     });
 
-                    $('#tanggalSelesai').datepicker({
-                        autoclose: true,
-                        clearBtn: true,
-                        format: "dd-mm-yyyy",
-                        todayHighlight: true
-                    });
-
                     function injectRegionValueOnEdit() {
-                        if($("fakultasId").text()){
-                            setRegionSelectValue("fakultas", $("fakultasId").text());
-                            getListProdi($("fakultasId").text(), $("prodiId").text());
+                        if ($("#fakultasId").text()) {
+                            setRegionSelectValue("fakultas", $("#fakultasId").text());
+                            getListProdi($("#fakultasId").text(), $("#prodiId").text());
                         }
-                        
+
                         // Dirunning jika dalam keadaan Form Edit
                         if ($("#kotaId").text()) {
                             getListKota("kota",
@@ -380,8 +372,8 @@
                         var idfakultas = $(this).val();
                         getListProdi(idfakultas);
                     });
-                    
-                    function getListProdi(idFakultas, prodiValue = null){
+
+                    function getListProdi(idFakultas, prodiValue = null) {
                         $.get("/api/program_studi/byFakultas/" + idFakultas).done(function (data) {
                             var content = "";
                             for (var i = 0; i < data.length; i++) {
@@ -389,9 +381,9 @@
                             }
 
                             $("#programStudi").html(content).selectpicker('refresh');
-                            
+
                             if (prodiValue != null) {
-                                setRegionSelectValue("#programStudi", prodiValue);
+                                setRegionSelectValue("programStudi", prodiValue);
                             }
                         });
                     }
