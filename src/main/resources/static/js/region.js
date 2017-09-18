@@ -58,5 +58,5 @@ function setRegionSelectValue(id, value){
 }
 
 function refreshRegionFormValidate(idForm){
-     $('#' + idForm).validator('validate');
+//     $('#' + idForm).validator('validate');
 }

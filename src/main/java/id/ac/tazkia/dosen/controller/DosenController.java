@@ -72,7 +72,6 @@ public class DosenController {
         model.addAttribute("listJabatan", jabatanDao.findAll());
         model.addAttribute("listProvinsi", provinsidao.findAll());
         model.addAttribute("listFakultas", fakultasDao.findAll());
-//        model.addAttribute("listProdi", programStudiDao.findAll());
         return "dosen/form";
     }
 
@@ -83,7 +82,6 @@ public class DosenController {
             mm.addAttribute("listJabatan", jabatanDao.findAll());
             mm.addAttribute("listProvinsi", provinsidao.findAll());
             mm.addAttribute("listFakultas", fakultasDao.findAll());
-//            mm.addAttribute("listProdi", programStudiDao.findAll());
             return "dosen/form";
         }
 

@@ -29,6 +29,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -60,8 +61,9 @@ public class PengajuanDosenDokumenController {
         }
 
         Dosen dosen = new Dosen();
-
+        Boolean isAdmin = Boolean.TRUE;
         if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
+            isAdmin = Boolean.FALSE;
             dosen = dosenDao.findOneByEmail(principal.getName());
             if (dosen == null || !pengajuan.getDosen().getId().equalsIgnoreCase(dosen.getId())) {
                 throw new NullPointerException("Data Dosen Tidak Ditemukan");
@@ -97,7 +99,45 @@ public class PengajuanDosenDokumenController {
         mm.addAttribute("progressBar", progressDocument);
         mm.addAttribute("pengajuan", pengajuan);
         mm.addAttribute("listDokumen", listDokumen);
+        mm.addAttribute("isAdmin", isAdmin);
         return "pengajuan/dokumen/list";
+    }
+
+    @GetMapping("/approve/{id}")
+    public String approveDokumen(@PathVariable String id,
+            Principal principal, Authentication authentication) throws Exception {
+
+        if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
+            throw new Exception("Anda Tidak Memiliki Access Approval");
+        }
+
+        PengajuanDosenDokumen dokumen = pengajuanDosenDokumenDao.findOne(id);
+        if (dokumen == null) {
+            throw new Exception("Dokumen Pengajuan Tidak Ditemukan");
+        }
+        dokumen.setStatusDokumen(StatusDokumenPengajuan.APPROVED);
+        pengajuanDosenDokumenDao.save(dokumen);
+        LOGGER.info("DOKUMEN : " + dokumen.getStatusDokumen());
+
+        return "redirect:/pengajuan/dokumen/list?id=" + dokumen.getPengajuanDosen().getId();
+    }
+
+    @GetMapping("/reject/{id}")
+    public String rejectDokumen(@PathVariable String id,
+            Principal principal, Authentication authentication) throws Exception {
+
+        if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PENGAJUAN_ALL"))) {
+            throw new Exception("Anda Tidak Memiliki Access Approval");
+        }
+
+        PengajuanDosenDokumen dokumen = pengajuanDosenDokumenDao.findOne(id);
+        if (dokumen == null) {
+            throw new Exception("Dokumen Pengajuan Tidak Ditemukan");
+        }
+        dokumen.setStatusDokumen(StatusDokumenPengajuan.REJECTED);
+        pengajuanDosenDokumenDao.save(dokumen);
+        
+        return "redirect:/pengajuan/dokumen/list?id=" + dokumen.getPengajuanDosen().getId();
     }
 
     @Transactional
@@ -121,11 +161,11 @@ public class PengajuanDosenDokumenController {
                 throw new NullPointerException("Data Dosen Tidak Ditemukan");
             }
         }
-        
+
         LOGGER.info("JENIS : [{}]", jenisDokumen.getNama());
 
         PengajuanDosenDokumen dokumen = pengajuanDosenDokumenDao.findByPengajuanDosenAndJenisPengajuanDokumen(pengajuan, jenisDokumen);
-        
+
         if (dokumen == null) {
             dokumen = new PengajuanDosenDokumen();
             dokumen.setJenisPengajuanDokumen(jenisDokumen);
@@ -134,7 +174,6 @@ public class PengajuanDosenDokumenController {
             dokumen.setStatusDokumen(StatusDokumenPengajuan.PENDING);
         }
 
-        
         if (fileDokumen != null && !fileDokumen.isEmpty()) {
             if (fileDokumen.getSize() > 2097152) {
                 LOGGER.info("UPLOAD GAGAL");
@@ -148,13 +187,14 @@ public class PengajuanDosenDokumenController {
                     File file = imageService.moveFile(fileDokumen, "dokumen-pengajuan", extention);
                     LOGGER.info("Save Filename");
                     dokumen.setFilename(file.getName());
+                    dokumen.setStatusDokumen(StatusDokumenPengajuan.PENDING);
                 } else {
                     throw new Exception("File yang diperbolehkan png, jpg, jpeg, dan pdf");
                 }
             }
         }
         pengajuanDosenDokumenDao.save(dokumen);
-        
+
         return "redirect:/pengajuan/dokumen/list?id=" + pengajuan.getId();
     }
 
