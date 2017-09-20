@@ -17,7 +17,7 @@
         <link rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.min.css}" />
         <link rel="stylesheet" href="#" th:href="@{/css/AdminLTE.min.css}"/>
         <link rel="stylesheet" href="#" th:href="@{/css/skins/_all-skins.min.css}"/>
-   
+
         <!--Bootstrap Select-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"/>
 
@@ -37,7 +37,7 @@
         <script src="#" th:src="@{/js/jquery.slimscroll.min.js}"></script>
         <script src="#" th:src="@{/js/select2.full.min.js}"></script>
         <script src="#" th:src="@{/js/region.js}"></script>
-        
+
         <script type="text/javascript">
             $(document).ready(function () {
                 var menudd = Cookies.get('menu-dd');
@@ -91,12 +91,26 @@
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
-                                        <div class="pull-left">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Edit Profile</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a th:href="@{/changepassword}">Change Password</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a th:href="@{/logout}">Sign Out</a>
+                                            </div>
+                                        </div>
+<!--                                        <div class="col-md-4">
                                             <a href="#" th:href="@{/user/changepassword}"  class="btn btn-default btn-flat">Change password</a>
                                         </div>
-                                        <div class="pull-right">
-                                            <a href="#" th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>
+                                        <div class="col-md-4">
+                                            <a href="#" class="btn btn-default btn-flat">Edit Profile</a>
                                         </div>
+                                        <div class="col-md-4">
+                                            <a href="#" th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>-->
                                     </li>
                                 </ul>
                             </li>
@@ -149,13 +163,13 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-<!--                            <ul class="treeview-menu">
-                                <li><a th:href="@{/kbm/list}">Kegiatan Belajar Mengajar</a></li>
-                                <li><a th:href="@{/tulisan/list}">Tulisan</a></li>
-                                <li><a th:href="@{/penelitian/list}">Penelitian</a></li>
-                                <li><a th:href="@{/bimbingan/list}">Bimbingan Penelitian</a></li>
-                                <li><a th:href="@{/jurnal/list}">Publikasi ke Jurnal</a></li>
-                            </ul>-->
+                            <!--                            <ul class="treeview-menu">
+                                                            <li><a th:href="@{/kbm/list}">Kegiatan Belajar Mengajar</a></li>
+                                                            <li><a th:href="@{/tulisan/list}">Tulisan</a></li>
+                                                            <li><a th:href="@{/penelitian/list}">Penelitian</a></li>
+                                                            <li><a th:href="@{/bimbingan/list}">Bimbingan Penelitian</a></li>
+                                                            <li><a th:href="@{/jurnal/list}">Publikasi ke Jurnal</a></li>
+                                                        </ul>-->
                             <ul class="treeview-menu">
                                 <li><a th:href="@{/kegiatan/kbm/list}">Kegiatan Belajar Mengajar</a></li>
                                 <li><a th:href="@{/kegiatan/pendidikan/list}"> Bidang Pendidikan</a></li>
