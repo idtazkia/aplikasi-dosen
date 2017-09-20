@@ -14,5 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface DosenDao extends PagingAndSortingRepository<Dosen, String> {
     Dosen findOneByEmail(String email);
     Page<Dosen> findByNamaContainingIgnoreCase(String name, Pageable pageable);
+    public Dosen findByUserId(String userId);
     
 }

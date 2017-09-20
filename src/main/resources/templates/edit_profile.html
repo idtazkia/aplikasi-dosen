@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+    <head>
+        <title>Edit Profile</title>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Form Edit Profile</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Form Edit Profile</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Form</h3>
+                        </div>
+                        <div class="box-body">
+                            <form th:action="@{/editprofile/save}" th:object="${profile}" method="post">
+                                <input type="hidden" th:field="*{id}" />
+                                <span class="hidden" th:if="${profile.programStudi != null}" id="fakultasIdProfile" th:text="${profile.programStudi.fakultas.id}"></span>
+                                <span class="hidden" th:if="${profile.programStudi == null}"></span>
+                                <span class="hidden" th:if="${profile.programStudi != null}" id="prodiIdProfile" th:text="${profile.programStudi.id}"></span>
+                                <span class="hidden" th:if="${profile.programStudi == null}"></span>
+                                <span class="hidden" th:if="${profile.kota != null}" id="kotaIdProfile" th:text="${profile.kota.id}"></span>
+                                <span class="hidden" th:if="${profile.kota == null}"></span>
+                                <span class="hidden" th:if="${profile.kecamatan != null}" id="kecamatanIdProfile" th:text="${profile.kecamatan.id}"></span>
+                                <span class="hidden" th:if="${profile.kecamatan == null}"></span>
+                                <input type="hidden" th:field="*{user}" />
+
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label>Nama Dosen</label>
+                                        <input type="text" th:field="*{nama}" name="nama" class="form-control" placeholder="Nama Dosen" />
+                                        <label class="control-label error-label" th:errors="*{nama}"></label>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label>NIDN</label>
+                                        <input type="text" th:field="*{nidn}" name="nidn" class="form-control" placeholder="NIDN" />
+                                        <label class="control-label error-label" th:errors="*{nidn}" ></label>
+                                    </div>
+                                    <!--nip/karpeg-->
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" class="form-control" th:field="*{nip}" placeholder="NIP" />
+                                        <label class="control-label error-label" th:errors="*{nip}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Karpeg</label>
+                                        <input type="text" class="form-control" th:field="*{karpeg}" placeholder="Karpeg" />
+                                        <label class="control-label error-label" th:errors="*{karpeg}"></label>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        <label>Email</label>
+                                        <input type="text" th:field="*{email}" name="email" class="form-control" placeholder="Email" />
+                                        <label class="control-label error-label" th:errors="*{email}" ></label>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        <label>No Handphone</label>
+                                        <input type="text" th:field="*{noTelp}" class="form-control" placeholder="No Handphone" />
+                                        <label class="control-label error-label" th:errors="*{noTelp}" ></label>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        <label>Tempat Lahir</label>
+                                        <input type="text" th:field="*{tempatLahir}" class="form-control" placeholder="Tempat Lahir" />
+                                        <label class="control-label error-label" th:errors="*{tempatLahir}" ></label>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        <label>Tanggal Lahir</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" id="tglLahirProfile" th:field="*{tglLahir}" required="true"/>
+                                        </div>
+                                        <label class="control-label error-label" th:errors="*{tglLahir}" ></label>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        <label>Alamat</label>
+                                        <input type="text" th:field="*{alamat}" class="form-control" placeholder="alamat" />
+                                        <label class="control-label error-label" th:errors="*{alamat}" ></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Provinsi</label>
+                                        <select class="form-control selectpicker" 
+                                                th:field="*{provinsi}"
+                                                data-live-search="true"
+                                                data-size="5" 
+                                                title="Pilih Provinsi...">
+                                            <option th:each="p : ${listProvinsi}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Provinsi
+                                            </option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{provinsi}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Kota</label>
+                                        <select class="form-control selectpicker" 
+                                                th:field="*{kota}"
+                                                data-live-search="true"
+                                                data-size="5" 
+                                                title="Pilih Kota..." >
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{kota}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Kecamatan</label>
+                                        <select class="form-control selectpicker" 
+                                                th:field="*{kecamatan}"
+                                                data-live-search="true"
+                                                data-size="5" 
+                                                title="Pilih Kecamatan..." >
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{kecamatan}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Jenis</label>
+                                        <input type="text" class="form-control" th:field="*{jenis}" />
+                                        <label class="control-label error-label" th:errors="*{jenis}"></label>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Jabatan</label>
+                                        <select class="form-control" th:field="*{jabatan}">
+                                            <option th:each="p : ${listJabatan}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Jabatan
+                                            </option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{jabatan}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Golongan</label>
+                                        <input type="text" class="form-control" th:field="*{golongan}" />
+                                        <label class="control-label error-label" th:errors="*{golongan}"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama PT</label>
+                                        <input type="text" class="form-control" id="namaPtProfile"  th:field="*{namaPt}" placeholder="Nama PT" />
+                                        <label class="control-label error-label" th:errors="*{namaPt}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Alamat PT</label>
+                                        <input type="text" class="form-control" id="alamatPtProfile"  th:field="*{alamatPt}" placeholder="Alamat PT" />
+                                        <label class="control-label error-label" th:errors="*{alamatPt}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>S1</label>
+                                        <input type="text" class="form-control" th:field="*{s1}" 
+                                               placeholder="Program Studi, Nama Akademi, Kota Akademi" />
+                                        <label class="control-label error-label" th:errors="*{s1}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>S2</label>
+                                        <input type="text" class="form-control" th:field="*{s2}" 
+                                               placeholder="Program Studi, Nama Akademi, Kota Akademi" />
+                                        <label class="control-label error-label" th:errors="*{s2}"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>S3</label>
+                                        <input type="text" class="form-control"  th:field="*{s3}" 
+                                               placeholder="Program Studi, Nama Akademi, Kota Akademi" />
+                                        <label class="control-label error-label" th:errors="*{s3}"></label>
+                                    </div>
+
+                                    <!--Fakultas-->
+                                    <div class="form-group">
+                                        <label>Fakultas</label>
+                                        <select class="form-control selectpicker" 
+                                                id="fakultasProfile" 
+                                                data-live-search="true"
+                                                data-size="5" 
+                                                title="Pilih Fakultas...">
+                                            <option th:each="p : ${listFakultas}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Fakultas
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--jurusan/program studi-->
+                                    <div class="form-group">
+                                        <label>Jurusan/Program studi</label>
+                                        <select th:field="*{programStudi}" class="form-control selectpicker" 
+                                                data-live-search="true"
+                                                data-size="5" 
+                                                title="Pilih Program Studi..." required="true">
+                                            <option th:each="p : ${listProdi}"
+                                                    th:value="${p.id}"
+                                                    th:text="${p.nama}">Pilih Fakultas
+                                            </option>
+                                        </select>
+                                        <label class="control-label error-label" th:errors="*{programStudi}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Kode Bidang Ilmu</label>
+                                        <input type="text" class="form-control"  th:field="*{kodeBidangIlmu}" />
+                                        <label class="control-label error-label" th:errors="*{kodeBidangIlmu}"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama Bidang Ilmu</label>
+                                        <input type="text" class="form-control"  th:field="*{namaBidangIlmu}" />
+                                        <label class="control-label error-label" th:errors="*{namaBidangIlmu}"></label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Asesor 1</label>
+                                        <select th:field="*{asesor1}" class="form-control select2">
+                                        </select>
+                                        <div class="help-block with-errors" th:errors="*{asesor1}"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Asesor 2</label>
+                                        <select th:field="*{asesor2}" class="form-control select2">
+                                        </select>
+                                        <div class="help-block with-errors" th:errors="*{asesor2}"></div>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <a th:href="@{/}" class="btn btn-danger" role="button">
+                                            <span aria-hidden="true"></span>Batal
+                                        </a>
+                                        <button onclick="return confirm('Yakin ingin menyimpan data ini ?')" type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" th:inline="javascript">
+                /*<![CDATA[*/
+                function formatRepo(repo) {
+                    if (repo.loading)
+                        return repo.text;
+                    var markup = repo.nip + " - " + repo.nama;
+                    return markup;
+                }
+
+                function formatRepoSelection(repo) {
+                    return repo.text || repo.nip + " - " + repo.nama;
+                }
+
+                $(document).ready(function () {
+                    $("#asesor2").select2({
+                        ajax: {
+                            url: /*[[@{/api/dosen}]]*/ "",
+                            dataType: 'json',
+                            delay: 250,
+                            data: function (params) {
+                                return {
+                                    nama: params.term, // search term
+                                    page: params.page
+                                };
+                            },
+                            processResults: function (data, params) {
+                                params.page = params.page || 1;
+
+                                return {
+                                    results: data.content,
+                                    pagination: {
+                                        more: (params.page * 30) < data.total_count
+                                    }
+                                };
+                            },
+                            cache: true
+                        },
+                        escapeMarkup: function (markup) {
+                            return markup;
+                        },
+                        minimumInputLength: 0,
+                        placeholder: 'Pilih Dosen Asesor 2',
+                        theme: 'bootstrap',
+                        templateResult: formatRepo,
+                        templateSelection: formatRepoSelection
+                    });
+
+                    $("#asesor1").select2({
+                        ajax: {
+                            url: /*[[@{/api/dosen}]]*/ "",
+                            dataType: 'json',
+                            delay: 250,
+                            data: function (params) {
+                                return {
+                                    nama: params.term, // search term
+                                    page: params.page
+                                };
+                            },
+                            processResults: function (data, params) {
+                                params.page = params.page || 1;
+
+                                return {
+                                    results: data.content,
+                                    pagination: {
+                                        more: (params.page * 30) < data.total_count
+                                    }
+                                };
+                            },
+                            cache: true
+                        },
+                        escapeMarkup: function (markup) {
+                            return markup;
+                        },
+                        minimumInputLength: 0,
+                        placeholder: 'Pilih Dosen Asesor 1',
+                        theme: 'bootstrap',
+                        templateResult: formatRepo,
+                        templateSelection: formatRepoSelection
+//                    }).on('select2:select', function (evt) {
+//                        $("#sksMataKuliah").val(evt.params.data.sks);
+                    });
+
+                    $('#tglLahirProfile').datepicker({
+                        autoclose: true,
+                        clearBtn: true,
+                        format: "dd-mm-yyyy",
+                        todayHighlight: true
+//                    }).on('changeDate', function (e) {
+//                        $('#tglLahir').datepicker('setDate', e.date);
+                    });
+
+                    function injectRegionValueOnEdit() {
+                        if ($("#fakultasIdProfile").text()) {
+                            setRegionSelectValue("fakultasProfile", $("#fakultasIdProfile").text());
+                            getListProdi($("#fakultasIdProfile").text(), $("#prodiIdProfile").text());
+                        }
+
+                        // Dirunning jika dalam keadaan Form Edit
+                        if ($("#kotaIdProfile").text()) {
+                            getListKota("kota",
+                                    $("#provinsi").val(),
+                                    $("#kotaIdProfile").text(),
+                                    "formAddress");
+
+                            getListKecamatan("kecamatan",
+                                    $("#kotaIdProfile").text(),
+                                    $("#kecamatanIdProfile").text(),
+                                    "formAddress");
+                        }
+                    }
+                    injectRegionValueOnEdit();
+
+                    $("#provinsi").on("change", function () {
+                        var idProvinsi = $(this).val();
+                        getListKota("kota", idProvinsi);
+                    });
+
+                    $("#kota").on("change", function () {
+                        var idKota = $(this).val();
+                        getListKecamatan("kecamatan", idKota);
+                    });
+
+                    $("#fakultasProfile").on("change", function () {
+                        var idfakultas = $(this).val();
+                        getListProdi(idfakultas);
+                    });
+
+                    function getListProdi(idFakultas, prodiValue = null) {
+                        $.get("/api/program_studi/byFakultas/" + idFakultas).done(function (data) {
+                            var content = "";
+                            for (var i = 0; i < data.length; i++) {
+                                content += "<option value='" + data[i].id + "'>" + data[i].nama + "</option>";
+                            }
+
+                            $("#programStudi").html(content).selectpicker('refresh');
+
+                            if (prodiValue != null) {
+                                setRegionSelectValue("programStudi", prodiValue);
+                            }
+                        });
+                    }
+                });
+                /*]]>*/
+            </script>
+        </div>
+    </body>
+</html>
