@@ -5,6 +5,8 @@ import id.ac.tazkia.dosen.constant.JenjangConstant;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -12,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author muhsin
  */
-@Entity @Table(name = "program_studi")
+@Entity @Table(name = "program_studi") @Data
 public class ProgramStudi {
     @Id @GeneratedValue(generator ="uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -35,46 +37,6 @@ public class ProgramStudi {
     @ManyToOne
     @JoinColumn(name = "id_fakultas")
     Fakultas fakultas;
-
-    public Fakultas getFakultas() {
-        return fakultas;
-    }
-
-    public void setFakultas(Fakultas fakultas) {
-        this.fakultas = fakultas;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
-    }
-
-    public JenjangConstant getJenjang() {
-        return jenjang;
-    }
-
-    public void setJenjang(JenjangConstant jenjang) {
-        this.jenjang = jenjang;
-    }
 
 
 }

@@ -9,11 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "kota")
+@Data
 public class Kota {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -36,35 +39,4 @@ public class Kota {
     @Size(max = 225)
     private String nama;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Provinsi getProvinsi() {
-        return provinsi;
-    }
-    
-    public void setProvinsi(Provinsi provinsi) {
-        this.provinsi = provinsi;
-    }
-    
-    public String getKode() {
-        return kode;
-    }
-
-    public void setKode(String kode) {
-        this.kode = kode;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-    
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
 }

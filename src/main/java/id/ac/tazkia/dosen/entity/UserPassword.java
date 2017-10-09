@@ -9,10 +9,12 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "c_security_user_password")
+@Table(name = "c_security_user_password") @Data
 public class UserPassword implements Serializable {
 
     private static final long serialVersionUID = -7371610187321351709L;
@@ -39,27 +41,4 @@ public class UserPassword implements Serializable {
         this.password = password;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

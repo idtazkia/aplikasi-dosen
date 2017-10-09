@@ -3,6 +3,7 @@ package id.ac.tazkia.dosen.entity;
 
 import id.ac.tazkia.dosen.constant.JenjangConstant;
 import id.ac.tazkia.dosen.constant.StatusDosen;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "t_pengajuan_profile")
+@Data
 public class PengajuanDosenProfile {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -98,150 +100,6 @@ public class PengajuanDosenProfile {
 
     @Transient
     Boolean lampiranLengkap = Boolean.FALSE;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Dosen getDosen() {
-        return dosen;
-    }
-
-    public void setDosen(Dosen dosen) {
-        this.dosen = dosen;
-    }
-
-    public StatusDosen getStatusDosen() {
-        return statusDosen;
-    }
-
-    public void setStatusDosen(StatusDosen statusDosen) {
-        this.statusDosen = statusDosen;
-    }
-
-    public String getPangkat() {
-        return pangkat;
-    }
-
-    public void setPangkat(String pangkat) {
-        this.pangkat = pangkat;
-    }
-
-    public Date getTmtPangkat() {
-        return tmtPangkat;
-    }
-
-    public void setTmtPangkat(Date tmtPangkat) {
-        this.tmtPangkat = tmtPangkat;
-    }
-
-    public Date getTmtJabatan() {
-        return tmtJabatan;
-    }
-
-    public void setTmtJabatan(Date tmtJabatan) {
-        this.tmtJabatan = tmtJabatan;
-    }
-
-    public JenjangConstant getPendidikanTertinggiSebelumnya() {
-        return pendidikanTertinggiSebelumnya;
-    }
-
-    public void setPendidikanTertinggiSebelumnya(JenjangConstant pendidikanTertinggiSebelumnya) {
-        this.pendidikanTertinggiSebelumnya = pendidikanTertinggiSebelumnya;
-    }
-
-    public JenjangConstant getPendidikanTertinggiSekarang() {
-        return pendidikanTertinggiSekarang;
-    }
-
-    public void setPendidikanTertinggiSekarang(JenjangConstant pendidikanTertinggiSekarang) {
-        this.pendidikanTertinggiSekarang = pendidikanTertinggiSekarang;
-    }
-
-    public MataKuliah getMataKuliah() {
-        return mataKuliah;
-    }
-
-    public void setMataKuliah(MataKuliah mataKuliah) {
-        this.mataKuliah = mataKuliah;
-    }
-
-    public String getJenisUsulan() {
-        return jenisUsulan;
-    }
-
-    public void setJenisUsulan(String jenisUsulan) {
-        this.jenisUsulan = jenisUsulan;
-    }
-
-    public int getAngkaKreditDibutuhkan() {
-        return angkaKreditDibutuhkan;
-    }
-
-    public void setAngkaKreditDibutuhkan(int angkaKreditDibutuhkan) {
-        this.angkaKreditDibutuhkan = angkaKreditDibutuhkan;
-    }
-
-    public String getUsulanMenjadi() {
-        return usulanMenjadi;
-    }
-
-    public void setUsulanMenjadi(String usulanMenjadi) {
-        this.usulanMenjadi = usulanMenjadi;
-    }
-
-    public int getAngkaKreditSekarang() {
-        return angkaKreditSekarang;
-    }
-
-    public void setAngkaKreditSekarang(int angkaKreditSekarang) {
-        this.angkaKreditSekarang = angkaKreditSekarang;
-    }
-
-    public int getAngkaKreditUsulan() {
-        return angkaKreditUsulan;
-    }
-
-    public void setAngkaKreditUsulan(int angkaKreditUsulan) {
-        this.angkaKreditUsulan = angkaKreditUsulan;
-    }
-
-    public String getNomorSurat() {
-        return nomorSurat;
-    }
-
-    public void setNomorSurat(String nomorSurat) {
-        this.nomorSurat = nomorSurat;
-    }
-
-    public String getKategoriDosen() {
-        return kategoriDosen;
-    }
-
-    public void setKategoriDosen(String kategoriDosen) {
-        this.kategoriDosen = kategoriDosen;
-    }
-
-    public Date getTanggalSurat() {
-        return tanggalSurat;
-    }
-
-    public void setTanggalSurat(Date tanggalSurat) {
-        this.tanggalSurat = tanggalSurat;
-    }
-
-    public Boolean getLampiranLengkap() {
-        return lampiranLengkap;
-    }
-
-    public void setLampiranLengkap(Boolean lampiranLengkap) {
-        this.lampiranLengkap = lampiranLengkap;
-    }
 
     
 }

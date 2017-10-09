@@ -1,5 +1,6 @@
 package id.ac.tazkia.dosen.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="jenis_kegiatan")
+@Data
 public class JenisKegiatan implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -45,51 +47,4 @@ public class JenisKegiatan implements Serializable {
     @Column(name="angka_kredit")
     private String angkaKredit;
 
-    public KategoriKegiatan getKategoriKegiatan() {
-        return kategoriKegiatan;
-    }
-
-    public void setKategoriKegiatan(KategoriKegiatan kategoriKegiatan) {
-        this.kategoriKegiatan = kategoriKegiatan;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getBukti() {
-        return bukti;
-    }
-
-    public void setBukti(String bukti) {
-        this.bukti = bukti;
-    }
-
-    public String getBatasMaksimal() {
-        return batasMaksimal;
-    }
-
-    public void setBatasMaksimal(String batasMaksimal) {
-        this.batasMaksimal = batasMaksimal;
-    }
-
-    public String getAngkaKredit() {
-        return angkaKredit;
-    }
-
-    public void setAngkaKredit(String angkaKredit) {
-        this.angkaKredit = angkaKredit;
-    }
 }
