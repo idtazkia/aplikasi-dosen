@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -16,6 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "satuan_hasil_kegiatan")
+@Data
 public class SatuanHasilKegiatan implements Serializable {
     
     @Id
@@ -32,28 +35,4 @@ public class SatuanHasilKegiatan implements Serializable {
     @Column(unique = true)
     private String kode;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getKode() {
-        return kode;
-    }
-
-    public void setKode(String kode) {
-        this.kode = kode;
-    }
-    
 }

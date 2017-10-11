@@ -1,5 +1,6 @@
 package id.ac.tazkia.dosen.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @since 14 Apr 2017
  */
 @Entity
+@Data
 public class SuratTugas implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -45,53 +47,4 @@ public class SuratTugas implements Serializable {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "tanggal_selesai")
     private Date tanggalSelesai;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNoSurat() {
-        return noSurat;
-    }
-
-    public void setNoSurat(String noSurat) {
-        this.noSurat = noSurat;
-    }
-
-    public JenisSurat getJenisSurat() {
-        return jenisSurat;
-    }
-
-    public void setJenisSurat(JenisSurat jenisSurat) {
-        this.jenisSurat = jenisSurat;
-    }
-
-    public Dosen getPenerima() {
-        return penerima;
-    }
-
-    public void setPenerima(Dosen penerima) {
-        this.penerima = penerima;
-    }
-
-    public Date getTanggalMulai() {
-        return tanggalMulai;
-    }
-
-    public void setTanggalMulai(Date tanggalMulai) {
-        this.tanggalMulai = tanggalMulai;
-    }
-
-    public Date getTanggalSelesai() {
-        return tanggalSelesai;
-    }
-
-    public void setTanggalSelesai(Date tanggalSelesai) {
-        this.tanggalSelesai = tanggalSelesai;
-    }
 }

@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import lombok.Data;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
@@ -20,6 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity 
 @Table(name = "c_security_user")
+@Data
 public class User {
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -44,52 +47,4 @@ public class User {
     @JoinColumn(name = "id_role", nullable = false)
     private Role role;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public UserPassword getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(UserPassword userPassword) {
-        this.userPassword = userPassword;
-    }
-    
 }

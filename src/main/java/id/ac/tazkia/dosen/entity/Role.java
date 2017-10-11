@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -20,6 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Ivans
  */
 @Entity @Table(name = "c_security_role")
+@Data
 public class Role {
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -43,37 +46,4 @@ public class Role {
     )
     private Set<Permission> permissionSet = new HashSet<Permission>();
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Permission> getPermissionSet() {
-        return permissionSet;
-    }
-
-    public void setPermissionSet(Set<Permission> permissionSet) {
-        this.permissionSet = permissionSet;
-    }
-
-    
 }

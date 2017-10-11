@@ -7,11 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "provinsi")
+@Data
 public class Provinsi {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -28,30 +31,5 @@ public class Provinsi {
     @NotEmpty
     @Size(max = 225)
     private String nama;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-    
-    public String getKode() {
-        return kode;
-    }
-
-    public void setKode(String kode) {
-        this.kode = kode;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
 
 }
