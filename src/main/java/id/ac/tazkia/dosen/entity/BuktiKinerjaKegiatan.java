@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -20,6 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "t_bukti_kinerja_kegiatan")
+@Data
 public class BuktiKinerjaKegiatan {
     
     @Id
@@ -37,37 +40,5 @@ public class BuktiKinerjaKegiatan {
     @ManyToOne
     @JoinColumn(name = "id_kegiatan_dosen", nullable = false)
     private KegiatanDosen kegiatanDosen;
-    
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public KegiatanDosen getKegiatanDosen() {
-        return kegiatanDosen;
-    }
-
-    public void setKegiatanDosen(KegiatanDosen kegiatanDosen) {
-        this.kegiatanDosen = kegiatanDosen;
-    }
-    
 }

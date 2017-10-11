@@ -1,5 +1,6 @@
 package id.ac.tazkia.dosen.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "m_jenis_pengajuan_dokumen")
+@Data
 public class JenisPengajuanDokumen  implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -26,36 +28,4 @@ public class JenisPengajuanDokumen  implements Serializable {
     @NotNull
     @Column
     Boolean required = Boolean.FALSE;
-
-    public Boolean getRequired() {
-        return required;
-    }
-
-    public void setRequired(Boolean required) {
-        this.required = required;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
-    }
 }

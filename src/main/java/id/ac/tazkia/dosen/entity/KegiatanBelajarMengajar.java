@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,6 +33,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "t_kegiatan_belajar_mengajar")
+@Data
 public class KegiatanBelajarMengajar implements Serializable {
 
     @Id
@@ -89,108 +92,4 @@ public class KegiatanBelajarMengajar implements Serializable {
     @Column(name = "tgl_selesai")
     private Date tanggalSelesai;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
-    }
-
-    public String getPeriode() {
-        return periode;
-    }
-
-    public void setPeriode(String periode) {
-        this.periode = periode;
-    }
-
-    public SemesterConstant getSemester() {
-        return semester;
-    }
-
-    public void setSemester(SemesterConstant semester) {
-        this.semester = semester;
-    }
-
-    public MataKuliah getMataKuliah() {
-        return mataKuliah;
-    }
-
-    public void setMataKuliah(MataKuliah mataKuliah) {
-        this.mataKuliah = mataKuliah;
-    }
-
-    public Dosen getDosen() {
-        return dosen;
-    }
-
-    public void setDosen(Dosen dosen) {
-        this.dosen = dosen;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public SatuanHasilKegiatan getSatuanKegiatan() {
-        return satuanKegiatan;
-    }
-
-    public void setSatuanKegiatan(SatuanHasilKegiatan satuanKegiatan) {
-        this.satuanKegiatan = satuanKegiatan;
-    }
-
-    public StatusRekomendasi getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusRekomendasi status) {
-        this.status = status;
-    }
-
-    public int getSksKegiatan() {
-        return sksKegiatan;
-    }
-
-    public void setSksKegiatan(int sksKegiatan) {
-        this.sksKegiatan = sksKegiatan;
-    }
-
-    public int getSksMataKuliah() {
-        return sksMataKuliah;
-    }
-
-    public void setSksMataKuliah(int sksMataKuliah) {
-        this.sksMataKuliah = sksMataKuliah;
-    }
-
-    public Date getTanggalMulai() {
-        return tanggalMulai;
-    }
-
-    public void setTanggalMulai(Date tanggalMulai) {
-        this.tanggalMulai = tanggalMulai;
-    }
-
-    public Date getTanggalSelesai() {
-        return tanggalSelesai;
-    }
-
-    public void setTanggalSelesai(Date tanggalSelesai) {
-        this.tanggalSelesai = tanggalSelesai;
-    }
-    
 }
