@@ -1,24 +1,18 @@
 language: java
-
 jdk:
 - oraclejdk8
-
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database appdosendb;' -U postgres
-
+- psql -c 'create database appdosendb;' -U postgres
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
+- bash <(curl -s https://codecov.io/bash)
 env:
-  - SPRING_DATASOURCE_USERNAME=postgres SPRING_DATASOURCE_PASSWORD=
-
+- SPRING_DATASOURCE_USERNAME=postgres SPRING_DATASOURCE_PASSWORD=
 deploy:
   provider: heroku
   api_key:
-    secure: kZ6ZXUyORYfQTAABDxf60huq+2mIqRrEY0E/dkeQWCjXX7ZO84pitQahYjctp5JN5bexV1nxde9AcZKbf/Yhih5OT9IAYZQc5+6Oh7LK1aTKOsgOPB+JBMA0JmaeWsZzlsO3/J8Tve4bunCoG9q3CV7iuFfzz3udqCzt22GtTyn/p807iJM/YGnchcoUxSGB03yeQydkxejOY9dgeXS94OkpLe9PO8XkN+syHgPbxhjzVvPCQ1ft2X4/bev5SLrgwHeDKwAbFBBKHTsmZCa7TrXO4K4l9Xhf45wCWBSgW4GyCmHSnxZout/RFRZPSyPYqr0/q4G1pIShAQrZpLZCZLQJYG3x7piSdQLEC1BpsLIqqw/F74jb1X1bb/lxSSPnnpm7zX5NBMRgSBaOltJgz9AzkqS9Ng+WDRE2uNW+/wnkyFYN/+SyVS2EXU95aPh5Hg8gs+zBcMo4ICxcf42dCfJKhxzXPfOpLnzTPq2aaP856Ptq3kPSWwYJEGeGjmHVYNDKivWpXm6OKzdUd7CsFqftimVeykQNNNjyN8aTf/R3P/PmWYeDKX07ZV2rdQDqkOKYm8ugeb6YTQK/+OVC6vp5OrHUCJwC6nvLKK9KObm9LhO3T6xwOmziUnipe5gXo1iRxollyZXeNyWx1EBB3Xr7Ihc98ETNRXdaZr/CD14=
+    secure: u5y8QmEu2qLOzslxu0QaM12M0FFNcSjKm2bBCb7nEeh7P1JajdgDyLMPer9r9vb4GyAkE6SjIZapLFtVNxdJyhF/+2H9lx4kzVDLXLc9MxEEACVAR7C2YLVCGHTyPvfzbzRiibvgbQxB5SRpfuBMywgNvSiWkT+PtvQ34imXxgB3TKP9kBSfqz8cBytAjaEchR3MBt0NO9PbkbbAS0M+2ElmiLT8A93E9Mj6l6QuCka/LOpZMYbF6qbagO6BkVtsyMy6XVLiPiA0EwKpZnsamibAULpM/BrTm19SrdJsG3VdxTrEIMGsLqvLwJUrtwCc54dxtkElmRqIb6jpkNjlEPVtaiwtVgR9jPCeGqn4WqlRyafL4TdyiPGFLw8FaMUyalITqpMInVJIAvv0V7JhmNxWC4HNnvrDCHZU8qT1c0Mfy+xsRvTp6g3Cv7yN7vTfNQd7QlBPKz9QuyL0VtU65CF5CZJcggDEMk+JTrZKTBDTdPUlEIJwEyDdhx0kdgcjQkMfDanjhoHTAlvVvuYZaEi6JIvoV8vGFPMn9miC+zHtlFSUK1Wj7dYqZhnzZkF7p2E595OJVU3CrrkB7lscyeJPW3JPsXIJDajRI5buUEZkB+5TAyA1MW4X6s6qFcK3K8YMr/yiEdFn8oDlDfSEqF0xTYjjfbkJn6f85dkv2Fg=
   app: aplikasi-dosen
   on:
     repo: idtazkia/aplikasi-dosen
