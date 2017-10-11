@@ -12,11 +12,6 @@
                 });
             });
         </script>
-        <style>
-            .noWrapColumn{
-                white-space: nowrap !important;
-            }
-        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -46,26 +41,26 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <div style="overflow: auto;">
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th class="noWrapColumn text-center">No.</th>
-                                            <th class="noWrapColumn text-center">Jenis Surat</th>
-                                            <th class="noWrapColumn text-center">No Surat</th>
-                                            <th class="noWrapColumn text-center">Penerima</th>
-                                            <th class="noWrapColumn text-center">Tanggal Mulai</th>
-                                            <th class="noWrapColumn text-center">Tanggal Selesai</th>
-                                            <th class="noWrapColumn text-center">&nbsp;</th>
+                                            <th>No.</th>
+                                            <th>Jenis Surat</th>
+                                            <th>No Surat</th>
+                                            <th>Penerima</th>
+                                            <th>Tanggal Mulai</th>
+                                            <th>Tanggal Selesai</th>
+                                            <th>&nbsp;</th>
                                         </tr>
-                                        <tr th:each="st,iter : ${data}">
-                                            <td class="noWrapColumn" th:text="${iter.count}">1</td>
-                                            <td class="noWrapColumn" th:text="${st.jenisSurat.nama}">id</td>
-                                            <td class="noWrapColumn" th:text="${st.noSurat}">noSurat</td>
-                                            <td class="noWrapColumn" th:text="${st.penerima.nama}">id</td>
-                                            <td class="noWrapColumn" th:text="${#dates.format(st.tanggalMulai, 'dd-MMM-yyyy')}">tanggalMulai</td>
-                                            <td class="noWrapColumn" th:text="${#dates.format(st.tanggalSelesai, 'dd-MMM-yyyy')}">tanggalSelesai</td>
-                                            <td class="noWrapColumn text-center">
+                                        <tr th:each="st,iter : ${suratTugas}">
+                                            <td th:text="${iter.count}">1</td>
+                                            <td th:text="${st.jenisSurat.nama}">id</td>
+                                            <td th:text="${st.noSurat}">noSurat</td>
+                                            <td th:text="${st.penerima.nama}">id</td>
+                                            <td th:text="${#dates.format(st.tanggalMulai, 'dd-MMM-yyyy')}">tanggalMulai</td>
+                                            <td th:text="${#dates.format(st.tanggalSelesai, 'dd-MMM-yyyy')}">tanggalSelesai</td>
+                                            <td>
                                                 <a href="#" class="btn btn-info" th:href="@{/surattugas/form(id=${st.id})}" title="edit surat tugas"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="#" class="btn btn-info" th:href="@{/surattugas/delete(id=${st.id})}" title="delete surat tugas"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

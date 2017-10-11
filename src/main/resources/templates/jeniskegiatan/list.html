@@ -46,24 +46,24 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <div style="overflow: auto;">
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th class="noWrapColumn" align="center">Kategori Kegiatan</th>
-                                            <th class="noWrapColumn" align="center">Komponen Kegiatan</th>
-                                            <th class="noWrapColumn" align="center">Bukti Kegiatan</th>
-                                            <th class="noWrapColumn" align="center">Batas Maksimal Diakui</th>
-                                            <th class="noWrapColumn" align="center">Angka Kredit</th>
-                                            <th class="noWrapColumn">&nbsp;</th>
+                                            <th align="center">Kategori Kegiatan</th>
+                                            <th align="center">Komponen Kegiatan</th>
+                                            <th align="center">Bukti Kegiatan</th>
+                                            <th align="center">Batas Maksimal Diakui</th>
+                                            <th align="center">Angka Kredit</th>
+                                            <th>&nbsp;</th>
                                         </tr>
                                         <tr th:each="jenisKegiatan : ${data}">
-                                            <td class="noWrapColumn" th:text="${jenisKegiatan.kategoriKegiatan.nama}">jenis kegiatan 1</td>
-                                            <td class="noWrapColumn" th:text="${jenisKegiatan.nama}">keterangan jenis kegiatan 1</td>
-                                            <td class="noWrapColumn" th:text="${jenisKegiatan.bukti}">template jenis kegiatan 1</td>
-                                            <td class="noWrapColumn" th:text="${jenisKegiatan.batasMaksimal}">1</td>
-                                            <td class="noWrapColumn" th:text="${jenisKegiatan.angkaKredit}">1</td>
-                                            <td class="col-lg-2 col-md-2 col-xs-2 text-center noWrapColumn"> 
+                                            <td th:text="${jenisKegiatan.kategoriKegiatan.nama}">jenis kegiatan 1</td>
+                                            <td th:text="${jenisKegiatan.nama}">keterangan jenis kegiatan 1</td>
+                                            <td th:text="${jenisKegiatan.bukti}">template jenis kegiatan 1</td>
+                                            <td th:text="${jenisKegiatan.batasMaksimal}">1</td>
+                                            <td th:text="${jenisKegiatan.angkaKredit}">1</td>
+                                            <td>
                                                 <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/form(id=${jenisKegiatan.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="#" class="btn btn-info" th:href="@{/jeniskegiatan/delete(id=${jenisKegiatan.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

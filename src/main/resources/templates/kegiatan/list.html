@@ -30,46 +30,48 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Keterangan</th>
-                                        <th>Masa Penugasan</th>
-                                        <th>Jenis Kegiatan</th>
-                                        <th>SKS</th>
-                                        <th>Jumlah</th>
-                                        <th>Bukti Penugasan</th>
-                                        <th>Bukti Kinerja</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr th:each="k,iter : ${data.content}">
-                                        <td th:text="${iter.count}">1</td>
-                                        <td th:text="${k.keterangan}">Keterangan</td>
-                                        <td th:text="'SEMESTER ' + ${k.semester} + ' ' + ${k.periode}">GANJIL 2015/2016</td>
-                                        <td th:text="${k.jenisKegiatan.nama}">Mata Kuliah</td>
-                                        <td th:text="${k.sks}">3</td>
-                                        <td th:text="${k.volume}+ ' ' + ${k.satuanKegiatan.nama}">40 Orang</td>
-                                        <td>
-                                            <a th:href="@{/kegiatan/buktipenugasan/form?idKeg={id}(id=${k.id})}" >Lihat Bukti</a>
-                                        </td>
-                                        <td>
-                                            <a th:href="@{/kegiatan/buktikinerja/form?idKeg={id}(id=${k.id})}" >Lihat Bukti</a>
-                                        </td>
-                                        <td th:text="${k.status}">status</td>
-                                        <td>
-                                            <a href="#" th:href="@{/kegiatan/} + ${kegiatan} + '/form?id=' + ${k.id}"
-                                               title="edit"><span class="glyphicon glyphicon-edit"></span></a> | 
-                                            <a href="#" th:href="@{/kegiatan/} + ${kegiatan} + '/delete?id=' + ${k.id}"
-                                               title="delete"><span class="glyphicon glyphicon-remove"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr th:if="${#lists.isEmpty(data.content)}">
-                                        <td colspan="13" class="text-center">Data kegiatan tidak ditemukan</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Keterangan</th>
+                                            <th>Masa Penugasan</th>
+                                            <th>Jenis Kegiatan</th>
+                                            <th>SKS</th>
+                                            <th>Jumlah</th>
+                                            <th>Bukti Penugasan</th>
+                                            <th>Bukti Kinerja</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr th:each="k,iter : ${data.content}">
+                                            <td th:text="${iter.count}">1</td>
+                                            <td th:text="${k.keterangan}">Keterangan</td>
+                                            <td th:text="'SEMESTER ' + ${k.semester} + ' ' + ${k.periode}">GANJIL 2015/2016</td>
+                                            <td th:text="${k.jenisKegiatan.nama}">Mata Kuliah</td>
+                                            <td th:text="${k.sks}">3</td>
+                                            <td th:text="${k.volume}+ ' ' + ${k.satuanKegiatan.nama}">40 Orang</td>
+                                            <td>
+                                                <a target="_blank" th:href="@{/image/penugasan/} + ${k.buktiPenugasan.url}" th:text="${k.buktiPenugasan.nama}"></a>
+                                            </td>
+                                            <td>
+                                                <a target="_blank" th:href="@{/image/kinerja/} + ${k.buktiKinerja.url}" th:text="${k.buktiKinerja.nama}"></a>
+                                            </td>
+                                            <td th:text="${k.status}">status</td>
+                                            <td>
+                                                <a href="#" th:href="@{/kegiatan/} + ${kegiatan} + '/form?id=' + ${k.id}"
+                                                   title="edit"><span class="glyphicon glyphicon-edit"></span></a> | 
+                                                <a href="#" th:href="@{/kegiatan/} + ${kegiatan} + '/delete?id=' + ${k.id}"
+                                                   title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(data.content)}">
+                                            <td colspan="13" class="text-center">Data kegiatan tidak ditemukan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="text-center" th:if="${not #lists.isEmpty(data.content)}">
                             <ul class="pagination" sd:pagination="full"></ul>
