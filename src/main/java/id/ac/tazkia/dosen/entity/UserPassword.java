@@ -11,27 +11,31 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "c_security_user_password")
-@Data
 public class UserPassword implements Serializable {
 
     private static final long serialVersionUID = -7371610187321351709L;
 
     @Id
     @Column(name = "id_user")
+    @Getter @Setter
     private String id;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "id_user", nullable = false, columnDefinition = "varchar(36)")
+    @Getter @Setter
     private User user;
 
     @NotNull
     @NotEmpty
     @Column
+    @Getter @Setter
     private String password;
 
     public UserPassword() {

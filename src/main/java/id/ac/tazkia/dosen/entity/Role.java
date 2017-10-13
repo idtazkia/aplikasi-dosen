@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,19 +24,21 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Ivans
  */
 @Entity @Table(name = "c_security_role")
-@Data
 public class Role {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Getter @Setter
     private String id;
     
     @NotNull
     @NotEmpty
     @Column(name = "name", nullable = false, unique = true)
+    @Getter @Setter
     private String name;
 
     @Column(name = "description")
+    @Getter @Setter
     private String description;
     
     @ManyToMany
@@ -44,6 +48,7 @@ public class Role {
         joinColumns=@JoinColumn(name="id_role", nullable=false),
         inverseJoinColumns=@JoinColumn(name="id_permission", nullable=false)
     )
+    @Getter @Setter
     private Set<Permission> permissionSet = new HashSet<Permission>();
 
 }
