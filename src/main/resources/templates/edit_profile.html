@@ -236,7 +236,13 @@
                                         </select>
                                         <div class="help-block with-errors" th:errors="*{asesor2}"></div>
                                     </div>
+                                    <div class="form-group">
+                                        <a th:href="@{/uploadDokumenProfile/upload_dokumen?id={id}(id=${profile.id})}">Upload Dokumen</a>
+                                    </div>
                                     <div class="form-group pull-right">
+<!--                                        <a th:href="@{/uploadDokumenProfile/upload_dokumen?id={id}(id=${profile.id})}" class="btn btn-primary" role="button">
+                                            <span aria-hidden="true"></span>Upload
+                                        </a>-->
                                         <a th:href="@{/}" class="btn btn-danger" role="button">
                                             <span aria-hidden="true"></span>Batal
                                         </a>

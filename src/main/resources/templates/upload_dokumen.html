@@ -1,0 +1,151 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+    <head>
+        <title>Kelengkapan Dokumen</title>
+        <style>
+            .thumbs{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .progression{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div layout:fragment="breadcrumb">
+            <h1>Kelengkapan Dokumen</h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Kelengkapan Dokumen</li>
+            </ol>
+        </div>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <table class="table">
+                                <tr>
+                                    <th>NIDN</th>
+                                    <td th:text="${pengajuan.nidn}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Nama</th>
+                                    <td th:text="${pengajuan.nama}"></td>
+                                </tr>
+<!--                                <tr>
+                                    <th>Nomor Surat</th>
+                                    <td th:text="${pengajuan.nomorSurat}"></td>
+                                </tr>-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 progression">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="info-box bg-yellow">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Tingkat Kelengkapan</span>
+                                    <span class="info-box-number" th:text="${progressBar.approvDoc}">1</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" th:style="'width: '+ ${progressBar.percent} +'%'"></div>
+                                    </div>
+                                    <span class="progress-description" th:text="${progressBar.totalDoc}"></span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <div class="form-group pull-right">
+                                <a th:href="@{/editprofile}" class="btn btn-danger" role="button">
+                                    <span aria-hidden="true"></span>BACK
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="col-lg-3 col-md-4 col-xs-6 thumbs" th:each="doc : ${listDokumen}">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua">
+                                    <div class="inner" style="height:150px">
+                                        <b><span th:id="'docName-'+${doc.jenisPengajuanDokumen.id}" th:text="${#strings.abbreviate(doc.jenisPengajuanDokumen.nama,90)}">KTP</span> <span th:if="${doc.jenisPengajuanDokumen.required}"> | (Required)</span></b>
+                                    </div>
+                                    <div class="inner">
+                                        <p><span class="pull-left" th:text="${doc.jenisPengajuanDokumen.required ? 'REQUIRED' : 'OPTIONAL'}">Status</span><span class="pull-right" th:text="${doc.statusDokumen}">Ok</span></p>
+                                        <br />
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+
+                                    
+                                    <div style="height:60px;padding-bottom:10px" class="text-center">
+                                        <a 
+                                            th:attr="data-idDoc=${doc.jenisPengajuanDokumen.id}"
+                                            data-toggle="modal" 
+                                            data-target="#modalUploadDokumen" class="btn btn-default">Upload <i class="fa fa-upload"></i></a>
+
+                                        <a th:if="${doc.filename != null}" 
+                                           target="_blank" th:href="@{/image/dokumen-pengajuan/} + ${doc.filename}"
+                                           class="btn btn-default">Download <i class="fa fa-download"></i></a>
+                                    </div>
+<!--                                    <div style="height:60px;padding-bottom:10px" class="text-center">
+                                        <a th:if="${doc.filename != null} AND ${doc.statusDokumen.toString() != 'APPROVED'}"
+                                            style="margin-bottom:8px" class="btn btn-warning" th:href="@{/uploadDokumenProfile/upload_dokumen/approve/} + ${doc.id}">Approve</a>
+                                        <a th:if="${doc.filename != null} AND ${doc.statusDokumen != 'REJECT'}"
+                                            style="margin-bottom:8px" class="btn btn-danger" th:href="@{/uploadDokumenProfile/upload_dokumen/reject/} + ${doc.id}">Tolak</a>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL UPLOAD -->
+            <div class="modal fade" id="modalUploadDokumen" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method="POST" th:action="@{/uploadDokumenProfile/upload}" enctype="multipart/form-data">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Upload Dokumen</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="idJenisDokumen" id="dokumenId" />
+                                <input type="hidden" name="idPengajuan" th:value="${pengajuan.id}" />
+                                <div class="form-group">
+                                    <label id="labelNamaDokumen"></label>
+                                    <input type="file" class="form-control" name="fileDokumen" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#modalUploadDokumen').on('show.bs.modal', function (event) {
+                        var button = $(event.relatedTarget); // Button that triggered the modal
+                        var docId = button.data('iddoc');
+                        var labelDoc = $("#docName-" + docId).html();
+                        console.log("TEST" + docId);
+                        $("#labelNamaDokumen").html(labelDoc);
+                        $("#dokumenId").val(docId);
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>
