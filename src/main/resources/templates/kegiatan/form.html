@@ -13,8 +13,7 @@
         <div layout:fragment="content">
 
             <!-- form start -->
-            <form role="form" method="post" action="" th:object="${kinerja}" enctype="multipart/form-data">
-                <input type="hidden" th:field="*{id}"/>
+            <form role="form" method="post" action="" th:object="${kinerja}">
                 <input type="hidden" th:field="*{kategoriKegiatan}"/>
                 <div class="row">
                     <div class="col-md-6">
@@ -60,6 +59,7 @@
                                 <div class="form-group">
                                     <label>Jenis Kegiatan</label>
                                     <select th:field="*{jenisKegiatan}" class="form-control select2" required="true">
+                                        <option th:if="${kinerja.jenisKegiatan != null}" th:text="${kinerja.jenisKegiatan.nama}" th:value="${kinerja.jenisKegiatan.id}"></option>
                                     </select>
                                     <div class="help-block with-errors" th:if="${#fields.hasErrors('jenisKegiatan')}" th:errors="*{jenisKegiatan}"></div>
                                 </div>

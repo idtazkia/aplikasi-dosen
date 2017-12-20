@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -86,6 +84,4 @@ public class KegiatanDosen  implements Serializable{
     @Temporal(TemporalType.DATE)
     @Column(name = "tgl_selesai")
     private @Getter @Setter Date tanggalSelesai;
-
-    
 }

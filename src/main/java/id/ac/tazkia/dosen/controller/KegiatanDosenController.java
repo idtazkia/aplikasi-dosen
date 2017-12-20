@@ -33,6 +33,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +67,7 @@ public class KegiatanDosenController {
 
     @Autowired
     private UserDao userDao;
-    
+
     @Autowired
     private SatuanHasilKegiatanDao satuanHKDao;
 
@@ -127,10 +128,6 @@ public class KegiatanDosenController {
                 return "redirect:/kegiatan/" + kegiatan + "/list";
             }
         } else {
-            BuktiKinerja buktiKinerja = new BuktiKinerja();
-            BuktiPenugasan buktiPenugasan = new BuktiPenugasan();
-//            kd.setBuktiKinerja(buktiKinerja);
-//            kd.setBuktiPenugasan(buktiPenugasan);
             kd.setKategoriKegiatan(kk);
         }
 
@@ -147,55 +144,14 @@ public class KegiatanDosenController {
     }
 
     @PostMapping("/{kegiatan}/form")
-    public String prosesForm(@PathVariable String kegiatan, @Valid KegiatanDosen kinerja, ModelMap mm, BindingResult errors,
-            MultipartFile filePenugasan, MultipartFile fileKinerja,
+    public String prosesForm(@PathVariable String kegiatan, @ModelAttribute("kinerja") @Valid KegiatanDosen kinerja, BindingResult errors, ModelMap mm,
             HttpServletRequest request, Principal principal, Authentication authentication) {
-
-        if (kinerja.getId() != null) {
-            LOGGER.info("ID [{}]", kinerja.getId());
-        }
 
         if (validasiDosen(principal.getName(), authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_KEGIATAN_ALL")), kinerja.getDosen().getId())) {
             return "redirect:/kegiatan/" + kegiatan + "/list";
         }
 
-//        if (filePenugasan != null && !filePenugasan.isEmpty()) {
-//            if (filePenugasan.getSize() > 2097152) {
-//                LOGGER.info("UPLOAD GAGAL");
-//                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", filePenugasan.getSize());
-//                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
-//
-//                errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File terlalu besar, max 2mb"));
-//            } else {
-//                String extention = tokenizer(filePenugasan.getOriginalFilename(), ".");
-//                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-//                    File file = imageService.moveFile(filePenugasan, "bukti-penugasan", extention);
-//                    kinerja.getBuktiPenugasan().setUrl(file.getName());
-//                } else {
-//                    errors.addError(new FieldError("buktiPenugasan.nama", "buktiPenugasan.nama", "File yang diperbolehkan png, jpg, jpeg"));
-//                }
-//            }
-//        }
-
-//        if (fileKinerja != null && !fileKinerja.isEmpty()) {
-//            if (fileKinerja.getSize() > 2097152) {
-//                LOGGER.info("UPLOAD GAGAL");
-//                LOGGER.info("BESAR FILE YANG DI UPLOAD === [{}]", fileKinerja.getSize());
-//                LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
-//
-//                errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File terlalu besar, max 2mb"));
-//            } else {
-//                String extention = tokenizer(fileKinerja.getOriginalFilename(), ".");
-//                if (FILE_EXTENSION.contains(extention.toLowerCase())) {
-//                    File file = imageService.moveFile(fileKinerja, "bukti-kinerja", extention);
-//                    kinerja.getBuktiKinerja().setUrl(file.getName());
-//                } else {
-//                    errors.addError(new FieldError("buktiKinerja.nama", "buktiKinerja.nama", "File yang diperbolehkan png, jpg, jpeg"));
-//                }
-//            }
-//        }
-
-        if (errors.getErrorCount() > 0) {
+        if (errors.hasErrors()) {
             mm.addAttribute("kinerja", kinerja);
             KategoriKegiatan kk = kategoriKegiatanDao.findOneByNamaIgnoreCase(kegiatan);
             mm.addAttribute("listJenisKegiatan", jenisKegiatanDao.findByKategoriKegiatan(kk));
@@ -204,6 +160,7 @@ public class KegiatanDosenController {
             return "kegiatan/form";
         }
 
+        LOGGER.info("ID SAVE [{}]", kinerja.getId());
         kegiatanDosenDao.save(kinerja);
         return "redirect:/kegiatan/" + kegiatan + "/list";
     }

@@ -1,6 +1,5 @@
 package id.ac.tazkia.dosen.entity;
 
-import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
