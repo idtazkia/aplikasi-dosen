@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -23,23 +25,30 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "t_bukti_penugasan_kegiatan")
-@Data
 public class BuktiPenugasanKegiatan implements Serializable {
+
+    public BuktiPenugasanKegiatan() {
+    }
+
+    public BuktiPenugasanKegiatan(String idKegiatan) {
+        this.kegiatanDosen = new KegiatanDosen();
+        this.kegiatanDosen.setId(idKegiatan);
+    }
     
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    private @Getter @Setter String id;
 
     @NotNull
     @NotEmpty
-    private String nama;
+    private @Getter @Setter String nama;
 
     @Column(nullable = false)
-    private String url;
+    private @Getter @Setter String url;
     
     @ManyToOne
     @JoinColumn(name = "id_kegiatan_dosen", nullable = false)
-    private KegiatanDosen kegiatanDosen;
+    private @Getter @Setter KegiatanDosen kegiatanDosen;
 
 }

@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
@@ -53,34 +54,31 @@ public class BuktiPenugasanKegiatanController {
     public String tampilkanForm(@RequestParam String idKeg, @PageableDefault(size = 10) Pageable pageable,
             ModelMap mm, Principal principal, Authentication authentication) {
         mm.addAttribute("listBukti", buktiPenugasanKegiatanDao.findByKegiatanDosenId(idKeg, pageable));
-        mm.addAttribute("buktiPenugasanKegiatan", new BuktiPenugasanKegiatan());
+        mm.addAttribute("buktiPenugasanKegiatan", new BuktiPenugasanKegiatan(idKeg));
         mm.addAttribute("idKeg", idKeg);
 
         return "kegiatan/buktipenugasan/form";
     }
 
     @PostMapping("/form")
-    public String prosesForm(@RequestParam String idKeg, 
-            @Valid BuktiPenugasanKegiatan buktiPenugasanKegiatan, 
-            ModelMap mm, BindingResult errors,
+    public String prosesForm(@Valid BuktiPenugasanKegiatan buktiPenugasanKegiatan, 
+            BindingResult errors, ModelMap mm,
             MultipartFile filePenugasan, HttpServletRequest request,
             Principal principal, Authentication authentication) {
 
-        if (errors.hasErrors()) {
-            LOGGER.error("masuk ke sini");
-            return "/kegiatan/buktipenugasan/form?idKeg=" + idKeg;
-        }
-
-        if (errors.getErrorCount() > 0) {
-            return "kegiatan/buktipenugasan/form?idKeg=" + idKeg;
-        }
+        LOGGER.debug("ID Kegiatan [{}]", buktiPenugasanKegiatan);
         
-        LOGGER.debug("ID Kegiatan [{}]", idKeg);
-        
-        KegiatanDosen kegiatanDosen = kegiatanDosenDao.findOne(idKeg);
+        KegiatanDosen kegiatanDosen = kegiatanDosenDao.findOne(buktiPenugasanKegiatan.getKegiatanDosen().getId());
         if(kegiatanDosen == null) {
             LOGGER.error("ID Kegiatan Dosen tidak ditemukan");
-            return "kegiatan/buktipenugasan/form?idKeg=" + idKeg;
+            return "redirect:/";
+        }
+        
+        if (errors.hasErrors()) {
+            mm.addAttribute("listBukti", buktiPenugasanKegiatanDao.findByKegiatanDosenId(kegiatanDosen.getId(), new PageRequest(0, 10)));
+            mm.addAttribute("buktiPenugasanKegiatan", buktiPenugasanKegiatan);
+            mm.addAttribute("idKeg", buktiPenugasanKegiatan.getKegiatanDosen().getId());
+            return "kegiatan/buktipenugasan/form";
         }
         
         if (filePenugasan != null && !filePenugasan.isEmpty()) {
@@ -90,6 +88,10 @@ public class BuktiPenugasanKegiatanController {
                 LOGGER.info("MAXIMUM BESAR FILE === [{}]", 2097152);
 
                 errors.addError(new FieldError("nama", "nama", "File terlalu besar, max 2mb"));
+                mm.addAttribute("listBukti", buktiPenugasanKegiatanDao.findByKegiatanDosenId(kegiatanDosen.getId(), new PageRequest(0, 10)));
+                mm.addAttribute("buktiPenugasanKegiatan", buktiPenugasanKegiatan);
+                mm.addAttribute("idKeg", kegiatanDosen.getId());
+                return "kegiatan/buktipenugasan/form";
             } else {
                 String extention = tokenizer(filePenugasan.getOriginalFilename(), ".");
                 if (FILE_EXTENSION.contains(extention.toLowerCase())) {
@@ -97,13 +99,23 @@ public class BuktiPenugasanKegiatanController {
                     buktiPenugasanKegiatan.setUrl(file.getName());
                 } else {
                     errors.addError(new FieldError("nama", "nama", "File yang diperbolehkan png, jpg, jpeg"));
+                    mm.addAttribute("listBukti", buktiPenugasanKegiatanDao.findByKegiatanDosenId(kegiatanDosen.getId(), new PageRequest(0, 10)));
+                    mm.addAttribute("buktiPenugasanKegiatan", buktiPenugasanKegiatan);
+                    mm.addAttribute("idKeg", kegiatanDosen.getId());
+                    return "kegiatan/buktipenugasan/form";
                 }
             }
+        }else{
+            errors.addError(new FieldError("url", "url", "File tidak boleh kosong"));
+            mm.addAttribute("listBukti", buktiPenugasanKegiatanDao.findByKegiatanDosenId(kegiatanDosen.getId(), new PageRequest(0, 10)));
+            mm.addAttribute("buktiPenugasanKegiatan", buktiPenugasanKegiatan);
+            mm.addAttribute("idKeg", kegiatanDosen.getId());
+            return "kegiatan/buktipenugasan/form";
         }
         
         buktiPenugasanKegiatan.setKegiatanDosen(kegiatanDosen);
         buktiPenugasanKegiatanDao.save(buktiPenugasanKegiatan);
-        return "redirect:/kegiatan/buktipenugasan/form?idKeg=" + idKeg;
+        return "redirect:/kegiatan/buktipenugasan/form?idKeg=" + kegiatanDosen.getId();
     }
     
     @GetMapping("/delete")
