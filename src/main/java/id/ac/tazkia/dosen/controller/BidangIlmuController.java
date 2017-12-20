@@ -49,7 +49,7 @@ public class BidangIlmuController {
     @PostMapping("/bidangilmu/form")
     public String simpan(@ModelAttribute @Valid BidangIlmu bidangIlmu, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/bidangilmu/form";
+            return "bidangilmu/form";
         }
         bidangIlmuDao.save(bidangIlmu);
         status.setComplete();

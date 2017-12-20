@@ -23,14 +23,14 @@
                                 <div class="form-group">
                                     <label for="kode">Kode</label>
                                     <input type="text" class="form-control" th:field="*{kode}" id="kode" name="kode" placeholder="Kode" />
-                                    <label class="control-label" th:errors="*{kode}">
+                                    <label class="control-label error-label" th:errors="*{kode}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control" th:field="*{nama}" id="nama" name="nama" placeholder="Nama" />
-                                    <label class="control-label" th:errors="*{nama}">
+                                    <label class="control-label error-label" th:errors="*{nama}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
@@ -42,14 +42,14 @@
                                                 th:text="${p.nama}">Pilihan Jabatan
                                         </option>
                                     </select>
-                                    <label class="control-label" th:errors="*{programStudi}">
+                                    <label class="control-label error-label" th:errors="*{programStudi}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="batasMaksimal">Konsentrasi</label>
                                     <input type="text" class="form-control" th:field="*{konsentrasi}" id="konsentrasi" name="konsentrasi" placeholder="Konsentrasi" />
-                                    <label class="control-label" th:errkors="*{konsentrasi}">
+                                    <label class="control-label error-label" th:errors="*{konsentrasi}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>

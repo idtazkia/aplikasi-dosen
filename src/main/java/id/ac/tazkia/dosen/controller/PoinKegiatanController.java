@@ -42,7 +42,7 @@ public class PoinKegiatanController {
         }else{
             model.addAttribute("data", poinKegiatanDao.findAll(pageable));
         }
-        return "/poinkegiatan/list";
+        return "poinkegiatan/list";
     }
     
     @GetMapping("/poinkegiatan/form")
@@ -53,13 +53,13 @@ public class PoinKegiatanController {
         m.addAttribute("poinKegiatan", poinKegiatan);
         m.addAttribute("listJabatan", jabatanDao.findAll());
         m.addAttribute("listJenisKegiatan", jenisKegiatanDao.findAll());
-        return "/poinkegiatan/form";
+        return "poinkegiatan/form";
     }
     
     @PostMapping("/poinkegiatan/form")
     public String simpan(@ModelAttribute @Valid PoinKegiatan poinKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/poinkegiatan/form";
+            return "poinkegiatan/form";
         }
         poinKegiatanDao.save(poinKegiatan);
         status.setComplete();

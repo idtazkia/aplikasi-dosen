@@ -42,7 +42,7 @@ public class JenisKegiatanController {
         }else{
             model.addAttribute("data", jenisKegiatanDao.findAll(pageable));
         }
-        return "/jeniskegiatan/list";
+        return "jeniskegiatan/list";
     }
 
     @GetMapping("/jeniskegiatan/form")
@@ -52,13 +52,13 @@ public class JenisKegiatanController {
         }
         m.addAttribute("jenisKegiatan", jeniskegiatan);
         m.addAttribute("listKategoriKegiatan", kategoriKegiatanDao.findAll());
-        return "/jeniskegiatan/form";
+        return "jeniskegiatan/form";
     }
 
     @PostMapping("/jeniskegiatan/form")
     public String simpan(@ModelAttribute @Valid JenisKegiatan jenisKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/jeniskegiatan/form";
+            return "jeniskegiatan/form";
         }
         jenisKegiatanDao.save(jenisKegiatan);
         status.setComplete();

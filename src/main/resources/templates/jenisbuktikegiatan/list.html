@@ -12,6 +12,11 @@
                 });
             });
         </script>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -46,14 +51,14 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th>Nama</th>
-                                            <th>Keterangan</th>
-                                            <th>&nbsp;</th>
+                                            <th class="noWrapColumn">Nama</th>
+                                            <th class="noWrapColumn">Keterangan</th>
+                                            <th class="noWrapColumn text-center">&nbsp;</th>
                                         </tr>
                                         <tr th:each="jenisBuktiKegiatan : ${data}">
-                                            <td th:text="${jenisBuktiKegiatan.nama}"></td>
-                                            <td th:text="${jenisBuktiKegiatan.keterangan}"></td>
-                                            <td>
+                                            <td class="noWrapColumn" th:text="${jenisBuktiKegiatan.nama}"></td>
+                                            <td class="noWrapColumn" th:text="${jenisBuktiKegiatan.keterangan}"></td>
+                                            <td class="noWrapColumn text-center">
                                                 <a href="#" class="btn btn-info" th:href="@{/jenisbuktikegiatan/form(id=${jenisBuktiKegiatan.id})}" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="#" class="btn btn-info" th:href="@{/jenisbuktikegiatan/delete(id=${jenisBuktiKegiatan.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

@@ -22,14 +22,14 @@
                                 <div class="form-group">
                                     <label for="nama">Nama Kategori Bukti Kegiatan</label>
                                     <input type="text" class="form-control" th:field="*{nama}" id="nama" name="nama" placeholder="nama" />
-                                    <label class="control-label" th:errors="*{nama}">
+                                    <label class="control-label error-label" th:errors="*{nama}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Keterangan</label>
                                     <input type="text" class="form-control" th:field="*{keterangan}" id="keterangan" name="keterangan" placeholder="keterangan" />
-                                    <label class="control-label" th:errors="*{keterangan}">
+                                    <label class="control-label error-label" th:errors="*{keterangan}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>

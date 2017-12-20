@@ -10,25 +10,26 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by yogi on 04/05/2017.
  */
 @Entity
-@Data
 public class KategoriKegiatan implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    private @Getter @Setter String id;
 
     @NotNull
     @NotEmpty
     @Size(min = 3, max = 255)
-    private String nama;
+    private @Getter @Setter String nama;
 
     @Size(max = 255)
-    private String keterangan;
+    private @Getter @Setter String keterangan;
 
 
 }

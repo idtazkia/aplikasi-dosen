@@ -45,7 +45,7 @@ public class FakultasController {
     @PostMapping("/fakultas/form")
     public String simpan(@ModelAttribute @Valid Fakultas fakultas, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/fakultas/form";
+            return "fakultas/form";
         }
         fakultasDao.save(fakultas);
         status.setComplete();

@@ -12,6 +12,11 @@
                 });
             });
         </script>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -44,18 +49,18 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th align="center">Kode</th>
-                                            <th align="center">Nama</th>
-                                            <th align="center">Program Studi</th>
-                                            <th align="center">SKS</th>
-                                            <th>&nbsp;</th>
+                                            <th class="noWrapColumn" align="center">Kode</th>
+                                            <th class="noWrapColumn" align="center">Nama</th>
+                                            <th class="noWrapColumn" align="center">Program Studi</th>
+                                            <th class="noWrapColumn" align="center">SKS</th>
+                                            <th class="noWrapColumn text-center">&nbsp;</th>
                                         </tr>
                                         <tr th:each="mataKuliah : ${mataKuliahList.content}">
-                                            <td th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
-                                            <td th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
-                                            <td th:text="${mataKuliah.programStudi.nama}">template jenis kegiatan 1</td>
-                                            <td th:text="${mataKuliah.sks}">1</td>
-                                            <td>
+                                            <td class="noWrapColumn" th:text="${mataKuliah.kode}">jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${mataKuliah.nama}">keterangan jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${mataKuliah.programStudi.nama}">template jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${mataKuliah.sks}">1</td>
+                                            <td class="noWrapColumn text-center">
                                                 <a href="#" class="btn btn-info" th:href="@{/matakuliah/form(id=${mataKuliah.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="#" class="btn btn-info" th:href="@{/matakuliah/delete(id=${mataKuliah.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

@@ -1,6 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
     <head>
         <title>Program Studi</title>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -34,16 +39,16 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th>Nama</th>
-                                            <th>Keterangan</th>
-                                            <th>Jenjang</th>
-                                            <th>&nbsp;</th>
+                                            <th class="noWrapColumn">Nama</th>
+                                            <th class="noWrapColumn">Keterangan</th>
+                                            <th class="noWrapColumn">Jenjang</th>
+                                            <th class="noWrapColumn text-center">&nbsp;</th>
                                         </tr>
                                         <tr th:each="ps :${daftarProgramStudi.content}">
-                                            <td th:text="${ps.nama}">Muhammad Fadlan</td>
-                                            <td th:text="${ps.keterangan}">Teknik Informatika</td>
-                                            <td th:text="${ps.jenjang}">S1</td>
-                                            <td>
+                                            <td class="noWrapColumn" th:text="${ps.nama}">Muhammad Fadlan</td>
+                                            <td class="noWrapColumn" th:text="${ps.keterangan}">Teknik Informatika</td>
+                                            <td class="noWrapColumn" th:text="${ps.jenjang}">S1</td>
+                                            <td class="noWrapColumn text-center">
                                                 <a href="form.html" class="btn btn-info" th:href="@{/programstudi/form(id=${ps.id})}" title="edit program studi"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="delete.html" class="btn btn-info" th:href="@{/programstudi/delete(id=${ps.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

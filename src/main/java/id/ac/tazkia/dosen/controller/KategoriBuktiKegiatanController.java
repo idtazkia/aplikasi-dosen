@@ -45,7 +45,7 @@ public class KategoriBuktiKegiatanController {
         }else{
             model.addAttribute("data", kategoriBuktiKegiatanDao.findAll(pageable));
         }
-        return "/kategoribuktikegiatan/list";
+        return "kategoribuktikegiatan/list";
     }
 
     @GetMapping("/kategoribuktikegiatan/form")
@@ -59,7 +59,7 @@ public class KategoriBuktiKegiatanController {
     @PostMapping("/kategoribuktikegiatan/form")
     public String simpan(@ModelAttribute @Valid KategoriBuktiKegiatan kategoriBuktiKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/kategoribuktikegiatan/form";
+            return "kategoribuktikegiatan/form";
         }
         kategoriBuktiKegiatanDao.save(kategoriBuktiKegiatan);
         status.setComplete();

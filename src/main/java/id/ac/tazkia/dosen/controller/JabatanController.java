@@ -49,7 +49,7 @@ public class JabatanController {
     @PostMapping("/jabatan/form")
     public String simpan(@ModelAttribute @Valid Jabatan jabatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/jabatan/form";
+            return "jabatan/form";
         }
         jabatanDao.save(jabatan);
         status.setComplete();

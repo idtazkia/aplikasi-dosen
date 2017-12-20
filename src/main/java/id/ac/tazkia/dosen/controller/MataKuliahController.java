@@ -46,7 +46,7 @@ public class MataKuliahController {
         } else {
             model.addAttribute("mataKuliahList", mataKuliahDao.findAll(pageable));
         }
-        return "/matakuliah/list";
+        return "matakuliah/list";
     }
 
     @GetMapping("/matakuliah/form")
@@ -57,13 +57,13 @@ public class MataKuliahController {
         
         m.addAttribute("mataKuliah", matakuliah);
         m.addAttribute("listProgramStudi", programStudiDao.findAll());
-        return "/matakuliah/form";
+        return "matakuliah/form";
     }
 
     @PostMapping("/matakuliah/form")
     public String simpan(@ModelAttribute @Valid MataKuliah mataKuliah, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/matakuliah/form";
+            return "matakuliah/form";
         }
         mataKuliahDao.save(mataKuliah);
         status.setComplete();

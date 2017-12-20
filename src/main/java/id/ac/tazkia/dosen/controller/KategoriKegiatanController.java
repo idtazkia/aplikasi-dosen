@@ -37,7 +37,7 @@ public class KategoriKegiatanController {
         }else{
             model.addAttribute("data", kategoriKegiatanDao.findAll(pageable));
         }
-        return "/kategorikegiatan/list";
+        return "kategorikegiatan/list";
     }
 
     @GetMapping("/kategorikegiatan/form")
@@ -51,7 +51,7 @@ public class KategoriKegiatanController {
     @PostMapping("/kategorikegiatan/form")
     public String simpan(@ModelAttribute @Valid KategoriKegiatan kategoriKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/kategorikegiatan/form";
+            return "kategorikegiatan/form";
         }
         kategoriKegiatanDao.save(kategoriKegiatan);
         status.setComplete();
