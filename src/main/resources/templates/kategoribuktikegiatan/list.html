@@ -1,6 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
     <head>
         <title>Kategori Bukti Kegiatan</title>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -34,14 +39,14 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th>Nama</th>
-                                            <th>Keterangan</th>
-                                            <th>&nbsp;</th>
+                                            <th class="noWrapColumn">Nama</th>
+                                            <th class="noWrapColumn">Keterangan</th>
+                                            <th class="noWrapColumn text-center">&nbsp;</th>
                                         </tr>
                                         <tr th:each="kategori : ${data}">
-                                            <td th:text="${kategori.nama}">SK Penugasan</td>
-                                            <td th:text="${kategori.keterangan}">Keterangan</td>
-                                            <td>
+                                            <td class="noWrapColumn" th:text="${kategori.nama}">SK Penugasan</td>
+                                            <td class="noWrapColumn" th:text="${kategori.keterangan}">Keterangan</td>
+                                            <td class="noWrapColumn text-center">
                                                 <a href="#" th:href="@{/kategoribuktikegiatan/form(id=${kategori.id})}" class="btn btn-info" title="edit kategori bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="#" th:href="@{/kategoribuktikegiatan/delete(id=${kategori.id})}" class="btn btn-info" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

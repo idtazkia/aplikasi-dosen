@@ -89,7 +89,7 @@ public class ProgramStudiController {
                 listFakultas = pageFakultas.getContent();
             }
             model.addAttribute("fakultass", listFakultas);
-            return "/programstudi/form";
+            return "programstudi/form";
         }
         psd.save(programStudi);
         status.setComplete();

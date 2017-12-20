@@ -50,18 +50,18 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th align="center">Jenis Kegiatan</th>
-                                            <th align="center">Jabatan</th>
-                                            <th align="center">Nilai Maksimum</th>
-                                            <th align="center">Nilai</th>
-                                            <th>&nbsp;</th>
+                                            <th class="noWrapColumn" align="center">Jenis Kegiatan</th>
+                                            <th class="noWrapColumn" align="center">Jabatan</th>
+                                            <th class="noWrapColumn" align="center">Nilai Maksimum</th>
+                                            <th class="noWrapColumn" align="center">Nilai</th>
+                                            <th class="noWrapColumn text-center">&nbsp;</th>
                                         </tr>
                                         <tr th:each="poinKegiatan : ${data}">
-                                            <td th:text="${poinKegiatan.jenisKegiatan.nama}">jenis kegiatan 1</td>
-                                            <td th:text="${poinKegiatan.jabatan.nama}">keterangan jenis kegiatan 1</td>
-                                            <td th:text="${poinKegiatan.nilaiMaksimum}">template jenis kegiatan 1</td>
-                                            <td th:text="${poinKegiatan.nilai}">1</td>
-                                            <td>
+                                            <td class="noWrapColumn" th:text="${poinKegiatan.jenisKegiatan.nama}">jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${poinKegiatan.jabatan.nama}">keterangan jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${poinKegiatan.nilaiMaksimum}">template jenis kegiatan 1</td>
+                                            <td class="noWrapColumn" th:text="${poinKegiatan.nilai}">1</td>
+                                            <td class="noWrapColumn text-center">
                                                 <a href="#" class="btn btn-info" th:href="@{/poinkegiatan/form(id=${poinKegiatan.id})}" title="edit jenis kendaraan"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="#" class="btn btn-info" th:href="@{/poinkegiatan/delete(id=${poinKegiatan.id})}" title="delete logic"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

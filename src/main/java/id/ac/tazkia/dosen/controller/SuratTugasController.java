@@ -45,21 +45,24 @@ public class SuratTugasController {
     }
 
     @RequestMapping("/surattugas/list")
-    public ModelMap SuratTugas(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, ModelMap modelMap) {
+    public String SuratTugas(@PageableDefault(size = 10) Pageable pageable, @RequestParam(name = "value", required = false) String value, ModelMap modelMap) {
         if (value != null) {
             modelMap.addAttribute("key", value);
-            return new ModelMap().addAttribute("data", suratTugasDao.findByNoSuratContainingIgnoreCase(value, pageable));
+            modelMap.addAttribute("data", suratTugasDao.findByNoSuratContainingIgnoreCase(value, pageable));
         } else {
-            return new ModelMap().addAttribute("data", suratTugasDao.findAll(pageable));
+            modelMap.addAttribute("data", suratTugasDao.findAll(pageable));
         }
+        return "surattugas/list";
     }
 
     @RequestMapping(value = "/surattugas/form", method = RequestMethod.GET)
-    public ModelMap tampilkanForm(@RequestParam(value = "id", required = false) SuratTugas suratTugas) {
+    public String tampilkanForm(@RequestParam(value = "id", required = false) SuratTugas suratTugas, ModelMap modelMap) {
         if (suratTugas == null) {
             suratTugas = new SuratTugas();
         }
-        return new ModelMap("suratTugas", suratTugas);
+        modelMap.addAttribute("suratTugas", suratTugas);
+        
+        return "surattugas/form";
     }
 
     @RequestMapping(value = "/surattugas/form", method = RequestMethod.POST)

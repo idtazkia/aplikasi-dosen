@@ -30,7 +30,7 @@ public class JenisKegiatan implements Serializable {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "id_kategori_kegiatan")
-    private KategoriKegiatan kategoriKegiatan;
+    private @Getter @Setter KategoriKegiatan kategoriKegiatan;
 
     @NotNull
     @NotEmpty

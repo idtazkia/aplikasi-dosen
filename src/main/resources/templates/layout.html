@@ -92,7 +92,7 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="row">
-                                            <div class="col-xs-4 text-center">
+                                            <div class="col-xs-4 text-center" sec:authorize="!hasRole('MASTER_INSTITUSI')">
                                                 <a th:href="@{/editprofile}">Edit Profile</a>
                                             </div>
                                             <div class="col-xs-4 text-center">

@@ -51,30 +51,30 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th>Nama</th>
-                                            <th>NIDN</th>
-                                            <th>Email</th>
-                                            <th>No Telp</th>
-                                            <th>Tempat Lahir</th>
-                                            <th>Tgl Lahir</th>
-                                            <th>Alamat</th>
-                                            <th>Provinsi</th>
-                                            <th>Kota</th>
-                                            <th>Kec</th>
-                                            <th>Action</th>
+                                            <th class="noWrapColumn">Nama</th>
+                                            <th class="noWrapColumn">NIDN</th>
+                                            <th class="noWrapColumn">Email</th>
+                                            <th class="noWrapColumn">No Telp</th>
+                                            <th class="noWrapColumn">Tempat Lahir</th>
+                                            <th class="noWrapColumn">Tgl Lahir</th>
+                                            <th class="noWrapColumn">Alamat</th>
+                                            <th class="noWrapColumn">Provinsi</th>
+                                            <th class="noWrapColumn">Kota</th>
+                                            <th class="noWrapColumn">Kec</th>
+                                            <th class="noWrapColumn text-center">Action</th>
                                         </tr>
                                         <tr th:each="dosen : ${data.content}">
-                                            <td th:text="${dosen.nama}">Nama</td>
-                                            <td th:text="${dosen.nidn}">NIDN</td>
-                                            <td th:text="${dosen.email}">Email</td>
-                                            <td th:text="${dosen.noTelp}">No Handphone</td>
-                                            <td th:text="${dosen.tempatLahir}">Tempat Lahir</td>
-                                            <td th:text="${dosen.tglLahir}">Tanggal Lahir</td>
-                                            <td th:text="${dosen.alamat}">Alamat</td>
-                                            <td th:text="${dosen.provinsi.nama}">Provinsi</td>
-                                            <td th:text="${dosen.kota.nama}">Kota</td>
-                                            <td th:text="${dosen.kecamatan.nama}">Kecamatan</td>
-                                            <td>
+                                            <td class="noWrapColumn" th:text="${dosen.nama}">Nama</td>
+                                            <td class="noWrapColumn" th:text="${dosen.nidn}">NIDN</td>
+                                            <td class="noWrapColumn" th:text="${dosen.email}">Email</td>
+                                            <td class="noWrapColumn" th:text="${dosen.noTelp}">No Handphone</td>
+                                            <td class="noWrapColumn" th:text="${dosen.tempatLahir}">Tempat Lahir</td>
+                                            <td class="noWrapColumn" th:text="${dosen.tglLahir}">Tanggal Lahir</td>
+                                            <td class="noWrapColumn" th:text="${dosen.alamat}">Alamat</td>
+                                            <td class="noWrapColumn" th:text="${dosen.provinsi.nama}">Provinsi</td>
+                                            <td class="noWrapColumn" th:text="${dosen.kota.nama}">Kota</td>
+                                            <td class="noWrapColumn" th:text="${dosen.kecamatan.nama}">Kecamatan</td>
+                                            <td class="noWrapColumn text-center">
                                                 <a href="form.html" th:href="@{/dosen/form?id={id}(id=${dosen.id})}" title="Edit Data Dosen"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="delete.html" th:href="@{/dosen/delete?id={id}(id=${dosen.id})}" title="Delete Data Dosen"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                             </td>

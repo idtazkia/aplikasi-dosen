@@ -11,6 +11,11 @@
                     return false;
             }
         </script>
+        <style>
+            .noWrapColumn{
+                white-space: nowrap !important;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -44,17 +49,17 @@
                             <table th:if="${not #lists.isEmpty(data.content)}" class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th>Nama</th>
-                                        <th>Keterangan</th>
-                                        <th>Required</th>
-                                        <th>&nbsp;</th>
+                                        <th class="noWrapColumn">Nama</th>
+                                        <th class="noWrapColumn">Keterangan</th>
+                                        <th class="noWrapColumn">Required</th>
+                                        <th class="noWrapColumn text-center">&nbsp;</th>
                                     </tr>
                                     <tr th:each="jd : ${data}">
-                                        <td th:text="${jd.nama}"></td>
-                                        <td th:text="${jd.keterangan}"></td>
-                                        <td th:if="${jd.required == true}"><span class="fa fa-check-square"></span></td>
-                                        <td th:if="${jd.required == false}"><span class="fa fa-window-close"></span></td>
-                                        <td>
+                                        <td class="noWrapColumn" th:text="${jd.nama}"></td>
+                                        <td class="noWrapColumn" th:text="${jd.keterangan}"></td>
+                                        <td class="noWrapColumn text-center" th:if="${jd.required == true}"><span class="fa fa-check-square"></span></td>
+                                        <td class="noWrapColumn text-center" th:if="${jd.required == false}"><span class="fa fa-window-close"></span></td>
+                                        <td class="noWrapColumn text-center">
                                             <a href="#" class="btn btn-info" th:href="@{/jenisDokumenPengajuan/form(id=${jd.id})}" title="edit jenis bukti kegiatan"><span class="glyphicon glyphicon-edit"></span></a>
                                             <a href="#" onclick="return ConfirmDelete();" class="btn btn-info" th:href="@{/jenisDokumenPengajuan/delete(id=${jd.id})}" title="delete"><span class="glyphicon glyphicon-remove-circle remove-data"></span></a>
                                         </td>

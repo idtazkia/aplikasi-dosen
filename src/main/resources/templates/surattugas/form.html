@@ -12,8 +12,7 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('jenisSurat')} ? 'has-error'">
             <label for="jenisSurat" class="col-sm-2 control-label">Jenis Surat</label>
             <div class="col-sm-10">
-                <select id="jenisSurat" class="form-control" name="instruktur" th:field="*{jenisSurat}">
-                    <option value="">Pilih instruktur</option>
+                <select id="jenisSurat" class="selectpicker form-control" name="instruktur" data-live-search="true" data-size="10" title="Please Select ..." th:field="*{jenisSurat}">
                     <option th:each="js : ${daftarJenisSurat}"
                             th:value="${js.id}"
                             th:text="${js.nama}">Pilihan Jenis Surat

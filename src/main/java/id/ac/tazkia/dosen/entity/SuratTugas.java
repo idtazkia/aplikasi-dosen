@@ -10,41 +10,42 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author ronny susetyo  <ronny at susetyo.com>
  * @since 14 Apr 2017
  */
 @Entity
-@Data
 public class SuratTugas implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    private @Getter @Setter String id;
 
     @NotNull
     @NotEmpty
     @Size(min = 3, max = 255)
-    private String noSurat;
+    private @Getter @Setter String noSurat;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "id_jenis_surat")
-    private JenisSurat jenisSurat;
+    private @Getter @Setter JenisSurat jenisSurat;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "id_dosen")
-    private Dosen penerima;
+    private @Getter @Setter Dosen penerima;
     
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "tanggal_mulai")
-    private Date tanggalMulai;
+    private @Getter @Setter Date tanggalMulai;
 
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "tanggal_selesai")
-    private Date tanggalSelesai;
+    private @Getter @Setter Date tanggalSelesai;
 }

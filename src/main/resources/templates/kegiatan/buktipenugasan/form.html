@@ -1,6 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
     <head>
         <title>List / Input Bukti Penugasan</title>
+        <script language="JavaScript">
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </head>
     <body>
         <div layout:fragment="breadcrumb">
@@ -27,7 +32,7 @@
                                 </div>
                                 <div class="help-block with-errors" th:if="${#fields.hasErrors('nama')}" th:errors="*{nama}"></div>
                                 <div class="form-group text-right">
-                                    <a th:href="@{/kegiatan/list}" class="btn btn-danger" role="button">
+                                    <a onclick="goBack()" class="btn btn-danger" role="button">
                                         <span aria-hidden="true"></span>Batal
                                     </a>
                                     <button type="submit" class="btn btn-primary">Simpan</button>

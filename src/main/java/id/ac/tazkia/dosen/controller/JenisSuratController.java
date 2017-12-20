@@ -50,7 +50,7 @@ public class JenisSuratController {
     @PostMapping("/jenissurat/form")
     public String simpan(@ModelAttribute @Valid JenisSurat jenisSurat, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/jenissurat/form";
+            return "jenissurat/form";
         }
         jenisSuratDao.save(jenisSurat);
         status.setComplete();

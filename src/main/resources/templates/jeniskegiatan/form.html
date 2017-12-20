@@ -33,35 +33,35 @@
                                                 th:text="${p.nama}">Pilihan Jabatan
                                         </option>
                                     </select>
-                                    <label class="control-label" th:errors="*{kategoriKegiatan}">
+                                    <label class="control-label error-label" th:errors="*{kategoriKegiatan}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Komponen Kegiatan</label>
                                     <input type="text" class="form-control" th:field="*{nama}" id="nama" name="nama" placeholder="komponen kegiatan" />
-                                    <label class="control-label" th:errors="*{nama}">
+                                    <label class="control-label error-label" th:errors="*{nama}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="bukti">Bukti Kegiatan</label>
                                     <input type="text" class="form-control" th:field="*{bukti}" id="bukti" name="bukti" placeholder="Bukti Kegiatan" />
-                                    <label class="control-label" th:errors="*{bukti}">
+                                    <label class="control-label error-label" th:errors="*{bukti}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="batasMaksimal">Batas Maksimal diakuai</label>
                                     <input type="text" class="form-control" th:field="*{batasMaksimal}" id="batasMaksimal" name="batasMaksimal" placeholder="Batas Makasimal diakui" />
-                                    <label class="control-label" th:errors="*{batasMaksimal}">
+                                    <label class="control-label error-label" th:errors="*{batasMaksimal}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="angkaKredit">Angka Kredit</label>
                                     <input type="text" class="form-control" th:field="*{angkaKredit}" id="angkaKredit" name="angkaKredit" placeholder="Angka Kredit" />
-                                    <label class="control-label" th:errors="*{angkaKredit}">
+                                    <label class="control-label error-label" th:errors="*{angkaKredit}">
                                         Pesan error nanti di sini
                                     </label>
                                 </div>

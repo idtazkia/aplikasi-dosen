@@ -38,13 +38,13 @@ public class JenisBuktiKegiatanController {
         } else {
             m.addAttribute("data", jenisBuktiKegiatanDao.findAll(pageable));
         }
-        return "/jenisbuktikegiatan/list";
+        return "jenisbuktikegiatan/list";
     }
 
     @PostMapping("/jenisbuktikegiatan/form")
     public String simpan(@ModelAttribute @Valid JenisBuktiKegiatan jenisBuktiKegiatan, BindingResult err, SessionStatus status) {
         if (err.hasErrors()) {
-            return "/jenisbuktikegiatan/form";
+            return "jenisbuktikegiatan/form";
         }
         jenisBuktiKegiatanDao.save(jenisBuktiKegiatan);
         status.setComplete();
@@ -58,7 +58,7 @@ public class JenisBuktiKegiatanController {
         } else {
             model.addAttribute("jenisBuktiKegiatan", jenisBuktiKegiatan);
         }
-        return "/jenisbuktikegiatan/form";
+        return "jenisbuktikegiatan/form";
     }
 
     @GetMapping("/jenisbuktikegiatan/delete")
