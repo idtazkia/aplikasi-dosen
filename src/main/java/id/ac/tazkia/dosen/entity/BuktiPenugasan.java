@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -27,24 +29,23 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "t_bukti_penugasan")
-@Data
 public class BuktiPenugasan implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    private @Getter @Setter String id;
 
     @NotNull
     @NotEmpty
-    private String nama;
+    private @Getter @Setter String nama;
 
 //    @NotNull
 //    @NotEmpty
-    private String url;
+    private @Getter @Setter String url;
     
     @ManyToOne
     @JoinColumn(name = "id_kegiatan_belajar_mengajar")
-    private KegiatanBelajarMengajar kegiatanBelajarMengajar;
+    private @Getter @Setter KegiatanBelajarMengajar kegiatanBelajarMengajar;
 
 }

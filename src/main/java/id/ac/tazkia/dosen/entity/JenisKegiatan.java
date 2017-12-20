@@ -13,18 +13,19 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by yogi on 04/05/2017. Updated by Razi on 08/06/2017.
  */
 @Entity
 @Table(name="jenis_kegiatan")
-@Data
 public class JenisKegiatan implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    private @Getter @Setter String id;
 
     @ManyToOne
     @NotNull
@@ -34,16 +35,16 @@ public class JenisKegiatan implements Serializable {
     @NotNull
     @NotEmpty
     @Size(min = 1, max = 255)
-    private String nama;
+    private @Getter @Setter String nama;
 
     @Size(max = 255)
-    private String bukti;
+    private @Getter @Setter String bukti;
 
     @Size(max = 255)
     @Column(name="batas_maksimal")        
-    private String batasMaksimal;
+    private @Getter @Setter String batasMaksimal;
 
     @Size(max = 255)
     @Column(name="angka_kredit")
-    private String angkaKredit;
+    private @Getter @Setter String angkaKredit;
 }

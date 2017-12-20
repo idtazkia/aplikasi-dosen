@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,63 +30,62 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "t_kegiatan_dosen")
-@Data
 public class KegiatanDosen  implements Serializable{
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    private @Getter @Setter String id;
 
-    private String keterangan;
+    private @Getter @Setter String keterangan;
 
     @NotNull
     @NotEmpty
-    private String periode;
+    private @Getter @Setter String periode;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private SemesterConstant semester;
+    private @Getter @Setter SemesterConstant semester;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_dosen")
-    private Dosen dosen;
+    private @Getter @Setter Dosen dosen;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_jenis_kegiatan")
-    private JenisKegiatan jenisKegiatan;
+    private @Getter @Setter JenisKegiatan jenisKegiatan;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_kategori_kegiatan")
-    private KategoriKegiatan kategoriKegiatan;
+    private @Getter @Setter KategoriKegiatan kategoriKegiatan;
 
-    private int sks;
+    private @Getter @Setter int sks;
     
     @Column(name = "volume")
     @NotNull
-    private int volume;
+    private @Getter @Setter int volume;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_satuan_hasil_kegiatan")
-    private SatuanHasilKegiatan satuanKegiatan;
+    private @Getter @Setter SatuanHasilKegiatan satuanKegiatan;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private StatusRekomendasi status;
+    private @Getter @Setter StatusRekomendasi status;
     
     @DateTimeFormat(pattern="dd-mm-yyyy")
     @Temporal(TemporalType.DATE)
     @Column(name = "tgl_mulai")
-    private Date tanggalMulai;
+    private @Getter @Setter Date tanggalMulai;
     
     @DateTimeFormat(pattern="dd-mm-yyyy")
     @Temporal(TemporalType.DATE)
     @Column(name = "tgl_selesai")
-    private Date tanggalSelesai;
+    private @Getter @Setter Date tanggalSelesai;
 
     
 }

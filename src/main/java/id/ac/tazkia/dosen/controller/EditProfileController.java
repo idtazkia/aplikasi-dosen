@@ -9,19 +9,14 @@ import id.ac.tazkia.dosen.dao.JenisDokumenPengajuanDao;
 import id.ac.tazkia.dosen.dao.JenisPengajuanDokumenProfileDao;
 import id.ac.tazkia.dosen.dao.PengajuanDosenDokumenDao;
 import id.ac.tazkia.dosen.dao.PengajuanDosenProfileDao;
-import id.ac.tazkia.dosen.dao.ProgramStudiDao;
 import id.ac.tazkia.dosen.dao.ProvinsiDao;
 import id.ac.tazkia.dosen.dao.RoleDao;
 import id.ac.tazkia.dosen.dao.UserDao;
 import id.ac.tazkia.dosen.entity.Dosen;
 import id.ac.tazkia.dosen.entity.DosenDokumenProfile;
-import id.ac.tazkia.dosen.entity.JenisPengajuanDokumen;
 import id.ac.tazkia.dosen.entity.JenisPengajuanDokumenProfile;
 import id.ac.tazkia.dosen.entity.PengajuanDosenDokumen;
-import id.ac.tazkia.dosen.entity.PengajuanDosenProfile;
-import id.ac.tazkia.dosen.entity.Role;
 import id.ac.tazkia.dosen.entity.User;
-import id.ac.tazkia.dosen.entity.UserPassword;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author ari
  */
 @Controller
-public class EditProfileCOntroller {
+public class EditProfileController {
    @Autowired
     private DosenDao dosenDao;
 
@@ -74,7 +69,7 @@ public class EditProfileCOntroller {
     @Autowired
     private JabatanDao jabatanDao; 
     
-    private final Logger logger = LoggerFactory.getLogger(EditProfileCOntroller.class);
+    private final Logger logger = LoggerFactory.getLogger(EditProfileController.class);
     
     @GetMapping(value = "/editprofile")
     public String tampilkanProfile(Principal principal, Model model) {

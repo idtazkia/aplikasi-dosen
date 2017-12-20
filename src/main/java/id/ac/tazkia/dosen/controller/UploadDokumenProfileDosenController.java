@@ -106,7 +106,7 @@ public class UploadDokumenProfileDosenController {
         mm.addAttribute("progressBar", progressDocument);
         mm.addAttribute("pengajuan", dosen);
         mm.addAttribute("listDokumen", listDokumen);
-        return "/upload_dokumen";
+        return "upload_dokumen";
     }
     
     @Transactional
@@ -131,7 +131,6 @@ public class UploadDokumenProfileDosenController {
 //            }
 //        }
 
-        LOGGER.info("JENIS : [{}]", jenisDokumen.getNama());
 
         DosenDokumenProfile dokumen = dosenDokumenProfileDao.findByDosenAndJenisPengajuanDokumen(pengajuan, jenisDokumen);
 
