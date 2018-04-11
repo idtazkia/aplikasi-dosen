@@ -55,6 +55,11 @@ Setelah kode program didapatkan, buka terminal / command prompt, kemudian:
 
 Versi development dari aplikasi ini dideploy secara otomatis ke Heroku dan bisa diakses di [https://aplikasi-dosen.herokuapp.com/](https://aplikasi-dosen.herokuapp.com/)
 
+Tombol untuk 1 click deploy ke heroku :
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/idtazkia/aplikasi-dosen)
+
+
 ## Lisensi ##
 
 Aplikasi ini dirilis secara open-source dengan lisensi Apache License versi 2.0, yang [secara garis besar artinya sebagai berikut](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)):

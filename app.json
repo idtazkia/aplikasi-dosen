@@ -1,0 +1,5 @@
+{
+    "name": "Aplikasi Dosen",
+    "description": "Aplikasi ini bertujuan untuk meringankan pekerjaan dosen yang berkaitan dengan pelaporan untuk Kemdikbud",
+    "keywords": ["spring boot", "java"]
+}
